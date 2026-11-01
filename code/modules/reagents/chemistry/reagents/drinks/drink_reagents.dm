@@ -1,5 +1,5 @@
 /datum/reagent/consumable/orangejuice
-	name = "橙汁"
+	name = "Orange Juice"
 	description = "既美味又富含维生素 C，你还想要什么？"
 	color = "#E78108" // rgb: 231, 129, 8
 	taste_description = "橙子"
@@ -15,7 +15,7 @@
 			return UPDATE_MOB_HEALTH
 
 /datum/reagent/consumable/tomatojuice
-	name = "番茄汁"
+	name = "Tomato Juice"
 	description = "把番茄做成了汁。多汁的大番茄就这么浪费了，唉。"
 	color = "#731008" // rgb: 115, 16, 8
 	taste_description = "番茄"
@@ -30,7 +30,7 @@
 			return UPDATE_MOB_HEALTH
 
 /datum/reagent/consumable/limejuice
-	name = "青柠汁"
+	name = "Lime Juice"
 	description = "青柠酸甜的汁水。"
 	color = "#a6f19a" // rgb: 166, 241, 154
 	taste_description = "难以忍受的酸味"
@@ -68,7 +68,7 @@
 		return UPDATE_MOB_HEALTH
 
 /datum/reagent/consumable/berryjuice
-	name = "浆果汁"
+	name = "Berry Juice"
 	description = "几种不同浆果调制而成的美味混合汁。"
 	color = "#863333" // rgb: 134, 51, 51
 	taste_description = "浆果"
@@ -76,7 +76,7 @@
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/applejuice
-	name = "苹果汁"
+	name = "Apple Juice"
 	description = "苹果的甜美汁液，男女老少皆宜。"
 	color = "#fff06b" // rgb: 255, 240, 107
 	taste_description = "苹果"
@@ -96,7 +96,7 @@
 		return UPDATE_MOB_HEALTH
 
 /datum/reagent/consumable/watermelonjuice
-	name = "西瓜汁"
+	name = "Watermelon Juice"
 	description = "用西瓜制成的美味果汁。"
 	color = "#af5e5e" // rgb: 175, 94, 94
 	taste_description = "多汁的西瓜"
@@ -104,7 +104,7 @@
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/lemonjuice
-	name = "柠檬汁"
+	name = "Lemon Juice"
 	description = "这果汁非常酸。"
 	color = "#ebeb9e" // rgb: 235, 235, 158
 	taste_description = "酸味"
@@ -114,7 +114,7 @@
 	default_container = /obj/item/reagent_containers/cup/glass/bottle/juice/lemonjuice
 
 /datum/reagent/consumable/banana
-	name = "香蕉汁"
+	name = "Banana Juice"
 	description = "香蕉的原始精华。HONK"
 	color = "#FFFCB9" // rgb: 255, 252, 185
 	taste_description = "香蕉"
@@ -266,7 +266,7 @@
 			return UPDATE_MOB_HEALTH
 
 /datum/reagent/consumable/cream
-	name = "奶油"
+	name = "Cream"
 	description = "牛奶中富含脂肪、仍呈液态的部分。何不把它和点苏格兰威士忌混一混？"
 	color = "#DFD7AF" // rgb: 223, 215, 175
 	taste_description = "浓稠的牛奶"
@@ -280,7 +280,7 @@
 		return UPDATE_MOB_HEALTH
 
 /datum/reagent/consumable/coffee
-	name = "咖啡"
+	name = "Coffee"
 	description = "咖啡是用咖啡树烘烤过的种子（通常称为咖啡豆）冲泡而成的饮品。"
 	color = "#482000" // rgb: 72, 32, 0
 	nutriment_factor = 0
@@ -306,7 +306,7 @@
 		holder.remove_reagent(/datum/reagent/consumable/frostoil, 2.5 * metabolization_ratio * seconds_per_tick)
 
 /datum/reagent/consumable/tea
-	name = "茶"
+	name = "Tea"
 	description = "美味的红茶，含有抗氧化剂，对身体有益！"
 	color = "#101000" // rgb: 16, 16, 0
 	nutriment_factor = 0
@@ -430,7 +430,7 @@
 		return UPDATE_MOB_HEALTH
 
 /datum/reagent/consumable/icetea
-	name = "冰茶"
+	name = "Iced Tea"
 	description = "与某位说唱歌手兼演员毫无关系。"
 	color = "#104038" // rgb: 16, 64, 56
 	nutriment_factor = 0
@@ -450,7 +450,7 @@
 	affected_mob.adjust_bodytemperature(-2.5 * TEMPERATURE_DAMAGE_COEFFICIENT * metabolization_ratio * seconds_per_tick, affected_mob.get_body_temp_normal())
 
 /datum/reagent/consumable/space_cola
-	name = "可乐"
+	name = "Cola"
 	description = "一款清爽的饮品。"
 	color = "#100800" // rgb: 16, 8, 0
 	taste_description = "可乐"
@@ -565,7 +565,7 @@
 	affected_mob.adjust_bodytemperature(-2.5 * metabolization_ratio * TEMPERATURE_DAMAGE_COEFFICIENT * seconds_per_tick, affected_mob.get_body_temp_normal())
 
 /datum/reagent/consumable/spacemountainwind
-	name = "太空山风"
+	name = "SM Wind"
 	description = "像太空风一样直接吹透你。"
 	color = "#102000" // rgb: 16, 32, 0
 	taste_description = "甜柑橘汽水"
@@ -581,7 +581,7 @@
 	affected_mob.set_jitter_if_lower(5 SECONDS * metabolization_ratio * seconds_per_tick)
 
 /datum/reagent/consumable/dr_gibb
-	name = "吉布博士"
+	name = "Dr. Gibb"
 	description = "42 种不同风味的绝妙混合。"
 	color = "#102000" // rgb: 16, 32, 0
 	taste_description = "樱桃汽水" // FALSE ADVERTISING
@@ -594,7 +594,7 @@
 	affected_mob.adjust_bodytemperature(-2.5 * metabolization_ratio * TEMPERATURE_DAMAGE_COEFFICIENT * seconds_per_tick, affected_mob.get_body_temp_normal())
 
 /datum/reagent/consumable/space_up
-	name = "太空七喜"
+	name = "Space-Up"
 	description = "喝起来像嘴里发生了船体破裂。"
 	color = COLOR_VIBRANT_LIME // rgb: 0, 255, 0
 	taste_description = "樱桃汽水"
@@ -606,7 +606,7 @@
 	affected_mob.adjust_bodytemperature(-4 * metabolization_ratio * TEMPERATURE_DAMAGE_COEFFICIENT * seconds_per_tick, affected_mob.get_body_temp_normal())
 
 /datum/reagent/consumable/lemon_lime
-	name = "柠檬青柠"
+	name = "Lemon Lime"
 	description = "由 0.5% 天然柑橘制成的酸爽物质！"
 	color = "#8CFF00" // rgb: 135, 255, 0
 	taste_description = "酸爽的青柠柠檬汽水"
@@ -618,7 +618,7 @@
 	affected_mob.adjust_bodytemperature(-4 * metabolization_ratio * TEMPERATURE_DAMAGE_COEFFICIENT * seconds_per_tick, affected_mob.get_body_temp_normal())
 
 /datum/reagent/consumable/pwr_game
-	name = "电玩能量"
+	name = "Pwr Game"
 	description = "唯一含有真正玩家渴望的那股 PWR 的饮品。"
 	color = "#9385bf" // rgb: 58, 52, 75
 	taste_description = "咸甜交织的酸爽"
@@ -639,7 +639,7 @@
 		affected_mob.mind?.adjust_experience(/datum/skill/gaming, 5)
 
 /datum/reagent/consumable/shamblers
-	name = "蹒跚者果汁"
+	name = "Shambler's Juice"
 	description = "~给我摇一杯那蹒跚者果汁来！~"
 	color = "#f00060" // rgb: 94, 0, 38
 	taste_description = "带金属味的碳酸汽水"
@@ -651,7 +651,7 @@
 	affected_mob.adjust_bodytemperature(-4 * metabolization_ratio * TEMPERATURE_DAMAGE_COEFFICIENT * seconds_per_tick, affected_mob.get_body_temp_normal())
 
 /datum/reagent/consumable/sodawater
-	name = "苏打水"
+	name = "Soda Water"
 	description = "一罐苏打水。何不调一杯威士忌苏打？"
 	color = "#619494" // rgb: 97, 148, 148
 	taste_description = "碳酸水"
@@ -671,7 +671,7 @@
 	affected_mob.adjust_bodytemperature(-2.5 * TEMPERATURE_DAMAGE_COEFFICIENT * metabolization_ratio * seconds_per_tick, affected_mob.get_body_temp_normal())
 
 /datum/reagent/consumable/tonic
-	name = "汤力水"
+	name = "Tonic Water"
 	description = "味道是有点怪，但至少奎宁能挡住太空疟疾。"
 	color = "#0064C8" // rgb: 0, 100, 200
 	taste_description = "酸爽清新"
@@ -740,7 +740,7 @@
 		affected_mob.say(pick_list_replacements(BOOMER_FILE, "boomer"), forced = /datum/reagent/consumable/monkey_energy)
 
 /datum/reagent/consumable/ice
-	name = "冰"
+	name = "Ice"
 	description = "冻结的水，你的牙医不会赞成你嚼这个。"
 	color = "#619494" // rgb: 97, 148, 148
 	taste_description = "冰"
@@ -961,7 +961,7 @@
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/pumpkinjuice
-	name = "南瓜汁"
+	name = "Pumpkin Juice"
 	description = "由真正的南瓜榨成。"
 	color = "#FFA500"
 	taste_description = "南瓜"
@@ -969,7 +969,7 @@
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/blumpkinjuice
-	name = "布伦普金汁"
+	name = "Blumpkin Juice"
 	description = "由真正的布伦普金榨成。"
 	color = "#00BFFF"
 	taste_description = "满嘴的泳池水"
@@ -1039,7 +1039,7 @@
 	affected_mob.adjust_bodytemperature(2.5 * TEMPERATURE_DAMAGE_COEFFICIENT * metabolization_ratio * seconds_per_tick, 0, affected_mob.get_body_temp_normal())
 
 /datum/reagent/consumable/menthol
-	name = "薄荷醇"
+	name = "Menthol"
 	description = "缓解可能出现的咳嗽症状。"
 	color = "#80AF9C"
 	taste_description = "薄荷"
@@ -1052,7 +1052,7 @@
 	affected_mob.apply_status_effect(/datum/status_effect/throat_soothed)
 
 /datum/reagent/consumable/grenadine
-	name = "石榴糖浆"
+	name = "Grenadine"
 	description = "不是樱桃味的！"
 	color = "#EA1D26"
 	taste_description = "甜石榴"
@@ -1080,7 +1080,7 @@
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/pineapplejuice
-	name = "菠萝汁"
+	name = "Pineapple Juice"
 	description = "酸爽、热带，争议不断。"
 	color = "#F7D435"
 	taste_description = "菠萝"
@@ -1089,7 +1089,7 @@
 	default_container = /obj/item/reagent_containers/cup/glass/bottle/juice/pineapplejuice
 
 /datum/reagent/consumable/peachjuice //Intended to be extremely rare due to being the limiting ingredients in the blazaam drink
-	name = "桃子汁"
+	name = "Peach Juice"
 	description = "好得很。"
 	color = "#E78108"
 	taste_description = "桃子"
@@ -1110,7 +1110,7 @@
 	affected_mob.adjust_bodytemperature(-2.5 * metabolization_ratio * TEMPERATURE_DAMAGE_COEFFICIENT * seconds_per_tick, affected_mob.get_body_temp_normal())
 
 /datum/reagent/consumable/sol_dry
-	name = "太阳干姜"
+	name = "Sol Dry"
 	description = "由生姜制成的舒缓柔和饮品。"
 	color = "#f7d26a"
 	quality = DRINK_NICE
@@ -1377,7 +1377,7 @@
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/melon_soda
-	name = "甜瓜苏打"
+	name = "Melon Soda"
 	description = "一口霓虹绿色的怀旧。"
 	color = "#6FEB48"
 	taste_description = "气泡甜瓜"

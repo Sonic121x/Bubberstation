@@ -1,5 +1,5 @@
 /datum/species/snail
-	name = "\improper 蜗牛人"
+	name = "\improper Snailperson"
 	plural_form = "蜗牛人"
 	id = SPECIES_SNAIL
 	inherent_traits = list(

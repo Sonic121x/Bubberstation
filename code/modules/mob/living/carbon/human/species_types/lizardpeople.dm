@@ -1,6 +1,6 @@
 /datum/species/lizard
 	// Reptilian humanoids with scaled skin and tails.
-	name = "\improper 蜥蜴人"
+	name = "\improper Lizardperson"
 	plural_form = "蜥蜴人"
 	id = SPECIES_LIZARD
 	inherent_traits = list(
@@ -104,7 +104,7 @@
 Lizard subspecies: ASHWALKERS
 */
 /datum/species/lizard/ashwalker
-	name = "灰行者"
+	name = "Ash Walker"
 	id = SPECIES_LIZARD_ASH
 	examine_limb_id = SPECIES_LIZARD
 	mutantlungs = /obj/item/organ/lungs/lavaland
@@ -144,7 +144,7 @@ Lizard subspecies: ASHWALKERS
 Lizard subspecies: SILVER SCALED
 */
 /datum/species/lizard/silverscale
-	name = "银鳞者"
+	name = "Silver Scale"
 	id = SPECIES_LIZARD_SILVER
 	inherent_biotypes = MOB_ORGANIC|MOB_HUMANOID|MOB_REPTILE
 	inherent_traits = list(

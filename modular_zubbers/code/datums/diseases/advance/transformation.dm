@@ -39,7 +39,7 @@
 		if(5)
 			var/datum/species/species_type = race
 			affected_mob.set_species(species_type, icon_update = TRUE, pref_load = FALSE)
-			to_chat(affected_mob, span_warning("你变成了[LOWER_TEXT(initial(species_type.name))]！"))
+			to_chat(affected_mob, span_warning("你变成了[chinese_footprint_species_display(initial(species_type.name))]！"))
 			cure()
 
 /datum/disease/transformation_race/synthetic

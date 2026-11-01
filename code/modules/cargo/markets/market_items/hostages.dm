@@ -17,7 +17,7 @@
 	var/humie_mob = ishuman(mob)
 	if(humie_mob)
 		var/mob/living/carbon/human/humie = mob
-		specimen = humie.dna.species.name
+		specimen = chinese_footprint_species_display(humie.dna.species.name) // BUBBER EDIT
 	desc = pick(list(
 		"如果你正在寻找一位最近被偷走的[specimen]，那你可来对地方了。",
 		"我们最近从附近的空间站弄到了一位不错的[specimen]，嘿嘿……",

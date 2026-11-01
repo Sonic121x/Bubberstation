@@ -10,7 +10,7 @@
 		affected_mob.clear_mood_event("[type]_high")
 
 /datum/reagent/drug/space_drugs
-	name = "太空毒品"
+	name = "Space Drugs"
 	description = "一种被当作毒品使用的非法化合物。"
 	color = "#60A584" // rgb: 96, 165, 132
 	overdose_threshold = 30

@@ -1,5 +1,5 @@
 /datum/species/plasmaman
-	name = "\improper 等离子人"
+	name = "\improper Plasmaman"
 	plural_form = "等离子人"
 	id = SPECIES_PLASMAMAN
 	sexes = FALSE

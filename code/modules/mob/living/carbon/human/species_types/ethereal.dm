@@ -1,5 +1,5 @@
 /datum/species/ethereal
-	name = "\improper 以太人"
+	name = "\improper Ethereal"
 	id = SPECIES_ETHEREAL
 	meat = /obj/item/food/meat/slab/human/mutant/ethereal
 	mutantlungs = /obj/item/organ/lungs/ethereal
@@ -118,7 +118,7 @@
 	return to_add
 
 /datum/species/ethereal/lustrous //Ethereal pirates with an inherent bluespace prophet trauma.
-	name = "璀璨者"
+	name = "Lustrous"
 	id = SPECIES_ETHEREAL_LUSTROUS
 	examine_limb_id = SPECIES_ETHEREAL
 	mutantbrain = /obj/item/organ/brain/lustrous

@@ -5,7 +5,7 @@
 #define VAMP_DRAIN_AMOUNT 50
 
 /datum/species/human/vampire
-	name = "吸血鬼"
+	name = "Vampire"
 	id = SPECIES_VAMPIRE
 	examine_limb_id = SPECIES_HUMAN
 	inherent_traits = list(

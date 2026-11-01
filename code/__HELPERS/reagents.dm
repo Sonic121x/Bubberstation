@@ -151,7 +151,7 @@
 
 ///Returns a list of chemical_reaction datums that have the input STRING as a product
 /proc/get_reagent_type_from_product_string(string)
-	var/input_reagent = replacetext(LOWER_TEXT(string), " ", "") //95% of the time, the reagent id is a lowercase/no spaces version of the name
+	var/input_reagent = replacetext(LOWER_TEXT(chinese_reagent_internal_name(string)), " ", "") // BUBBER EDIT: localized player input
 	if (isnull(input_reagent))
 		return
 

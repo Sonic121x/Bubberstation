@@ -1,5 +1,5 @@
 /datum/species/human
-	name = "\improper 人类"
+	name = "\improper Human"
 	id = SPECIES_HUMAN
 	inherent_traits = list(
 		TRAIT_USES_SKINTONES,

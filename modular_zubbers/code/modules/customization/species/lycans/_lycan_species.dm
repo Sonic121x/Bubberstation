@@ -5,7 +5,7 @@
 	id = SPECIES_LYCAN
 	examine_limb_id = SPECIES_LYCAN
 
-	name = "\improper 狼人"
+	name = "\improper Lycan"
 	sexes = TRUE
 
 	coldmod = 0.67 // They have thick fur so I guess this makes sense.

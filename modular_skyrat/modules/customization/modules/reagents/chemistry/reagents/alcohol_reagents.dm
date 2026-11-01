@@ -34,7 +34,7 @@
 // WOOO!
 
 /datum/reagent/consumable/ethanol/synthanol
-	name = "合成醇"
+	name = "Synthanol"
 	description = "一种稀薄、具有导电能力的液体。它对合成体的作用类似于酒精对有机体的作用。"
 	color = "#1BB1FF"
 	process_flags = REAGENT_ORGANIC | REAGENT_SYNTHETIC | REAGENT_PROTEAN

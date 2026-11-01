@@ -1,5 +1,5 @@
 /datum/species/mammal
-	name = "兽人" //Called so because the species is so much more universal than just mammals
+	name = "Anthromorph" //Called so because the species is so much more universal than just mammals
 	id = SPECIES_MAMMAL
 	inherent_traits = list(
 		TRAIT_ADVANCEDTOOLUSER,

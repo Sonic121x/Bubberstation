@@ -1,6 +1,6 @@
 /datum/species/pod
 	// A mutation caused by a human being ressurected in a revival pod. These regain health in light, and begin to wither in darkness.
-	name = "\improper 豆荚人"
+	name = "\improper Podperson"
 	plural_form = "豆荚人"
 	id = SPECIES_PODPERSON
 	inherent_traits = list(

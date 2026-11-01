@@ -1,5 +1,5 @@
 /datum/species/moth
-	name = "\improper 蛾族人"
+	name = "\improper Mothman"
 	plural_form = "蛾族人"
 	id = SPECIES_MOTH
 	inherent_biotypes = MOB_ORGANIC|MOB_HUMANOID|MOB_BUG

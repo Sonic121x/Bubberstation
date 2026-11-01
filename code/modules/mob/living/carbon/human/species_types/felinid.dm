@@ -1,6 +1,6 @@
 //Subtype of human
 /datum/species/human/felinid
-	name = "猫人"
+	name = "Felinid"
 	id = SPECIES_FELINE
 	examine_limb_id = SPECIES_HUMAN
 	mutantbrain = /obj/item/organ/brain/felinid

@@ -66,7 +66,7 @@
 	//Always log attemped injects for admins
 	var/list/injected = list()
 	for(var/datum/reagent/injected_reagent in reagents.reagent_list)
-		injected += injected_reagent.name
+		injected += chinese_reagent_display(injected_reagent.name) // BUBBER EDIT
 	var/contained = english_list(injected)
 	log_combat(user, affected_mob, "尝试注射", src, "([contained])")
 	user.changeNext_move(CLICK_CD_MELEE)

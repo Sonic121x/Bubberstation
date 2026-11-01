@@ -343,7 +343,7 @@
 	var/datum/reagent/random_reagent = new reagent_id
 	list_reagents = list(random_reagent.type = 50)
 	. = ..()
-	desc += span_notice("上面写着“[random_reagent.name]”。")
+	desc += span_notice("上面写着“[chinese_reagent_display(random_reagent.name)]”。") // BUBBER EDIT
 	update_appearance()
 
 

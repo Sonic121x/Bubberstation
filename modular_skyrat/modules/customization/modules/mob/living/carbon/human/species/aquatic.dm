@@ -1,5 +1,5 @@
 /datum/species/aquatic
-	name = "水生人"
+	name = "Aquatic"
 	id = SPECIES_AQUATIC
 	inherent_traits = list(
 		TRAIT_ADVANCEDTOOLUSER,

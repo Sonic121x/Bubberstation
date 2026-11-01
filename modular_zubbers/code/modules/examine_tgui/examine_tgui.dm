@@ -153,7 +153,7 @@
 
 		//Custom species handling. Reports the normal custom species if there is not one set.
 			if(holder_human.dna.species.lore_protected || holder_human.dna.features["custom_species"] == "")
-				custom_species = holder_human.dna.species.name
+				custom_species = chinese_footprint_species_display(holder_human.dna.species.name)
 			else
 				custom_species = holder_human.dna.features["custom_species"]
 		//Custom species lore handling. Reports the species lore with summary if there is not one set. Does this separately so you can name your subrace without the lore changing.

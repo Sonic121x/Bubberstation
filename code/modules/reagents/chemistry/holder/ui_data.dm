@@ -222,7 +222,7 @@
 				var/datum/chemical_reaction/sub_reaction = sub_reactions[sub_index]
 				//Subreactions sweep (if any)
 				for(var/datum/reagent/sub_reagent as anything in sub_reaction.required_reagents)
-					tooltip += "[sub_reaction.required_reagents[sub_reagent]]u [sub_reagent::name]\n"
+					tooltip += "[sub_reaction.required_reagents[sub_reagent]]u [chinese_reagent_display(sub_reagent::name)]\n" // BUBBER EDIT
 					tooltip_bool = TRUE
 			data["reagent_mode_recipe"]["reactants"] += list(list("name" = reagent::name, "id" = reagent, "ratio" = reaction.required_reagents[reagent], "color" = color_r, "tooltipBool" = tooltip_bool, "tooltip" = tooltip))
 
@@ -238,19 +238,19 @@
 				var/datum/chemical_reaction/sub_reaction = sub_reactions[1]
 				//Subreactions sweep (if any)
 				for(var/datum/reagent/sub_reagent as anything in sub_reaction.required_reagents)
-					tooltip += "[sub_reaction.required_reagents[sub_reagent]]u [sub_reagent::name]\n"
+					tooltip += "[sub_reaction.required_reagents[sub_reagent]]u [chinese_reagent_display(sub_reagent::name)]\n" // BUBBER EDIT
 					tooltip_bool = TRUE
 			data["reagent_mode_recipe"]["catalysts"] += list(list("name" = reagent::name, "id" = reagent, "ratio" = reaction.required_catalysts[reagent], "color" = color_r, "tooltipBool" = tooltip_bool, "tooltip" = tooltip))
 		data["reagent_mode_recipe"]["isColdRecipe"] = reaction.is_cold_recipe
 	else
 		data["reagent_mode_recipe"] = null
 
-	return data
+	return chinese_reagent_ui_display(data) // BUBBER EDIT: localize presentation fields
 
 /datum/reagents/ui_static_data(mob/user)
 	var/data = list()
 	//Use GLOB list - saves processing
-	data["master_reaction_list"] = GLOB.chemical_reactions_results_lookup_list
+	data["master_reaction_list"] = chinese_reagent_ui_display(deep_copy_list_alt(GLOB.chemical_reactions_results_lookup_list)) // BUBBER EDIT: display copy
 	data["bitflags"] = list()
 	for(var/readable_flag, real_flag in REACTION_TAG_READABLE)
 		data["bitflags"][readable_flag] = real_flag
@@ -288,7 +288,7 @@
 			ui_reaction_id = text2path(params["id"])
 			return TRUE
 		if("search_reagents")
-			var/input_reagent = tgui_input_list(usr, "选择试剂", "试剂", GLOB.name2reagent)
+			var/input_reagent = chinese_reagent_choice(usr) // BUBBER EDIT: preserve internal name
 			input_reagent = get_reagent_type_from_product_string(input_reagent) //from string to type
 			var/datum/reagent/reagent = GLOB.chemical_reagents_list[input_reagent]
 			if(!reagent)

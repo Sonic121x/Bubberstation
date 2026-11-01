@@ -7,7 +7,7 @@
 
 /datum/species/jelly
 	// Entirely alien beings that seem to be made entirely out of gel. They have three eyes and a skeleton visible within them.
-	name = "\improper 果冻人"
+	name = "\improper Jellyperson"
 	plural_form = "果冻人"
 	id = SPECIES_JELLYPERSON
 	examine_limb_id = SPECIES_JELLYPERSON
@@ -221,7 +221,7 @@
 //Slime people are able to split like slimes, retaining a single mind that can swap between bodies at will, even after death.
 
 /datum/species/jelly/slime
-	name = "\improper 史莱姆人"
+	name = "\improper Slimeperson"
 	plural_form = "史莱姆人"
 	id = SPECIES_SLIMEPERSON
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | RACE_SWAP | ERT_SPAWN | SLIME_EXTRACT
@@ -534,7 +534,7 @@
 //Luminescents are able to consume and use slime extracts, without them decaying.
 
 /datum/species/jelly/luminescent
-	name = "发光人"
+	name = "Luminescent"
 	plural_form = null
 	id = SPECIES_LUMINESCENT
 	examine_limb_id = SPECIES_LUMINESCENT
@@ -724,7 +724,7 @@
 //Stargazers are the telepathic branch of jellypeople, able to project psychic messages and to link minds with willing participants.
 
 /datum/species/jelly/stargazer
-	name = "\improper 观星者"
+	name = "\improper Stargazer"
 	plural_form = null
 	id = SPECIES_STARGAZER
 	examine_limb_id = SPECIES_JELLYPERSON

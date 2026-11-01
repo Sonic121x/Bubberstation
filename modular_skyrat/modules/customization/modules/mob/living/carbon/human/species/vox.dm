@@ -1,6 +1,6 @@
 /datum/species/vox
 	// Bird-like humanoids
-	name = "原始沃克斯"
+	name = "Vox Primalis"
 	plural_form = "原始沃克斯"
 	id = SPECIES_VOX
 	can_augment = FALSE

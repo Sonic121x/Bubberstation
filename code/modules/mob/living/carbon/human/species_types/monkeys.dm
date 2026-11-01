@@ -1,7 +1,7 @@
 #define MONKEY_SPEC_ATTACK_BITE_MISS_CHANCE 25
 
 /datum/species/monkey
-	name = "\improper 猴子"
+	name = "\improper Monkey"
 	id = SPECIES_MONKEY
 	mutant_organs = list(
 		/obj/item/organ/tail/monkey = "Monkey",

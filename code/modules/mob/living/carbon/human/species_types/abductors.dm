@@ -1,5 +1,5 @@
 /datum/species/abductor
-	name = "绑架者"
+	name = "Abductor"
 	id = SPECIES_ABDUCTOR
 	sexes = TRUE // BUBBER EDIT: Lets abductors have pronouns. Abductors are asexual/agender, but they still can present however they wish for cosmetic purposes.
 	can_have_genitals = TRUE // BUBBER EDIT: Lets abductors have genitals.

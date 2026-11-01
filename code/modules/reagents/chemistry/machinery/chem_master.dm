@@ -306,7 +306,7 @@
 			for(var/datum/reagent/reagent as anything in beaker.reagents.reagent_list)
 				beakerContents += list(list(
 					"ref" = "[reagent.type]",
-					"name" = reagent.name,
+					"name" = chinese_reagent_display(reagent.name), // BUBBER EDIT
 					"volume" = round(reagent.volume, CHEMICAL_VOLUME_ROUNDING),
 					"pH" = reagent.ph,
 					"color" = reagent.color,
@@ -328,7 +328,7 @@
 		for(var/datum/reagent/reagent as anything in reagents.reagent_list)
 			beakerContents += list(list(
 				"ref" = "[reagent.type]",
-				"name" = reagent.name,
+				"name" = chinese_reagent_display(reagent.name), // BUBBER EDIT
 				"volume" = round(reagent.volume, CHEMICAL_VOLUME_ROUNDING),
 				"pH" = reagent.ph,
 				"color" = reagent.color,
@@ -527,12 +527,12 @@
 			var/item_name_default = initial(selected_container.name)
 			var/datum/reagent/master_reagent = reagents.get_master_reagent()
 			if(selected_container == default_container) // Tubes and bottles gain reagent name
-				item_name_default = "[master_reagent.name] [item_name_default]"
+				item_name_default = "[chinese_reagent_display(master_reagent.name)] [item_name_default]" // BUBBER EDIT
 			// BUBBER EDIT: needed for pen_medipens and bugfixes
 			else if(!(initial(selected_container.initial_reagent_flags) & OPENCONTAINER)) // Closed containers get both reagent name and units in the name
-				item_name_default = "[master_reagent.name] [item_name_default] ([volume_in_each]u)"
+				item_name_default = "[chinese_reagent_display(master_reagent.name)] [item_name_default] ([volume_in_each]u)" // BUBBER EDIT
 			else // yeah, its kinda dumb
-				item_name_default = "[master_reagent.name] [item_name_default]"
+				item_name_default = "[chinese_reagent_display(master_reagent.name)] [item_name_default]" // BUBBER EDIT
 			// BUBBER EDIT END
 			var/item_name = tgui_input_text(
 				usr,

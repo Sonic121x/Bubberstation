@@ -2,7 +2,7 @@
 	id = SPECIES_PROTEAN
 	examine_limb_id = SPECIES_PROTEAN
 
-	name = "\improper 普罗蒂安"
+	name = "\improper Protean"
 	sexes = TRUE
 
 	siemens_coeff = 1.5 // Electricty messes you up.

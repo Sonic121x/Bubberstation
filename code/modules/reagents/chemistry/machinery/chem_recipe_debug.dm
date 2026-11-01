@@ -292,7 +292,7 @@
 
 		//create ui data
 		active_reactions += list(list(
-			"name" = reagent.name,
+			"name" = chinese_reagent_display(reagent.name), // BUBBER EDIT
 			"danger" = danger,
 			"overheat" = overheat,
 			"purityAlert" = purity_alert,
@@ -307,7 +307,7 @@
 		//additional data for competitive reactions
 		if(equilibrium.reaction.reaction_flags & REACTION_COMPETITIVE) //We have a compeitive reaction - concatenate the results for the different reactions
 			for(var/entry in active_reactions)
-				if(entry["name"] == reagent.name) //If we have multiple reaction methods for the same result - combine them
+				if(entry["name"] == chinese_reagent_display(reagent.name)) // BUBBER EDIT: compare display labels
 					entry["reactedVol"] = equilibrium.reacted_vol
 					entry["targetVol"] = round(equilibrium.target_vol, 1)//Use the first result reagent to name the reaction detected
 					entry["quality"] = (entry["quality"] + equilibrium.reaction_quality) /2
@@ -322,7 +322,7 @@
 		var/reaction_name
 		if(length(edit_reaction.results)) //soups can have no results
 			var/datum/reagent/reagent = edit_reaction.results[1]
-			reaction_name = initial(reagent.name)
+			reaction_name = chinese_reagent_display(initial(reagent.name)) // BUBBER EDIT
 		else
 			reaction_name = "[edit_reaction]"
 		reaction_data = list(
@@ -343,7 +343,7 @@
 		var/list/beakerContents = list()
 		if(length(target_reagents.reagent_list))
 			for(var/datum/reagent/reagent in target_reagents.reagent_list)
-				beakerContents += list(list("name" = reagent.name, "volume" = round(reagent.volume, CHEMICAL_VOLUME_ROUNDING)))
+				beakerContents += list(list("name" = chinese_reagent_display(reagent.name), "volume" = round(reagent.volume, CHEMICAL_VOLUME_ROUNDING))) // BUBBER EDIT
 
 		if(!QDELETED(required_container))
 			//as of now we only decode soup pots. If more exotic containers are made make sure to add them here

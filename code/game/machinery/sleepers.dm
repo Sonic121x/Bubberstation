@@ -173,7 +173,7 @@
 		var/datum/reagent/R = GLOB.chemical_reagents_list[chem]
 		data["chems"] += list(
 			list(
-				"name" = R.name,
+				"name" = chinese_reagent_display(R.name), // BUBBER EDIT
 				"id" = R.type,
 				"allowed" = chem_allowed(chem),
 			),
@@ -225,7 +225,7 @@
 					continue
 				data["occupant"]["reagents"] += list(
 					list(
-						"name" = R.name,
+						"name" = chinese_reagent_display(R.name), // BUBBER EDIT
 						"volume" = R.volume,
 					),
 				)

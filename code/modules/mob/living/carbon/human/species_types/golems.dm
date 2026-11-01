@@ -1,6 +1,6 @@
 /// Animated beings of stone. They have increased defenses, and do not need to breathe. They must eat minerals to live, which give additional buffs.
 /datum/species/golem
-	name = "魔像"
+	name = "Golem"
 	id = SPECIES_GOLEM
 	inherent_traits = list(
 		TRAIT_GENELESS,

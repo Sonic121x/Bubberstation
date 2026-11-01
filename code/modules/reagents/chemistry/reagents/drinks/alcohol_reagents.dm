@@ -2,7 +2,7 @@
 #define ALCOHOL_EXPONENT 1.6 //The exponent applied to boozepwr to make higher volume alcohol at least a little bit damaging to the liver
 
 /datum/reagent/consumable/ethanol
-	name = "乙醇"
+	name = "Ethanol"
 	description = "一种广为人知的酒精，用途广泛。"
 	color = "#404030" // rgb: 64, 64, 48
 	nutriment_factor = 0
@@ -110,7 +110,7 @@
 		exposed_mob.add_surgery_speed_mod("alcohol", round(1 - (boozepwr / 650), 0.05), min(reac_volume * 1 MINUTES, 5 MINUTES)) // Weak alcohol has less sterilizing power
 
 /datum/reagent/consumable/ethanol/beer
-	name = "啤酒"
+	name = "Beer"
 	description = "一种自旧地球远古时代便已酿造的酒精饮料。如今依然受欢迎。"
 	color = "#D7BC31" // rgb: 215, 188, 49
 	nutriment_factor = 1
@@ -136,7 +136,7 @@
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/ethanol/beer/maltliquor
-	name = "麦芽酒"
+	name = "Malt Liquor"
 	description = "一种自旧地球远古时代便已酿造的酒精饮料。这种品类比寻常的更烈、超便宜，也超难喝。"
 	boozepwr = 35
 	taste_description = "甜玉米啤酒和贫民区生活"
@@ -178,7 +178,7 @@
 	affected_human.update_body(is_creating = TRUE)
 
 /datum/reagent/consumable/ethanol/kahlua
-	name = "卡鲁瓦"
+	name = "Kahlua"
 	description = "一种广为人知的墨西哥咖啡味利口酒。自 1936 年起生产！"
 	color = "#8e8368" // rgb: 142,131,104
 	boozepwr = 45
@@ -196,7 +196,7 @@
 		drinker.set_jitter_if_lower(10 SECONDS)
 
 /datum/reagent/consumable/ethanol/whiskey
-	name = "威士忌"
+	name = "Whiskey"
 	description = "一瓶上乘的陈年单一麦芽威士忌。真不错。"
 	color = "#b4a287" // rgb: 180,162,135
 	boozepwr = 75
@@ -228,7 +228,7 @@
 		drinker.adjust_hallucinations(4 SECONDS * metabolization_ratio)
 
 /datum/reagent/consumable/ethanol/thirteenloko
-	name = "十三洛科"
+	name = "Thirteen Loko"
 	description = "一种咖啡因与酒精的强效混合物。"
 	color = "#102000" // rgb: 16, 32, 0
 	nutriment_factor = 1
@@ -294,7 +294,7 @@
 		drinker.playsound_local(drinker, 'sound/effects/singlebeat.ogg', 100, 0)
 
 /datum/reagent/consumable/ethanol/vodka
-	name = "伏特加"
+	name = "Vodka"
 	description = "全世界俄罗斯人首选的饮品兼燃料。"
 	color = "#0064C8" // rgb: 0, 100, 200
 	boozepwr = 65
@@ -336,7 +336,7 @@
 	drinker.set_drugginess(100 SECONDS * metabolization_ratio * seconds_per_tick)
 
 /datum/reagent/consumable/ethanol/gin
-	name = "金酒"
+	name = "Gin"
 	description = "这是金酒。在太空里。我说，先生。"
 	color = "#d8e8f0" // rgb: 216,232,240
 	boozepwr = 45
@@ -347,7 +347,7 @@
 	glass_price = DRINK_PRICE_STOCK
 
 /datum/reagent/consumable/ethanol/rum
-	name = "朗姆酒"
+	name = "Rum"
 	description = "哟呵呵，还有那一套。"
 	color = "#c9c07e" // rgb: 201,192,126
 	boozepwr = 60
@@ -379,7 +379,7 @@
 	return ..()
 
 /datum/reagent/consumable/ethanol/tequila
-	name = "龙舌兰酒"
+	name = "Tequila"
 	description = "一种墨西哥产的烈性蒸馏酒，味道柔和。渴了吗，伙计？"
 	color = "#FFFF91" // rgb: 255, 255, 145
 	boozepwr = 70
@@ -390,7 +390,7 @@
 	glass_price = DRINK_PRICE_STOCK
 
 /datum/reagent/consumable/ethanol/vermouth
-	name = "味美思"
+	name = "Vermouth"
 	description = "你突然很想喝一杯马提尼……"
 	color = "#91FF91" // rgb: 145, 255, 145
 	boozepwr = 45
@@ -400,7 +400,7 @@
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/ethanol/wine
-	name = "葡萄酒"
+	name = "Wine"
 	description = "一种由蒸馏葡萄汁制成的优质酒精饮料。"
 	color = "#7E4043" // rgb: 126, 64, 67
 	boozepwr = 35
@@ -458,7 +458,7 @@
 	glass_price = DRINK_PRICE_STOCK
 
 /datum/reagent/consumable/ethanol/cognac
-	name = "干邑"
+	name = "Cognac"
 	description = "一种甜美而烈性的饮品，经过多次蒸馏与多年陈酿制成。优雅得要命。"
 	color = "#AB3C05" // rgb: 171, 60, 5
 	boozepwr = 75
@@ -469,7 +469,7 @@
 	glass_price = DRINK_PRICE_STOCK
 
 /datum/reagent/consumable/ethanol/absinthe
-	name = "苦艾酒"
+	name = "Absinthe"
 	description = "一种烈性酒精饮料。传闻会致幻，但实际上不会。"
 	color = rgb(10, 206, 0)
 	boozepwr = 80 //Very strong even by default
@@ -493,7 +493,7 @@
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/ethanol/ale
-	name = "艾尔啤酒"
+	name = "Ale"
 	description = "一种用发芽大麦和酵母酿造的深色酒精饮料。"
 	color = "#976063" // rgb: 151,96,99
 	boozepwr = 65
@@ -596,7 +596,7 @@
 		return UPDATE_MOB_HEALTH
 
 /datum/reagent/consumable/ethanol/whiskey_cola
-	name = "威士忌可乐"
+	name = "Whiskey Cola"
 	description = "威士忌，混合可乐。出乎意料地清爽。"
 	color = "#3E1B00" // rgb: 62, 27, 0
 	boozepwr = 40
@@ -1400,7 +1400,7 @@
 	taste_description = "酸柠檬"
 
 /datum/reagent/consumable/ethanol/hcider
-	name = "烈性苹果酒"
+	name = "Hard Cider"
 	description = "苹果汁，成人版。"
 	color = "#CD6839"
 	nutriment_factor = 1
@@ -1460,7 +1460,7 @@
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/ethanol/atomicbomb
-	name = "原子弹"
+	name = "Atomic Bomb"
 	description = "核扩散从未如此美味。"
 	color = "#666300" // rgb: 102, 99, 0
 	boozepwr = 0 //custom drunk effect
@@ -1639,7 +1639,7 @@
 	drinker.adjust_stutter_up_to(6 SECONDS * metabolization_ratio * seconds_per_tick, 6 SECONDS)
 
 /datum/reagent/consumable/ethanol/triple_sec
-	name = "三重橙酒"
+	name = "Triple Sec"
 	description = "一种甜美而鲜亮的橙味利口酒。"
 	color = COLOR_ICECREAM_PEACH
 	boozepwr = 30
@@ -1648,7 +1648,7 @@
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/ethanol/creme_de_menthe
-	name = "薄荷利口酒"
+	name = "Creme de Menthe"
 	description = "一种薄荷味利口酒，非常适合调制清爽冷饮。"
 	color = "#467446" //rgb: 70, 116, 70
 	boozepwr = 20
@@ -1657,7 +1657,7 @@
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/ethanol/creme_de_cacao
-	name = "可可利口酒"
+	name = "Creme de Cacao"
 	description = "一种巧克力味利口酒，非常适合为饮品增添甜点风味，也适合用来贿赂女生会。"
 	color = "#350900" // rgb: 53, 9, 0
 	boozepwr = 20
@@ -1666,7 +1666,7 @@
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/ethanol/creme_de_coconut
-	name = "椰子利口酒"
+	name = "Creme de Coconut"
 	description = "一种椰子利口酒，适合调制顺滑、浓郁的热带饮品。"
 	color = "#F7F0D0"
 	boozepwr = 20
@@ -1832,7 +1832,7 @@
 	drinker.adjust_brute_loss(3 * min(5,volume), required_bodytype = affected_bodytype) //minimum 3 brute damage on ingestion to limit non-drink means of injury - a full 5 unit gulp of the drink trucks you for the full 15
 
 /datum/reagent/consumable/ethanol/sake
-	name = "清酒"
+	name = "Sake"
 	description = "一种甜米酒，合法性存疑，效力极强。"
 	color = "#DDDDDD"
 	boozepwr = 70
@@ -1981,7 +1981,7 @@
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/ethanol/fernet
-	name = "费内特"
+	name = "Fernet"
 	description = "一种极其苦涩的草本利口酒，用作餐后消化酒。"
 	color = "#1B2E24" // rgb: 27, 46, 36
 	boozepwr = 80
@@ -2238,7 +2238,7 @@
 			drinker.emote("scream")
 
 /datum/reagent/consumable/ethanol/applejack
-	name = "苹果杰克"
+	name = "Applejack"
 	description = "当你觉得自己需要胡闹一番时的完美饮品。"
 	color = "#ff6633"
 	boozepwr = 20
@@ -2621,7 +2621,7 @@
 
 //Moth Drinks
 /datum/reagent/consumable/ethanol/curacao
-	name = "库拉索"
+	name = "Curaçao"
 	description = "用拉哈拉橙制成，收尾芳香。"
 	boozepwr = 30
 	color = "#1a5fa1"
@@ -2631,7 +2631,7 @@
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/ethanol/navy_rum //IN THE NAVY
-	name = "海军朗姆酒"
+	name = "Navy Rum"
 	description = "最优秀的水手们喝的朗姆酒。"
 	boozepwr = 90 //the finest sailors are often drunk
 	color = "#d8e8f0"
@@ -2854,7 +2854,7 @@
 
 // Welcome to the Blue Room Bar and Grill, home to Mars' finest cocktails
 /datum/reagent/consumable/ethanol/rice_beer
-	name = "米啤酒"
+	name = "Rice Beer"
 	description = "一种火星上流行的清淡米制拉格啤酒。根据 1516 年《纯净法》，这被视为对巴伐利亚人的仇恨犯罪。"
 	boozepwr = 5
 	color = "#664300"
@@ -2874,7 +2874,7 @@
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/ethanol/yuyake
-	name = "夕烧"
+	name = "Yūyake"
 	description = "一种来自日本的甜瓜利口酒。多数人认为它是 1980 年代遗留下来的产物，但在调酒中仍有一些小众用途，部分原因是它鲜红的颜色。"
 	boozepwr = 40
 	color = "#F54040"
@@ -2884,7 +2884,7 @@
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/ethanol/coconut_rum
-	name = "椰子朗姆酒"
+	name = "Coconut Rum"
 	description = "海滩的蒸馏精华。尝起来像漂白的金发和防晒霜。"
 	boozepwr = 21
 	color = "#e4f2f5"

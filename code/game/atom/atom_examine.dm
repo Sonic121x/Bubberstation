@@ -40,7 +40,7 @@
 					. += "其中装有<b>[reagents.total_volume]</b>单位的各类试剂[user_sees_reagents ? "：" : "。"]"
 					if(user_sees_reagents || (reagent_sigreturn & ALLOW_GENERIC_REAGENT_EXAMINE)) //Show each individual reagent for detailed examination
 						for(var/datum/reagent/current_reagent as anything in reagents.reagent_list)
-							. += "&bull; [round(current_reagent.volume, CHEMICAL_VOLUME_ROUNDING)]单位[current_reagent.name]"
+							. += "&bull; [round(current_reagent.volume, CHEMICAL_VOLUME_ROUNDING)]单位[chinese_reagent_display(current_reagent.name)]" // BUBBER EDIT
 						if(reagents.is_reacting)
 							. += span_warning("其中正在发生反应！")
 						. += span_notice("溶液的 pH 值为[round(reagents.ph, 0.01)]，温度为[reagents.chem_temp] K。")

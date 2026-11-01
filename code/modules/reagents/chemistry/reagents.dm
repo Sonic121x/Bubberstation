@@ -355,8 +355,8 @@
 	for (var/datum/reagent/reagent as anything in reagent_list)
 		reagents_left--
 		if(final_and && intial_list_length > 1 && reagents_left == 0)
-			reagent_strings += "和 [capitalize_names ? capitalize(reagent.name) : reagent.name][names_only ? null : ", [reagent.volume]"]"
+			reagent_strings += "和 [capitalize_names ? capitalize(chinese_reagent_display(reagent.name)) : chinese_reagent_display(reagent.name)][names_only ? null : ", [reagent.volume]"]" // BUBBER EDIT
 		else
-			reagent_strings += "[capitalize_names ? capitalize(reagent.name) : reagent.name][names_only ? null : ", [reagent.volume]"]"
+			reagent_strings += "[capitalize_names ? capitalize(chinese_reagent_display(reagent.name)) : chinese_reagent_display(reagent.name)][names_only ? null : ", [reagent.volume]"]" // BUBBER EDIT
 
 	return reagent_strings.Join(join_text)

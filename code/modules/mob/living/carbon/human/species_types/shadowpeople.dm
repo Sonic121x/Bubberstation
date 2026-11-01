@@ -1,6 +1,6 @@
 /datum/species/shadow
 	// Humans cursed to stay in the darkness, lest their life forces drain. They regain health in shadow and die in light.
-	name = "暗影人"
+	name = "Shadow"
 	plural_form = "暗影人"
 	id = SPECIES_SHADOW
 	sexes = FALSE

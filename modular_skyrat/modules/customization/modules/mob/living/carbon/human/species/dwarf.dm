@@ -1,5 +1,5 @@
 /datum/species/dwarf
-	name = "矮人"
+	name = "Dwarf"
 	id = SPECIES_DWARF
 	examine_limb_id = SPECIES_HUMAN
 	inherent_traits = list(

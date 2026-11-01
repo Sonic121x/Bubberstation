@@ -58,7 +58,7 @@
 /datum/component/reagent_imbued/proc/add_reagent_imbue_description(list/examine_list)
 	examine_list += span_notice(examine_imbued_description)
 	for (var/datum/reagent/reagent in imbued_reagent.reagent_list)
-		examine_list += span_notice("[reagent.volume] 单位[reagent.name]")
+		examine_list += span_notice("[reagent.volume] 单位[chinese_reagent_display(reagent.name)]")
 
 /datum/component/reagent_imbued/proc/add_oil_imbue_effect_description(list/examine_list)
 	if(smithing_oil_effects.len > 0)

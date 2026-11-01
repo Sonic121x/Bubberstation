@@ -234,7 +234,7 @@ GAME_VERB_DESC(/client, show_character_directory, "角色目录", "显示所有�
 			//Display custom species, otherwise show base species instead
 			species = (READ_PREFS(human, text/custom_species))
 			if(species == "Unset")
-				species = "[human.dna.species.name]"
+				species = "[chinese_footprint_species_display(human.dna.species.name)]"
 			//Load standard flavor text preference
 			flavor_text = READ_PREFS(human, text/flavor_text)
 			if((READ_PREFS(human, choiced/show_nsfw_flavor_text) == "Always On") || ((READ_PREFS(human, choiced/show_nsfw_flavor_text) == "Nude Only") && !(human.w_uniform)))

@@ -224,7 +224,7 @@
 	for(var/datum/reagent/scanned_reagents as anything in scanned.reagents.reagent_list)
 		if(scanned_reagents.chemical_flags & REAGENT_INVISIBLE)
 			continue
-		autopsy_information += "<b>[scanned_reagents.name]：</b>血液中含有[round(scanned_reagents.volume, 0.1)]单位。</br>"
+		autopsy_information += "<b>[chinese_reagent_display(scanned_reagents.name)]：</b>血液中含有[round(scanned_reagents.volume, 0.1)]单位。</br>" // BUBBER EDIT
 		autopsy_information += "<i>&rdsh; [scanned_reagents.description]</i></br>"
 	autopsy_information += "<hr>"
 

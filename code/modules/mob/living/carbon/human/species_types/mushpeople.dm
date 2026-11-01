@@ -1,7 +1,7 @@
 #define MUSHROOM_SPORE_COOLDOWN 45 SECONDS
 
 /datum/species/mush //mush mush codecuck
-	name = "蘑菇人"
+	name = "Mushroomperson"
 	plural_form = "蘑菇人"
 	id = SPECIES_MUSHROOM
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | ERT_SPAWN

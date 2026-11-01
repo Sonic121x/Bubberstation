@@ -1,5 +1,5 @@
 /datum/species/shadekin
-	name = "\improper 影裔"
+	name = "Shadekin"
 	id = SPECIES_SHADEKIN
 	mutanttongue = /obj/item/organ/tongue/shadekin
 	mutantears = /obj/item/organ/ears/shadekin

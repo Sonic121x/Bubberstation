@@ -1,6 +1,6 @@
 /datum/species/xeno
 	// A cloning mistake, crossing human and xenomorph DNA
-	name = "\improper 异形杂交体"
+	name = "Xenomorph Hybrid"
 	id = SPECIES_XENO
 	family_heirlooms = list(/obj/item/toy/plush/rouny, /obj/item/clothing/mask/facehugger/toy)
 	inherent_traits = list(

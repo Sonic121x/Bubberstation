@@ -1,5 +1,5 @@
 /datum/species/unathi
-	name = "\improper 蜥蜴人（通用）"
+	name = "Lizardperson (Generic)"
 	id = SPECIES_UNATHI
 	inherent_traits = list(
 		TRAIT_ADVANCEDTOOLUSER,

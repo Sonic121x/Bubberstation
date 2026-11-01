@@ -317,7 +317,7 @@
 					log = "纯度无法超过 [round(initial_purity * 100)]%"
 
 			beakerContents += list(list(
-				"name" = target.name,
+				"name" = chinese_reagent_display(target.name), // BUBBER EDIT
 				"volume" = round(reagent.volume, CHEMICAL_VOLUME_ROUNDING),
 				"mass" = target.mass,
 				"purity" = round(purity * 100),
@@ -341,7 +341,7 @@
 		var/list/beakerContents = list()
 		for(var/datum/reagent/reagent as anything in beaker_2_reagents.reagent_list)
 			beakerContents += list(list(
-				"name" = reagent.name,
+				"name" = chinese_reagent_display(reagent.name), // BUBBER EDIT
 				"volume" = round(reagent.volume, CHEMICAL_VOLUME_ROUNDING),
 				"mass" = reagent.mass,
 				"purity" = round(reagent.purity * 100),

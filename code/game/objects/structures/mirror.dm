@@ -47,7 +47,7 @@
 		selectable_races = list()
 		for(var/datum/species/species_type as anything in get_species_pool())
 			if(!race_flags || (species_type::changesource_flags & race_flags))
-				selectable_races[species_type::name] = species_type
+				selectable_races[chinese_footprint_species_display(species_type::name)] = species_type // BUBBER EDIT
 		selectable_races = sort_list(selectable_races)
 
 	else

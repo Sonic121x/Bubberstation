@@ -495,7 +495,7 @@
 /******COMBOS******/
 /*Suffix: Combo of healing, prob gonna get wack REAL fast*/
 /datum/reagent/medicine/c2/synthflesh
-	name = "合成肉液"
+	name = "Synthflesh"
 	description = "以毒素伤害为代价治疗钝击与烧伤伤害（毒素伤害为治疗量的 66%）。仅可贴敷、泼洒或喷洒使用。60u 的纯净合成肉液或 100u 较低纯度的合成肉液可使被烧成焦尸的尸体恢复原状。"
 	color = "#FFEBEB"
 	ph = 7.2

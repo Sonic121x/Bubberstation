@@ -1,5 +1,5 @@
 /datum/species/fly
-	name = "蝇人"
+	name = "Flyperson"
 	plural_form = "蝇人"
 	id = SPECIES_FLYPERSON
 	inherent_biotypes = MOB_ORGANIC|MOB_HUMANOID|MOB_BUG

@@ -6,7 +6,7 @@
 #define WETSTACK_THRESHOLD 3
 
 /datum/species/akula
-	name = "阿库拉"
+	name = "Akula"
 	plural_form = "阿库拉人"
 	id = SPECIES_AKULA
 	lore_protected = TRUE

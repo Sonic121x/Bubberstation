@@ -16,7 +16,7 @@
 	)
 
 /datum/species/pod/podweak
-	name = "\improper 豆荚人"
+	name = "Podperson"
 	id = SPECIES_PODPERSON_WEAK
 	examine_limb_id = SPECIES_PODPERSON
 	inherent_traits = list(

@@ -10,7 +10,7 @@
 #define SERPENTID_HEAT_THRESHOLD_3 600
 
 /datum/species/gas
-	name = "\improper 巨型装甲蛇形虫"
+	name = "Giant Armored Serpentid"
 	id = SPECIES_GAS
 	eyes_icon = 'modular_skyrat/modules/organs/icons/serpentid_eyes.dmi'
 	can_augment = FALSE

@@ -2,7 +2,7 @@
 //////////////////////////Poison stuff (Toxins & Acids)///////////////////////
 
 /datum/reagent/toxin
-	name = "毒素"
+	name = "Toxin"
 	description = "一种有毒的化学物质。"
 	color = "#CF3600" // rgb: 207, 54, 0
 	taste_description = "苦涩"
@@ -41,7 +41,7 @@
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/toxin/mutagen
-	name = "不稳定诱变剂"
+	name = "Unstable Mutagen"
 	description = "可能引起难以预测的突变。请远离儿童。"
 	color = COLOR_VIBRANT_LIME
 	creation_purity = REAGENT_STANDARD_PURITY
@@ -88,7 +88,7 @@
 #define LIQUID_PLASMA_VOLUME_POWER_CAP 7
 
 /datum/reagent/toxin/plasma
-	name = "等离子体"
+	name = "Plasma"
 	description = "液态的等离子体。"
 	taste_description = "苦涩"
 	specific_heat = SPECIFIC_HEAT_PLASMA
@@ -337,7 +337,7 @@
 			return UPDATE_MOB_HEALTH
 
 /datum/reagent/toxin/carpotoxin
-	name = "鲤鱼毒素"
+	name = "Carpotoxin"
 	description = "一种由可怕的太空鲤鱼产生的致命神经毒素。"
 	silent_toxin = TRUE
 	color = "#003333" // rgb: 0, 51, 51
@@ -436,7 +436,7 @@
 		return UPDATE_MOB_HEALTH
 
 /datum/reagent/toxin/mindbreaker
-	name = "心智破坏毒素"
+	name = "Mindbreaker Toxin"
 	description = "一种强效致幻剂，可别乱碰。不过对某些精神病人来说，它反而能抵消其症状，将他们锚定于现实。"
 	color = "#B31008" // rgb: 139, 166, 233
 	toxpwr = 0
@@ -474,7 +474,7 @@
 	holder.del_reagent(type)
 
 /datum/reagent/toxin/plantbgone
-	name = "植物克星"
+	name = "Plant-B-Gone"
 	description = "一种用于杀死植物的有害毒性混合剂。切勿摄入！"
 	color = "#49002E" // rgb: 73, 0, 46
 	toxpwr = 1
@@ -531,7 +531,7 @@
 		exposed_human.adjust_tox_loss(damage, required_biotype = affected_biotype)
 
 /datum/reagent/toxin/plantbgone/weedkiller
-	name = "除草剂"
+	name = "Weed Killer"
 	description = "一种用于杀死杂草的有害毒性混合剂。切勿摄入！"
 	color = "#4B004B" // rgb: 75, 0, 75
 	ph = 3
@@ -546,7 +546,7 @@
 	mytray.adjust_weedlevel(-rand(1,2))
 
 /datum/reagent/toxin/pestkiller
-	name = "杀虫剂"
+	name = "Pest Killer"
 	description = "一种用于杀死害虫的有害毒性混合剂。切勿摄入！"
 	color = "#4B004B" // rgb: 75, 0, 75
 	toxpwr = 1
@@ -735,7 +735,7 @@
 	affected_mob.set_silence_if_lower(3 SECONDS * metabolization_ratio * normalise_creation_purity() * seconds_per_tick)
 
 /datum/reagent/toxin/staminatoxin
-	name = "提里嗪"
+	name = "Tirizene"
 	description = "一种非致命的毒药，会使受害者极度疲劳与虚弱。"
 	silent_toxin = TRUE
 	color = "#6E2828"
@@ -804,7 +804,7 @@
 	)
 
 /datum/reagent/toxin/histamine
-	name = "组胺"
+	name = "Histamine"
 	description = "组胺的效果会随剂量增加而变得越发危险，从轻微不适一直到极为致命。"
 	silent_toxin = TRUE
 	color = "#FA6464"
@@ -1266,7 +1266,7 @@
 //ACID
 
 /datum/reagent/toxin/acid
-	name = "硫酸"
+	name = "Sulfuric Acid"
 	description = "一种分子式为 H2SO4 的强无机酸。"
 	color = "#00FF32"
 	toxpwr = 1

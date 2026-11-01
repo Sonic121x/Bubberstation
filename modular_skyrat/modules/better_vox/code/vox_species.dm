@@ -1,5 +1,5 @@
 /datum/species/vox_primalis
-	name = "沃克斯"
+	name = "Vox"
 	id = SPECIES_VOX_PRIMALIS
 	can_augment = FALSE
 	digitigrade_customization = DIGITIGRADE_NEVER // We have our own unique sprites!

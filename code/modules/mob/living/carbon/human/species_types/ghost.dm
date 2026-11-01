@@ -1,6 +1,6 @@
 ///Spirit mob that lacks legs but still roams the station as part of the unliving.
 /datum/species/spirit
-	name = "幽魂"
+	name = "Spirit"
 	id = SPECIES_SPIRIT
 	inherent_traits = list(
 		TRAIT_GENELESS,
@@ -86,7 +86,7 @@
  * is not something that is generally fun to play against.
  */
 /datum/species/spirit/ghost
-	name = "鬼魂"
+	name = "Ghost"
 	id = SPECIES_GHOST
 	inherent_traits = list(
 		TRAIT_GENELESS,

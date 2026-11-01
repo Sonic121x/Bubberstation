@@ -1,5 +1,5 @@
 /datum/species/humanoid
-	name = "类人"
+	name = "Humanoid"
 	id = SPECIES_HUMANOID
 	inherent_traits = list(
 		TRAIT_ADVANCEDTOOLUSER,

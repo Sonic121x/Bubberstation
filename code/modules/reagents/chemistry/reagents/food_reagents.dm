@@ -312,7 +312,7 @@
 	return 0
 
 /datum/reagent/consumable/sugar
-	name = "糖"
+	name = "Sugar"
 	description = "通常被称为食糖、有时也叫蔗糖的有机化合物。这种白色无味的结晶粉末具有令人愉悦的甜味。"
 	color = COLOR_WHITE // rgb: 255, 255, 255
 	taste_mult = 1.5 // stop sugar drowning out other flavours
@@ -413,7 +413,7 @@
 	affected_mob.adjust_bodytemperature(0.5 * TEMPERATURE_DAMAGE_COEFFICIENT * heating * metabolization_ratio * seconds_per_tick)
 
 /datum/reagent/consumable/frostoil
-	name = "霜冻油"
+	name = "Frost Oil"
 	description = "一种能明显冷却身体的特制油。从冰辣椒和史莱姆中提取。"
 	color = "#8BA6E9" // rgb: 139, 166, 233
 	taste_description = "薄荷"
@@ -778,7 +778,7 @@
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/vanilla
-	name = "香草粉"
+	name = "Vanilla Powder"
 	description = "用香草荚制成的油润苦涩糊状物。"
 
 	nutriment_factor = 5
@@ -1030,7 +1030,7 @@
 		return UPDATE_MOB_HEALTH
 
 /datum/reagent/consumable/liquidelectricity
-	name = "液态电力"
+	name = "Liquid Electricity"
 	description = "以太人的血液，也是维持他们运转的东西。对他们极好，对别人则是灾难。"
 	nutriment_factor = 5
 	color = "#97ee63"
@@ -1333,7 +1333,7 @@
 	default_container = /obj/item/reagent_containers/condiment/creamer
 
 /datum/reagent/consumable/mintextract
-	name = "薄荷提取物"
+	name = "Mint Extract"
 	description = "用来对付不受欢迎的顾客很有用。"
 	color = "#CF3600" // rgb: 207, 54, 0
 	taste_description = "薄荷"

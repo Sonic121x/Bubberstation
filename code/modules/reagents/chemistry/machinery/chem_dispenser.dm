@@ -260,7 +260,7 @@
 	for(var/re in dispensable_reagents)
 		var/datum/reagent/temp = GLOB.chemical_reagents_list[re]
 		if(temp)
-			var/chemname = temp.name
+			var/chemname = chinese_reagent_display(temp.name) // BUBBER EDIT: display only
 			var/chemcolor = temp.color
 			if(is_hallucinating && prob(5))
 				chemname = "[pick_list_replacements("hallucination.json", "chemicals")]"
@@ -269,7 +269,7 @@
 	.["chemicals"] = chemicals
 	.["recipes"] = saved_recipes
 
-	.["recordingRecipe"] = recording_recipe
+	.["recordingRecipe"] = chinese_reagent_recipe_display(recording_recipe) // BUBBER EDIT: display copy
 	.["recipeReagents"] = list()
 	if(beaker?.reagents.ui_reaction_id)
 		var/datum/chemical_reaction/reaction = GLOB.chemical_reactions_list[beaker.reagents.ui_reaction_id]
@@ -286,7 +286,7 @@
 		var/list/beakerContents = list()
 		if(length(beaker.reagents.reagent_list))
 			for(var/datum/reagent/reagent as anything in beaker.reagents.reagent_list)
-				beakerContents += list(list("name" = reagent.name, "volume" = round(reagent.volume, CHEMICAL_VOLUME_ROUNDING))) // list in a list because Byond merges the first list...
+				beakerContents += list(list("name" = chinese_reagent_display(reagent.name), "volume" = round(reagent.volume, CHEMICAL_VOLUME_ROUNDING))) // BUBBER EDIT: display only
 		beaker_data["contents"] = beakerContents
 	.["beaker"] = beaker_data
 
@@ -598,7 +598,7 @@
 			if(reaction.required_container)
 				continue
 
-			var/index = result_datum.name
+			var/index = chinese_reagent_display(result_datum.name) // BUBBER EDIT: UI recipe label
 			var/list/new_info = get_reaction_info(reaction)
 			new_info["description"] = result_datum.description
 			new_info["color"] = result_datum.color
@@ -606,7 +606,7 @@
 			var/num_alts = 0
 			while(new_reaction_list[index])
 				num_alts++
-				index = "[result_datum.name]（备选[num_alts == 1 ? "" : " #[num_alts]"]）"
+				index = "[chinese_reagent_display(result_datum.name)]（备选[num_alts == 1 ? "" : " #[num_alts]"]）" // BUBBER EDIT
 
 			new_reaction_list[index] = new_info
 
@@ -629,7 +629,7 @@
 	var/list/info = list()
 	for(var/datum/reagent/reagent_typepath as anything in reagent_list)
 		info += list(list(
-			"name" = reagent_typepath::name,
+			"name" = chinese_reagent_display(reagent_typepath::name), // BUBBER EDIT: display only
 			"amount" = reagent_list[reagent_typepath],
 			"typepath" = reagent_typepath,
 		))

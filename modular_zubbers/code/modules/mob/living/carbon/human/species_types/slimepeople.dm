@@ -17,7 +17,7 @@
 	)
 
 /datum/species/jelly/roundstartslime
-	name = "史莱姆人"
+	name = "Slimepeople"
 	id = SPECIES_SLIMESTART
 	examine_limb_id = SPECIES_SLIMEPERSON
 	coldmod = 3

@@ -1,5 +1,5 @@
 /datum/species/dullahan
-	name = "无头骑士"
+	name = "Dullahan"
 	id = SPECIES_DULLAHAN
 	examine_limb_id = SPECIES_HUMAN
 	inherent_traits = list(

@@ -141,7 +141,7 @@
 			SEND_SOUND(affected_mob, sound('sound/items/weapons/flash_ring.ogg'))
 
 /datum/reagent/medicine/cryoxadone
-	name = "冷冻沙酮"
+	name = "Cryoxadone"
 	description = "一种几乎具有魔法般治疗能力的化学混合物。其主要限制在于患者的体温必须低于 270K 才能正常代谢。"
 	color = "#0000C8"
 	taste_description = "蓝色"
@@ -366,7 +366,7 @@
 		return UPDATE_MOB_HEALTH
 
 /datum/reagent/medicine/mine_salve
-	name = "矿工药膏"
+	name = "Miner's Salve"
 	description = "强效止痛药。能恢复瘀伤和烧伤，同时让患者误以为自己已经完全痊愈。在紧急情况下也非常适合处理严重烧伤。"
 	color = "#6D6374"
 	metabolization_rate = 0.4 * REAGENTS_METABOLISM
@@ -748,7 +748,7 @@
 	holder.remove_reagent(/datum/reagent/toxin/histamine, 2 * metabolization_ratio * seconds_per_tick)
 
 /datum/reagent/medicine/morphine
-	name = "吗啡"
+	name = "Morphine"
 	description = "一种止痛药，能让患者即使受伤也全速移动。高剂量会引起困倦并最终失去意识。过量使用会引起从轻微到致命的各种效果。"
 	color = "#A9FBFB"
 	taste_description = "带香水味的苦涩香草"
@@ -1279,7 +1279,7 @@
 		return UPDATE_MOB_HEALTH
 
 /datum/reagent/medicine/mutadone
-	name = "去突变药"
+	name = "Mutadone"
 	description = "消除颤抖并修复基因缺陷。"
 	color = "#5096C8"
 	taste_description = "酸味"

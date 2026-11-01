@@ -557,7 +557,7 @@
 				if(reagent_types_to_check)
 					if(!istype(reagent, reagent_types_to_check))
 						continue
-				render_block += "<span class='notice ml-2'>[round(reagent.volume, 0.001)]单位[reagent.name][reagent.overdosed ? "</span> - [span_bolddanger("过量")]" : "。</span>"]<br>"
+				render_block += "<span class='notice ml-2'>[round(reagent.volume, 0.001)]单位[chinese_reagent_display(reagent.name)][reagent.overdosed ? "</span> - [span_bolddanger("过量")]" : "。</span>"]<br>" // BUBBER EDIT
 
 		if(!length(render_block)) //If no VISIBLY DISPLAYED reagents are present, we report as if there is nothing.
 			render_list += "<span class='notice ml-1'>受检者的[chinese_scanner_label(target.get_bloodtype()?.get_blood_name() || "blood")]中不含任何试剂。</span><br>"

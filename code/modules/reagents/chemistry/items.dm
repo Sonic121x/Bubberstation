@@ -136,12 +136,12 @@
 				var/type = blood_type.get_type()
 				blood_info = "[blood_type.get_blood_name()] [type ? "（血型：[type]）" : ""]"
 			else if(blood)
-				blood_info = "[reagent.name]（血型：[blood]）"
+				blood_info = "[chinese_reagent_display(reagent.name)]（血型：[blood]）" // BUBBER EDIT
 		if(reagent.purity < reagent.inverse_chem_val && reagent.inverse_chem) //If the reagent is impure
 			var/datum/reagent/inverse_reagent = GLOB.chemical_reagents_list[reagent.inverse_chem]
-			out_message += "[span_warning("检测到反转试剂：")]<span class='notice'><b>[round(reagent.volume, 0.01)]u 的 [inverse_reagent.name]</b>，<b>纯度：</b>[round(1 - reagent.purity, 0.000001)*100]%，[(scanmode?"[(inverse_reagent.overdose_threshold?"<b>过量：</b>[inverse_reagent.overdose_threshold]u，":"")]<b>基础 pH：</b>[initial(inverse_reagent.ph)]，<b>当前 pH：</b>[reagent.ph]。":"<b>当前 pH：</b>[reagent.ph]。")]\n"
+			out_message += "[span_warning("检测到反转试剂：")]<span class='notice'><b>[round(reagent.volume, 0.01)]u 的 [chinese_reagent_display(inverse_reagent.name)]</b>，<b>纯度：</b>[round(1 - reagent.purity, 0.000001)*100]%，[(scanmode?"[(inverse_reagent.overdose_threshold?"<b>过量：</b>[inverse_reagent.overdose_threshold]u，":"")]<b>基础 pH：</b>[initial(inverse_reagent.ph)]，<b>当前 pH：</b>[reagent.ph]。":"<b>当前 pH：</b>[reagent.ph]。")]\n" // BUBBER EDIT
 		else
-			out_message += "<b>[round(reagent.volume, CHEMICAL_VOLUME_ROUNDING)]u 的 [blood_info || reagent.name]</b>，<b>纯度：</b>[round(reagent.purity, 0.000001)*100]%，[(scanmode?"[(reagent.overdose_threshold?"<b>过量：</b>[reagent.overdose_threshold]u，":"")]<b>基础 pH：</b>[initial(reagent.ph)]，<b>当前 pH：</b>[reagent.ph]。":"<b>当前 pH：</b>[reagent.ph]。")]\n"
+			out_message += "<b>[round(reagent.volume, CHEMICAL_VOLUME_ROUNDING)]u 的 [blood_info || chinese_reagent_display(reagent.name)]</b>，<b>纯度：</b>[round(reagent.purity, 0.000001)*100]%，[(scanmode?"[(reagent.overdose_threshold?"<b>过量：</b>[reagent.overdose_threshold]u，":"")]<b>基础 pH：</b>[initial(reagent.ph)]，<b>当前 pH：</b>[reagent.ph]。":"<b>当前 pH：</b>[reagent.ph]。")]\n" // BUBBER EDIT
 		if(scanmode)
 			out_message += "<b>分析：</b>[reagent.description]\n"
 	to_chat(user, boxed_message(span_notice("[out_message.Join()]")))

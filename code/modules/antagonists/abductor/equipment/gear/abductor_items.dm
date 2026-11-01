@@ -473,7 +473,7 @@
 
 	if(ishuman(victim))
 		var/mob/living/carbon/human/human_victim = victim
-		species = span_notice("[human_victim.dna.species.name]")
+		species = span_notice("[chinese_footprint_species_display(human_victim.dna.species.name)]") // BUBBER EDIT
 		if(IS_CHANGELING(human_victim))
 			species = span_warning("变形怪生命体")
 		var/obj/item/organ/heart/gland/temp = locate() in human_victim.organs

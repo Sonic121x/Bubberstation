@@ -112,7 +112,7 @@
 	src.data = cached_data
 
 /datum/reagent/water
-	name = "水"
+	name = "Water"
 	description = "一种无处不在的化学物质，由氢和氧组成。"
 	color = "#AAAAAA77" // rgb: 170, 170, 170, 77 (alpha)
 	taste_description = "水"
@@ -741,7 +741,7 @@
 		//affected_human.set_species(species_type) //ORIGINAL
 		affected_human.set_species(species_type, icon_update = TRUE, pref_load = FALSE) //SKYRAT EDIT CHANGE - CUSTOMIZATION
 		holder.del_reagent(type)
-		to_chat(affected_human, span_warning("你变成了 \a [LOWER_TEXT(initial(species_type.name))]！"))
+		to_chat(affected_human, span_warning("你变成了[chinese_footprint_species_display(initial(species_type.name))]！")) // BUBBER EDIT
 		return
 
 /datum/reagent/mutationtoxin/classic //The one from plasma on green slimes
@@ -831,7 +831,7 @@
 	//affected_human.set_species(species_type) //ORIGINAL
 	affected_human.set_species(species_type, icon_update = TRUE, pref_load = FALSE) //SKYRAT EDIT CHANGE - CUSTOMIZATION
 	holder.del_reagent(type)
-	to_chat(affected_human, span_warning("你变成了 \a [initial(species_type.name)]！"))
+	to_chat(affected_human, span_warning("你变成了[chinese_footprint_species_display(initial(species_type.name))]！")) // BUBBER EDIT
 	return UPDATE_MOB_HEALTH
 
 
@@ -989,7 +989,7 @@
 		affected_mob.emote(pick("twitch","drool","moan","gasp"))
 
 /datum/reagent/oxygen
-	name = "氧气"
+	name = "Oxygen"
 	description = "一种无色无味的气体。长在树上，但仍然相当值钱。"
 	color = COLOR_GRAY
 	taste_mult = 0 // oderless and tasteless
@@ -1005,7 +1005,7 @@
 	return
 
 /datum/reagent/copper
-	name = "铜"
+	name = "Copper"
 	description = "一种延展性很强的金属。铜制的东西不太耐用，但它是制作电线的良好材料。"
 	color = "#6E3B08" // rgb: 110, 59, 8
 	taste_description = "金属"
@@ -1024,7 +1024,7 @@
 	metal.use(reac_volume)
 
 /datum/reagent/nitrogen
-	name = "氮气"
+	name = "Nitrogen"
 	description = "一种无色、无味、无臭的气体。一种简单的窒息剂，能悄无声息地取代至关重要的氧气。"
 	color = COLOR_GRAY
 	taste_mult = 0
@@ -1037,7 +1037,7 @@
 	return ..()
 
 /datum/reagent/hydrogen
-	name = "氢气"
+	name = "Hydrogen"
 	description = "一种无色、无味、非金属、无臭、极易燃的双原子气体。"
 	color = COLOR_GRAY
 	taste_mult = 0
@@ -1046,7 +1046,7 @@
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/potassium
-	name = "钾"
+	name = "Potassium"
 	description = "一种柔软、低熔点的固体，用刀就能轻易切开。与水会发生剧烈反应。"
 	color = "#A0A0A0" // rgb: 160, 160, 160
 	taste_description = "甜味"
@@ -1054,7 +1054,7 @@
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/mercury
-	name = "汞"
+	name = "Mercury"
 	description = "一种奇特的金属，在室温下呈液态。具有神经退行性，对心智极为有害。"
 	color = COLOR_WEBSAFE_DARK_GRAY // rgb: 72, 72, 72A
 	taste_mult = 0 // apparently tasteless.
@@ -1071,7 +1071,7 @@
 		return UPDATE_MOB_HEALTH
 
 /datum/reagent/sulfur
-	name = "硫"
+	name = "Sulfur"
 	description = "一种病态的黄色固体，以难闻的气味著称。在生物化学中，它其实比看起来有用得多。"
 	color = "#BF8C00" // rgb: 191, 140, 0
 	taste_description = "臭鸡蛋"
@@ -1080,7 +1080,7 @@
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/carbon
-	name = "碳"
+	name = "Carbon"
 	description = "一种易碎的黑色固体，虽然在物理层面平淡无奇，却构成了所有已知生命的基础。挺了不起的。"
 	color = "#1C1300" // rgb: 30, 20, 0
 	taste_description = "酸粉笔"
@@ -1096,7 +1096,7 @@
 	exposed_turf.spawn_unique_cleanable(/obj/effect/decal/cleanable/dirt)
 
 /datum/reagent/chlorine
-	name = "氯"
+	name = "Chlorine"
 	description = "一种淡黄色气体，是众所周知的氧化剂。虽然单质状态的它组成了许多无害的分子，但它本身绝非无害。"
 	color = "#FFFB89" //pale yellow? let's make it light gray
 	taste_description = "氯"
@@ -1120,7 +1120,7 @@
 		return UPDATE_MOB_HEALTH
 
 /datum/reagent/fluorine
-	name = "氟"
+	name = "Fluorine"
 	description = "一种反应性滑稽得夸张的化学元素。宇宙一点也不希望这东西以这种形态存在。"
 	color = COLOR_GRAY
 	taste_description = "酸味"
@@ -1141,7 +1141,7 @@
 		return UPDATE_MOB_HEALTH
 
 /datum/reagent/sodium
-	name = "钠"
+	name = "Sodium"
 	description = "一种柔软的银色金属，用刀就能轻易切开。它还并不是盐，所以别把它撒在薯条上。"
 	color = COLOR_GRAY
 	taste_description = "咸金属"
@@ -1150,7 +1150,7 @@
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/phosphorus
-	name = "磷"
+	name = "Phosphorus"
 	description = "一种容易燃烧的暗红色粉末。虽然它有多种颜色，但总体主题始终不变。"
 	color = "#832828" // rgb: 131, 40, 40
 	taste_description = "醋"
@@ -1165,7 +1165,7 @@
 	mytray.adjust_weedlevel(-rand(1, 2))
 
 /datum/reagent/lithium
-	name = "锂"
+	name = "Lithium"
 	description = "一种银色金属，以其极低的密度闻名。用它来让自己冷静下来，效果有点过于显著了。"
 	color = COLOR_GRAY
 	taste_description = "金属"
@@ -1210,7 +1210,7 @@
 	burn_wound.sanitization += 0.9
 
 /datum/reagent/iron
-	name = "铁"
+	name = "Iron"
 	description = "纯铁是一种金属。"
 	taste_description = "铁味"
 	material = /datum/material/iron
@@ -1229,7 +1229,7 @@
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/silver
-	name = "银"
+	name = "Silver"
 	description = "一种柔软、白色、有光泽的过渡金属，其导电性在所有元素中最高，导热性在所有金属中也最高。"
 	color = "#D0D0D0" // rgb: 208, 208, 208
 	taste_description = "昂贵但还算合理的金属"
@@ -1238,7 +1238,7 @@
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/uranium
-	name = "铀"
+	name = "Uranium"
 	description = "一种玉绿色的锕系金属化学元素，具有弱放射性。"
 	color = "#5E9964" //this used to be silver, but liquid uranium can still be green and it's more easily noticeable as uranium like this so why bother?
 	taste_description = "反应堆内部"
@@ -1322,7 +1322,7 @@
 	mytray.adjust_toxic(round(0.5 * volume * tox_damage))
 
 /datum/reagent/uranium/radium
-	name = "镭"
+	name = "Radium"
 	description = "镭是一种碱土金属。它具有极强的放射性。"
 	color = "#00CC00" // ditto
 	taste_description = "蓝色与悔恨"
@@ -1362,7 +1362,7 @@
 	do_teleport(src, get_turf(src), 5, asoundin = 'sound/effects/phasein.ogg', channel = TELEPORT_CHANNEL_BLUESPACE)
 
 /datum/reagent/aluminium
-	name = "铝"
+	name = "Aluminium"
 	description = "一种银白色、有延展性的硼族化学元素。"
 	color = "#A8A8A8" // rgb: 168, 168, 168
 	taste_description = "金属"
@@ -1370,7 +1370,7 @@
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/silicon
-	name = "硅"
+	name = "Silicon"
 	description = "一种四价类金属，硅的反应性低于其化学类似物碳。"
 	color = "#A8A8A8" // rgb: 168, 168, 168
 	taste_mult = 0
@@ -1380,7 +1380,7 @@
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/fuel
-	name = "焊接燃料"
+	name = "Welding Fuel"
 	description = "焊枪必备。易燃。"
 	color = "#660000" // rgb: 102, 0, 0
 	taste_description = "恶心的金属"
@@ -1637,7 +1637,7 @@
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/ammonia
-	name = "氨"
+	name = "Ammonia"
 	description = "一种常用于肥料或家用清洁剂的腐蚀性物质。"
 	color = "#404030" // rgb: 64, 64, 48
 	taste_description = "媒染剂"
@@ -1655,7 +1655,7 @@
 		myseed.adjust_instability(1)
 
 /datum/reagent/diethylamine
-	name = "二乙胺"
+	name = "Diethylamine"
 	description = "一种仲胺，具有轻度腐蚀性。"
 	color = "#604030" // rgb: 96, 64, 48
 	taste_description = "铁味"
@@ -1902,7 +1902,7 @@
 			return UPDATE_MOB_HEALTH
 
 /datum/reagent/plantnutriment/eznutriment
-	name = "易滋营养剂"
+	name = "E-Z Nutrient"
 	description = "含有电解质。植物就爱喝这个。"
 	color = "#376400" // RBG: 50, 100, 0
 	tox_prob = 5
@@ -1917,7 +1917,7 @@
 		myseed.adjust_yield(round(volume * 0.1))
 
 /datum/reagent/plantnutriment/left4zednutriment
-	name = "求生之路 4"
+	name = "Left 4 Zed"
 	description = "不稳定的营养剂，会让植物比平时更频繁地发生突变。"
 	color = "#1A1E4D" // RBG: 26, 30, 77
 	tox_prob = 13
@@ -1929,7 +1929,7 @@
 	mytray.myseed?.adjust_instability(round(volume * 0.2))
 
 /datum/reagent/plantnutriment/robustharvestnutriment
-	name = "强劲丰收"
+	name = "Robust Harvest"
 	description = "强效营养剂，能减缓植物发生突变。"
 	color = "#9D9D00" // RBG: 157, 157, 0
 	tox_prob = 8
@@ -1944,7 +1944,7 @@
 		myseed.adjust_yield(round(volume * 0.2))
 
 /datum/reagent/plantnutriment/endurogrow
-	name = "耐性生长剂"
+	name = "Enduro Grow"
 	description = "一种特制营养剂，会降低产量与效力，但能增强植物的耐力。"
 	color = "#a06fa7" // RBG: 160, 111, 167
 	tox_prob = 8
@@ -1960,7 +1960,7 @@
 		myseed.adjust_lifespan(round(volume * 0.35)) //BUBBER EDIT
 
 /datum/reagent/plantnutriment/liquidearthquake
-	name = "液态地震"
+	name = "Liquid Earthquake"
 	description = "一种特制营养剂，能提高植物的生产速度，同时增加它对杂草的敏感性。"
 	color = "#912e00" // RBG: 145, 46, 0
 	tox_prob = 13
@@ -1980,7 +1980,7 @@
 
 
 /datum/reagent/fuel/oil
-	name = "油"
+	name = "Oil"
 	description = "会燃起一团带烟的小火，可用来获得灰烬。"
 	color = "#2D2D2D"
 	taste_description = "油"
@@ -1992,7 +1992,7 @@
 	default_container = /obj/effect/decal/cleanable/blood/oil
 
 /datum/reagent/stable_plasma
-	name = "稳定等离子体"
+	name = "Stable Plasma"
 	description = "不可燃的等离子体，被锁定在液态，既不能点燃，也不会变成气态或固态。"
 	color = "#2D2D2D"
 	taste_description = "苦味"
@@ -2006,7 +2006,7 @@
 	affected_mob.adjustPlasma(5 * metabolization_ratio * seconds_per_tick)
 
 /datum/reagent/iodine
-	name = "碘"
+	name = "Iodine"
 	description = "常作为营养添加剂加入食盐。单独食用时味道远没有那么讨喜。"
 	color = "#BC8A00"
 	taste_description = "金属"
@@ -2257,7 +2257,7 @@
 	carpet_type = /turf/open/floor/carpet/neon/simple/black
 
 /datum/reagent/bromine
-	name = "溴"
+	name = "Bromine"
 	description = "一种反应性极强的褐色液体。可用于终止自由基，但不适合人类摄入。"
 	color = "#D35415"
 	taste_description = "化学物质"
@@ -2302,7 +2302,7 @@
 	exposed_mob.adjust_fire_stacks((reac_volume / 10))
 
 /datum/reagent/phenol
-	name = "苯酚"
+	name = "Phenol"
 	description = "一种带羟基的芳香碳环。是一些药物的有用前体，但本身没有治疗作用。"
 	color = "#E7EA91"
 	taste_description = "酸味"
@@ -2311,7 +2311,7 @@
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/ash
-	name = "灰烬"
+	name = "Ash"
 	description = "细碎的灰烬。据说凤凰会从中重生，但你从没见过。"
 	color = "#515151"
 	taste_description = "灰烬"
@@ -2326,7 +2326,7 @@
 	mytray.adjust_weedlevel(-1)
 
 /datum/reagent/acetone
-	name = "丙酮"
+	name = "Acetone"
 	description = "一种滑腻、略带致癌性的液体。在日常生活中有着大量平凡的用途。"
 	color = "#AF14B7"
 	taste_description = "酸味"
@@ -2561,7 +2561,7 @@
 	exposed_human.set_hairstyle("Bald", update = TRUE)
 
 /datum/reagent/saltpetre
-	name = "硝石"
+	name = "Saltpetre"
 	description = "易挥发。有争议。第三个东西。"
 	color = "#60A584" // rgb: 96, 165, 132
 	taste_description = "清凉的盐"

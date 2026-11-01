@@ -1,5 +1,5 @@
 /datum/species/human/cursekin
-	name = "\improper 咒裔"
+	name = "\improper Cursekin"
 	plural_form = "\improper 咒裔"
 	id = SPECIES_CURSEKIN
 	inherent_traits = list(

@@ -1,5 +1,5 @@
 /datum/species/lizard
-	name = "\improper 提兹拉蜥蜴人"
+	name = "Tiziran Lizardperson"
 	//renames Lizardpeople to Tizirans for clarity.
 
 /datum/species/lizard/on_bloodsucker_gain(mob/living/carbon/human/target, datum/species/current_species)

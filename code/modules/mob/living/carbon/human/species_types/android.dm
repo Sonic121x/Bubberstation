@@ -1,5 +1,5 @@
 /datum/species/android
-	name = "仿生人"
+	name = "Android"
 	id = SPECIES_ANDROID
 	examine_limb_id = SPECIES_HUMAN
 	inherent_traits = list(

@@ -171,7 +171,7 @@ Charged extracts:
 		return
 	var/list/choice_list = list()
 	for(var/datum/species/species_type as anything in subtypesof(/datum/species/jelly))
-		choice_list[initial(species_type.name)] = species_type
+		choice_list[chinese_footprint_species_display(initial(species_type.name))] = species_type // BUBBER EDIT
 	var/racechoice = tgui_input_list(human_user, "选择你的史莱姆亚种", "史莱姆选择", sort_list(choice_list))
 	if(isnull(racechoice))
 		to_chat(user, span_notice("你决定暂时不变成史莱姆。"))

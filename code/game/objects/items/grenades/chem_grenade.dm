@@ -67,7 +67,7 @@
 
 	for (var/obj/item/beaker as anything in beakers)
 		for (var/datum/reagent/reagent in beaker.reagents.reagent_list)
-			. += span_notice("[beaker]中有[reagent.volume]单位的[reagent.name]。")
+			. += span_notice("[beaker]中有[reagent.volume]单位的[chinese_reagent_display(reagent.name)]。") // BUBBER EDIT
 
 	if (length(beakers) == 1)
 		. += span_notice("你没有在手榴弹里检测到第二个烧杯。")
