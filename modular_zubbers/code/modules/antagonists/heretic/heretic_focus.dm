@@ -28,7 +28,7 @@
 	if(!IS_HERETIC(user))
 		return
 
-	examine_list += span_notice("Allows you to cast advanced acolyte spells when worn.")
+	examine_list += span_notice("佩戴后可施放高级异端法术。")
 
 /datum/element/heretic_focus/proc/on_equip(obj/item/source, mob/user, slot)
 	SIGNAL_HANDLER
@@ -63,12 +63,12 @@
 	if(HAS_TRAIT(source, TRAIT_ALLOW_HERETIC_CASTING) || ascended)
 		return NONE
 
-	source.balloon_alert(source, "you need a focus!")
+	source.balloon_alert(source, "你需要聚焦器！")
 	return SPELL_CANCEL_CAST
 
 /datum/heretic_knowledge/amber_focus
-	desc = "Sculpts an Amber Focus.<br>\
-		A focus must be worn in order to cast more advanced spells."
+	desc = "雕制一件琥珀聚焦器。<br>\
+		必须佩戴聚焦器才能施放更高级的法术。"
 	cost = 0
 	is_starting_knowledge = TRUE
 	drafting_tier = 0
@@ -126,8 +126,8 @@
 
 	uncloak_mob(source, show_message = FALSE)
 	source.visible_message(
-		span_warning("[source] suddenly appears from the shadows!"),
-		span_userdanger("As you lose your focus, you are pulled out of the shadows!"),
+		span_warning("[source]突然从阴影中现身！"),
+		span_userdanger("失去聚焦器后，你被从阴影中拽了出来！"),
 	)
 	StartCooldown(uncloak_time / 3)
 
@@ -143,5 +143,5 @@
 /datum/status_effect/caretaker_refuge/proc/on_focus_lost()
 	SIGNAL_HANDLER
 
-	to_chat(owner, span_danger("Without a focus, your refuge weakens and dissipates!"))
+	to_chat(owner, span_danger("失去聚焦器后，你的庇护所逐渐衰弱并消散！"))
 	qdel(src)
