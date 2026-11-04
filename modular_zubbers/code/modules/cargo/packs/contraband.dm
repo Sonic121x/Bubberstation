@@ -26,26 +26,3 @@
 	crate_name = "蜥蜴商品箱"
 	order_flags = ORDER_CONTRABAND
 
-/datum/supply_pack/imports/antimatcrate
-	name = "破阵反器材步枪箱"
-	desc = "有个棘手的目标非死不可？那把离子枪搞不定开着机甲的坏蛋？买这个，就能拿到一把破阵步枪，附两个备用弹匣。"
-	cost = 7500
-	contains = list(
-		/obj/item/gun/ballistic/automatic/wylom,
-		/obj/item/ammo_box/magazine/wylom,
-		/obj/item/ammo_box/magazine/wylom,
-	)
-	crate_name = "反器材步枪箱"
-	order_flags = ORDER_CONTRABAND
-
-/datum/supply_pack/imports/riflecrate
-	name = "骑枪战斗步枪箱"
-	desc = "嫌标准型萨赫诺不够可靠、火力不够猛？别往别处看了，就是这帮狠家伙。它们采用更现代的半自动结构，肯定能让任何招惹你的人后悔。别在意那点手续费……"
-	cost = 2500
-	contains = list(
-		/obj/item/gun/ballistic/automatic/lanca,
-		/obj/item/ammo_box/magazine/lanca,
-		/obj/item/ammo_box/magazine/lanca,
-	)
-	crate_name = "战斗步枪箱"
-	order_flags = ORDER_CONTRABAND

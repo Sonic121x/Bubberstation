@@ -95,7 +95,7 @@
 	name = "御币"
 	item_path = /obj/item/gohei
 
-/datum/loadout_item/under/jumpsuit/capfemformal
+/datum/loadout_item/uniform/jumpsuit/capfemformal
 	name = "舰长女士礼服"
 	item_path = /obj/item/clothing/under/rank/captain/femformal
 	restricted_roles = list("Captain")
@@ -1228,7 +1228,7 @@
 	name = "红领巾"
 	item_path = /obj/item/clothing/neck/USSRredscarf
 
-/datum/loadout_item/under/ussrschooluniform
+/datum/loadout_item/uniform/ussrschooluniform
 	name = "苏联女学生校服"
 	item_path = /obj/item/clothing/under/ussrschooluniform
 
@@ -1240,7 +1240,7 @@
 	name = "共青团徽章"
 	item_path = /obj/item/clothing/accessory/cylb
 
-/datum/loadout_item/under/pla65
+/datum/loadout_item/uniform/pla65
 	name = "65军装"
 	item_path = /obj/item/clothing/under/pla65
 
@@ -1261,7 +1261,7 @@
 	item_path =  /obj/item/radio/headset/headset_frontier_colonist
 */
 //ScarL
-/datum/loadout_item/under/scarl
+/datum/loadout_item/uniform/scarl
 	name = "SCAR-L的制服"
 	item_path = /obj/item/clothing/under/scarl
 	group = "戏服"
