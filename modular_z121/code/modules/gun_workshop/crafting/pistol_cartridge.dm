@@ -55,7 +55,7 @@
 	item = /obj/item/c9x19mm_bullet
 	amount = 5
 
-	icon = 'modular_z121/code/modules/gun_workshop/caliber/c9x19mm/icon.dmi'
+	icon = 'modular_z121/icons/gun_workshop/caliber/c9x19mm/icon.dmi'
 	icon_state = "9x19mm-bullet"
 
 /datum/crafting_recipe/ammo/c9x19mm_bullet_fmj_5
@@ -71,7 +71,7 @@
 	item = /obj/item/ammo_casing/c9x19mm
 	amount = 5
 
-	icon = 'modular_z121/code/modules/gun_workshop/caliber/c9x19mm/icon.dmi'
+	icon = 'modular_z121/icons/gun_workshop/caliber/c9x19mm/icon.dmi'
 	icon_state = "9x19mm"
 
 /datum/crafting_recipe/ammo/c9x19mm_casing_5
@@ -86,7 +86,7 @@
 	item = /obj/item/primer/pistol
 	amount = 5
 
-	icon = 'modular_z121/code/modules/gun_workshop/primer/icon.dmi'
+	icon = 'modular_z121/icons/gun_workshop/primer/icon.dmi'
 	icon_state = "pistol"
 
 /datum/crafting_recipe/ammo/pistol_primer

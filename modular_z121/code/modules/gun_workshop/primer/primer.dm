@@ -1,7 +1,7 @@
 /obj/item/primer
 	abstract_type = /obj/item/primer
 
-	icon = 'modular_z121/code/modules/gun_workshop/primer/icon.dmi'
+	icon = 'modular_z121/icons/gun_workshop/primer/icon.dmi'
 
 /obj/item/primer/pistol
 	name = "手枪弹底火"
