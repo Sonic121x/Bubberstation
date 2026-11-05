@@ -36,6 +36,6 @@
 	build_path = /obj/item/clothing/head/hats/colonial
 
 /datum/design/biogen/colonial/cool_gloves
-	name = "黑色手套"
+	name = "边境手套"
 	materials = list(/datum/material/biomass = 100)
-	build_path = /obj/item/clothing/gloves/color/black
+	build_path = /obj/item/clothing/gloves/frontier_colonist

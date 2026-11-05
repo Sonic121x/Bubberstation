@@ -32,7 +32,7 @@
 /datum/supply_pack/engineering/colony_starter
 	name = "殖民启动套装"
 	desc = "太阳系标准的边疆殖民最低配置套装，内含在银河系大多数地方建立一座基本可运转殖民地所需的一切。"
-	cost = CARGO_CRATE_VALUE * 11 // 6 for the lathe, 3 for the organics printer, 2 for the rest of the stuff
+	cost = CARGO_CRATE_VALUE * 35 // 30 for the lathe, the rest for the organics printer and supplies
 	contains = list(
 		/obj/item/flatpacked_machine,
 		/obj/item/flatpacked_machine/organics_printer,
@@ -47,4 +47,3 @@
 		/obj/item/stock_parts/power_store/battery/high,
 	)
 	crate_name = "殖民套装板条箱"
-	order_flags = ORDER_CONTRABAND

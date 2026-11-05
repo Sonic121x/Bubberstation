@@ -76,7 +76,7 @@
 /datum/design/engine_goggles_prescription
 	name = "处方工程扫描眼镜"
 	desc = "工程师使用的眼镜。介子扫描模式可让你隔着墙壁看到基础结构与地形布局，不受光照条件影响。T 射线扫描模式则让你看到地板下的物体，如电缆和管道。此设计已加入处方镜片。"
-	build_type = PROTOLATHE | AWAY_LATHE | COLONY_FABRICATOR
+	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(
 		/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT,
 		/datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT,

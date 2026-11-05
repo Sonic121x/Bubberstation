@@ -7,30 +7,35 @@
 // Burn Treatments
 
 /datum/design/biogen/dfbbr_balm
+	prints_full_stack = TRUE
 	name = "红日药膏"
 	materials = list(/datum/material/biomass = 18)
 	build_path = /obj/item/stack/medical/ointment/red_sun
 	category = list(RND_CATEGORY_INITIAL, RND_CATEGORY_DFBBR_MEDICAL)
 
 /datum/design/biogen/dfbbr_ointment
+	prints_full_stack = TRUE
 	name = "烧伤药膏"
 	materials = list(/datum/material/biomass = 6)
 	build_path = /obj/item/stack/medical/ointment
 	category = list(RND_CATEGORY_INITIAL, RND_CATEGORY_DFBBR_MEDICAL)
 
 /datum/design/biogen/dfbbr_aseptic_gauze
+	prints_full_stack = TRUE
 	name = "密封无菌纱布"
 	materials = list(/datum/material/biomass = 16)
 	build_path = /obj/item/stack/medical/wrap/gauze/sterilized
 	category = list(RND_CATEGORY_INITIAL, RND_CATEGORY_DFBBR_MEDICAL)
 
 /datum/design/biogen/dfbbr_mesh
+	prints_full_stack = TRUE
 	name = "再生网纱"
 	materials = list(/datum/material/biomass = 12)
 	build_path = /obj/item/stack/medical/mesh
 	category = list(RND_CATEGORY_INITIAL, RND_CATEGORY_DFBBR_MEDICAL)
 
 /datum/design/biogen/dfbbr_hemo_mesh
+	prints_full_stack = TRUE
 	name = "止血网"
 	materials = list(/datum/material/biomass = 10)
 	build_path = /obj/item/stack/medical/mesh/bloody
@@ -39,24 +44,28 @@
 // Brute Treatments
 
 /datum/design/biogen/dfbbr_bruise_pack
+	prints_full_stack = TRUE
 	name = "淤伤包"
 	materials = list(/datum/material/biomass = 8)
 	build_path = /obj/item/stack/medical/bruise_pack
 	category = list(RND_CATEGORY_INITIAL, RND_CATEGORY_DFBBR_MEDICAL)
 
 /datum/design/biogen/dfbbr_bandaid
+	prints_full_stack = TRUE
 	name = "急救绷带"
 	materials = list(/datum/material/biomass = 50)
 	build_path = /obj/item/stack/medical/bandage
 	category = list(RND_CATEGORY_INITIAL, RND_CATEGORY_DFBBR_MEDICAL)
 
 /datum/design/biogen/dfbbr_sutures
+	prints_full_stack = TRUE
 	name = "缝合线"
 	materials = list(/datum/material/biomass = 16)
 	build_path = /obj/item/stack/medical/suture
 	category = list(RND_CATEGORY_INITIAL, RND_CATEGORY_DFBBR_MEDICAL)
 
 /datum/design/biogen/dfbbr_hemo_sutures
+	prints_full_stack = TRUE
 	name = "止血缝合线"
 	materials = list(/datum/material/biomass = 30)
 	build_path = /obj/item/stack/medical/suture/bloody
@@ -65,12 +74,14 @@
 // Bleed Treatments
 
 /datum/design/biogen/dfbbr_coagulant_f
+	prints_full_stack = TRUE
 	name = "凝血剂-F 药包"
 	materials = list(/datum/material/biomass = 10)
 	build_path = /obj/item/stack/medical/suture/coagulant
 	category = list(RND_CATEGORY_INITIAL, RND_CATEGORY_DFBBR_MEDICAL)
 
 /datum/design/biogen/dfbbr_coagulant_rapid
+	prints_full_stack = TRUE
 	name = "快速凝血剂涂抹器"
 	materials = list(/datum/material/biomass = 75)
 	build_path = /obj/item/stack/medical/wound_recovery/rapid_coagulant
@@ -85,12 +96,14 @@
 	category = list(RND_CATEGORY_INITIAL, RND_CATEGORY_DFBBR_MEDICAL)
 
 /datum/design/biogen/dfbbr_repair_foam
+	prints_full_stack = TRUE
 	name = "机械修复喷剂"
 	materials = list(/datum/material/biomass = 80)
 	build_path = /obj/item/stack/medical/wound_recovery/robofoam
 	category = list(RND_CATEGORY_INITIAL, RND_CATEGORY_DFBBR_MEDICAL)
 
 /datum/design/biogen/dfbbr_repair_foam_premium
+	prints_full_stack = TRUE
 	name = "高级机械修复喷剂"
 	materials = list(/datum/material/biomass = 160)
 	build_path = /obj/item/stack/medical/wound_recovery/robofoam_super
@@ -99,24 +112,28 @@
 // Fracture Treatments
 
 /datum/design/biogen/dfbbr_gauze
+	prints_full_stack = TRUE
 	name = "医用纱布"
 	materials = list(/datum/material/biomass = 16)
 	build_path = /obj/item/stack/medical/wrap/gauze
 	category = list(RND_CATEGORY_INITIAL, RND_CATEGORY_DFBBR_MEDICAL)
 
 /datum/design/biogen/dfbbr_bone_gel
+	prints_full_stack = TRUE
 	name = "骨胶"
 	materials = list(/datum/material/biomass = 50)
 	build_path = /obj/item/stack/medical/bone_gel
 	category = list(RND_CATEGORY_INITIAL, RND_CATEGORY_DFBBR_MEDICAL)
 
 /datum/design/biogen/dfbbr_surgical_tape
+	prints_full_stack = TRUE
 	name = "手术胶带"
 	materials = list(/datum/material/biomass = 50)
 	build_path = /obj/item/stack/medical/wrap/sticky_tape/surgical
 	category = list(RND_CATEGORY_INITIAL, RND_CATEGORY_DFBBR_MEDICAL)
 
 /datum/design/biogen/dfbbr_splint_applicator
+	prints_full_stack = TRUE
 	name = "皮下夹板贴敷器"
 	materials = list(/datum/material/biomass = 75)
 	build_path = /obj/item/stack/medical/wound_recovery

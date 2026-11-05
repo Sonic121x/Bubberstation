@@ -1,5 +1,5 @@
 /obj/machinery/power/rtg/portable
-	name = "放射性同位素热电发电机"
+	name = "放射性同位素热电发电机(RTG)"
 	desc = "在“荒无人烟之地”发电的终极选择。与标准 RTG 不同，这一特定\
 		设计的发电机舍弃了大多数 RTG 设计都会配备的重型辐射屏蔽。\
 		好消息是，这类发电机很擅长为各种用途提供还过得去的\
@@ -30,7 +30,7 @@
 
 // Item for creating the arc furnace or carrying it around
 /obj/item/flatpacked_machine/rtg
-	name = "扁平包装放射性同位素热电发电机"
+	name = "扁平包装放射性同位素热电发电机(RTG)"
 	icon_state = "rtg_packed"
 	type_to_deploy = /obj/machinery/power/rtg/portable
 	custom_materials = list(

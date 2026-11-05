@@ -1,10 +1,61 @@
-#define SLAM_JAM_DELAY 15 SECONDS
+#define SLAM_JAM_DELAY (15 SECONDS)
+/// Power grace period
+#define THUMPER_POWER_GRACE (10 SECONDS)
+
+#define THUMPER_STALL_LOCATION "invalid location"
+#define THUMPER_STALL_NO_WIRE "no wire connection"
+#define THUMPER_STALL_POWER "not enough power"
+#define THUMPER_STALL_ORE "nearby ore too saturated"
+#define THUMPER_STALL_NEIGHBOR "too close to another thumper"
+
+/// Cadence within this of normal counts as level
+#define THUMPER_SYNC_DEADZONE 0.02
+
+/// Max cadence change while syncing
+#define THUMPER_SYNC_MAX_SHIFT 0.5
+/// How hard a thumper pulls towards the shared rhythm
+#define THUMPER_SYNC_GAIN 6
+/// Percent chance per box of setting off an earthquake
+#define THUMPER_QUAKE_CHANCE 0.1
+/// but the dwarves delved too deep and too greedily
+#define THUMPER_EMAG_QUAKE_MULTIPLIER 3
+/// Percent chance, per box of materials, of striking mythril
+#define THUMPER_MYTHRIL_CHANCE 0.05
+/// Sheets of mythril in a strike, approximately as rare as it is from regular mining
+#define THUMPER_MYTHRIL_AMOUNT 5
+/// Boxes between wellbore clowns on an emagged thumper
+#define THUMPER_CLOWN_BOXES_MIN 3
+#define THUMPER_CLOWN_BOXES_MAX 6
+/// Cooldown between thumper quakes
+#define THUMPER_QUAKE_COOLDOWN (30 MINUTES)
+
+/// Payload bar segments
+#define THUMPER_LOAD_SEGMENTS 4
+
+/// Minimum agreement before a group syncs
+#define THUMPER_SYNC_MIN_AGREEMENT 0.02
+/// How long the output tile scan is reused before it runs again
+#define THUMPER_OUTPUT_REFRESH (5 SECONDS)
+
+/// What each stall reads as on examine
+GLOBAL_LIST_INIT(thumper_stall_descriptions, list(
+	THUMPER_STALL_LOCATION = "unsuitable terrain",
+	THUMPER_STALL_NO_WIRE = "a missing wire connection",
+	THUMPER_STALL_POWER = "insufficient power",
+	THUMPER_STALL_ORE = "ore saturation around it",
+	THUMPER_STALL_NEIGHBOR = "another thumper within its clearance",
+))
+
+/// Every working thumper
+GLOBAL_LIST_EMPTY(working_ore_thumpers)
+/// When the next thumper quake is allowed
+GLOBAL_VAR_INIT(next_thumper_quake, 0)
 
 /obj/machinery/power/colony_ore_thumper
 	name = "捣矿机"
-	desc = "一个框架，管道上方悬挂着沉重的金属块。\
-		必须部署在户外，并接上有线电源。\
-		它会把加压气体压入地下，将埋藏的资源带上来。"
+	desc = "一个框架，管道上方悬挂着沉重的金属块。必须部署在户外，并接上有线电源。\
+		它会把加压气体压入地下，将埋藏的资源带上来。与周围基岩的共振对设备的运行至关重要。\
+		附近的捣矿机会通过其地震脉冲相互耦合，剧烈地加快或减慢其节奏，直到它们的驱动周期进入同相。"
 	icon = 'modular_skyrat/modules/kahraman_equipment/icons/ore_thumper.dmi'
 	icon_state = "thumper_idle"
 	density = TRUE
@@ -15,8 +66,14 @@
 	can_change_cable_layer = FALSE
 	circuit = null
 	layer = ABOVE_MOB_LAYER
-	/// Are we currently working?
-	var/thumping = FALSE
+	/// Switched on, even if stalled
+	var/switched_on = FALSE
+	/// Why we can't work, a THUMPER_STALL define. Null when working
+	var/stall_reason
+	/// Power grace left before we stall
+	var/power_grace_remaining = THUMPER_POWER_GRACE
+	/// Progress to the next slam
+	var/slam_progress = 0
 	/// Our looping fan sound that we play when turned on
 	var/datum/looping_sound/ore_thumper_fan/soundloop
 	/// How many times we've slammed, counts up until the number is high enough to make a box of materials
@@ -28,8 +85,6 @@
 		'modular_skyrat/modules/kahraman_equipment/sound/thumper_thump/punch_press_1.wav',
 		'modular_skyrat/modules/kahraman_equipment/sound/thumper_thump/punch_press_2.wav',
 	)
-	/// Keeps track of the callback timer to make sure we don't have more than one
-	var/callback_tracker
 	/// Weighted list of the ores we can spawn
 	var/static/list/ore_weight_list = list(
 		/obj/item/stack/ore/iron = 5,
@@ -53,83 +108,268 @@
 		/obj/item/stack/ore/titanium = 10,
 		/obj/item/stack/ore/diamond = 5,
 		/obj/item/stack/ore/bluespace_crystal = 1,
+		/obj/item/stack/ore/bananium = 5,
+	)
+	/// Boxes left until the next wellbore clown
+	var/boxes_until_clown = 0
+	/// Clowns an emagged thumper can dig up
+	var/static/list/circus_clowns = list(
+		/mob/living/basic/clown_bug = 10,
+		/mob/living/basic/clown = 6,
+		/mob/living/basic/clown/lube = 4,
+		/mob/living/basic/clown/honkling = 4,
+		/mob/living/basic/clown/banana = 3,
+		/mob/living/basic/clown/longface = 3,
+		/mob/living/basic/clown/fleshclown = 2,
+		/mob/living/basic/clown/clownhulk/honkmunculus = 2,
+		/mob/living/basic/clown/clownhulk = 1,
+		/mob/living/basic/clown/clownhulk/chlown = 1,
+		/mob/living/basic/clown/mutant/glutton = 1,
 	)
 	/// What's the limit for ore near us? Counts by stacks, not individual amounts of ore
 	var/nearby_ore_limit = 5
 	/// How far away does ore spawn?
 	var/ore_spawn_range = 2
+	/// Clear tiles needed around us
+	var/minimum_thumper_clearance = 2
 	/// What do we undeploy into
 	var/undeploy_type = /obj/item/flatpacked_machine/ore_thumper
+	/// Syncs with other thumpers
+	var/syncs_with_others = TRUE
+	/// Last cadence multiplier from syncing
+	var/sync_multiplier = 1
+	/// Cached reachable open tiles around us
+	var/list/cached_open_turfs
+	/// Cached reachable conveyor tiles around us
+	var/list/cached_conveyor_turfs
+	COOLDOWN_DECLARE(output_turfs_refresh)
 
 /obj/machinery/power/colony_ore_thumper/Initialize(mapload)
 	. = ..()
 	soundloop = new(src, FALSE)
+	register_context()
 	AddElement(/datum/element/repackable, undeploy_type, 4 SECONDS)
 	AddElement(/datum/element/manufacturer_examine, COMPANY_KAHRAMAN)
+	update_appearance(UPDATE_OVERLAYS)
+
+/obj/machinery/power/colony_ore_thumper/Destroy()
+	GLOB.working_ore_thumpers -= src
+	QDEL_NULL(soundloop)
+	return ..()
 
 /obj/machinery/power/colony_ore_thumper/add_context(
 	atom/source,
 	list/context,
 	obj/item/held_item,
-	mob/living/user,
+	mob/user,
 )
-
-	if(isnull(held_item))
-		if(panel_open)
-			context[SCREENTIP_CONTEXT_LMB] = "启动捣矿机"
-			return CONTEXTUAL_SCREENTIP_SET
+	if(!isnull(held_item))
 		return NONE
-
+	context[SCREENTIP_CONTEXT_LMB] = switched_on ? "Switch Off" : "Switch On"
+	return CONTEXTUAL_SCREENTIP_SET
 
 /obj/machinery/power/colony_ore_thumper/examine(mob/user)
 	. = ..()
 	var/area/thumper_area = get_area(src)
 	if(!thumper_area.outdoors)
-		. += span_notice("它必须建造在<b>户外</b>才能工作。")
-	if(!istype(get_turf(src), /turf/open/misc))
-		. += span_notice("它必须建造在<b>合适的地形</b>上，比如灰烬、雪地或沙地。")
-	. += span_notice("它下方必须有一条通电的<b>有线连接</b>，并提供 <b>[active_power_usage / BASE_MACHINE_ACTIVE_CONSUMPTION] kW</b> 的富余电力才能工作。")
-	. += span_notice("在冲击 [slam_jams_needed] 次后，它会产出一箱材料。")
-	. += span_notice("目前它已冲击 [slam_jams] / [slam_jams_needed] 次。")
-	. += span_notice("如果附近有<b>太多矿石堆</b>，它将停止产出资源。")
-	. += span_notice("如果<b>离另一台捣矿机太近</b>，捣矿机就无法工作；它与另一台捣矿机之间各个方向都<b>至少需要 [ore_spawn_range] 格</b>间距。")
+	. += span_notice("它必须建造在<b>户外</b>才能运作。")
+	if(!ismiscturf(get_turf(src)))
+		. += span_notice("它必须建造在<b>合适的地形</b>上，例如灰烬、雪或沙地。")
+	. += span_notice("它下方必须有一条通电的<b>有线连接</b>，且具有<b>[active_power_usage / BASE_MACHINE_ACTIVE_CONSUMPTION] kW</b>的富余电力才能运作。")
+	. += span_notice("在撞击[slam_jams_needed]次后，它会产出一箱材料。")
+	var/cadence_note = ""
+	if(switched_on && !stall_reason && sync_multiplier > 1 + THUMPER_SYNC_DEADZONE)
+		cadence_note = "；它正以<i>加速</i>的速率运行，以与其他捣矿机同步"
+	else if(switched_on && !stall_reason && sync_multiplier < 1 - THUMPER_SYNC_DEADZONE)
+		cadence_note = "；它正以<i>降低</i>的速率运行，以与其他捣矿机同步"
+	. += span_notice("目前，它已撞击[slam_jams] / [slam_jams_needed]次所需次数[cadence_note]。")
+	. += span_notice("如果附近有<b>太多矿石堆</b>，它将暂停运作，并在矿石堆被清除后恢复。")
+	. += span_notice("捣矿机不能<b>离另一台捣矿机太近</b>；它需要至少<b>[minimum_thumper_clearance]格</b>的间距。")
+	. += span_notice("它会调整自己的节奏，以与附近的捣矿机<b>同步</b>。")
+	if(obj_flags & EMAGGED)
+		. += span_warning("它的安全联锁装置已被烧毁。它正在钻探到远超应有的深度。")
+	. += span_notice("正常运行时，它的状态灯发出<b>绿色</b>光；就绪但被外部条件阻止时闪烁<b>黄色</b>光；无法在当前地点工作时闪烁<b>红色</b>光；关闭时发出<b>红色</b>光。")
+	if(switched_on && stall_reason == THUMPER_STALL_LOCATION)
+		. += span_warning("它已停止：<b>它无法在此地形上运作，必须重新部署</b>。")
+	else if(switched_on && stall_reason)
+		. += span_warning("它因<b>[GLOB.thumper_stall_descriptions[stall_reason] || stall_reason]</b>而停止。如果问题得到解决，它将恢复运作。")
 
+/obj/machinery/power/colony_ore_thumper/update_overlays()
+	. = ..()
+	var/lamp_state = "thumper_light_green"
+	if(!switched_on)
+		lamp_state = "thumper_light_red"
+	else if(stall_reason == THUMPER_STALL_LOCATION)
+		lamp_state = "thumper_light_red_flash"
+	else if(stall_reason)
+		lamp_state = "thumper_light_yellow"
+	. += mutable_appearance(icon, lamp_state)
+	. += emissive_appearance(icon, lamp_state, src)
 
-/obj/machinery/power/colony_ore_thumper/process()
+	if(!switched_on || stall_reason)
+		return
+	var/load_state = get_load_state()
+	. += mutable_appearance(icon, load_state)
+	. += emissive_appearance(icon, load_state, src)
+
+/// Which bar segment we are working on, 1 to THUMPER_LOAD_SEGMENTS
+/obj/machinery/power/colony_ore_thumper/proc/get_load_level()
+	return clamp(round((slam_jams / slam_jams_needed) * THUMPER_LOAD_SEGMENTS) + 1, 1, THUMPER_LOAD_SEGMENTS)
+
+/// The bar overlay to show. It flashes on the last slam
+/obj/machinery/power/colony_ore_thumper/proc/get_load_state()
+	if(slam_jams >= slam_jams_needed - 1)
+		return "thumper_load_flash"
+	return "thumper_load[get_load_level()]"
+
+/obj/machinery/power/colony_ore_thumper/process(seconds_per_tick)
+	update_network_connection()
+	if(!switched_on)
+		return
+
+	var/power_problem = get_power_problem()
+	if(power_problem)
+		power_grace_remaining -= seconds_per_tick SECONDS
+		if(power_grace_remaining <= 0)
+			set_stall_reason(power_problem)
+		return
+	power_grace_remaining = THUMPER_POWER_GRACE
+
+	var/work_blocker = get_work_blocker()
+	set_stall_reason(work_blocker)
+	if(work_blocker)
+		return
+
+	add_load(power_to_energy(active_power_usage))
+	sync_multiplier = get_sync_multiplier()
+	slam_progress += (seconds_per_tick SECONDS) * sync_multiplier
+	if(slam_progress < SLAM_JAM_DELAY)
+		return
+	slam_progress -= SLAM_JAM_DELAY
+	slam_it_down()
+
+/// Progress through the current box, as an angle
+/obj/machinery/power/colony_ore_thumper/proc/get_cycle_angle()
+	var/cycles_done = slam_jams + (slam_progress / SLAM_JAM_DELAY)
+	return SIMPLIFY_DEGREES((cycles_done / slam_jams_needed) * 360)
+
+/// Cadence multiplier towards the shared rhythm
+/obj/machinery/power/colony_ore_thumper/proc/get_sync_multiplier()
+	if(!syncs_with_others)
+		return 1
+	var/static/list/shared_rhythms
+	var/static/rhythms_calculated_at
+	if(rhythms_calculated_at != world.time)
+		rhythms_calculated_at = world.time
+		shared_rhythms = build_thumper_rhythms()
+	var/shared_angle = shared_rhythms[get_sync_group()]
+	if(isnull(shared_angle))
+		return 1
+	var/angle_to_cover = closer_angle_difference(get_cycle_angle(), shared_angle)
+	return 1 + clamp((angle_to_cover / 360) * THUMPER_SYNC_GAIN, -THUMPER_SYNC_MAX_SHIFT, THUMPER_SYNC_MAX_SHIFT)
+
+/// Thumpers sync by z level and cycle length
+/obj/machinery/power/colony_ore_thumper/proc/get_sync_group()
 	var/turf/our_turf = get_turf(src)
-	var/obj/structure/cable/cable_under_us = locate() in our_turf
-	if(!cable_under_us && powernet)
-		disconnect_from_network()
-	else if(cable_under_us && !powernet)
-		connect_to_network()
-	if(thumping)
-		if(!see_if_we_can_work(our_turf))
-			balloon_alert_to_viewers("位置无效！")
-			cut_that_out()
-			return
-		if(avail(active_power_usage))
-			add_load(active_power_usage)
-		else
-			balloon_alert_to_viewers("电力不足！")
-			cut_that_out()
+	var/our_z = our_turf ? our_turf.z : 0
+	return "[our_z]-[slam_jams_needed]"
 
-/// Checks the turf we are on to make sure we are outdoors and on a misc turf
-/obj/machinery/power/colony_ore_thumper/proc/see_if_we_can_work(turf/our_turf)
-	var/area/our_current_area = get_area(src)
-	if(!our_current_area.outdoors)
-		return FALSE
-	if(!istype(get_turf(src), /turf/open/misc))
-		return FALSE
-	return TRUE
+/// Shared rhythm per sync group, built once a tick
+/obj/machinery/power/colony_ore_thumper/proc/build_thumper_rhythms()
+	var/list/sines = list()
+	var/list/cosines = list()
+	var/list/counts = list()
+	for(var/obj/machinery/power/colony_ore_thumper/thumper as anything in GLOB.working_ore_thumpers)
+		if(!thumper.syncs_with_others)
+			continue
+		var/group = thumper.get_sync_group()
+		var/angle = thumper.get_cycle_angle()
+		sines[group] += sin(angle)
+		cosines[group] += cos(angle)
+		counts[group] += 1
+
+	var/list/rhythms = list()
+	for(var/group in counts)
+		var/count = counts[group]
+		if(count < 2)
+			continue
+		var/average_sine = sines[group] / count
+		var/average_cosine = cosines[group] / count
+		// an even spread has no direction to move towards
+		if(sqrt((average_sine * average_sine) + (average_cosine * average_cosine)) < THUMPER_SYNC_MIN_AGREEMENT)
+			continue
+		rhythms[group] = delta_to_angle(average_sine, average_cosine)
+	return rhythms
+
+/// Connects to the powernet while a cable is under us
+/obj/machinery/power/colony_ore_thumper/proc/update_network_connection()
+	if(!(locate(/obj/structure/cable) in get_turf(src)))
+		disconnect_from_network()
+		return
+	if(!powernet)
+		connect_to_network()
+
+/// Why we have no usable power, or null
+/obj/machinery/power/colony_ore_thumper/proc/get_power_problem()
+	if(!powernet)
+		return THUMPER_STALL_NO_WIRE
+	if(surplus() < power_to_energy(active_power_usage))
+		return THUMPER_STALL_POWER
+	return null
+
+/// Why we can't work despite having power, or null
+/obj/machinery/power/colony_ore_thumper/proc/get_work_blocker()
+	var/area/our_area = get_area(src)
+	if(!our_area.outdoors || !ismiscturf(get_turf(src)))
+		return THUMPER_STALL_LOCATION
+	if(has_thumper_neighbor())
+		return THUMPER_STALL_NEIGHBOR
+	// only the slam that finishes a box needs clear ground
+	if(slam_jams + 1 < slam_jams_needed)
+		return null
+	return get_output_blocker()
+
+/// Is another thumper inside our clearance?
+/obj/machinery/power/colony_ore_thumper/proc/has_thumper_neighbor()
+	for(var/obj/machinery/power/colony_ore_thumper/other_thumper in range(minimum_thumper_clearance, src))
+		if(other_thumper == src)
+			continue
+		return TRUE
+	return FALSE
+
+/// Why we have no room for a box, or null
+/obj/machinery/power/colony_ore_thumper/proc/get_output_blocker()
+	var/nearby_ore = 0
+	for(var/turf/nearby_turf in get_output_turfs(FALSE))
+		for(var/obj/item/stack/ore/ore_pile in nearby_turf)
+			nearby_ore++
+	if(nearby_ore > nearby_ore_limit)
+		return THUMPER_STALL_ORE
+	return null
+
+/// Updates our stall state
+/obj/machinery/power/colony_ore_thumper/proc/set_stall_reason(new_reason)
+	if(stall_reason == new_reason)
+		return
+	stall_reason = new_reason
+	if(stall_reason)
+		sync_multiplier = 1
+		GLOB.working_ore_thumpers -= src
+		soundloop.stop()
+		balloon_alert_to_viewers(stall_reason)
+		Shake(2, 2, 2 SECONDS)
+	else
+		GLOB.working_ore_thumpers |= src
+		soundloop.start()
+		balloon_alert_to_viewers("resuming")
+	update_appearance(UPDATE_OVERLAYS)
 
 /obj/machinery/power/colony_ore_thumper/attack_hand(mob/user, list/modifiers)
 	. = ..()
 	if(.)
 		return
 
-	to_chat(user, span_notice("你按下了 [src] 的电源按钮。"))
-
-	if(thumping)
+	if(switched_on)
 		cut_that_out(user)
 		return
 	start_her_up(user)
@@ -143,109 +383,167 @@
 	return attack_hand(user)
 
 
-/// Attempts turning the thumper on, failing if any of the conditions aren't met
+/// Switches the thumper on
 /obj/machinery/power/colony_ore_thumper/proc/start_her_up(mob/user)
-	var/turf/our_turf = get_turf(src)
-	var/obj/structure/cable/cable_under_us = locate() in our_turf
-	if(!cable_under_us && powernet)
-		balloon_alert(user, "未连接电缆")
-		return
-	if(!avail(active_power_usage))
-		balloon_alert(user, "电力不足")
-		return
-
-	thumping = TRUE
-	soundloop.start()
-
-	if(callback_tracker)
-		deltimer(callback_tracker)
-
-	balloon_alert(user, "捣矿机已启动")
-
-	callback_tracker = addtimer(CALLBACK(src, PROC_REF(slam_it_down)), SLAM_JAM_DELAY, TIMER_DELETE_ME | TIMER_STOPPABLE)
+	switched_on = TRUE
+	power_grace_remaining = THUMPER_POWER_GRACE
+	var/start_problem = get_power_problem() || get_work_blocker()
+	if(start_problem)
+		set_stall_reason(start_problem)
+	else
+		GLOB.working_ore_thumpers |= src
+		soundloop.start()
+		if(user)
+			balloon_alert(user, "捣矿机已启动")
+	update_appearance(UPDATE_OVERLAYS)
 
 
-/// Attempts to shut the thumper down
+/// Switches the thumper off
 /obj/machinery/power/colony_ore_thumper/proc/cut_that_out(mob/user)
-	thumping = FALSE
+	switched_on = FALSE
+	stall_reason = null
+	sync_multiplier = 1
+	GLOB.working_ore_thumpers -= src
 	soundloop.stop()
 	if(user)
 		balloon_alert(user, "捣矿机已停止")
+	update_appearance(UPDATE_OVERLAYS)
 
+
+/obj/machinery/power/colony_ore_thumper/vv_edit_var(var_name, var_value)
+	. = ..()
+	if(!.)
+		return
+	switch(var_name)
+		if(NAMEOF(src, switched_on))
+			if(switched_on)
+				start_her_up()
+			else
+				cut_that_out()
+		if(NAMEOF(src, slam_jams), NAMEOF(src, slam_jams_needed), NAMEOF(src, stall_reason), NAMEOF(src, syncs_with_others))
+			update_appearance(UPDATE_OVERLAYS)
 
 /// Makes the machine slam down, producing a box of ore if it has been slamming long enough
 /obj/machinery/power/colony_ore_thumper/proc/slam_it_down()
-	if(!thumping)
-		return
-	var/turf/our_turf = get_turf(src)
-	if(!see_if_we_can_work(our_turf))
-		balloon_alert_to_viewers("位置无效！")
-		cut_that_out()
-		return
-	// Down we go
 	flick("thumper_slam", src)
 	playsound(src, pick(list_of_thumper_sounds), 80, TRUE)
-	if(slam_jams < (slam_jams_needed + 1))
-		slam_jams += 1
-
-	if(callback_tracker)
-		deltimer(callback_tracker)
-
-	callback_tracker = addtimer(CALLBACK(src, PROC_REF(slam_it_down)), SLAM_JAM_DELAY, TIMER_DELETE_ME | TIMER_STOPPABLE,)
-
-	// If the number of slams is less than that of what we need, then we can stop here
-	if(!(slam_jams >= slam_jams_needed))
+	var/previous_load_state = get_load_state()
+	slam_jams++
+	if(get_load_state() != previous_load_state)
+		update_appearance(UPDATE_OVERLAYS)
+	if(slam_jams < slam_jams_needed)
 		return
-
-	var/nearby_ore = 0
-	var/is_there_a_thumper_too = FALSE
-	for(var/turf/nearby_turf in orange(ore_spawn_range, src))
-		for(var/ore in nearby_turf.contents)
-			if(istype(ore, /obj/item/stack/ore))
-				nearby_ore += 1
-				continue
-			if(istype(ore, /obj/machinery/power/colony_ore_thumper))
-				if(ore == src)
-					continue
-				is_there_a_thumper_too = TRUE
-				break
-
-	if(nearby_ore > nearby_ore_limit)
-		balloon_alert_to_viewers("附近矿石堆积过多")
-		// Makes the thumper rumble around when something's wrong
-		Shake(2, 2, 2 SECONDS)
-		return
-
-	if(is_there_a_thumper_too)
-		balloon_alert_to_viewers("离另一台捣矿机太近")
-		// Makes the thumper rumble around when something's wrong
-		Shake(2, 2, 2 SECONDS)
-		return
-
+	slam_jams -= slam_jams_needed
+	update_appearance(UPDATE_OVERLAYS)
+	try_to_cause_earthquake()
 	addtimer(CALLBACK(src, PROC_REF(make_some_ore)), 3 SECONDS, TIMER_DELETE_ME)
 
 
-/// Spawns an ore box on top of the thumper
-/obj/machinery/power/colony_ore_thumper/proc/make_some_ore()
-	var/list/nearby_valid_turfs = list()
+/obj/machinery/power/colony_ore_thumper/emag_act(mob/user, obj/item/card/emag/emag_card)
+	if(obj_flags & EMAGGED)
+		return FALSE
+	obj_flags |= EMAGGED
+	boxes_until_clown = rand(THUMPER_CLOWN_BOXES_MIN, THUMPER_CLOWN_BOXES_MAX)
+	do_sparks(3, FALSE, src)
+	balloon_alert(user, "safety interlocks fried")
+	return TRUE
+
+/// Quake roll per box
+/obj/machinery/power/colony_ore_thumper/proc/try_to_cause_earthquake()
+	if(!prob(THUMPER_QUAKE_CHANCE * ((obj_flags & EMAGGED) ? THUMPER_EMAG_QUAKE_MULTIPLIER : 1)))
+		return
+	if(world.time < GLOB.next_thumper_quake)
+		return
+	if(!SSmapping.is_planetary())
+		return
+	var/datum/round_event_control/earthquake/quake = locate() in SSevents.control
+	if(isnull(quake) || !quake.can_spawn_event(get_active_player_count(alive_check = TRUE, afk_check = TRUE, human_check = TRUE)))
+		return
+
+	GLOB.next_thumper_quake = world.time + THUMPER_QUAKE_COOLDOWN
+	quake.run_event(event_cause = "ore thumper fracking")
+
+/// Open ground nearby that we can reach without crossing a wall, conveyor tiles only if any exist and conveyors_first is set
+/obj/machinery/power/colony_ore_thumper/proc/get_output_turfs(conveyors_first = TRUE, force_refresh = FALSE)
+	if(force_refresh || isnull(cached_open_turfs) || COOLDOWN_FINISHED(src, output_turfs_refresh))
+		scan_output_turfs()
+	if(conveyors_first && length(cached_conveyor_turfs))
+		return cached_conveyor_turfs.Copy()
+	return cached_open_turfs.Copy()
+
+/// Rebuilds the cached output tiles
+/obj/machinery/power/colony_ore_thumper/proc/scan_output_turfs()
+	COOLDOWN_START(src, output_turfs_refresh, THUMPER_OUTPUT_REFRESH)
+	var/list/open_turfs = list()
+	var/list/conveyor_turfs = list()
 	for(var/turf/nearby_turf in orange(ore_spawn_range, src))
-		if(nearby_turf.is_blocked_turf(TRUE))
+		if(!isopenturf(nearby_turf) || isgroundlessturf(nearby_turf) || nearby_turf.is_blocked_turf(TRUE))
 			continue
-		if(!ismiscturf(nearby_turf))
+		var/list/line_of_turfs = get_line(src, nearby_turf)
+		var/walled_off = FALSE
+		for(var/line_index in 2 to length(line_of_turfs) - 1)
+			var/turf/between_turf = line_of_turfs[line_index]
+			if(between_turf.density || between_turf.is_blocked_turf(TRUE))
+				walled_off = TRUE
+				break
+		if(walled_off)
 			continue
-		nearby_valid_turfs.Add(nearby_turf)
+		open_turfs += nearby_turf
+		if(locate(/obj/machinery/conveyor) in nearby_turf)
+			conveyor_turfs += nearby_turf
+	cached_open_turfs = open_turfs
+	cached_conveyor_turfs = conveyor_turfs
+
+/// Animates throwing the ore out of itself, turns out ore will fucking explode sometimes if you actually throw it so we fake it here
+/obj/machinery/power/colony_ore_thumper/proc/toss_out(obj/item/tossed)
+	if(QDELETED(tossed))
+		return
+	var/turf/our_turf = get_turf(src)
+	var/turf/landing_turf = get_turf(tossed)
+	var/offset_x = (our_turf.x - landing_turf.x) * ICON_SIZE_X
+	var/offset_y = (our_turf.y - landing_turf.y) * ICON_SIZE_Y
+	var/matrix/resting = matrix(tossed.transform)
+	var/matrix/launch = matrix(resting)
+	launch.Translate(offset_x, offset_y)
+	var/matrix/apex = matrix(resting)
+	apex.Translate(offset_x / 2, offset_y / 2 + 12)
+	tossed.transform = launch
+	animate(tossed, transform = apex, time = 0.2 SECONDS, easing = SINE_EASING | EASE_OUT)
+	animate(transform = resting, time = 0.2 SECONDS, easing = SINE_EASING | EASE_IN)
+
+/// Spawns some ore piles around the thumper
+/obj/machinery/power/colony_ore_thumper/proc/make_some_ore()
+	var/list/nearby_valid_turfs = get_output_turfs(FALSE, force_refresh = TRUE)
+	var/list/ore_turfs = get_output_turfs()
 	// Fallback in case somehow there are no valid nearby turfs
 	if(!length(nearby_valid_turfs))
 		nearby_valid_turfs.Add(get_turf(src))
+		ore_turfs = nearby_valid_turfs
+	var/turf/our_turf = get_turf(src)
+
+	if(prob(THUMPER_MYTHRIL_CHANCE))
+		var/obj/item/stack/sheet/mineral/mythril/mythril_pile = new(pick(ore_turfs), THUMPER_MYTHRIL_AMOUNT)
+		toss_out(mythril_pile)
+
+	var/list/ore_weights = ore_weight_list
+	if(obj_flags & EMAGGED)
+		ore_weights = ore_weight_list.Copy()
+		ore_weights[/obj/item/stack/ore/bananium] = ore_weight_list[/obj/item/stack/ore/diamond]
+		boxes_until_clown--
+		if(boxes_until_clown <= 0)
+			boxes_until_clown = rand(THUMPER_CLOWN_BOXES_MIN, THUMPER_CLOWN_BOXES_MAX)
+			var/mob_type = pick_weight(circus_clowns)
+			for(var/clown in 1 to (mob_type == /mob/living/basic/clown ? rand(2, 3) : 1))
+				new mob_type(pick(nearby_valid_turfs))
+			playsound(src, 'sound/items/bikehorn.ogg', 75, TRUE)
+			visible_message(span_danger("Something horrible scurries out of [src]'s wellbore!"))
 
 	for(var/iteration in 1 to rand(2, 4))
-		var/turf/target_turf = pick(nearby_valid_turfs)
-		var/obj/item/stack/new_ore = pick_weight(ore_weight_list)
-		var/obj/new_ore_pile = new new_ore(target_turf, ore_spawn_values[new_ore.type])
-		new /obj/effect/temp_visual/mook_dust/robot(target_turf)
-		playsound(new_ore_pile, 'modular_skyrat/master_files/sound/effects/robot_sit.ogg', 25, TRUE)
-
-	slam_jams -= slam_jams_needed
+		var/obj/item/stack/ore/ore_type = pick_weight(ore_weights)
+		var/obj/item/stack/ore/new_ore_pile = new ore_type(pick(ore_turfs), ore_spawn_values[ore_type])
+		new /obj/effect/temp_visual/mook_dust/robot(our_turf)
+		playsound(src, 'modular_skyrat/master_files/sound/effects/robot_sit.ogg', 25, TRUE)
+		toss_out(new_ore_pile)
 
 
 // Item for deploying ore thumpers
@@ -264,11 +562,30 @@
 
 /obj/item/flatpacked_machine/ore_thumper/examine(mob/user)
 	. = ..()
-	. += span_notice("它必须建造在<b>户外</b>才能工作。")
-	. += span_notice("它必须建造在<b>合适的地形</b>上，比如灰烬、雪地或沙地。")
-	. += span_notice("它下方必须有一条通电的<b>有线连接</b>才能工作。")
+	. += span_notice("它必须建造在<b>户外</b>才能运作。")
+	. += span_notice("它必须建造在<b>合适的地形</b>上，例如灰烬、雪或沙地。")
+	. += span_notice("它下方必须有一条通电的<b>有线连接</b>才能运作。")
 
 /obj/item/flatpacked_machine/ore_thumper/give_manufacturer_examine()
 	AddElement(/datum/element/manufacturer_examine, COMPANY_KAHRAMAN)
 
 #undef SLAM_JAM_DELAY
+#undef THUMPER_SYNC_DEADZONE
+#undef THUMPER_QUAKE_CHANCE
+#undef THUMPER_EMAG_QUAKE_MULTIPLIER
+#undef THUMPER_MYTHRIL_CHANCE
+#undef THUMPER_MYTHRIL_AMOUNT
+#undef THUMPER_CLOWN_BOXES_MIN
+#undef THUMPER_CLOWN_BOXES_MAX
+#undef THUMPER_QUAKE_COOLDOWN
+#undef THUMPER_LOAD_SEGMENTS
+#undef THUMPER_SYNC_MAX_SHIFT
+#undef THUMPER_SYNC_GAIN
+#undef THUMPER_SYNC_MIN_AGREEMENT
+#undef THUMPER_OUTPUT_REFRESH
+#undef THUMPER_POWER_GRACE
+#undef THUMPER_STALL_LOCATION
+#undef THUMPER_STALL_NO_WIRE
+#undef THUMPER_STALL_POWER
+#undef THUMPER_STALL_ORE
+#undef THUMPER_STALL_NEIGHBOR

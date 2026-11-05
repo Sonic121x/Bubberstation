@@ -40,15 +40,23 @@
 	setDir(dir)
 
 
+/obj/machinery/power/stirling_generator/post_machine_initialize()
+	. = ..()
+	// the connector only half joins the pipe network when built
+	connected_chamber?.reconnect_connector()
+
+
 /obj/machinery/power/stirling_generator/examine(mob/user)
 	. = ..()
 	. += span_notice("你可以用<b>扳手</b>并<b>左键点击</b>来旋转发电机。")
+	. += span_notice("其进液口连接至<b>层[PIPING_LAYER_DEFAULT]</b>上的管道，位于其入口所朝向的格子上。")
 	. += span_notice("它在<b>真空</b>中无法运作，因为它必须依靠周围气体冷却。")
 	. += span_notice("它当前正在产生 <b>[current_power_generation / 1000] kW</b> 的电力。")
 	. += span_notice("在温差为 <b>[max_efficient_heat_difference] K</b> 时，它的最大输出功率为 <b>[max_power_output / 1000] kW</b>。")
 
 
 /obj/machinery/power/stirling_generator/Destroy()
+	QDEL_NULL(soundloop)
 	QDEL_NULL(connected_chamber)
 	return ..()
 
@@ -85,7 +93,7 @@
 
 /obj/machinery/power/stirling_generator/process()
 	var/power_output = round(current_power_generation)
-	add_avail(power_output)
+	add_avail(power_to_energy(power_output))
 	var/new_icon_state = (power_output ? "stirling_on" : "stirling")
 	icon_state = new_icon_state
 	if(soundloop.is_active() && !power_output)
@@ -116,10 +124,6 @@
 	SEND_SIGNAL(src, COMSIG_MACHINERY_DEFAULT_ROTATE_WRENCH, user, wrench)
 	return TRUE
 
-
-/obj/machinery/power/stirling_generator/Destroy()
-	QDEL_NULL(connected_chamber)
-	return ..()
 
 
 // Item for creating stirling generators

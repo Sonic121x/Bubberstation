@@ -31,7 +31,7 @@
 // Lets the colony lathe make more colony lathes but at very hihg cost, for fun
 
 /datum/design/flatpack_colony_fabricator
-	name = "扁平包装殖民地制造机"
+	name = "扁平包装殖民地制造机(RCF)"
 	desc = "一台可部署的制造机，能够生产其他扁平包装机械，以及专为在拥有资源与电力时快速建造实用结构而\
 		量身定制的特殊设备。虽然它无法升级，但可以重新打包\
 		并搬到任何你认为合适的地方。"
@@ -158,7 +158,7 @@
 // Buildable RTG that is quite radioactive
 
 /datum/design/flatpack_rtg
-	name = "扁平包装放射性同位素热电发电机"
+	name = "扁平包装放射性同位素热电发电机(RTG)"
 	desc = "一台可部署的放射性同位素发电机，能产生几乎免费的涓流电力。 \
 		当然，前提是你能忍受它在部署期间放出的辐射。"
 	build_type = COLONY_FABRICATOR
