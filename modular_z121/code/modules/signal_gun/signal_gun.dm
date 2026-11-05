@@ -9,8 +9,8 @@
     desc = "可以发射12号霰弹的枪，但结构脆弱，只能使用一次。"
     icon = 'modular_z121/icons/obj/guns/signal_gun.dmi'
     icon_state = "signal_gun"
-    lefthand_file = 'modular_z121/icons/mob/guns/weapon_addtion/signal_gun_lefthand.dmi'
-    righthand_file = 'modular_z121/icons/mob/guns/weapon_addtion/signal_gun_righthand.dmi'
+    lefthand_file = 'modular_z121/icons/mob/guns/signal_gun_lefthand.dmi'
+    righthand_file = 'modular_z121/icons/mob/guns/signal_gun_righthand.dmi'
     inhand_icon_state = "signal_gun"
     inhand_x_dimension = 32
     inhand_y_dimension = 32
