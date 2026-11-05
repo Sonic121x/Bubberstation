@@ -217,8 +217,8 @@
 	)
 
 /datum/supply_pack/security/armory/peacekeepers_plus
-	name = "Riot Renoster Shotgun Crate"
-	desc = "Three less-lethal modified Renoster pump-action shotguns to restock your armories with."
+	name = "防暴犀牛霰弹枪箱"
+	desc = "三把经过低致命性改装的犀牛泵动霰弹枪，用来补充你的军械库。"
 	cost = CARGO_CRATE_VALUE * 10
 	contains = list(
 		/obj/item/gun/ballistic/shotgun/riot/sol/lesslethal,
@@ -273,5 +273,5 @@
 		/obj/item/ammo_box/magazine/wylom,
 		/obj/item/ammo_box/magazine/wylom,
 	)
-	crate_name = "AMR Crate"
+	crate_name = "反器材步枪箱"
 	access_view = ACCESS_ARMORY

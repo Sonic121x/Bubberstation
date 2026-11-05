@@ -37,8 +37,8 @@
 	cost = PAYCHECK_COMMAND * 14 //I'd say it's at odds with the combat shotgun, sustain vs burst and such, but since ss13 favours burst I'll make it a tad cheaper.
 
 /datum/supply_pack/goody/renoster_shotgun_lesslethal
-	name = "Riot Renoster Shotgun Single-Pack"
-	desc = "A common modern shotgun used by Terran Government Police, modified to only fire less-lethal rounds."
+	name = "防暴犀牛霰弹枪单件装"
+	desc = "地球政府警察常用的一款现代霰弹枪，经过改装，只能发射低致命性弹药。"
 	contains = list(/obj/item/gun/ballistic/shotgun/riot/sol/lesslethal, /obj/item/storage/pouch/ammo, /obj/item/storage/belt/bandolier, /obj/item/ammo_box/advanced/s12gauge/rubber)
 	access_view = ACCESS_WEAPONS
 	cost = PAYCHECK_COMMAND * 8 //Even cheaper because its only less lethal
@@ -259,7 +259,7 @@
 	contains = list(/obj/item/ammo_box/c310_cargo_box)
 
 /datum/supply_pack/goody/riflecrate
-	name = "骑枪战斗步枪箱"
+	name = "骑枪战斗步枪单件装"
 	desc = "嫌标准型萨赫诺不够可靠、火力不够猛？别往别处看了，就是这帮狠家伙。它们采用更现代的半自动结构，肯定能让任何招惹你的人后悔。别在意那点手续费……"
 	cost = 2500
 	contains = list(
@@ -268,7 +268,7 @@
 		/obj/item/ammo_box/magazine/lanca,
 	)
 	crate_type = /obj/structure/closet/crate/secure/weapon
-	crate_name = "Battle Rifle Crate"
+	crate_name = "战斗步枪箱"
 	access_view = ACCESS_WEAPONS
 
 /datum/supply_pack/goody/lancamag

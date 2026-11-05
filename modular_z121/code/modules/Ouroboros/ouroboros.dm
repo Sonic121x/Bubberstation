@@ -8,11 +8,11 @@
 	与此同时，索尔联邦武装部队更偏好成熟可靠的弹道武器，对昂贵复杂的能量武器兴趣有限。<br><br>\
 	最终，SC-Ⅲ未能进入量产，仅留下少量原型机，其中绝大多数被Nanotrasen迅速回收。"
 */
-	icon = 'modular_z121/code/modules/Ouroboros/icons/ouroboros.dmi'
+	icon = 'modular_z121/icons/Ouroboros/ouroboros.dmi'
 	icon_state = "Ouroboros"
 	base_icon_state = "Ouroboros"
-	lefthand_file = 'modular_z121/code/modules/Ouroboros/icons/ouroboros_lefthand.dmi'
-	righthand_file = 'modular_z121/code/modules/Ouroboros/icons/ouroboros_righthand.dmi'
+	lefthand_file = 'modular_z121/icons/Ouroboros/ouroboros_lefthand.dmi'
+	righthand_file = 'modular_z121/icons/Ouroboros/ouroboros_righthand.dmi'
 	inhand_icon_state = "Ouroboroskill5"
 	worn_icon_state = "gun"
 	cell_type = /obj/item/stock_parts/power_store/cell
