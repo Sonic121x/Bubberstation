@@ -2,95 +2,13 @@
 /datum/supply_pack/company_import/crates/ballistics/intern_project/sidearm
 	cost = PAYCHECK_COMMAND * 4
 
-/datum/supply_pack/company_import/crates/ballistics/intern_project/sidearm/sofap
-	item_type = /obj/item/gun/ballistic/automatic/pistol/sofap
-	//restricted = TRUE
-
-/datum/supply_pack/company_import/crates/ballistics/intern_project/sidearm/tac9
-	item_type = /obj/item/gun/ballistic/automatic/pistol/tac9
-	access = FALSE
-	access_view = FALSE
-
-/datum/supply_pack/company_import/crates/ballistics/intern_project/sidearm/nt38
-	item_type = /obj/item/gun/ballistic/automatic/pistol/c38
-	access = FALSE
-	access_view = FALSE
-/datum/supply_pack/company_import/crates/ballistics/intern_project/sidearm/bfr500
-	item_type = /obj/item/gun/ballistic/revolver/single
-	cost = PAYCHECK_COMMAND * 6
-	access = FALSE
-	access_view = FALSE
-
 //	大型枪械
 /datum/supply_pack/company_import/crates/ballistics/intern_project/primary
 	cost = PAYCHECK_COMMAND * 6
 
-/datum/supply_pack/company_import/crates/ballistics/intern_project/primary/crossbow
-	item_type = /obj/item/gun/ballistic/rifle/rebarxbow/crossbow
-	access = FALSE
-	access_view = FALSE
-
-/datum/supply_pack/company_import/crates/ballistics/intern_project/primary/ostrza
-	item_type = /obj/item/gun/ballistic/automatic/ostrza
-	cost = PAYCHECK_COMMAND * 16
-
-/datum/supply_pack/company_import/crates/ballistics/intern_project/primary/aa12
-	item_type = /obj/item/gun/ballistic/shotgun/aa12
-	cost = PAYCHECK_COMMAND * 16
-	//restricted = TRUE
-
-/datum/supply_pack/company_import/crates/ballistics/intern_project/primary/europa
-	item_type = /obj/item/gun/ballistic/automatic/europa
-	cost = PAYCHECK_COMMAND * 20
-	//restricted = TRUE
-
-/datum/supply_pack/company_import/crates/ballistics/intern_project/primary/solstice
-	item_type = /obj/item/gun/ballistic/rifle/solstice
-	cost = PAYCHECK_COMMAND * 16
-
-/datum/supply_pack/company_import/crates/energy/intern_project/photon_sniper
-	item_type = /obj/item/gun/energy/photon_sniper
-	cost = PAYCHECK_COMMAND * 8
-	//restricted = TRUE
-
 //	弹药
 /datum/supply_pack/company_import/crates/mags_and_ammo/intern_project
 	cost = PAYCHECK_CREW
-
-/datum/supply_pack/company_import/crates/mags_and_ammo/intern_project/c20nuoli
-	item_type = /obj/item/ammo_box/c20nuoli
-	cost = PAYCHECK_CREW * 2
-
-/datum/supply_pack/company_import/crates/mags_and_ammo/intern_project/c20nuoli_smart
-	item_type = /obj/item/ammo_box/c20nuoli/smart
-	cost = PAYCHECK_CREW * 2
-
-/datum/supply_pack/company_import/crates/mags_and_ammo/intern_project/c20nuoli_breacher
-	item_type = /obj/item/ammo_box/c20nuoli/breacher
-	cost = PAYCHECK_CREW * 2
-
-/datum/supply_pack/company_import/crates/mags_and_ammo/intern_project/bolt
-	item_type = /obj/item/ammo_casing/rebar/bolt
-
-/datum/supply_pack/company_import/crates/mags_and_ammo/intern_project/tac9
-	item_type = /obj/item/ammo_box/magazine/tac9/starts_empty
-
-/datum/supply_pack/company_import/crates/mags_and_ammo/intern_project/nt38
-	item_type = /obj/item/ammo_box/magazine/m38_pistol/starts_empty
-
-/datum/supply_pack/company_import/crates/mags_and_ammo/intern_project/bfr500
-	item_type = /obj/item/ammo_box/speedloader/bfr500
-
-/datum/supply_pack/company_import/crates/mags_and_ammo/intern_project/aa12_mag
-	item_type = /obj/item/ammo_box/magazine/aa12/starts_empty
-
-/datum/supply_pack/company_import/crates/mags_and_ammo/intern_project/aa12_drum
-	item_type = /obj/item/ammo_box/magazine/aa12/drum/starts_empty
-	cost = PAYCHECK_CREW * 3
-
-/datum/supply_pack/company_import/crates/mags_and_ammo/intern_project/europa_mag
-	item_type = /obj/item/ammo_box/magazine/europa/starts_empty
-	cost = PAYCHECK_CREW * 2
 
 //	医疗用品
 /datum/supply_pack/company_import/crates/medical/intern_project
