@@ -167,6 +167,10 @@
 	name = "蓝色合成人毛绒玩偶"
 	item_path = /obj/item/toy/plush/blue_synth
 
+/datum/loadout_item/toys/plush/myra
+	name = "Noble Dragon-Shark Plushie"
+	item_path = /obj/item/toy/plush/myra
+
 /*
 *	SEX TOYS AND OTHER STUFF THAT NEEDS PREFS TO USE (otherwise fails to render on the character preview)
 */

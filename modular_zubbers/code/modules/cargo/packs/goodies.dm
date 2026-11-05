@@ -25,27 +25,35 @@
 /datum/supply_pack/goody/nt_shotgun
 	name = "纳米传讯伍德斯托克霰弹枪"
 	desc = "一把经典的霰弹枪，猎人、警察和拓荒者都在用，如今价格实惠。"
-	cost = PAYCHECK_COMMAND * 12 //Worse renoster, let's make it a tad cheaper
+	cost = PAYCHECK_COMMAND * 10
 	access_view = ACCESS_WEAPONS
-	contains = list(/obj/item/gun/ballistic/shotgun/riot, /obj/item/storage/pouch/ammo, /obj/item/storage/belt/bandolier, /obj/item/ammo_box/advanced/s12gauge/hunter)
+	contains = list(/obj/item/gun/ballistic/shotgun/riot)
 
 /datum/supply_pack/goody/renoster_shotgun
 	name = "犀牛霰弹枪单件装"
 	desc = "地球政府警察普遍装备的现代霰弹枪。"
-	contains = list(/obj/item/gun/ballistic/shotgun/riot/sol, /obj/item/storage/pouch/ammo, /obj/item/storage/belt/bandolier, /obj/item/ammo_box/advanced/s12gauge/rubber)
+	contains = list(/obj/item/gun/ballistic/shotgun/riot/sol)
 	access_view = ACCESS_WEAPONS
-	cost = PAYCHECK_COMMAND * 14 //I'd say it's at odds with the combat shotgun, sustain vs burst and such, but since ss13 favours burst I'll make it a tad cheaper.
+	cost = PAYCHECK_COMMAND * 18 //renosters are a straight upgrade vs. woodstocks, this needs to be significantly more expensive
 
 /datum/supply_pack/goody/renoster_shotgun_lesslethal
 	name = "防暴犀牛霰弹枪单件装"
 	desc = "地球政府警察常用的一款现代霰弹枪，经过改装，只能发射低致命性弹药。"
-	contains = list(/obj/item/gun/ballistic/shotgun/riot/sol/lesslethal, /obj/item/storage/pouch/ammo, /obj/item/storage/belt/bandolier, /obj/item/ammo_box/advanced/s12gauge/rubber)
+	contains = list(/obj/item/gun/ballistic/shotgun/riot/sol/lesslethal)
 	access_view = ACCESS_WEAPONS
 	cost = PAYCHECK_COMMAND * 8 //Even cheaper because its only less lethal
 
 /datum/supply_pack/goody/double_barrel
-	cost = PAYCHECK_COMMAND * 10 //1400 is too much considering the combat shotgun is 1500 for 1
+	desc = "Lost your beloved bunny to a demonic invasion? Clown broke in and stole your beloved gun? Nanotrasen has you covered. Accessories not included."
+	cost = PAYCHECK_COMMAND * 7 //1400 is too much considering the combat shotgun is 1500 for 1
 	access_view = ACCESS_WEAPONS
+
+/datum/supply_pack/goody/shotgun_addons
+	name = "Shotgun Accessories Pack"
+	desc = "When we say 'accessories not included' about our shotguns, we're talking about these. Buy yours today!"
+	cost = PAYCHECK_COMMAND
+	contains = list(/obj/item/storage/pouch/ammo, /obj/item/storage/belt/bandolier, /obj/item/ammo_box/advanced/s12gauge/rubber)
+
 
 /datum/supply_pack/goody/plasma_marksman
 	name = "恒星等离子精准射手单件装"
