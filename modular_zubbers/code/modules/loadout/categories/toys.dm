@@ -152,7 +152,7 @@
 	item_path = /obj/item/toy/plush/expie
 
 /datum/loadout_item/toys/plush/milky
-	name = "Milky 毛绒玩偶"
+	name = "奶白毛绒玩偶"
 	item_path = /obj/item/toy/plush/expie/milky
 
 /datum/loadout_item/toys/plush/fox_protogen
@@ -168,7 +168,7 @@
 	item_path = /obj/item/toy/plush/blue_synth
 
 /datum/loadout_item/toys/plush/myra
-	name = "Noble Dragon-Shark Plushie"
+	name = "高贵龙鲨毛绒玩偶"
 	item_path = /obj/item/toy/plush/myra
 
 /*

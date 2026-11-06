@@ -207,8 +207,8 @@
 	)
 
 /datum/supply_pack/security/armory/woodstocks
-	name = "Woodstock Shotgun Crate"
-	desc = "Three woodstock pump-action shotguns to restock your armories with."
+	name = "伍德斯托克霰弹枪箱"
+	desc = "三把伍德斯托克泵动霰弹枪，用来补充你的军械库。"
 	cost = CARGO_CRATE_VALUE * 10
 	contains = list(
 		/obj/item/gun/ballistic/shotgun/riot,
