@@ -1092,11 +1092,11 @@
 
 // Plush for Sharkoink
 /obj/item/toy/plush/myra
-	name = "\improper Noble dragon-shark plushie"
-	desc = "Here to relieve you of your worries <b>and</b> your job!"
+	name = "\improper 高贵龙鲨毛绒玩偶"
+	desc = "来帮你摆脱烦恼，<b>顺便</b>让你丢掉工作！"
 	icon = 'modular_zubbers/icons/obj/toys/plushes.dmi'
 	icon_state = "myra" // sprited by xPokee
-	attack_verb_simple = list("attack", "lay down the law to", "prbts!")
-	attack_verb_continuous = list("attacks", "lays down the law to", "prbts!")
+	attack_verb_simple = list("攻击", "训斥", "噗噜叫")
+	attack_verb_continuous = list("攻击", "训斥", "噗噜叫")
 	squeak_override = list('modular_zubbers/code/modules/emotes/sound/voice/prbt.ogg' = 1)
 	gender = FEMALE
