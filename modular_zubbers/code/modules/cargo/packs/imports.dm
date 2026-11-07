@@ -44,7 +44,7 @@
 	crate_type = /obj/structure/closet/crate/secure/plasma
 	crate_name = "古董步枪箱"
 
-/datum/supply_pack/goody/riflecrate
+/datum/supply_pack/imports/riflecrate // 自定义修改：按 PR #6452 将骑枪订单归入进口分类，避免继承个人订单行为
 	name = "骑枪战斗步枪单件装"
 	desc = "嫌标准型萨赫诺不够可靠、火力不够猛？别往别处看了，就是这帮狠家伙。它们采用更现代的半自动结构，肯定能让任何招惹你的人后悔。别在意那点手续费……"
 	cost = 2500
