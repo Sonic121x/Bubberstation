@@ -11,7 +11,7 @@ import {
 } from 'tgui-core/components';
 import { formatMoney } from 'tgui-core/format';
 import type { BooleanLike } from 'tgui-core/react';
-import { batchThreeDisplay as zh } from '../localization/batchThreeDisplay';
+import { materialDisplay as zh } from '../localization/batchThreeDisplay';
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';

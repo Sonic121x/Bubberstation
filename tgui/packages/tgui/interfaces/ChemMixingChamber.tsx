@@ -14,7 +14,7 @@ import { useBackend } from '../backend';
 import { Window } from '../layouts';
 
 export type Reagent = {
-  name: string;
+  name: string; display_name: string;
   volume: number;
 };
 
@@ -139,7 +139,7 @@ export const ChemMixingChamber = (props) => {
                       <Stack.Item key={reagent.name}>
                         <Stack fill>
                           <Stack.Item mt={0.25} textColor="label">
-                            {`${reagent.name}:`}
+                            {`${reagent.display_name}:`}
                           </Stack.Item>
                           <Stack.Item mt={0.25} grow>
                             {reagent.volume}

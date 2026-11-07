@@ -123,6 +123,18 @@
 			"Histamine" = "组胺",
 			"Sulfuric Acid" = "硫酸",
 			"Synthanol" = "合成醇",
+			"Intraverde" = "沁绿冰浮",
+			"B-52" = "B-52 轰炸机",
+			"B33r" = "伪啤酒",
+			"RDX" = "黑索金",
+			"TaTP" = "三过氧化三丙酮",
+			"T" = "字母 T",
+			"HNZ-1" = "HNZ-1 病原体",
+			"PCC" = "苯环利定前体",
+			"NT-CZV-1" = "NT-CZV-1 试剂",
+			"MKUltra" = "心智控制剂",
+			"Wing Fang Chu" = "酱汁异星翅",
+			"Gyuramen Miy Käzu" = "芝士牛肉洋葱拉面",
 		)
 	if(return_mapping)
 		return labels
@@ -153,7 +165,7 @@
 	var/list/choices = list()
 	for(var/reagent_name in GLOB.name2reagent)
 		var/label = chinese_reagent_display(reagent_name)
-		choices["[label] ([reagent_name])"] = reagent_name
+		choices[label == reagent_name ? label : "[label] ([reagent_name])"] = reagent_name
 	var/selected = tgui_input_list(user, "选择试剂", "试剂", choices)
 	return choices[selected]
 
