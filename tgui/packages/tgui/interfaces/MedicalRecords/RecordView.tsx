@@ -166,7 +166,7 @@ export const MedicalRecordView = (props) => {
             <LabeledList.Item color="bad" label="血型">
               <Dropdown
                 selected={blood_type}
-                options={blood_types}
+                options={(blood_types ?? []).filter((type) => typeof type === 'string' && type.length > 0) /* 自定义修改：过滤异常血型选项，避免下拉框读取空值崩溃；BUBBER EDIT CHANGE */}
                 width="6rem"
                 onSelected={(value) =>
                   act('set_blood_type', {

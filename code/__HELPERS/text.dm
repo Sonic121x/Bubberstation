@@ -150,7 +150,7 @@
 #define NUMBERS_DETECTED 3
 #define LETTERS_DETECTED 4
 #define APOSTROPHE_DETECTED 5 // BLUBBER EDIT ADDITION -- Allow Accented Letters & Do Not Autocapitalize After Apostrophe
-
+#include "../../modular_zubbers/code/__HELPERS/chinese_names.dm" // 自定义修改：引入中文姓名字符判定辅助函数；BUBBER EDIT ADDITION
 /**
  * Filters out undesirable characters from names.
  *
@@ -159,7 +159,7 @@
  * * cap_after_symbols - words like Bob's will be capitalized to Bob'S by default. False is good for titles.
  * * cap_at_start - capitalize the start of words. False is good for modular computer file names.
  */
-/proc/reject_bad_name(t_in, allow_numbers = TRUE, max_length = MAX_NAME_LEN, ascii_only = TRUE, strict = FALSE, cap_after_symbols = TRUE, cap_at_start = TRUE) // SKYRAT EDIT CHANGE - allow_numbers to TRUE
+/proc/reject_bad_name(t_in, allow_numbers = TRUE, max_length = MAX_NAME_LEN, ascii_only = TRUE, strict = FALSE, cap_after_symbols = TRUE, cap_at_start = TRUE, allow_chinese = TRUE) // 自定义修改：默认允许中文姓名并提供关闭选项；BUBBER EDIT CHANGE; SKYRAT EDIT CHANGE - allow_numbers to TRUE
 	if(!t_in)
 		return //Rejects the input if it is null
 
@@ -177,7 +177,7 @@
 		return
 	for(var/i = 1, i <= t_len, i += length(char))
 		char = t_in[i]
-		switch(text2ascii(char))
+		switch(allow_chinese && is_chinese_name_character(text2ascii(char)) ? 65 : text2ascii(char)) // 自定义修改：将允许的汉字按大写字母分支计数且保留原字符；BUBBER EDIT CHANGE
 			// BUBBER EDIT BEGIN -- Allow Accented Letters & Do Not Autocapitalize After Apostrophe
 			// A  .. Z, Latin-1 Supplement Letters
 			if(65 to 90,192 to 214,216 to 222) //Uppercase Letters
@@ -246,7 +246,7 @@
 		if(charcount >= max_length)
 			break
 
-	if(number_of_alphanumeric < 2)
+	if(number_of_alphanumeric < 2 && !(allow_chinese && contains_chinese_name_character(t_out))) // 自定义修改：允许单字中文名并保留英文姓名最小长度限制；BUBBER EDIT CHANGE
 		return //protects against tiny names like "A" and also names like "' ' ' ' ' ' ' '"
 
 	if(last_char_group == SPACES_DETECTED)
