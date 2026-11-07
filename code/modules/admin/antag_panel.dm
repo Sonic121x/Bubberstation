@@ -109,9 +109,6 @@ GLOBAL_VAR(antag_prototypes)
 
 	var/out = "<B>[name]</B>[(current && (current.real_name != name))?"（作为 [current.real_name]）":""]<br>"
 	out += "当前该心智由 key [key] 拥有 [active?"（已同步）":"（未同步）"]<br>"
-	//BUBBERSTATION CHANGE START: ANTAG TICKET INTEGRATION
-	out += "反派票券：<B>[current.client.get_antag_tickets()]</B>（当前倍率：<B>x[current.client.antag_ticket_multiplier()]</B>）<br>"
-	//BUBBERSTATION CHANGE END: ANTAG TICKET INTEGRAATION
 	out += "已分配职业：[chinese_batch_four_admin_display(assigned_role.title)]。<a href='byond://?src=[REF(src)];role_edit=1'>编辑</a><br>"
 	out += "<a href='byond://?_src_=holder;[HrefToken()];check_teams=1'>显示队伍</a><br><br>"
 

@@ -52,13 +52,23 @@ GAME_VERB_PROC_DESC(/mob/living/silicon/robot, rest_style, "切换休息姿势",
 	if(!can_rest())
 		to_chat(src, span_warning("你不能这么做！"))
 		return
-	var/choice = tgui_alert(src, "选择休息姿势", "", list("躺卧", "坐下", "仰面朝天"))
+	var/list/resting_styles = list(SKIN_RESTING_NORMAL, SKIN_RESTING_SIT, SKIN_RESTING_BELLY)
+	var/resting_skins = model.rest_styles
+	if(!isnull(resting_skins))
+		if(!islist(resting_skins))
+			CRASH("SKIN_RESTING_STYLES is not a list. Make it a list")
+		resting_styles = resting_skins
+	if(resting_styles.len <= 1)
+		to_chat(src, span_warning("没有其他姿势可用。"))
+		return
+
+	var/choice = tgui_alert(src, "选择休息姿势", "", resting_styles)
 	switch(choice)
-		if("躺卧")
+		if(SKIN_RESTING_NORMAL)
 			robot_rest_style = ROBOT_REST_NORMAL
-		if("坐下")
+		if(SKIN_RESTING_SIT)
 			robot_rest_style = ROBOT_REST_SITTING
-		if("仰面朝天")
+		if(SKIN_RESTING_BELLY)
 			robot_rest_style = ROBOT_REST_BELLY_UP
 	robot_resting = robot_rest_style
 	if (robot_resting)

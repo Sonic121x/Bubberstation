@@ -1,3 +1,4 @@
+// TODO: Fix these, waterpig
 /mob/living/basic/carp/advanced/pipe_carp
 	name = "大气鲤鱼技师"
 	desc = "凶猛且极具攻击性的鱼，在粗劣工程的深处繁衍。它们被密封不良的管道、规格不符的接头和草草修补的大气系统所吸引，以惊人的效率吞噬着结构上的无能。"
@@ -43,7 +44,7 @@
 	name = "管道鲤鱼"
 	description = "召唤一群热爱超物质的鲤鱼。"
 	typepath = /datum/round_event/carp_migration/pipe_carp
-	weight = 5
+	weight = 0 // Disabled until they can be fixed. Original 5
 	max_occurrences = 1
 	admin_setup = null
 

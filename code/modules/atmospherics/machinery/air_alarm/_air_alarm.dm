@@ -489,7 +489,7 @@ GLOBAL_LIST_EMPTY_TYPED(air_alarms, /obj/machinery/airalarm)
 			var/threshold_type = params["threshold_type"]
 			var/value = params["value"]
 			tlv.set_value(threshold_type, value)
-			investigate_log("[threshold]:[threshold_type] 的阈值被 [key_name(user)] 设为 [value]", INVESTIGATE_ATMOS)
+			investigate_log("[threshold]:[threshold_type] 的阈值被 [key_name(user)] 设为 [html_encode(value)]", INVESTIGATE_ATMOS)
 
 			check_enviroment()
 

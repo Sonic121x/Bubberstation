@@ -560,7 +560,7 @@
 			if(!shuttle)
 				balloon_alert(usr, "未链接！")
 				return TRUE
-			var/area_name = params["name"]
+			var/area_name = html_encode(params["name"])
 			if(!area_name)
 				balloon_alert(usr, "未提供名称！")
 				return TRUE
@@ -653,7 +653,7 @@
 			if(current_area == default_area)
 				balloon_alert(usr, "无法重命名默认区域！")
 				return TRUE
-			var/new_name = params["name"]
+			var/new_name = html_encode(params["name"])
 			if(!new_name)
 				balloon_alert(usr, "未提供名称！")
 				return TRUE
