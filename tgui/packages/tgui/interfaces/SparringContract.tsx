@@ -10,7 +10,7 @@ import type { BooleanLike } from 'tgui-core/react';
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
-
+import { areaDisplay, type BatchDisplayData } from '../localization/batchThreeDisplay';
 const weaponlist = [
   '徒手搏斗',
   '仪式武器',
@@ -34,7 +34,7 @@ const stakesblurb = [
   "生死对决，败者的灵魂将归胜者所有。",
 ];
 
-type Info = {
+type Info = BatchDisplayData & {
   set_weapon: number;
   set_area: string;
   set_stakes: number;
@@ -114,14 +114,14 @@ export const SparringContract = (props) => {
                 <Stack.Item>
                   <Dropdown
                     width="100%"
-                    selected={area}
-                    options={possible_areas}
+                    selected={area} displayText={areaDisplay(area, data)}
+                    options={possible_areas.map((value) => ({ value, displayText: areaDisplay(value, data) }))}
                     onSelected={(value) => setArea(value)}
                   />
                 </Stack.Item>
                 <Stack.Item>
                   <BlockQuote>
-                    战斗将在{area}进行。
+                    战斗将在{areaDisplay(area, data)}进行。
                     战斗中途离开场地属于违规。
                   </BlockQuote>
                 </Stack.Item>

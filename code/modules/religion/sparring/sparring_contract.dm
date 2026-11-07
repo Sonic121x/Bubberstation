@@ -33,7 +33,7 @@
 		ui.open()
 
 /obj/item/sparring_contract/ui_static_data(mob/user)
-	var/list/data = list()
+	var/list/data = list("areaDisplay" = chinese_area_display(return_mapping = TRUE))
 	var/area/arena = GLOB.areas_by_type[arena_condition]
 	data["set_weapon"] = weapons_condition
 	data["set_area"] = arena?.name

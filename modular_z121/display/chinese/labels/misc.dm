@@ -125,6 +125,42 @@
 	return display_names[value] || value
 
 /// Preserve the selected area datum, including identically named areas.
+/proc/chinese_area_input_label(value, list/choices)
+	var/area/target_area
+	if(isarea(value))
+		target_area = value
+	else if(ispath(value, /area))
+		var/area/area_type = value
+		return "[chinese_area_display(initial(area_type.name))] ([value])"
+	else if(istext(value) && isarea(choices[value]))
+		target_area = choices[value]
+		if(value != target_area.name)
+			return "[value]"
+	if(isnull(target_area))
+		return "[value]"
+	var/display_name = chinese_area_display(target_area.name)
+	return display_name == target_area.name ? display_name : "[display_name] ([target_area.name])"
+
+/proc/chinese_area_native_input(mob/user, message, title, list/choices, default)
+	var/list/display_choices = list()
+	var/list/repeat_items = list()
+	var/display_default
+	var/has_area_translation = FALSE
+	for(var/value in choices)
+		if(isnull(value))
+			continue
+		var/label = chinese_area_input_label(value, choices)
+		if(label != "[value]")
+			has_area_translation = TRUE
+		label = avoid_assoc_duplicate_keys(label, repeat_items)
+		display_choices[label] = value
+		if(value == default)
+			display_default = label
+	if(!has_area_translation)
+		return input(user, message, title, default) as null|anything in choices
+	var/selected = input(user, message, title, display_default) as null|anything in display_choices
+	return isnull(selected) ? null : display_choices[selected]
+
 /proc/chinese_area_choice(mob/user, message, title, list/choices)
 	var/list/display_choices = list()
 	for(var/area/choice as anything in choices)

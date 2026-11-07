@@ -27,7 +27,7 @@
 
 	/// Client does NOT have tgui_input on: Returns regular input
 	if(!user.client.prefs.read_preference(/datum/preference/toggle/tgui_input))
-		return input(user, message, title, default) as null|anything in items
+		return chinese_area_native_input(user, message, title, items, default)
 	var/datum/tgui_list_input/input = new(user, message, title, items, default, timeout, ui_state)
 	if(input.invalid)
 		qdel(input)
@@ -81,12 +81,12 @@
 	for(var/i in items)
 		if(!i)
 			continue
-		var/string_key = whitelistedWords.Replace("[i]", "")
+		var/string_key = whitelistedWords.Replace(chinese_area_input_label(i, items), "")
 		//avoids duplicated keys E.g: when areas have the same name
 		string_key = avoid_assoc_duplicate_keys(string_key, repeat_items)
 		src.items += string_key
 		src.items_map[string_key] = i
-
+		src.default = (i == default) ? string_key : src.default // 自定义修改：区域标签翻译后仍按原始选项保持默认选择
 	if(length(src.items) == 0)
 		invalid = TRUE
 	if (timeout)

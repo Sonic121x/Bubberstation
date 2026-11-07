@@ -372,7 +372,7 @@
 
 			var/design_name = initial(design_path.name)
 
-			designs += list(list("title" = design_name, "icon" = sanitize_css_class_name(design_name)))
+			designs += list(list("title" = design_name, "icon" = "rcd[md5("[design_path]")]")) // 自定义修改：目录使用与贴图资源一致的类型路径索引，修复中文构筑物图标缺失
 		data["categories"] += list(list("cat_name" = sub_category, "designs" = designs))
 
 	return data
