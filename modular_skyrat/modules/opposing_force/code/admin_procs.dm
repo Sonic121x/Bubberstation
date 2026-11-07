@@ -16,9 +16,9 @@ ADMIN_VERB(view_opfors, R_ADMIN, "查看敌对势力", "查看敌对势力申请
 
 /client/proc/view_opfors()
 	if(holder)
-		var/list/dat = list("<html>")
+		var/list/dat = list("<html><head><meta http-equiv='Content-Type' content='text/html; charset=UTF-8'></head><body>") // 自定义修改：声明敌对势力列表页面的 UTF-8 编码以避免中文乱码
 		dat += SSopposing_force.get_check_antag_listing()
-		dat += "</html>"
+		dat += "</body></html>" // 自定义修改：闭合敌对势力列表页面的正文标签
 		usr << browse(dat.Join(), "window=roundstatus;size=500x500")
 		log_admin("[key_name(usr)]查看了敌对势力申请。")
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "View OPFORs")

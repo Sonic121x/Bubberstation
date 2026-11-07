@@ -75,14 +75,14 @@
 
 	var/list/reagents_data = list()
 	for(var/datum/reagent/required_reagent as anything in required_reagents) //make a list where the key is text, because that looks alot better in the ui than a typepath
-		var/list/reagent_data = list()
+		var/list/reagent_data = list("display_name" = chinese_reagent_display(initial(required_reagent.name)))
 		reagent_data["name"] = initial(required_reagent.name)
 		reagent_data["volume"] = required_reagents[required_reagent]
 		reagents_data += list(reagent_data)
 
 	var/list/catalyst_data = list()
 	for(var/datum/reagent/required_catalyst as anything in catalysts)
-		var/list/reagent_data = list()
+		var/list/reagent_data = list("display_name" = chinese_reagent_display(initial(required_catalyst.name)))
 		reagent_data["name"] = initial(required_catalyst.name)
 		reagent_data["volume"] = catalysts[required_catalyst]
 		catalyst_data += list(reagent_data)
@@ -101,7 +101,7 @@
 
 	switch(action)
 		if("add")
-			var/selected_reagent = tgui_input_list(ui.user, "选择试剂", "试剂", GLOB.name2reagent)
+			var/selected_reagent = chinese_reagent_choice(ui.user)
 			if(!selected_reagent)
 				return FALSE
 			if(QDELETED(ui) || ui.status != UI_INTERACTIVE)
