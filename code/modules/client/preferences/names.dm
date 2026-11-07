@@ -61,7 +61,7 @@
 	if (!input)
 		return input
 
-	if (CONFIG_GET(flag/humans_need_surnames) && preferences.read_preference(/datum/preference/choiced/species) == /datum/species/human)
+	if (CONFIG_GET(flag/humans_need_surnames) && !contains_chinese_name_character(input) && preferences.read_preference(/datum/preference/choiced/species) == /datum/species/human) // 自定义修改：中文姓名不自动追加英文姓氏；BUBBER EDIT CHANGE
 		var/first_space = findtext(input, " ")
 		if(!first_space) //we need a surname
 			input += " [pick(GLOB.last_names)]"

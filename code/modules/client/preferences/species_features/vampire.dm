@@ -49,6 +49,6 @@ GLOBAL_LIST_EMPTY(vampire_houses)
 
 	//modify name (Platos Syrup > Platos de Lioncourt)
 	var/first_space_index = findtextEx(target.real_name, " ")
-	var/new_name = copytext(target.real_name, 1, first_space_index + 1)
+	var/new_name = !first_space_index && contains_chinese_name_character(target.real_name) ? "[target.real_name] " : copytext(target.real_name, 1, first_space_index + 1) // 自定义修改：追加家族名时保留没有空格的中文原姓名；BUBBER EDIT CHANGE
 	new_name += house_name
 	target.fully_replace_character_name(target.real_name, new_name)
