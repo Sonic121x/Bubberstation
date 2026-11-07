@@ -429,8 +429,8 @@
 // Sidearm vouchers
 
 /datum/voucher_set/security/sidearm/murphy
-	name = "'Murphy' Service Pistol"
-	description = "A standard issue pistol for Nanotrasen security forces. Comes with two magazines of ammunition, a revolutionary quick-reload system."
+	name = "“墨菲”勤务手枪"
+	description = "纳米传讯安保部队的制式手枪。附带两个装满弹药的弹匣，并配备革命性的快速换弹系统。"
 	icon = 'modular_skyrat/modules/modular_weapons/icons/obj/gunsets.dmi'
 	icon_state = "guncase"
 	set_items = list(
@@ -438,8 +438,8 @@
 		)
 
 /datum/voucher_set/security/sidearm/pocketrevolver
-	name = "Protector Revolver"
-	description = "A standard issue revolver for Nanotrasen security forces. Comes with two speedloaders of ammunition as well as a murphy magazine to rapidly top up the speedloaders."
+	name = "“保护者”左轮手枪"
+	description = "纳米传讯安保部队的制式左轮手枪。附带两个装满弹药的快速装弹器，以及一个可用于快速补充装弹器弹药的墨菲弹匣。"
 	icon = 'modular_zubbers/icons/obj/weapons/guns/ballistic.dmi'
 	icon_state = "niimpocketrevolver_sec"
 	set_items = list(
@@ -450,8 +450,8 @@
 		)
 
 /datum/voucher_set/security/sidearm/laserpistol
-	name = "Type 5/C Laser Pistol"
-	description = "A compact version of a laser rifle, sacrifices some stopping power and capacity compared to a full-scale rifle, but gaining carriability and faster charging."
+	name = "5/C 型激光手枪"
+	description = "激光步枪的紧凑型号。与全尺寸步枪相比，牺牲了部分停止作用和容量，换来更好的便携性与更快的充能速度。"
 	icon = 'icons/obj/weapons/guns/energy.dmi'
 	icon_state = "laser_pistol"
 	set_items = list(
