@@ -17,7 +17,7 @@
 				var/atom/movable/path = design[RCD_DESIGN_PATH]
 				if(!ispath(path))
 					continue
-				sprite_name = initial(path.name)
+				sprite_name = "rcd[md5("[path]")]" // 自定义修改：以类型路径生成稳定贴图索引，避免中文名称清理后为空或重名
 				var/datum/universal_icon/sprite_icon
 
 				//icon for windows are blended with grills if required and loaded from radial menu

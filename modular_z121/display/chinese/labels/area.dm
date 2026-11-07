@@ -4,6 +4,9 @@
 	if(isnull(display_names))
 		display_names = list(
 		"Space" = "太空",
+		"Auxiliary Base" = "辅助基地",
+		"Area Passthrough" = "区域透传占位区",
+		"ai_multicam_room" = "AI 多镜头监控室",
 		"Ghost Cafe Arrival Shuttle" = "幽灵咖啡厅到站穿梭机",
 		"Golem Territory" = "魔像领地",
 		"Strange Location" = "奇异地点",
