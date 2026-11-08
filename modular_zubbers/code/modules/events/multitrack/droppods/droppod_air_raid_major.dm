@@ -3,8 +3,8 @@
 //////////////////////////////////////
 
 /datum/round_event_control/drop_troopers_syndicate
-	name = "Drop Troopers: Syndicate"
-	description = "The Syndicate sends large numbers of drop pod soldiers to fight the station."
+	name = "空降部队：辛迪加"
+	description = "辛迪加派出大批空降士兵袭击空间站。"
 	typepath = /datum/round_event/droppod_airraid/syndicate
 	weight = 5
 	max_occurrences = 2
@@ -42,7 +42,7 @@
 	min_droppod_dropdelay = 30
 
 /datum/round_event/droppod_airraid/syndicate/announce(fake)
-	priority_announce("Alert! The Syndicate is sending orbital drop shock troopers to [GLOB.station_name]. Please brace for impact.", "Incoming Enemy Signatures", 'sound/announcer/alarm/airraid.ogg',color_override = "red")
+	priority_announce("警报！辛迪加正向[GLOB.station_name]派遣轨道空降突击部队。请做好冲击准备。", "侦测到敌军来袭", 'sound/announcer/alarm/airraid.ogg',color_override = "red")
 
 /datum/round_event/droppod_airraid/syndicate/new_boss_spawn()
 	. = ..()
@@ -53,4 +53,4 @@
 		grievous.add_faction(ROLE_SYNDICATE)
 
 /datum/round_event/droppod_airraid/syndicate/announce_end()
-	priority_announce("The Syndicate attack on [GLOB.station_name] has ceased. Please calmly return to your work tasks.")
+	priority_announce("辛迪加对[GLOB.station_name]的进攻已停止。请保持镇定，返回工作岗位。")

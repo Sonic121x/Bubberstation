@@ -1,4 +1,27 @@
 // BUBBER EDIT: Presentation-only labels; callers retain original keys and values.
+/proc/chinese_borg_rest_alert(mob/user, list/styles)
+	var/list/labels = list(SKIN_RESTING_NORMAL = "休息", SKIN_RESTING_SIT = "坐下", SKIN_RESTING_BELLY = "仰躺")
+	var/list/options = list()
+	var/list/keys = list()
+	for(var/style in styles)
+		var/label = labels[style] || style
+		options += label
+		keys[label] = style
+	var/choice = tgui_alert(user, "选择休息姿势", "", options)
+	return keys[choice]
+
+/proc/chinese_borg_skin_radial(obj/item/robot_model/model, mob/living/silicon/robot/cyborg, list/options, datum/callback/custom_check)
+	if(!("Wyvern" in options))
+		return z121_borg_skin_radial_menu(model, cyborg, options, custom_check)
+	var/list/display_options = list()
+	var/list/keys = list()
+	for(var/skin in options)
+		var/label = skin == "Wyvern" ? "飞龙" : skin
+		display_options[label] = options[skin]
+		keys[label] = skin
+	var/choice = z121_borg_skin_radial_menu(model, cyborg, display_options, custom_check)
+	return keys[choice]
+
 /proc/chinese_vote_display(value)
 	if(!istext(value))
 		return value

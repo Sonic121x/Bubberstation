@@ -287,7 +287,7 @@
 					var/image/reskin = reskin_icons[skin]
 					reskin.pixel_x -= 16
 			//SKYRAT EDIT END
-		var/borg_skin = z121_borg_skin_radial_menu(src, cyborg, reskin_icons, CALLBACK(src, PROC_REF(check_menu), cyborg, old_model)) // modular_z121：汉化自定义机体菜单并保留外观标识。
+		var/borg_skin = chinese_borg_skin_radial(src, cyborg, reskin_icons, CALLBACK(src, PROC_REF(check_menu), cyborg, old_model)) // modular_z121：汉化自定义机体菜单并保留外观标识。
 		if(!borg_skin)
 			return FALSE
 		var/list/details = borg_skins[borg_skin]

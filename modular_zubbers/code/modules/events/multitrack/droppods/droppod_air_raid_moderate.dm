@@ -1,6 +1,6 @@
 /datum/round_event_control/drop_troopers_syndicate_lesser
-	name = "Drop Troopers: Syndicate (Lesser)"
-	description = "The Syndicate sends small numbers of drop pod soldiers to fight the station."
+	name = "空降部队：辛迪加（小规模）"
+	description = "辛迪加派出少量空降士兵袭击空间站。"
 	typepath = /datum/round_event/droppod_airraid/syndicate/lesser
 	weight = 10
 	max_occurrences = 1
@@ -19,7 +19,7 @@
 	time_to_next_wave_droppod_factor = 50
 
 /datum/round_event/droppod_airraid/syndicate/lesser/announce(fake)
-	priority_announce("Alert! The Syndicate is sending a skirmishing party to [GLOB.station_name]. Please brace for impact.", "Incoming Enemy Scouts", sound = 'sound/announcer/notice/notice1.ogg', color_override = "orange")
+	priority_announce("警报！辛迪加正向[GLOB.station_name]派遣一支袭扰小队。请做好冲击准备。", "敌方侦察部队来袭", sound = 'sound/announcer/notice/notice1.ogg', color_override = "orange")
 
 
 //////////////////////////////////////
@@ -27,8 +27,8 @@
 //////////////////////////////////////
 
 /datum/round_event_control/drop_troopers_hivebots
-	name = "Drop Troopers: Hivebots"
-	description = "A fleet of autonomous robot invaders attacks the station."
+	name = "空降部队：蜂巢机器人"
+	description = "一支自主机器人入侵舰队袭击空间站。"
 	typepath = /datum/round_event/droppod_airraid/hivebots
 	weight = 10
 	max_occurrences = 2
@@ -58,7 +58,7 @@
 	min_droppod_dropdelay = 30
 
 /datum/round_event/droppod_airraid/hivebots/announce(fake)
-	priority_announce("Alert! Unidentified pod signatures have been detected en-route to [GLOB.station_name]. Please brace for impact.", "Unidentified Drop Pods", sound = 'sound/announcer/notice/notice1.ogg', color_override = "orange")
+	priority_announce("警报！侦测到身份不明的空投舱正飞往[GLOB.station_name]。请做好冲击准备。", "不明空投舱", sound = 'sound/announcer/notice/notice1.ogg', color_override = "orange")
 
 /datum/round_event/droppod_airraid/hivebots/announce_end()
-	priority_announce("The pod fleet colliding into [GLOB.station_name] has ceased. Please calmly return to your work tasks.")
+	priority_announce("空投舱舰队对[GLOB.station_name]的撞击已停止。请保持镇定，返回工作岗位。")

@@ -47,7 +47,7 @@
 	return SUCCESSFUL_SPAWN
 
 /proc/lose_some_weight_lardass()
-	var/unlucky_victim = "your mother" //debug text that should never trigger but should tell coders that something went wrong without breaking immersion
+	var/unlucky_victim = "你妈" //debug text that should never trigger but should tell coders that something went wrong without breaking immersion
 	var/unlucky_victim_fatty_score = 0
 	//Get the fattest person
 	for(var/mob/living/carbon/human/possible_fatty as anything in GLOB.human_list)
@@ -75,7 +75,7 @@
 			unlucky_victim_fatty_score = possible_fatty_score
 
 	priority_announce(
-		"It appears that the level 5 biohazard aboard [station_name()] was a false alarm, as our sensors appeared to have mistakenly labeled [unlucky_victim] as a level 5 biohazard. \
-		All crewmembers are reminded to practice healthy eating habbits as part of Nanotrasen's Safe and Healthy Eating program.",
-		"Biohazard Alert"
+		"经确认，[station_name()]上的五级生物危害警报为误报，我们的传感器似乎将[unlucky_victim]误判为了五级生物危害。 \
+		根据纳米传讯安全健康饮食计划，提醒全体船员养成健康的饮食习惯。",
+		"生物危害警报"
 	)
