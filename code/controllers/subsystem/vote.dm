@@ -140,7 +140,7 @@ SUBSYSTEM_DEF(vote)
 	// BUBBER EDIT END
 
 	if(!(their_vote in current_vote.choices))
-		message_admins("POSSIBLE EXPLOIT: [key_name(voter)] tried to submit a vote for an option that didn't exist. They tried to call a vote for the following option: [sanitize(their_vote)]")
+		message_admins("疑似漏洞利用：[key_name(voter)]试图提交不存在的投票选项：[sanitize(their_vote)]")
 		return
 
 	// If user has already voted, remove their specific vote
@@ -174,7 +174,7 @@ SUBSYSTEM_DEF(vote)
 		voted += voter.ckey
 
 	if(!(their_vote in current_vote.choices))
-		message_admins("POSSIBLE EXPLOIT: [key_name(voter)] tried to submit a vote for an option that didn't exist. They tried to call a vote for the following option: [sanitize(their_vote)]")
+		message_admins("疑似漏洞利用：[key_name(voter)]试图提交不存在的投票选项：[sanitize(their_vote)]")
 		return
 
 	if(current_vote.choices_by_ckey["[voter.ckey]_[their_vote]"] == 1) // BUBBER EDIT CHANGE - Original: [voter.ckey + their_vote]
@@ -298,7 +298,7 @@ SUBSYSTEM_DEF(vote)
 	var/switch_deadvote_config = !CONFIG_GET(flag/no_dead_vote)
 	CONFIG_SET(flag/no_dead_vote, switch_deadvote_config)
 	var/text_verb = !switch_deadvote_config ? "enabled" : "disabled"
-	log_admin("[key_name(toggle_initiator)] [text_verb] Dead Vote.")
+	log_admin("[key_name(toggle_initiator)][!switch_deadvote_config ? "启用" : "禁用"]了死亡玩家投票。")
 	message_admins("[key_name_admin(toggle_initiator)][!switch_deadvote_config ? "启用" : "禁用"]了死亡玩家投票。")
 	SSblackbox.record_feedback("nested tally", "admin_toggle", 1, list("Toggle Dead Vote", text_verb))
 	update_static_data_for_all_viewers()
@@ -389,7 +389,7 @@ SUBSYSTEM_DEF(vote)
 					这可能是恶意利用漏洞的行为，请留意。")
 				return
 
-			voter.log_message("cancelled a vote.", LOG_ADMIN)
+			voter.log_message("取消了投票。", LOG_ADMIN)
 			message_admins("[key_name_admin(voter)]取消了当前投票。")
 			reset()
 			return TRUE
@@ -400,7 +400,7 @@ SUBSYSTEM_DEF(vote)
 					这可能是恶意利用漏洞的行为，请留意。")
 				return
 
-			voter.log_message("ended the current vote early", LOG_ADMIN)
+			voter.log_message("提前结束了当前投票。", LOG_ADMIN)
 			message_admins("[key_name_admin(voter)]结束了当前投票。")
 			end_vote()
 			return TRUE
@@ -458,7 +458,7 @@ SUBSYSTEM_DEF(vote)
 	voting -= user.client?.ckey
 
 /// Mob level verb that allows players to vote on the current vote.
-GAME_VERB(/mob, vote, "Vote", "OOC")
+GAME_VERB(/mob, vote, "投票", "OOC")
 
 	if(!SSvote.initialized)
 		to_chat(usr, span_notice("<i>投票尚未准备就绪！</i>"))

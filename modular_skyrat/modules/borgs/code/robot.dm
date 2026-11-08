@@ -62,7 +62,7 @@ GAME_VERB_PROC_DESC(/mob/living/silicon/robot, rest_style, "切换休息姿势",
 		to_chat(src, span_warning("没有其他姿势可用。"))
 		return
 
-	var/choice = tgui_alert(src, "选择休息姿势", "", resting_styles)
+	var/choice = chinese_borg_rest_alert(src, resting_styles)
 	switch(choice)
 		if(SKIN_RESTING_NORMAL)
 			robot_rest_style = ROBOT_REST_NORMAL

@@ -137,11 +137,11 @@
 
 	if(!length(possible_candidates))
 		if(do_prompt)
-			message_admins(span_yellowteamradio("Nobody accepted the [cast_control.name] prompt."))
-			log_game("Nobody accepted the [cast_control.name] antagonist prompt.")
+			message_admins(span_yellowteamradio("无人接受[cast_control.name]的招募邀请。"))
+			log_game("无人接受[cast_control.name]的反派招募邀请。")
 			return
-		message_admins(span_yellowteamradio("[cast_control.name] failed to find any candidates!"))
-		log_game("[cast_control.name] failed to find any candidates!")
+		message_admins(span_yellowteamradio("[cast_control.name]未找到任何候选人！"))
+		log_game("[cast_control.name]未找到任何候选人！")
 		return
 
 	for(var/i in 1 to antag_count)
