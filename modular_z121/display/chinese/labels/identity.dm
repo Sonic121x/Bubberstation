@@ -146,6 +146,12 @@
 		display_names = list("drop" = "坠击", "strike" = "快攻", "kick" = "踢击", "throw" = "旋转投掷", "slam" = "抱摔")
 	return display_names[value] || value
 
+/proc/chinese_examine_pronoun_display(value)
+	var/static/list/display_names
+	if(isnull(display_names))
+		display_names = list("he" = "他", "she" = "她", "it" = "它", "they" = "对方")
+	return display_names[value] || value
+
 /proc/chinese_material_display(value)
 	var/static/list/display_names
 	if(isnull(display_names))
