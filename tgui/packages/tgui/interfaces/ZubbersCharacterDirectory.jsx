@@ -12,28 +12,7 @@ import {
 import { useBackend } from '../backend';
 import { Window } from '../layouts'; import { directoryDisplay } from '../localization/directoryDisplay';
 
-const erpTagColor = {
-  Unset: '#000000',
-  'Top - Dom': '#410308',
-  'Top - Switch': '#410308',
-  'Top - Sub': '#410308',
-  'Verse-Top - Dom': '#3d003b',
-  'Verse-Top - Switch': '#3d003b',
-  'Verse-Top - Sub': '#3d003b',
-  'Verse - Dom': '#310042',
-  'Verse - Switch': '#310042',
-  'Verse - Sub': '#310042',
-  'Verse-Bottom - Dom': '#29084b',
-  'Verse-Bottom - Switch': '#29084b',
-  'Verse-Bottom - Sub': '#29084b',
-  'Bottom - Dom': '#002f51',
-  'Bottom - Switch': '#002f51',
-  'Bottom - Sub': '#002f51',
-  'Check OOC Notes': '#333333',
-  'Ask (L)OOC': '#333333',
-  No: '#131313',
-  Yes: '#002901',
-};
+// 自定义修改：角色目录不显示或按成人偏好着色。
 
 export const ZubbersCharacterDirectory = (props) => {
   const { data } = useBackend();
@@ -42,10 +21,6 @@ export const ZubbersCharacterDirectory = (props) => {
     personalVisibility,
     personalAttraction,
     personalGender,
-    personalErpTag,
-    personalVoreTag,
-    personalHypnoTag,
-    personalNonconTag,
   } = data;
 
   return (
@@ -64,18 +39,10 @@ export const ZubbersCharacterDirectory = (props) => {
             <LabeledList.Item label="性别">
               <Button fluid>{directoryDisplay(personalGender)}</Button>
             </LabeledList.Item>
-            <LabeledList.Item label="成人角色扮演">
-              <Button fluid>{directoryDisplay(personalErpTag)}</Button>
-            </LabeledList.Item>
-            <LabeledList.Item label="吞食">
-              <Button fluid>{directoryDisplay(personalVoreTag)}</Button>
-            </LabeledList.Item>
-            <LabeledList.Item label="催眠">
-              <Button fluid>{directoryDisplay(personalHypnoTag)}</Button>
-            </LabeledList.Item>
-            <LabeledList.Item label="非自愿主题">
-              <Button fluid>{directoryDisplay(personalNonconTag)}</Button>
-            </LabeledList.Item>
+            {/* 自定义修改：移除成人偏好展示 */}
+            {/* 自定义修改：移除成人偏好展示 */}
+            {/* 自定义修改：移除成人偏好展示 */}
+            {/* 自定义修改：移除成人偏好展示 */}
           </LabeledList>
         </Section>
         <CharacterDirectoryList />
@@ -114,35 +81,10 @@ const CharacterDirectoryList = (props) => {
     character.name.toLowerCase().includes(searchTerm.toLowerCase()),
   );
 
-  const erpOrder = [
-    'Top - Dom',
-    'Top - Switch',
-    'Top - Sub',
-    'Bottom - Dom',
-    'Bottom - Switch',
-    'Bottom - Sub',
-    'Verse - Dom',
-    'Verse - Switch',
-    'Verse - Sub',
-    'Verse-Top - Dom',
-    'Verse-Top - Switch',
-    'Verse-Top - Sub',
-    'Verse-Bottom - Dom',
-    'Verse-Bottom - Switch',
-    'Verse-Bottom - Sub',
-    'Yes',
-    'Check OOC Notes',
-    'Ask (L)OOC',
-    'No',
-    'Unset',
-  ];
+  // 自定义修改：取消成人状态排序。
 
   const sortedDirectory = filteredDirectory.slice().sort((a, b) => {
-    if (sortId === 'erp') {
-      const indexA = erpOrder.indexOf(a.erp);
-      const indexB = erpOrder.indexOf(b.erp);
-      return sortOrder === 'desc' ? indexA - indexB : indexB - indexA; // Toggle between descending and ascending
-    }
+    // 自定义修改：目录仅按普通角色信息排序。
 
     const sortOrderValue = sortOrder === 'asc' ? 1 : -1;
     return sortOrderValue * a[sortId].localeCompare(b[sortId]);
@@ -204,48 +146,20 @@ const CharacterDirectoryList = (props) => {
           >
             性别
           </SortButton>
-          <SortButton
-            id="erp"
-            sortId={sortId}
-            sortOrder={sortOrder}
-            onClick={handleSort}
-          >
-            成人角色扮演
-          </SortButton>
-          <SortButton
-            id="vore"
-            sortId={sortId}
-            sortOrder={sortOrder}
-            onClick={handleSort}
-          >
-            吞食
-          </SortButton>
-          <SortButton
-            id="hypno"
-            sortId={sortId}
-            sortOrder={sortOrder}
-            onClick={handleSort}
-          >
-            催眠
-          </SortButton>
-          <SortButton
-            id="noncon"
-            sortId={sortId}
-            sortOrder={sortOrder}
-            onClick={handleSort}
-          >
-            非自愿主题
-          </SortButton>
+          {/* 自定义修改：移除成人偏好列 */}
+          {/* 自定义修改：移除成人偏好列 */}
+          {/* 自定义修改：移除成人偏好列 */}
+          {/* 自定义修改：移除成人偏好列 */}
           <Table.Cell collapsing textAlign="right">
             介绍
           </Table.Cell>
         </Table.Row>
         {sortedDirectory.map((character, i) => (
-          <Table.Row key={i} backgroundColor={erpTagColor[character.erp]}>
+          <Table.Row key={i}>
             <Table.Cell p={1}>
               {canOrbit ? (
                 <Button
-                  color={erpTagColor[character.erp]}
+                  color="green" // 自定义修改：使用普通目录按钮颜色
                   icon="ghost"
                   tooltip="跟随观察"
                   onClick={() => act('orbit', { ref: character.ref })}
@@ -259,10 +173,10 @@ const CharacterDirectoryList = (props) => {
             <Table.Cell>{directoryDisplay(character.species)}</Table.Cell>
             <Table.Cell>{directoryDisplay(character.attraction)}</Table.Cell>
             <Table.Cell>{directoryDisplay(character.gender)}</Table.Cell>
-            <Table.Cell>{directoryDisplay(character.erp)}</Table.Cell>
-            <Table.Cell>{directoryDisplay(character.vore)}</Table.Cell>
-            <Table.Cell>{directoryDisplay(character.hypno)}</Table.Cell>
-            <Table.Cell>{directoryDisplay(character.noncon)}</Table.Cell>
+            {/* 自定义修改：不展示成人状态 */}
+            {/* 自定义修改：不展示成人状态 */}
+            {/* 自定义修改：不展示成人状态 */}
+            {/* 自定义修改：不展示成人状态 */}
             <Table.Cell collapsing textAlign="right">
               <Button
                 onClick={() => act('view', { ref: character.ref })}

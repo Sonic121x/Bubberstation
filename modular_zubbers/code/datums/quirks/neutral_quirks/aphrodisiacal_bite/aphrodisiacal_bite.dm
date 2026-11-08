@@ -18,6 +18,8 @@
 
 /datum/action/cooldown/mob_cooldown/aphrodisiacal_bite/New(Target, original, datum/reagent/our_reagent, quantity_override = null)
 	. = ..()
+	if(erp_content_blocked(type)) // 自定义修改：禁用动作不再读取旧偏好或初始化成人试剂
+		return
 	set_reagent(our_reagent, quantity_override)
 
 /datum/action/cooldown/mob_cooldown/aphrodisiacal_bite/proc/set_reagent(datum/reagent/new_reagent, quantity_override = null, cooldown_override = null)
@@ -33,6 +35,8 @@
 	owner.visible_message(span_warning("[owner]露出了尖牙……"), span_notice("你露出了尖牙……"))
 
 /datum/action/cooldown/mob_cooldown/aphrodisiacal_bite/Activate(atom/target_atom)
+	if(erp_content_blocked(type)) // 自定义修改：阻止绕过按钮直接触发成人咬击
+		return FALSE
 	if (!isliving(target_atom))
 		return FALSE
 
@@ -95,6 +99,8 @@
 	return TRUE
 
 /datum/action/cooldown/mob_cooldown/aphrodisiacal_bite/proc/add_reagents(datum/reagents/target, harvesting = FALSE)
+	if(erp_content_blocked(type)) // 自定义修改：直接注射或抽取禁用动作时不再读取试剂配置
+		return FALSE
 	var/temp = astype(owner, /mob/living/carbon/human)?.coretemperature
 	var/datum/reagent/local_typepath = reagent_typepath
 	if (harvesting)

@@ -3,11 +3,14 @@
 	desc = "你拥有催情腺，可以通过咬人注入你选择的催情剂。"
 	icon = FA_ICON_ICICLES
 	value = 0
+	erp_quirk = TRUE // 自定义修改：将催情之咬纳入成人特性筛选及旧存档禁用策略
 	gain_text = span_notice("你感觉喉咙深处长出了催情腺。")
 	lose_text = span_warning("你的催情腺消失了。")
 	medical_record_text = "患者拥有催情腺。"
 
 /datum/quirk/aphrodisiacal_bite/add(client/client_source)
+	if(erp_content_blocked(type)) // 自定义修改：阻止直接调用特性添加入口授予成人动作
+		return
 	var/datum/reagent/reagent = text2path(client_source?.prefs?.read_preference(/datum/preference/choiced/aphrodisiacal_bite_venom))
 
 	var/mob/living/carbon/human/human_holder = quirk_holder
@@ -18,7 +21,7 @@
 	if(QDELETED(quirk_holder))
 		return ..()
 	var/datum/action/cooldown/mob_cooldown/aphrodisiacal_bite/action = locate(/datum/action/cooldown/mob_cooldown/aphrodisiacal_bite) in quirk_holder.actions
-	action.Remove(quirk_holder)
+	action?.Remove(quirk_holder) // 自定义修改：清理旧特性时兼容已被屏蔽的动作
 
 	return ..()
 

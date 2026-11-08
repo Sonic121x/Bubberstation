@@ -52,13 +52,11 @@ export const ExaminePanel = () => {
     obscured,
     assigned_map,
     flavor_text,
-    flavor_text_nsfw,
     ooc_notes,
     custom_species,
     custom_species_lore,
     character_ad,
     headshot,
-    headshot_nsfw,
     art_ref,
     art_ref_nsfw,
   } = data;
@@ -144,11 +142,7 @@ export const ExaminePanel = () => {
                       style={{ textAlign: 'center' }}
                     >
                       <img
-                        src={
-                          tabIndex === 2
-                            ? resolveAsset(headshot_nsfw)
-                            : resolveAsset(headshot)
-                        }
+                        src={resolveAsset(headshot)} // 自定义修改：头像仅使用普通版本
                         height="250px"
                         width="250px"
                       />
@@ -169,16 +163,7 @@ export const ExaminePanel = () => {
                         style={{ textAlign: 'center' }}
                       />
                     </Tabs.Tab>
-                    <Tabs.Tab
-                      selected={tabIndex === 2}
-                      onClick={() => setTabIndex(2)}
-                    >
-                      <Section
-                        fitted
-                        title={'成人内容（警告）'}
-                        style={{ textAlign: 'center' }}
-                      />
-                    </Tabs.Tab>
+                    {/* 自定义修改：移除成人角色描述标签页 */}
                     <Tabs.Tab
                       selected={tabIndex === 3}
                       onClick={() => setTabIndex(3)}
@@ -206,20 +191,7 @@ export const ExaminePanel = () => {
                       {formatURLs(flavor_text)}
                     </Section>
                   )}
-                  {tabIndex === 2 && (
-                    <Section
-                      style={{ 'overflow-y': 'scroll' }}
-                      fitted
-                      preserveWhitespace
-                      minHeight="50%"
-                      maxHeight="50%"
-                      fontSize="14px"
-                      lineHeight="1.7"
-                      textIndent="3em"
-                    >
-                      {formatURLs(flavor_text_nsfw)}
-                    </Section>
-                  )}
+                  {/* 自定义修改：不渲染成人角色描述 */}
                   {tabIndex === 3 && (
                     <Section
                       style={{ 'overflow-y': 'scroll' }}

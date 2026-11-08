@@ -14,7 +14,7 @@ Lizard subspecies: ASHWALKERS
 		SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
 		SPECIES_PERK_ICON = "comment",
 		SPECIES_PERK_NAME = "母语者",
-		SPECIES_PERK_DESC = "灰行者只能讲 [initial(common_language.name)]。\
+		SPECIES_PERK_DESC = "灰行者只能讲[chinese_language_display(initial(common_language.name))]。\
 			灰行者学会其他语言的情况很罕见，但并非不可能。"
 	))
 

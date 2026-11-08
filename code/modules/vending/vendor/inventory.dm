@@ -26,6 +26,8 @@
 			product_to_category[product_key] = category
 
 	for(var/typepath in productlist)
+		if(erp_content_blocked(typepath)) // 自定义修改：强制屏蔽成人内容并保留普通服饰
+			continue
 		var/amount = productlist[typepath]
 
 		var/obj/item/temp = typepath

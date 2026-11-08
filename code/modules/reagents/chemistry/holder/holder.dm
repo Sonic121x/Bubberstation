@@ -90,6 +90,8 @@
 	list/reagent_added = null,
 	datum/callback/creation_callback = null,
 )
+	if(erp_content_blocked(reagent_type)) // 自定义修改：强制屏蔽成人内容并保留普通服饰
+		return FALSE
 	if(!ispath(reagent_type))
 		stack_trace("invalid reagent passed to add reagent [reagent_type]")
 		return FALSE

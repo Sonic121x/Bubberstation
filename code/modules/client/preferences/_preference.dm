@@ -256,6 +256,16 @@ GLOBAL_LIST_INIT(preference_entries_by_key, init_preference_entries_by_key())
 /// Read a /datum/preference type and return its value.
 /// This will write to the savefile if a value was not found with the new value.
 /datum/preferences/proc/read_preference(preference_type)
+	if(preference_type == /datum/preference/text/headshot/art_ref && read_preference(/datum/preference/toggle/art_ref_nsfw)) // 自定义修改：旧存档标记为成人的参考图不得写入角色外观数据
+		return ""
+	if(ispath(preference_type, /datum/preference/choiced/directory_character_prefs)) // 自定义修改：不恢复旧角色目录中的成人对象偏好
+		return "Unset"
+	if(preference_type == /datum/preference/choiced/show_nsfw_flavor_text) // 自定义修改：隐藏角色创建中的成人设置并阻止旧存档恢复
+		return "Never"
+	if(erp_preference_blocked(preference_type) && ispath(preference_type, /datum/preference/text)) // 自定义修改：隐藏角色创建中的成人设置并阻止旧存档恢复
+		return ""
+	if(ispath(preference_type, /datum/preference/toggle/erp) || preference_type == /datum/preference/toggle/master_erp_preferences) // 自定义修改：强制屏蔽成人内容并保留普通服饰
+		return FALSE
 	var/datum/preference/preference_entry = GLOB.preference_entries[preference_type]
 	if (isnull(preference_entry))
 		var/extra_info = ""
@@ -297,7 +307,7 @@ GLOBAL_LIST_INIT(preference_entries_by_key, init_preference_entries_by_key())
 /// This will, for instance, update the character preference view.
 /// Performs sanity checks.
 /datum/preferences/proc/update_preference(datum/preference/preference, preference_value)
-	if (!preference.is_accessible(src))
+	if (erp_preference_blocked(preference.type) || !preference.is_accessible(src)) // 自定义修改：屏蔽成人偏好与角色信息展示
 		return FALSE
 
 	var/new_value = preference.deserialize(preference_value, src)
@@ -355,6 +365,8 @@ GLOBAL_LIST_INIT(preference_entries_by_key, init_preference_entries_by_key())
 	SHOULD_CALL_PARENT(TRUE)
 	SHOULD_NOT_SLEEP(TRUE)
 
+	if(erp_preference_blocked(type)) // 自定义修改：隐藏角色创建中的成人设置并阻止旧存档恢复
+		return FALSE
 	if (!has_relevant_feature(preferences))
 		return FALSE
 

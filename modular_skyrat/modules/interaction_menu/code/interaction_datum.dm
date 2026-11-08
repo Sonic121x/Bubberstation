@@ -52,6 +52,8 @@ GLOBAL_LIST_EMPTY_TYPED(interaction_instances, /datum/interaction)
 	var/sexuality = ""
 
 /datum/interaction/proc/allow_act(mob/living/carbon/human/user, mob/living/carbon/human/target)
+	if(lewd) // 自定义修改：强制屏蔽成人内容并保留普通服饰
+		return FALSE
 	if(target == user && usage == INTERACTION_OTHER)
 		return FALSE
 

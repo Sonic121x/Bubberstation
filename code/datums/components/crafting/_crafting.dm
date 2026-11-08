@@ -239,6 +239,8 @@
 	return recipe.check_tools(source, possible_tool_instances, final_check)
 
 /datum/component/personal_crafting/proc/construct_item(atom/crafter, datum/crafting_recipe/recipe)
+	if(!recipe || erp_content_blocked(recipe.result)) // 自定义修改：强制屏蔽成人机制并保留服饰用途
+		return null
 	if(!crafter)
 		return "，未知错误！" // This should never happen, but in the event that it does...
 
@@ -614,6 +616,9 @@
 		if(CRAFTING)
 			recipes_to_show += GLOB.crafting_recipes_default
 			recipes_to_show += SANITIZE_LIST(user.mind?.learned_crafting_recipes)
+	for(var/datum/crafting_recipe/recipe as anything in recipes_to_show.Copy()) // 自定义修改：强制屏蔽成人内容并保留普通服饰
+		if(erp_content_blocked(recipe.result))
+			recipes_to_show -= recipe
 	return recipes_to_show
 
 /datum/component/personal_crafting/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
@@ -624,6 +629,8 @@
 		if("make", "make_mass")
 			var/mob/user = usr
 			var/datum/crafting_recipe/crafting_recipe = locate(params["recipe"]) in (mode ? GLOB.cooking_recipes : GLOB.crafting_recipes)
+			if(!crafting_recipe || erp_content_blocked(crafting_recipe.result)) // 自定义修改：强制屏蔽成人内容并保留普通服饰
+				return FALSE
 			busy = TRUE
 			ui_interact(user)
 			if(action == "make_mass")

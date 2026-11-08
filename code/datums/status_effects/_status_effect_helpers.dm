@@ -12,6 +12,8 @@
  */
 /mob/living/proc/apply_status_effect(datum/status_effect/new_effect, ...)
 	RETURN_TYPE(/datum/status_effect)
+	if(erp_content_blocked(new_effect)) // 自定义修改：强制屏蔽成人机制并保留服饰用途
+		return null
 
 	var/list/arguments = args.Copy()
 

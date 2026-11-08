@@ -8,6 +8,8 @@ PROCESSING_SUBSYSTEM_DEF(vore)
 	#endif
 
 /datum/controller/subsystem/processing/vore/Initialize()
+	if(CONFIG_GET(flag/disable_erp_preferences)) // 自定义修改：强制屏蔽成人机制并保留服饰用途
+		return SS_INIT_NO_NEED
 	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_LOGGED_IN, PROC_REF(on_mob_login))
 	#ifdef VORE_TESTING_ALL_MOBS_ARE_VORE_MOBS
 	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_CREATED, PROC_REF(on_mob_creation))

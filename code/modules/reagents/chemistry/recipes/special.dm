@@ -96,8 +96,8 @@
 	created = world.realtime
 
 	// Reagents and catalysts
-	var/list/remaining_possible_reagents = GetPossibleReagents(RNGCHEM_INPUT)
-	var/list/remaining_possible_catalysts = GetPossibleReagents(RNGCHEM_CATALYSTS)
+	var/list/remaining_possible_reagents = erp_filter_candidates(GetPossibleReagents(RNGCHEM_INPUT)) // 自定义修改：随机配方排除成人原料
+	var/list/remaining_possible_catalysts = erp_filter_candidates(GetPossibleReagents(RNGCHEM_CATALYSTS)) // 自定义修改：随机配方排除成人催化剂
 	//We're going to assume we're not doing any weird partial reactions for now.
 	for(var/reagent_type in results)
 		remaining_possible_catalysts -= reagent_type
@@ -174,7 +174,7 @@
 	. = list()
 	for(var/R in textreagents)
 		var/pathR = text2path(R)
-		if(!pathR)
+		if(!pathR || erp_content_blocked(pathR)) // 自定义修改：旧随机配方含成人试剂时重新生成
 			return null
 		.[pathR] = textreagents[R]
 

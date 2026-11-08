@@ -56,6 +56,12 @@
 			"Moth (Royal Greyscale)" = "蛾翼（王室，灰度）", "Moth (Plain Greyscale)" = "蛾翼（素色，灰度）", "Moth (Luna Greyscale)" = "蛾翼（月蛾，灰度）", "Moth (Witchwing Greyscale)" = "蛾翼（巫女之翼，灰度）",
 			"Second Arms (Non-Functional)" = "第二对手臂（无功能）", "Second Arms (Greyscale - Non-Functional)" = "第二对手臂（灰度，无功能）",
 			"Cat Scream" = "猫叫", "Slug Scream" = "蛞蝓尖叫", "Ascent Scream" = "飞升者尖叫",
+			"No Scream" = "无尖叫声", "Human Scream" = "人类尖叫", "Human Scream 2" = "人类尖叫 2",
+			"Masculine Human Scream" = "男性人类尖叫", "Feminine Human Scream" = "女性人类尖叫",
+			"Robotic Scream" = "机械尖叫", "Classic Scream" = "经典尖叫", "Lizard Scream" = "蜥蜴人尖叫", "Lizard Scream 2" = "蜥蜴人尖叫 2",
+			"Moth Scream" = "蛾人尖叫", "Jelly Scream" = "凝胶人尖叫", "Vox Scream" = "沃克斯尖叫", "Xeno Scream" = "异形尖叫",
+			"Raptor Scream" = "迅猛龙尖叫", "Rodent Scream" = "啮齿动物尖叫", "Chicken Scream" = "鸡叫", "Ethereal Scream" = "以太人尖叫",
+			"Zombie Scream" = "僵尸尖叫", "Monkey Scream" = "猴叫", "Gorilla Scream" = "大猩猩叫声", "Skeleton Scream" = "骷髅尖叫", "Plasmaman Scream" = "等离子人尖叫",
 			"Teshari scream" = "特沙利尖叫", "Teshari laugh" = "特沙利笑声",
 		)
 	return return_mapping ? labels : (labels[value] || value)

@@ -25,11 +25,8 @@
 	interactions = list()
 	for(var/iterating_interaction_id in GLOB.interaction_instances)
 		var/datum/interaction/interaction = GLOB.interaction_instances[iterating_interaction_id]
-		if(interaction.lewd)
-			if(!self.client?.prefs?.read_preference(/datum/preference/toggle/erp))
-				continue
-			if(interaction.sexuality != "" && interaction.sexuality != self.client?.prefs?.read_preference(/datum/preference/choiced/erp_sexuality))
-				continue
+		if(interaction.lewd) // 自定义修改：强制屏蔽成人内容并保留普通服饰
+			continue // 自定义修改：强制屏蔽成人机制并保留服饰用途
 		interactions.Add(interaction)
 
 /datum/component/interactable/RegisterWithParent()
@@ -250,6 +247,8 @@
 
 /// Checks if the target has ERP toys enabled, and can be logially reached by the user.
 /datum/component/interactable/proc/can_lewd_strip(mob/living/carbon/human/source, mob/living/carbon/human/target, slot_index)
+	if(CONFIG_GET(flag/disable_erp_preferences)) // 自定义修改：强制屏蔽成人内容并保留普通服饰
+		return FALSE
 	if(!target.client?.prefs?.read_preference(/datum/preference/toggle/erp/sex_toy))
 		return FALSE
 	if(!(source.loc == target.loc || source.Adjacent(target)))

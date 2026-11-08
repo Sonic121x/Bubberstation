@@ -483,7 +483,7 @@ GLOBAL_LIST_INIT(all_loadout_categories, init_loadout_categories())
  * Checks if this item is disabled and cannot be selected or granted
  */
 /datum/loadout_item/proc/is_disabled()
-	return required_holiday && !check_holidays(required_holiday)
+	return erp_content_blocked(item_path) || (required_holiday && !check_holidays(required_holiday)) // 自定义修改：强制屏蔽成人内容并保留普通服饰
 
 /**
  * Checks if this item is disabled or unequippable for the given item details.

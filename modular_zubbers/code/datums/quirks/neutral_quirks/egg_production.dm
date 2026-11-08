@@ -3,6 +3,7 @@
 	desc = "无论是遗传还是其他原因，你拥有产卵能力。"
 	icon = FA_ICON_EGG
 	value = 0
+	erp_quirk = TRUE // 自定义修改：屏蔽依赖成人体液和催情剂的产卵特性
 	gain_text = span_notice("你突然觉得自己很能生。")
 	lose_text = span_warning("你不再觉得自己能生了。真遗憾。")
 	medical_record_text = "患者拥有产卵能力。"

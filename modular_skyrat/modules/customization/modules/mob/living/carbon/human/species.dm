@@ -99,6 +99,7 @@ GLOBAL_LIST_EMPTY(customizable_races)
 	if(CONFIG_GET(flag/disable_erp_preferences))
 		for(var/genital in GLOB.possible_genitals)
 			bodyparts_to_add.Remove(genital)
+			mutantpart_list.Remove(genital) // 自定义修改：清除旧角色或变形继承的成人外观
 	for(var/key in bodyparts_to_add)
 		if(LAZYLEN(existing_mutant_bodyparts) && existing_mutant_bodyparts[key])
 			continue

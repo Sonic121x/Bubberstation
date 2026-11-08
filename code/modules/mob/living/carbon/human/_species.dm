@@ -1570,7 +1570,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 				The type should be positive, negative, or neutral. (Got: [perk_type])")
 			continue
 
-		perks_to_return[perk_type] += list(perk)
+		perks_to_return[perk_type] += list(chinese_species_perk_display(perk, plural_form, name))
 
 	return perks_to_return
 
@@ -1722,8 +1722,8 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		to_add += list(list(
 			SPECIES_PERK_TYPE = SPECIES_NEUTRAL_PERK,
 			SPECIES_PERK_ICON = "tint",
-			SPECIES_PERK_NAME = initial(blood_type.reagent_type.name),
-			SPECIES_PERK_DESC = "[name] 的血液是 [initial(blood_type.reagent_type.name)]，这会让接受医疗变得更加困难。",
+			SPECIES_PERK_NAME = chinese_reagent_display(initial(blood_type.reagent_type.name)),
+			SPECIES_PERK_DESC = "[chinese_footprint_species_display(name)] 的血液是 [chinese_reagent_display(initial(blood_type.reagent_type.name))]，这会让接受医疗变得更加困难。",
 		))
 
 	// Otherwise otherwise, see if they have an exotic bloodtype set
@@ -1856,7 +1856,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 			SPECIES_PERK_TYPE = perk_type,
 			SPECIES_PERK_ICON = "wine-glass",
 			SPECIES_PERK_NAME = perk_name,
-			SPECIES_PERK_DESC = "[name] 的肝脏比人类肝脏[more_or_less]受酒精影响，差距约为 [percent_difference]%。"
+			SPECIES_PERK_DESC = "[chinese_footprint_species_display(name)] 的肝脏比人类肝脏[more_or_less]受酒精影响，差距约为 [percent_difference]%。"
 		))
 
 	var/tox_shrugging = initial(mutantliver.toxTolerance)
@@ -1871,7 +1871,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 			SPECIES_PERK_TYPE = perk_type,
 			SPECIES_PERK_ICON = "biohazard",
 			SPECIES_PERK_NAME = perk_name,
-			SPECIES_PERK_DESC = "[name] 的肝脏能迅速化解 [tox_shrugging]u 的毒素，这个量比人类[more_or_less]。"
+			SPECIES_PERK_DESC = "[chinese_footprint_species_display(name)] 的肝脏能迅速化解 [tox_shrugging]u 的毒素，这个量比人类[more_or_less]。"
 		))
 
 	return to_add
@@ -1889,8 +1889,8 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		to_add += list(list(
 			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
 			SPECIES_PERK_ICON = "wind",
-			SPECIES_PERK_NAME = "[capitalize(breath_id)] 呼吸",
-			SPECIES_PERK_DESC = "[plural_form] 必须呼吸 [breath_id] 才能生存。你抵达时会获得一个气罐。",
+			SPECIES_PERK_NAME = "[GLOB.meta_gas_info[META_GAS_NAME][gas_id2path(breath_id)] || breath_id]呼吸",
+			SPECIES_PERK_DESC = "[plural_form] 必须呼吸 [GLOB.meta_gas_info[META_GAS_NAME][gas_id2path(breath_id)] || breath_id] 才能生存。你抵达时会获得一个气罐。",
 		))
 
 	return to_add
@@ -1912,7 +1912,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	for(var/datum/language/language_type as anything in basic_holder.spoken_languages)
 		if(ispath(language_type, common_language))
 			continue
-		bonus_languages += initial(language_type.name)
+		bonus_languages += chinese_language_display(initial(language_type.name))
 
 	if(!length(bonus_languages))
 		return // You're boring
@@ -1926,7 +1926,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 			/* SKYRAT EDIT - Digitigrade customization - ORIGINAL:
 			SPECIES_PERK_DESC = "Alongside [initial(common_language.name)], [plural_form] gain the ability to speak [english_list(bonus_languages)].",
 			*/ // ORIGINAL END - SKYRAT EDIT START:
-			SPECIES_PERK_DESC = "除了 [initial(common_language.name)] 之外，[plural_form] 通常还会说 [english_list(bonus_languages)]。",
+			SPECIES_PERK_DESC = "除了[chinese_language_display(initial(common_language.name))]之外，[plural_form]通常还会说[english_list(bonus_languages)]。",
 			// SKYRAT EDIT END
 		))
 
@@ -1935,7 +1935,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 			SPECIES_PERK_TYPE = SPECIES_NEUTRAL_PERK,
 			SPECIES_PERK_ICON = "comment",
 			SPECIES_PERK_NAME = "外语者",
-			SPECIES_PERK_DESC = "[plural_form] 可能不会说 [initial(common_language.name)]，但会说 [english_list(bonus_languages)]。",
+			SPECIES_PERK_DESC = "[plural_form]可能不会说[chinese_language_display(initial(common_language.name))]，但会说[english_list(bonus_languages)]。",
 		))
 
 	return to_add

@@ -109,6 +109,9 @@ SUBSYSTEM_DEF(research)
 		if(QDELING(new_design))
 			continue
 
+		if(erp_content_blocked(new_design.build_path)) // 自定义修改：封闭成人内容的间接生成与显示入口
+			new_design.build_type = NONE
+			new_design.category = list()
 		var/build_path = design_path::build_path
 		if(!isnull(build_path))
 			LAZYADD(item_to_design[build_path], design_path)
@@ -118,6 +121,9 @@ SUBSYSTEM_DEF(research)
 /datum/controller/subsystem/research/proc/initialize_nodes()
 	for(var/datum/techweb_node/node_path as anything in valid_subtypesof(/datum/techweb_node))
 		var/datum/techweb_node/new_node = new node_path()
+		for(var/datum/design/design_type as anything in new_node.unlocked_designs.Copy()) // 自定义修改：封闭成人内容的间接生成与显示入口
+			if(erp_content_blocked(initial(design_type.build_path)))
+				new_node.unlocked_designs -= design_type
 		// This node doesn't want to exist. OK THEN!
 		if(QDELING(new_node))
 			continue

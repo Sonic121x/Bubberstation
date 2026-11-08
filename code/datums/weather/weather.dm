@@ -154,7 +154,7 @@
 	else if(blacklist_weather_reagents) // randomized
 		reagent_id = get_random_reagent_id(blacklist = blacklist_weather_reagents)
 
-	if(reagent_id)
+	if(reagent_id && !erp_content_blocked(reagent_id)) // 自定义修改：拒绝成人化学天气并避免引用已禁用的试剂目录项
 		weather_reagent = GLOB.chemical_reagents_list[reagent_id]
 		weather_color = weather_reagent.color
 		weather_reagent_holder = new(null) // spawns in nullspace

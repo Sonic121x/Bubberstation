@@ -88,6 +88,8 @@
 
 /// Activates the parent NIFSoft
 /datum/nifsoft/proc/activate()
+	if(lewd_nifsoft) // 自定义修改：封闭成人内容的间接生成与显示入口
+		return FALSE
 	var/obj/item/organ/cyberimp/brain/nif/installed_nif = parent_nif?.resolve()
 
 	if(!installed_nif)

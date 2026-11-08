@@ -228,6 +228,7 @@
 	return TRUE
 
 /obj/machinery/vending/dorms/Initialize(mapload)
+	erp_prepare_wardrobe() // 自定义修改：强制屏蔽成人机制并保留服饰用途
 	. = ..()
 	update_icon_state()
 	update_icon()
@@ -242,6 +243,6 @@
 
 //Refill item
 /obj/item/vending_refill/lustwish
-	machine_name = "欲愿"
-	icon_state = "lustwish_refill"
-	icon = 'modular_skyrat/modules/modular_items/lewd_items/icons/obj/lewd_items/lewd_items.dmi'
+	machine_name = "服饰衣柜" // 自定义修改：强制屏蔽成人机制并保留服饰用途
+	icon_state = "refill_clothes" // 自定义修改：强制屏蔽成人机制并保留服饰用途
+	icon = 'icons/obj/vending_restock.dmi' // 自定义修改：强制屏蔽成人机制并保留服饰用途

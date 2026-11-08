@@ -316,6 +316,8 @@
 
 ///Installs the loaded_nifsoft to the parent NIF.
 /obj/item/organ/cyberimp/brain/nif/proc/install_nifsoft(datum/nifsoft/loaded_nifsoft, skip_calibration = FALSE)
+	if(loaded_nifsoft.lewd_nifsoft) // 自定义修改：隐藏角色创建中的成人设置并阻止旧存档恢复
+		return FALSE
 	if(broken)
 		send_message("目标设备没有响应。", alert = TRUE)
 		return FALSE

@@ -13,6 +13,8 @@
 	if(!LAZYLEN(possible_reagents))
 		LAZYINITLIST(possible_reagents)
 		for(var/reagent_path in subtypesof(/datum/reagent/drug) + subtypesof(/datum/reagent/medicine) + typesof(/datum/reagent/toxin))
+			if(erp_content_blocked(reagent_path)) // 自定义修改：外星化学腺体不再选择成人药物
+				continue
 			possible_reagents += reagent_path
 
 /obj/item/organ/heart/gland/chem/activate()

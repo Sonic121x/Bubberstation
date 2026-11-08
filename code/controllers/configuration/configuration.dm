@@ -304,6 +304,8 @@
 	return msg
 
 /datum/controller/configuration/proc/Get(entry_type)
+	if(entry_type == /datum/config_entry/flag/disable_erp_preferences || entry_type == /datum/config_entry/flag/disable_lewd_items) // 自定义修改：强制屏蔽成人机制并保留服饰用途
+		return TRUE
 	var/datum/config_entry/E = entry_type
 	var/entry_is_abstract = initial(E.abstract_type) == entry_type
 	if(entry_is_abstract)

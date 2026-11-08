@@ -4,6 +4,7 @@
 	var/static/list/display_names
 	if(isnull(display_names))
 		display_names = list(
+		"Death Degradation Disorder" = "死亡衰退症",
 		"Test Quirk" = "测试特质",
 		"Addict" = "成瘾者",
 		"Junkie" = "瘾君子",

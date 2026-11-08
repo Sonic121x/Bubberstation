@@ -8,6 +8,10 @@
 			BadInitializeCalls[the_type] |= BAD_INIT_QDEL_BEFORE
 		return TRUE
 
+	if(erp_content_blocked(the_type)) // 自定义修改：在重复删除检查后拦截成人物件初始化
+		qdel(A)
+		return TRUE
+
 	// This is handled and battle tested by dreamchecker. Limit to UNIT_TESTS just in case that ever fails.
 	#ifdef UNIT_TESTS
 	var/start_tick = world.time
