@@ -121,7 +121,7 @@
 		var/datum/outfit/path_as_outfit = path
 		outfits[initial(path_as_outfit.name)] = path
 
-	var/dresscode = tgui_input_list(src, "选择装备配置", "强劲快速换装店", baseoutfits + sort_list(outfits))
+	var/dresscode = chinese_outfit_choice(mob, "选择装备配置", "强劲快速换装店", baseoutfits + sort_list(outfits))
 
 	if (isnull(dresscode))
 		return
@@ -136,7 +136,7 @@
 			var/datum/outfit/O = path
 			job_outfits[initial(O.name)] = path
 
-		dresscode = input("选择职业装备", "强劲快速换装店") as null|anything in sort_list(job_outfits)
+		dresscode = chinese_outfit_choice(mob, "选择职业装备", "强劲快速换装店", sort_list(job_outfits))
 		dresscode = job_outfits[dresscode]
 		if(isnull(dresscode))
 			return
@@ -148,7 +148,7 @@
 			var/datum/outfit/O = path
 			plasmaman_outfits[initial(O.name)] = path
 
-		dresscode = input("选择等离子人装备", "强劲快速换装店") as null|anything in sort_list(plasmaman_outfits)
+		dresscode = chinese_outfit_choice(mob, "选择等离子人装备", "强劲快速换装店", sort_list(plasmaman_outfits))
 		dresscode = plasmaman_outfits[dresscode]
 		if(isnull(dresscode))
 			return
@@ -157,7 +157,7 @@
 		var/list/custom_names = list()
 		for(var/datum/outfit/req_outfit in GLOB.custom_outfits)
 			custom_names[req_outfit.name] = req_outfit
-		var/selected_name = input("选择装备配置", "强劲快速换装店") as null|anything in sort_list(custom_names)
+		var/selected_name = tgui_input_list(mob, "选择装备配置", "强劲快速换装店", sort_list(custom_names))
 		dresscode = custom_names[selected_name]
 		if(isnull(dresscode))
 			return

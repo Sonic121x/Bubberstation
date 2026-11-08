@@ -131,7 +131,7 @@
 
 	target_area = pick(possible_areas)
 	if (validate_area()) // Well this is risky but probably not every area on the station is going to get deleted, right?
-		to_chat(owner, span_alert("下一处力量枢纽位于 [initial(target_area.name)] 之内"))
+		to_chat(owner, span_alert("下一处力量枢纽位于 [chinese_area_display(initial(target_area.name))] 之内"))
 
 /// Checks if you're actually able to draw a rune here
 /datum/action/cooldown/grand_ritual/proc/start_drawing_rune()

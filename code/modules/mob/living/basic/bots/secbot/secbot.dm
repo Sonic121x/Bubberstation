@@ -148,7 +148,7 @@
 	if(HAS_TRAIT(user, TRAIT_PACIFISM))
 		user.visible_message(span_notice("[user] 嘲弄 [src]，挑衅[p_them()]来追！"), \
 			span_notice("你嘲弄 [src]，挑衅[p_them()]来追你！"), span_hear("你听到有人喊出一句大胆的挑衅！"), DEFAULT_MESSAGE_RANGE, user)
-		speak("在 [get_area(src)] 被和平主义败类 [RUNECHAT_BOLD("[user]")] 嘲弄。", radio_channel)
+		speak("在 [chinese_area_display(get_area(src))] 被和平主义败类 [RUNECHAT_BOLD("[user]")] 嘲弄。", radio_channel)
 
 		// Interrupt the attack chain. We've already handled this scenario for pacifists.
 		return

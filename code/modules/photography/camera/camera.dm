@@ -105,7 +105,7 @@
 	if(isnull(disk))
 		. += span_notice("它有一个全息记录磁盘插槽。")
 	else
-		. += span_notice("里面插着 \an [disk.name]。")
+		. += span_notice("里面插着 [disk.name]。")
 
 /obj/item/camera/Exited(atom/movable/gone, direction)
 	. = ..()

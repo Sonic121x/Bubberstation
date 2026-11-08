@@ -39,7 +39,7 @@
 
 /datum/round_event/vent_clog/announce(fake)
 	var/area/event_area = fake ? pick(GLOB.teleportlocs) : get_area_name(vent)
-	priority_announce("通风网络中检测到轻微生物阻塞。堵塞位置据信位于 [event_area]。", "保洁通知")
+	priority_announce("通风网络中检测到轻微生物阻塞。堵塞位置据信位于 [chinese_area_display(fake ? event_area : get_area(vent))]。", "保洁通知")
 
 /datum/round_event/vent_clog/setup()
 	vent = get_vent()
@@ -138,7 +138,7 @@
 	clog_vent()
 
 	announce_to_ghosts(vent)
-	priority_announce("生命信号读数已转移至通风网络中的新位置。新位置：[prob(50) ? "未知。":"[get_area_name(vent)]。"]", "生命信号通知")
+	priority_announce("生命信号读数已转移至通风网络中的新位置。新位置：[prob(50) ? "未知。":"[chinese_area_display(get_area(vent))]。"]", "生命信号通知")
 
 /**
  * Handles the production of our mob and adds it to our living_mobs list
@@ -246,7 +246,7 @@
 
 /datum/round_event/vent_clog/major/announce(fake)
 	var/area/event_area = fake ? pick(GLOB.teleportlocs) : get_area_name(vent)
-	priority_announce("通风网络中检测到严重生物阻塞。堵塞位置据信位于 [event_area] 区域。", "虫害警报")
+	priority_announce("通风网络中检测到严重生物阻塞。堵塞位置据信位于 [chinese_area_display(fake ? event_area : get_area(vent))] 区域。", "虫害警报")
 
 /datum/round_event_control/vent_clog/critical
 	name = "通风管道堵塞：危急"
@@ -270,7 +270,7 @@
 
 /datum/round_event/vent_clog/critical/announce(fake)
 	var/area/event_area = fake ? pick(GLOB.teleportlocs) : get_area_name(vent)
-	priority_announce("在 [event_area] 通风网络中检测到潜在危险的生命信号。", "安保警报")
+	priority_announce("在 [chinese_area_display(fake ? event_area : get_area(vent))] 通风网络中检测到潜在危险的生命信号。", "安保警报")
 
 /datum/round_event/vent_clog/critical/get_mob()
 	var/static/list/mob_list = list(
@@ -303,7 +303,7 @@
 
 /datum/round_event/vent_clog/strange/announce(fake)
 	var/area/event_area = fake ? pick(GLOB.teleportlocs) : get_area_name(vent)
-	priority_announce("在 [event_area] 通风网络中检测到异常生命信号读数。", "生命信号警报", ANNOUNCER_ALIENS)
+	priority_announce("在 [chinese_area_display(fake ? event_area : get_area(vent))] 通风网络中检测到异常生命信号读数。", "生命信号警报", ANNOUNCER_ALIENS)
 
 /datum/round_event/vent_clog/strange/get_mob()
 	var/static/list/mob_list = list(

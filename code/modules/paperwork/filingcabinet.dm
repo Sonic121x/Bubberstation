@@ -115,7 +115,7 @@
 			I.forceMove(loc)
 			if(prob(25))
 				step_rand(I)
-			to_chat(user, span_notice("你随机从 [src] 中抽出了 \a [I]。"))
+			to_chat(user, span_notice("你随机从 [src] 中抽出了 [I.get_visible_name()]。"))
 			return
 	to_chat(user, span_notice("你在 [src] 里什么也没找到。"))
 

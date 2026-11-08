@@ -4,7 +4,7 @@
 	desc = "收录了人类（以及相关物种）已知的所有鱼类。"
 	icon_state = "fishbook"
 	custom_price = PAYCHECK_CREW * 2
-	starting_content = "Lot of fish stuff" //book wrappers could use cleaning so this is not necessary
+	starting_content = "丰富的鱼类知识" //book wrappers could use cleaning so this is not necessary
 
 /obj/item/book/manual/fish_catalog/Initialize(mapload)
 	. = ..()
@@ -37,7 +37,7 @@
 			fish_data["weight"] = initial(fish.average_weight)
 			var/datum/reagent/food_type = initial(fish.food)
 			if(food_type != /datum/reagent/consumable/nutriment)
-				fish_data["feed"] = initial(food_type.name)
+				fish_data["feed"] = chinese_reagent_display(initial(food_type.name))
 			else
 				fish_data["feed"] = "[AQUARIUM_COMPANY] 鱼饲料"
 			fish_data["fishing_tips"] = build_fishing_tips(fish)
@@ -59,7 +59,7 @@
 				return jointext(bitfield_to_list(special_identifier[FISH_BAIT_VALUE], FOOD_FLAGS_IC),",")
 			if(FISH_BAIT_REAGENT)
 				var/datum/reagent/prototype = special_identifier[FISH_BAIT_VALUE]
-				return "[initial(prototype.name)]（至少 [special_identifier[FISH_BAIT_AMOUNT]]u）"
+				return "[chinese_reagent_display(initial(prototype.name))]（至少 [special_identifier[FISH_BAIT_AMOUNT]]u）"
 			else
 				stack_trace("Unknown bait identifier in fish favourite/disliked list")
 				return "非常奇怪的东西"

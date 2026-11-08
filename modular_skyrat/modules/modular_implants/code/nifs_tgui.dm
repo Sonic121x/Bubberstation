@@ -84,7 +84,7 @@
 	var/datum/component/nif_examine/examine_datum = linked_mob.GetComponent(/datum/component/nif_examine)
 
 	if(examine_datum && examine_datum.nif_examine_text != initial(examine_datum.nif_examine_text))
-		data["current_examine_text"] = examine_datum.nif_examine_text
+		data["current_examine_text"] = chinese_nif_examine_display(examine_datum.nif_examine_text)
 	else
 		data["current_examine_text"] = null
 

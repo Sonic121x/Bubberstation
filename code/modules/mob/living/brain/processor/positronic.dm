@@ -139,7 +139,7 @@
 	var/should_nag = !forced && COOLDOWN_FINISHED(src, ghost_nag_cooldown)
 
 	notify_ghosts(
-		"[name]在[get_area(src)][msg]！[requested_personality ? "人格需求：\[[requested_personality]\]" : ""]",
+		"[name]在[chinese_area_display("[get_area(src)]")][msg]！[requested_personality ? "人格需求：\[[requested_personality]\]" : ""]",
 		source = src,
 		header = "机器中的幽灵",
 		click_interact = TRUE,

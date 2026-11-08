@@ -22,7 +22,7 @@
 
 /datum/round_event/vent_clog/extreme/announce(fake)
 	var/area/event_area = fake ? pick(GLOB.teleportlocs) : get_area_name(vent)
-	priority_announce("在[event_area]的通风网络中检测到极度危险的生命体征。", "安保警报", color_override = "yellow")
+	priority_announce("在[chinese_area_display(fake ? event_area : get_area(vent))]的通风网络中检测到极度危险的生命体征。", "安保警报", color_override = "yellow")
 
 /datum/round_event/vent_clog/extreme/get_mob()
 	var/static/list/mob_list = list(

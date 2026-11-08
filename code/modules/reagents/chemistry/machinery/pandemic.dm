@@ -53,7 +53,7 @@
 	if(beaker)
 		var/is_close
 		if(Adjacent(user)) //don't reveal exactly what's inside unless they're close enough to see the UI anyway.
-			. += "它里面装有 \a [beaker]。"
+			. += "它里面装有 [beaker.get_visible_name()]。"
 			is_close = TRUE
 		else
 			. += "它里面装着一个烧杯。"

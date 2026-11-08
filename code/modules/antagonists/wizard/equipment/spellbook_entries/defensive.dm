@@ -125,7 +125,7 @@
 /datum/spellbook_entry/item/wands/try_equip_item(mob/living/carbon/human/user, obj/item/to_equip)
 	if (!istype(user.belt, /obj/item/storage/belt/wands))
 		var/was_equipped = user.equip_to_slot_if_possible(to_equip, ITEM_SLOT_BELT, disable_warning = TRUE)
-		to_chat(user, span_notice("\A [to_equip.name] 已被召唤，[was_equipped ? "挂在你腰间" : "落在你脚下"]。"))
+		to_chat(user, span_notice("[to_equip.name] 已被召唤，[was_equipped ? "挂在你腰间" : "落在你脚下"]。"))
 		return
 
 	// If you already have a wand belt you get a cool bandolier instead for your copious amount of wands
@@ -137,7 +137,7 @@
 	qdel(to_equip)
 
 	var/was_equipped = user.equip_to_slot_if_possible(bandolier, ITEM_SLOT_SUITSTORE, disable_warning = TRUE)
-	to_chat(user, span_notice("\A [bandolier.name] 已被召唤，[was_equipped ? "斜挎在你胸前" : "落在你脚下"]。"))
+	to_chat(user, span_notice("[bandolier.name] 已被召唤，[was_equipped ? "斜挎在你胸前" : "落在你脚下"]。"))
 
 /datum/spellbook_entry/item/wands/discount
 	name = "魔杖组合（打折货）"

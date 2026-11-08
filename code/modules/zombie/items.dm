@@ -64,7 +64,7 @@
 	if(!infection)
 		infection = new()
 		infection.Insert(target)
-		to_chat(user, span_alien("你看到 [target] 抽搐了一下，头部覆满了 \a [infection]——已被感染。"))
+		to_chat(user, span_alien("你看到 [target] 抽搐了一下，头部覆满了 [infection.name]——已被感染。"))
 
 /obj/item/mutant_hand/zombie/suicide_act(mob/living/user)
 	user.visible_message(span_suicide("[user]正把自己的脑子扯出来！看起来是在试图自杀！"))

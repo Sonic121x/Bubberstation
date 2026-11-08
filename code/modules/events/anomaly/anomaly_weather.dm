@@ -30,7 +30,7 @@
 /datum/round_event/anomaly/anomaly_weather/announce(fake)
 	if(isnull(impact_area))
 		impact_area = placer.findValidArea()
-	priority_announce("在 [ANOMALY_ANNOUNCE_HARMFUL_TEXT] [impact_area.name] 检测到气压异常。", "异常警报")
+	priority_announce("在 [ANOMALY_ANNOUNCE_HARMFUL_TEXT] [chinese_area_display(impact_area)] 检测到气压异常。", "异常警报")
 
 /datum/round_event/anomaly/anomaly_weather/make_anomaly(turf/anomaly_turf)
 	return new anomaly_path(anomaly_turf, null, null, forced_weather_type, forced_thunder_chance)
@@ -54,7 +54,7 @@
 /datum/round_event/anomaly/anomaly_weather/thundering/announce(fake)
 	if(isnull(impact_area))
 		impact_area = placer.findValidArea()
-	priority_announce("在 [ANOMALY_ANNOUNCE_DANGEROUS_TEXT] [impact_area.name] 检测到严重气压异常。", "异常警报")
+	priority_announce("在 [ANOMALY_ANNOUNCE_DANGEROUS_TEXT] [chinese_area_display(impact_area)] 检测到严重气压异常。", "异常警报")
 
 /datum/event_admin_setup/listed_options/weather_anomaly
 	input_text = "天气类型？请务必小心那些危险的类型！"

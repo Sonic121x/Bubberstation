@@ -196,7 +196,7 @@
 	. = ..()
 	if(!pinless)
 		if(pin)
-			. += "它装有 \a [pin]。"
+			. += "它装有 [pin.get_visible_name()]。"
 			if(pin.pin_removable)
 				. += span_info("[pin] 看起来用一些<b>工具</b>就能取下来。")
 			else

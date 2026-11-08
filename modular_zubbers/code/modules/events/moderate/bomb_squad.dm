@@ -34,7 +34,7 @@
 /datum/round_event/stray_cargo/syndie_bombsquad/announce(fake)
 	if(fake)
 		impact_area = find_event_area()
-	priority_announce("辛迪加已派出爆破小队袭击[impact_area.name]。 \n\n建议安保介入以清除威胁。\n建议工程介入以打开炸弹并拆除导线。", "中央指挥部情报部", 'modular_zubbers/sound/alerts/amber.ogg', color_override = "yellow")
+	priority_announce("辛迪加已派出爆破小队袭击[chinese_area_display(impact_area)]。 \n\n建议安保介入以清除威胁。\n建议工程介入以打开炸弹并拆除导线。", "中央指挥部情报部", 'modular_zubbers/sound/alerts/amber.ogg', color_override = "yellow")
 
 ///Apply the syndicate pod skin
 /datum/round_event/stray_cargo/syndie_bombsquad/make_pod()

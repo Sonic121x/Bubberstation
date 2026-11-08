@@ -17,4 +17,4 @@
 /datum/round_event/anomaly/anomaly_hallucination/announce(fake)
 	if(isnull(impact_area))
 		impact_area = placer.findValidArea()
-	priority_announce("在 [ANOMALY_ANNOUNCE_MEDIUM_TEXT] [impact_area.name] 检测到幻觉事件。", "异常警报", ANNOUNCER_ANOMALIES) //SKYRAT EDIT CHANGE - ORIGINAL: priority_announce("Hallucinatory event detected on [ANOMALY_ANNOUNCE_MEDIUM_TEXT] [impact_area.name].", "Anomaly Alert")
+	priority_announce("在 [ANOMALY_ANNOUNCE_MEDIUM_TEXT] [chinese_area_display(impact_area)] 检测到幻觉事件。", "异常警报", ANNOUNCER_ANOMALIES) //SKYRAT EDIT CHANGE - ORIGINAL: priority_announce("Hallucinatory event detected on [ANOMALY_ANNOUNCE_MEDIUM_TEXT] [impact_area.name].", "Anomaly Alert")

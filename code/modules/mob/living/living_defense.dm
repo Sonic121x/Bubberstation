@@ -161,10 +161,10 @@
 
 	switch (proj.suppressed)
 		if (SUPPRESSED_QUIET)
-			to_chat(src, span_userdanger("你被 \a [proj] 击中[organ_hit_text]！"))
+			to_chat(src, span_userdanger("你被 [proj.get_visible_name()] 击中[organ_hit_text]！"))
 		if (SUPPRESSED_NONE)
-			visible_message(span_danger("[src] 被 \a [proj] 击中[organ_hit_text]！"), \
-					span_userdanger("你被 \a [proj] 击中[organ_hit_text]！"), null, COMBAT_MESSAGE_RANGE)
+			visible_message(span_danger("[src] 被 [proj.get_visible_name()] 击中[organ_hit_text]！"), \
+					span_userdanger("你被 [proj.get_visible_name()] 击中[organ_hit_text]！"), null, COMBAT_MESSAGE_RANGE)
 			if(is_blind())
 				to_chat(src, span_userdanger("你感觉有东西击中了你[organ_hit_text]！"))
 

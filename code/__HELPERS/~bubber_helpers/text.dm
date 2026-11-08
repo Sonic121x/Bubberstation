@@ -10,8 +10,8 @@
 	var/list/values = list()
 	if(gender_set)
 		label += "性别"
-		values += gender
+		values += chinese_character_preference_display(gender)
 	if(attraction_set)
 		label += "性取向"
-		values += attraction
+		values += chinese_character_preference_display(attraction)
 	return "[english_list(label, and_text = "/")]: [span_revenboldnotice(english_list(values, and_text = ", "))]"

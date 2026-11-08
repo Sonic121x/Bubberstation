@@ -92,21 +92,21 @@
 			var/e_prefs_v = preferences.read_preference(/datum/preference/choiced/erp_status_v)
 			var/e_prefs_nc = preferences.read_preference(/datum/preference/choiced/erp_status_nc)
 			var/e_prefs_mechanical = preferences.read_preference(/datum/preference/choiced/erp_status_mechanics)
-			ooc_notes += "ERP：[e_prefs][e_prefs_free_use ? " - 自由使用" : ""]\n"
-			ooc_notes += "催眠：[e_prefs_hypno]\n"
-			ooc_notes += "吞食：[e_prefs_v]\n"
-			ooc_notes += "非自愿：[e_prefs_nc]\n"
-			ooc_notes += "ERP 机制：[e_prefs_mechanical]\n"
+			ooc_notes += "ERP：[chinese_character_preference_display(e_prefs)][e_prefs_free_use ? " - 自由使用" : ""]\n"
+			ooc_notes += "催眠：[chinese_character_preference_display(e_prefs_hypno)]\n"
+			ooc_notes += "吞食：[chinese_character_preference_display(e_prefs_v)]\n"
+			ooc_notes += "非自愿：[chinese_character_preference_display(e_prefs_nc)]\n"
+			ooc_notes += "ERP 机制：[chinese_character_preference_display(e_prefs_mechanical)]\n"
 			ooc_notes += "\n"
 
 		if(display_gender != "Unset")
-			character_ad += "性别：[display_gender]\n"
+			character_ad += "性别：[chinese_character_preference_display(display_gender)]\n"
 		if(attraction != "Unset")
-			character_ad += "性取向：[attraction]\n"
-		character_ad += "偏好的表情长度：[emote_length]\n"
-		character_ad += "如何接近：[approach]\n"
-		character_ad += "兽人：[furries] | 鳞类：[scalies] | 其他：[others]\n"
-		character_ad += "半兽人：[demihumans] | 人类：[humans]\n"
+			character_ad += "性取向：[chinese_character_preference_display(attraction)]\n"
+		character_ad += "偏好的表情长度：[chinese_character_preference_display(emote_length)]\n"
+		character_ad += "如何接近：[chinese_character_preference_display(approach)]\n"
+		character_ad += "兽人：[chinese_character_preference_display(furries)] | 鳞类：[chinese_character_preference_display(scalies)] | 其他：[chinese_character_preference_display(others)]\n"
+		character_ad += "半兽人：[chinese_character_preference_display(demihumans)] | 人类：[chinese_character_preference_display(humans)]\n"
 		character_ad += "\n"
 		character_ad += preferences.read_preference(/datum/preference/text/character_ad)
 

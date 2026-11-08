@@ -584,7 +584,7 @@ GLOBAL_LIST_EMPTY(virtual_pets_list)
 /datum/computer_file/program/virtual_pet/proc/drop_feed()
 	if(!istype(get_area(computer), selected_area))
 		return
-	announce_global_updates(message = "在 [selected_area.name] 找到了一块巧克力")
+	announce_global_updates(message = "在 [chinese_area_display(selected_area)] 找到了一块巧克力")
 	selected_area = null
 	var/obj/item/food/virtual_chocolate/chocolate = new(get_turf(computer))
 	chocolate.fade_into_nothing(life_time = 30 SECONDS) //we cant maintain its existence for too long!

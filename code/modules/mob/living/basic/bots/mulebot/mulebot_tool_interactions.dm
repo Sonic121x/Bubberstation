@@ -27,7 +27,7 @@
 		if(!user.transferItemToLoc(tool, src))
 			return ITEM_INTERACT_BLOCKING
 		user.visible_message(
-			span_notice("[user] 将 \a [cell] 插入了 [src]。"),
+			span_notice("[user] 将 [cell.get_visible_name()] 插入了 [src]。"),
 			span_notice("你将 [cell] 插入 [src]。"),
 		)
 		return ITEM_INTERACT_SUCCESS

@@ -63,9 +63,9 @@
 				continue
 			var/harmless = embedded.get_embed().is_harmless()
 			var/stuck_wordage = harmless ? "粘在" : "嵌在"
-			var/embed_line = "\a [embedded]"
+			var/embed_line = "[embedded.get_visible_name()]"
 			if (treatment_distance)
-				embed_line = "<a href='byond://?src=[REF(src)];embedded_object=[REF(embedded)];embedded_limb=[REF(body_part)]'>\a [embedded]</a>"
+				embed_line = "<a href='byond://?src=[REF(src)];embedded_object=[REF(embedded)];embedded_limb=[REF(body_part)]'>[embedded.get_visible_name()]</a>"
 			var/embed_text = "[icon2html(embedded, user)] [embed_line] [stuck_wordage] [body_part.plaintext_zone]！"
 			if (harmless)
 				. += span_italics(span_notice(embed_text))
@@ -74,7 +74,7 @@
 
 		var/obj/item/tourniquet/current_tourniquet = LAZYACCESS(body_part.applied_items, LIMB_ITEM_TOURNIQUET)
 		if(current_tourniquet)
-			var/tourniquet_href = "\a [current_tourniquet]"
+			var/tourniquet_href = "[current_tourniquet.get_visible_name()]"
 			if(treatment_distance)
 				tourniquet_href = "<a href='byond://?src=[REF(src)];remove_tourniquet=[REF(body_part)]'>[tourniquet_href]</a>"
 			var/tourniquet_msg = "[icon2html(current_tourniquet, user)] [tourniquet_href] 紧紧地绑在[body_part.body_zone == BODY_ZONE_HEAD ? "脖子" : body_part.plaintext_zone]上。"
@@ -326,7 +326,7 @@
 		var/free_use_pref = client.prefs.read_preference(/datum/preference/toggle/erp_free_use)
 		if(erp_status_pref && !CONFIG_GET(flag/disable_erp_preferences))
 			. += EXAMINE_SECTION_BREAK
-			. += span_info("ERP 状态：[span_revenboldnotice(erp_status_pref)][free_use_pref ? "[span_revenboldnotice(" - 免费使用")]" : ""]")
+			. += span_info("ERP 状态：[span_revenboldnotice(chinese_character_preference_display(erp_status_pref))][free_use_pref ? "[span_revenboldnotice(" - 自由使用")]" : ""]")
 		var/line = get_gender_attraction_string(client.prefs.read_preference(/datum/preference/choiced/display_gender), client.prefs.read_preference(/datum/preference/choiced/attraction))
 		if(line)
 			. += span_info(line)
@@ -537,7 +537,7 @@
 	if(perpname && (HAS_TRAIT(user, TRAIT_SECURITY_HUD) || HAS_TRAIT(user, TRAIT_MEDICAL_HUD)) && (!IS_UNCONSCIOUS_OR_CRIT(user) || isobserver(user)) && user != src)
 		var/datum/record/crew/target_record = find_record(perpname)
 		if(target_record)
-			. += "职衔：[target_record.rank]"
+			. += "职衔：[chinese_job_display(target_record.rank)]"
 			. += "<a href='byond://?src=[REF(src)];hud=1;photo_front=1;examine_time=[world.time]'>\[正面照\]</a><a href='byond://?src=[REF(src)];hud=1;photo_side=1;examine_time=[world.time]'>\[侧面照\]</a>"
 		if(HAS_TRAIT(user, TRAIT_MEDICAL_HUD) && HAS_TRAIT(user, TRAIT_SECURITY_HUD))
 			title = separator_hr("医疗与安保分析")
@@ -569,8 +569,8 @@
 		. += "<span class='notice ml-1'>检测到赛博植入改造：</span>"
 		. += "<span class='notice ml-2'>[english_list(cybers, and_text = "和")]</span>"
 	if(target_record)
-		. += "<a href='byond://?src=[REF(src)];hud=m;physical_status=1;examine_time=[world.time]'>\[[target_record.physical_status]\]</a>"
-		. += "<a href='byond://?src=[REF(src)];hud=m;mental_status=1;examine_time=[world.time]'>\[[target_record.mental_status]\]</a>"
+		. += "<a href='byond://?src=[REF(src)];hud=m;physical_status=1;examine_time=[world.time]'>\[[chinese_record_value_display(target_record.physical_status)]\]</a>"
+		. += "<a href='byond://?src=[REF(src)];hud=m;mental_status=1;examine_time=[world.time]'>\[[chinese_record_value_display(target_record.mental_status)]\]</a>"
 	else
 		. += "\[记录缺失\]"
 		. += "\[记录缺失\]"
@@ -591,12 +591,12 @@
 	// BUBBER EDIT ADDITION START - silly HUDsunglasses replace the criminal status field outright
 	var/mob/living/carbon/human/human_examiner = user
 	if(ishuman(user) && istype(human_examiner.glasses, /obj/item/clothing/glasses/hud/security/sunglasses/guard/silly))
-		. += "犯罪状态：<a href='byond://?src=[REF(src)];hud=s;honkstatus=1;examine_time=[world.time]'>\[[wanted_status]\]</a>"
+		. += "犯罪状态：<a href='byond://?src=[REF(src)];hud=s;honkstatus=1;examine_time=[world.time]'>\[[chinese_record_value_display(wanted_status)]\]</a>"
 	else if(ishuman(user))
 	// BUBBER EDIT ADDITION END
-		. += "犯罪状态：<a href='byond://?src=[REF(src)];hud=s;status=1;examine_time=[world.time]'>\[[wanted_status]\]</a>"
+		. += "犯罪状态：<a href='byond://?src=[REF(src)];hud=s;status=1;examine_time=[world.time]'>\[[chinese_record_value_display(wanted_status)]\]</a>"
 	else
-		. += "犯罪状态：[wanted_status]"
+		. += "犯罪状态：[chinese_record_value_display(wanted_status)]"
 	. += "重要备注：[security_note]"
 	. += "安保记录：<a href='byond://?src=[REF(src)];hud=s;view=1;examine_time=[world.time]'>\[查看\]</a>"
 	if(ishuman(user))
@@ -610,7 +610,7 @@
 	if(istype(w_uniform, /obj/item/clothing/under) && !(obscured_slots & HIDEJUMPSUIT) && !HAS_TRAIT(w_uniform, TRAIT_EXAMINE_SKIP))
 		var/obj/item/clothing/under/undershirt = w_uniform
 		if(undershirt.has_sensor == BROKEN_SENSORS)
-			. += list(span_notice("\The [undershirt] 的医疗传感器正在冒火花。"))
+			. += list(span_notice("[undershirt.get_visible_name()] 的医疗传感器正在冒火花。"))
 
 	if((HAS_TRAIT(src, TRAIT_UNKNOWN_APPEARANCE) || HAS_TRAIT(src, TRAIT_INVISIBLE_MAN)) && !isobserver(user))
 		return
@@ -639,7 +639,7 @@
 		// but you can't see ex. cybernetic legs through clothes
 		if(part.bodyshape == initial(expected_part?.bodyshape) && (part.body_zone in covered))
 			continue
-		texts += span_notice("身上长着 \a [part]。")
+		texts += span_notice("身上长着 [part.get_visible_name()]。")
 
 	return texts
 

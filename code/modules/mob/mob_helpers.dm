@@ -322,7 +322,7 @@
 			to_chat(ghost, span_ghostalert(message))
 			continue
 
-		var/interact_link = click_interact ? " <a href='byond://?src=[REF(ghost)];play=[REF(source)]'>（播放）</a>" : ""
+		var/interact_link = click_interact ? " <a href='byond://?src=[REF(ghost)];play=[REF(source)]'>（参与）</a>" : ""
 		var/view_link = " <a href='byond://?src=[REF(ghost)];view=[REF(source)]'>（查看）</a>"
 
 		to_chat(ghost, span_ghostalert("[message][custom_link][interact_link][view_link]"))
@@ -333,7 +333,7 @@
 		)
 		toast.add_overlay(alert_overlay)
 		toast.click_interact = click_interact
-		toast.desc = "点击以[click_interact ? "播放" : "查看"]。"
+		toast.desc = "点击以[click_interact ? "参与" : "查看"]。"
 		toast.name = header
 		toast.target_ref = WEAKREF(source)
 

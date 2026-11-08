@@ -1,6 +1,15 @@
+/obj/item/modular_computer/get_visible_name(add_id_name = TRUE, force_real_name = FALSE)
+	. = ..()
+	if((!saved_identification && !saved_job) || HAS_TRAIT(src, TRAIT_WAS_RENAMED))
+		return
+	if(. == "[saved_identification] ([saved_job])")
+		return "[saved_identification] ([chinese_job_display(saved_job)])"
+
 /proc/chinese_job_display(value, return_mapping = FALSE)
 	if(!return_mapping && istext(value) && findtextEx(value, "已下班 ") == 1)
 		return "已下班 [chinese_job_display(copytext_char(value, 5))]"
+	if(!return_mapping && istext(value) && findtextEx(value, "实习") == 1)
+		return "实习[chinese_job_display(copytext_char(value, 3))]"
 	var/static/list/display_names
 	if(isnull(display_names))
 		display_names = list(
@@ -29,12 +38,13 @@
 	display_names |= chinese_skyrat_items_job_display(null, TRUE)
 	display_names |= chinese_batch_ten_job_display(null, TRUE)
 	display_names |= chinese_zubbers_modules_job_display(null, TRUE)
+	display_names |= list("Medical Examiner" = "验尸官", "Medical Investigator" = "医学调查员", "Forensic Pathologist" = "法医病理学家", "Funeral Director" = "殡仪主管", "Mortician" = "遗体护理师", "Undertaker" = "殡葬人员")
 	display_names["Asset Protection"] = "资产保护"
 	display_names["Citizen"] = "公民"
 	display_names["Icemoon Dweller"] = "冰月居民"
 	if(return_mapping)
 		return display_names
-	return display_names[value] || chinese_zubbers_job_display(value)
+	return display_names[value] || chinese_id_honorific_display(chinese_zubbers_job_display(value))
 
 /proc/chinese_footprint_species_display(value, return_mapping = FALSE)
 	if(!istext(value) && !return_mapping)
@@ -69,9 +79,60 @@
 	var/static/list/display_names
 	if(isnull(display_names))
 		display_names = list("Male" = "男", "Female" = "女", "Other" = "其他", "male" = "男", "female" = "女", "neuter" = "无性", "plural" = "复数", "None" = "无", "Unknown" = "未知", "Unassigned" = "未分配", "Active" = "正常", "Stable" = "稳定", "Arrest" = "逮捕", "Incarcerated" = "监禁中", "Paroled" = "假释", "Discharged" = "已释放", "Suspect" = "嫌疑人", "Wanted" = "通缉中", "Disabled" = "残疾", "Unconscious" = "昏迷", "Deceased" = "死亡", "Unstable" = "不稳定", "Insane" = "精神失常")
+	display_names |= chinese_record_status_display(null, TRUE)
 	if(return_mapping)
 		return display_names
 	return display_names[value] || value
+
+/proc/chinese_record_status_display(value, return_mapping = FALSE)
+	var/static/list/labels
+	if(isnull(labels))
+		labels = list("Debilitated" = "虚弱", "Watch" = "需观察", "Parole" = "假释", "Suspected" = "嫌疑人", "Honk" = "喇叭恶作剧", "Slip" = "滑倒恶作剧")
+	if(return_mapping)
+		return labels
+	return labels[value] || value
+
+/proc/chinese_record_value_choice(mob/user, message, title, list/choices, default)
+	var/list/display_choices = list()
+	var/default_display
+	for(var/value in choices)
+		var/label = chinese_record_value_display(value)
+		var/unique_label = label
+		var/duplicate = 1
+		while(unique_label in display_choices)
+			unique_label = "[label]（选项[++duplicate]）"
+		display_choices[unique_label] = value
+		if(value == default)
+			default_display = unique_label
+	var/selection = tgui_input_list(user, message, title, display_choices, default_display)
+	return isnull(selection) ? null : display_choices[selection]
+
+/proc/chinese_nif_examine_display(value)
+	var/legacy_default = "There's a certain spark to their eyes."
+	return (value == legacy_default || value == html_encode(legacy_default)) ? /datum/component/nif_examine::nif_examine_text : value
+
+/proc/chinese_character_preference_display(value)
+	var/static/list/labels
+	if(isnull(labels))
+		labels = list(
+			"Unset" = "未设置", "Check OOC" = "查看场外说明", "Check OOC Notes" = "查看场外备注", "Ask (L)OOC" = "通过场外频道询问",
+			"Yes" = "是", "No" = "否", "Maybe" = "也许", "No ERP" = "不进行成人角色扮演",
+			"Yes - Dom" = "是－支配", "Yes - Sub" = "是－顺从", "Yes - Switch" = "是－可切换", "Yes - Pred" = "是－捕食者", "Yes - Prey" = "是－猎物",
+			"None" = "无", "Roleplay only" = "仅角色扮演", "Mechanical only" = "仅游戏机制", "Mechanical and Roleplay" = "游戏机制与角色扮演",
+			"Always/Whenever" = "始终／随时", "Gameplay Only" = "仅限游戏互动",
+			"Straight" = "异性恋", "Lesbian" = "女同性恋", "Gay" = "男同性恋", "Bisexual" = "双性恋", "Pansexual" = "泛性恋", "Polysexual" = "多性恋",
+			"Asexual" = "无性恋", "Aromantic" = "无浪漫倾向", "Aro/Ace" = "无浪漫／无性恋", "Skoliosexual" = "非二元性别吸引倾向", "Omnisexual" = "全性恋",
+			"Male" = "男性", "Female" = "女性", "Nonbinary" = "非二元性别", "Genderfluid" = "流动性别", "Trans" = "跨性别", "Transmasc" = "跨男性", "Transfem" = "跨女性",
+			"Andromorph" = "男性形态", "Gynomorph" = "女性形态", "Agender" = "无性别", "Plural" = "多重身份", "Omnigender" = "全性别",
+			"Top - Dom" = "主动方－支配", "Top - Switch" = "主动方－可切换", "Top - Sub" = "主动方－顺从",
+			"Bottom - Dom" = "接受方－支配", "Bottom - Switch" = "接受方－可切换", "Bottom - Sub" = "接受方－顺从",
+			"Verse - Dom" = "双方皆可－支配", "Verse - Switch" = "双方皆可－可切换", "Verse - Sub" = "双方皆可－顺从",
+			"Verse-Top - Dom" = "偏主动方－支配", "Verse-Top - Switch" = "偏主动方－可切换", "Verse-Top - Sub" = "偏主动方－顺从",
+			"Verse-Bottom - Dom" = "偏接受方－支配", "Verse-Bottom - Switch" = "偏接受方－可切换", "Verse-Bottom - Sub" = "偏接受方－顺从",
+			"A few sentences" = "几句话", "1-2 Paragraphs" = "一至两段", "Multi-Paragraph" = "多段", "I'll Match You" = "配合对方", "No Preference" = "无偏好",
+			"Approach IC" = "通过角色内互动接近", "Approach OOC" = "通过场外交流接近", "Any" = "任意", "Both" = "两者皆可", "See Below" = "见下文",
+		)
+	return labels[value] || value
 
 /proc/chinese_direction_display(value)
 	var/static/list/display_names

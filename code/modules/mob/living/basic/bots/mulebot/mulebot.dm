@@ -111,12 +111,12 @@
 	. = ..()
 	if(bot_access_flags & BOT_COVER_MAINTS_OPEN)
 		if(cell)
-			. += span_notice("它里面安装着 \a [cell]。")
+			. += span_notice("它里面安装着 [cell.get_visible_name()]。")
 			. += span_info("你可以用<b>撬棍</b>把它取出来。")
 		else
 			. += span_notice("它有一个空槽位，可以安装<b>电池</b>。")
 	if(load) //observer check is so we don't show the name of the ghost that's sitting on it to prevent metagaming who's ded.
-		. += span_notice("\A [isobserver(load) ? "幽灵般的身影" : load] 正停在它的载货平台上。")
+		. += span_notice("[isobserver(load) ? "幽灵般的身影" : load.get_visible_name()] 正停在它的载货平台上。")
 
 /mob/living/basic/bot/mulebot/get_cell()
 	return cell

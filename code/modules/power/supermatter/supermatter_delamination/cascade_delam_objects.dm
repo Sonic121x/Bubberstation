@@ -63,7 +63,7 @@
 					对方的身体开始闪耀出刺目的光芒，随后由内而外结晶，并融入 [src]！"),
 				span_userdanger("晶体团块扑向你，正中你的胸口。当致盲的白光充满你的视野时，你心里想：“该死。”"))
 		else if(istype(checked_atom, /obj/cascade_portal))
-			checked_atom.visible_message(span_userdanger("\The [checked_atom] 发出一声尖啸，在被 \a [src] 击中时闭合消失！太迟了！"))
+			checked_atom.visible_message(span_userdanger("[checked_atom.get_visible_name()] 发出一声尖啸，在被 [get_visible_name()] 击中时闭合消失！太迟了！"))
 			playsound(get_turf(checked_atom), 'sound/effects/magic/charge.ogg', 50, TRUE)
 			playsound(get_turf(checked_atom), 'sound/effects/supermatter.ogg', 50, TRUE)
 			qdel(checked_atom)

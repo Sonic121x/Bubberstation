@@ -16,4 +16,4 @@
 /datum/round_event/anomaly/anomaly_pyro/announce(fake)
 	if(isnull(impact_area))
 		impact_area = placer.findValidArea()
-	priority_announce("在 [ANOMALY_ANNOUNCE_HARMFUL_TEXT] [impact_area.name] 检测到火山碎屑异常。", "异常警报", ANNOUNCER_PYROANOMALIES) //SKYRAT EDIT CHANGE - ORIGINAL: priority_announce("Pyroclastic anomaly detected on [ANOMALY_ANNOUNCE_HARMFUL_TEXT] [impact_area.name].", "Anomaly Alert")
+	priority_announce("在 [ANOMALY_ANNOUNCE_HARMFUL_TEXT] [chinese_area_display(impact_area)] 检测到火山碎屑异常。", "异常警报", ANNOUNCER_PYROANOMALIES) //SKYRAT EDIT CHANGE - ORIGINAL: priority_announce("Pyroclastic anomaly detected on [ANOMALY_ANNOUNCE_HARMFUL_TEXT] [impact_area.name].", "Anomaly Alert")

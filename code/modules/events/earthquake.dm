@@ -99,7 +99,7 @@
 
 /datum/round_event/earthquake/start()
 	notify_ghosts(
-		"地震的震中已定位：[get_area_name(epicenter)]！",
+		"地震的震中已定位：[chinese_area_display(get_area(epicenter))]！",
 		source = epicenter,
 		header = "轰隆轰隆轰隆！",
 	)

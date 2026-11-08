@@ -87,7 +87,7 @@
 	// don't alert a death if it's not in the area list AND we're on whitelist mode
 	if(!is_type_in_list(death_area, area_list) && area_list_mode == DEATHRATTLE_AREA_WHITELIST)
 		return
-	var/area_name = get_area_name(get_turf(owner))
+	var/area_name = chinese_area_display(death_area)
 	// All "hearers" hear the same sound.
 	var/sound = pick(
 		'sound/items/knell/knell1.ogg',

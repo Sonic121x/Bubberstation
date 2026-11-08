@@ -209,8 +209,8 @@
 		return ITEM_INTERACT_FAILURE
 	user.balloon_alert(user, "正在倾倒……")
 	user.visible_message(
-		span_notice("[user] 开始把混凝土浇到 \a [target] 上。"),
-		span_notice("你开始把混凝土浇到 \a [target] 上……"),
+		span_notice("[user] 开始把混凝土浇到 [target.get_visible_name()] 上。"),
+		span_notice("你开始把混凝土浇到 [target.get_visible_name()] 上……"),
 	)
 	if (!do_after(user, 1 SECONDS, target=target))
 		user.balloon_alert(user, "被打断")
@@ -248,7 +248,7 @@
 
 	if (lid_assembly && istype(tool, /obj/item/stock_parts/power_store/cell))
 		if (attached_cell)
-			to_chat(user, span_warning("[src] 上已经接了 \a [attached_cell]！"))
+			to_chat(user, span_warning("[src] 上已经接了 [attached_cell.get_visible_name()]！"))
 			return ITEM_INTERACT_BLOCKING
 
 		if (isnull(locate(/obj/item/assembly/igniter) in lid_assembly))

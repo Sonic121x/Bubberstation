@@ -172,7 +172,7 @@
 	SIGNAL_HANDLER
 
 	if (isobserver(mob))
-		examine_text += span_notice("其体内植入了<a href='byond://?src=[REF(src)];open_implant=1'>\a [parent]</a>。")
+		examine_text += span_notice("其体内植入了<a href='byond://?src=[REF(src)];open_implant=1'>[parent.name]</a>。")
 
 /obj/item/circuit_component/implant_core/Topic(href, list/href_list)
 	..()

@@ -324,11 +324,11 @@
 	if(len)
 		for(var/obj/item/held_item in held_items)
 			if(!holding.len)
-				holding += "手里拿着 \a [held_item]"
+				holding += "手里拿着 [held_item.get_visible_name()]"
 			else if(held_items.Find(held_item) == len)
-				holding += "，还有 \a [held_item]"
+				holding += "，还有 [held_item.get_visible_name()]"
 			else
-				holding += "、\a [held_item]"
+				holding += "、[held_item.get_visible_name()]"
 	return "照片上还能看到 [src][health < (maxHealth * 0.75) ? "，看起来有点受伤":""][holding.len ? "。[holding.Join("")]。":"。"]"
 
 //Called when we bump onto an obj

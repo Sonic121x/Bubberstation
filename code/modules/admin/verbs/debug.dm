@@ -460,7 +460,7 @@ ADMIN_VERB(cmd_admin_areatest_all, R_DEBUG, "测试区域（全部）", "检测�
 		var/list/custom_names = list()
 		for(var/datum/outfit/D in GLOB.custom_outfits)
 			custom_names[D.name] = D
-		var/selected_name = chinese_outfit_choice(usr, "选择装备套装", "快捷换装", sort_list(custom_names, GLOBAL_PROC_REF(cmp_typepaths_asc)))
+		var/selected_name = tgui_input_list(usr, "选择装备套装", "快捷换装", sort_list(custom_names, GLOBAL_PROC_REF(cmp_typepaths_asc)))
 		dresscode = custom_names[selected_name]
 		if(isnull(dresscode))
 			return

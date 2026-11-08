@@ -17,7 +17,7 @@
 		var/erp_status_pref = client.prefs.read_preference(/datum/preference/choiced/erp_status)
 		var/free_use_pref = client.prefs.read_preference(/datum/preference/toggle/erp_free_use)
 		if(erp_status_pref && !CONFIG_GET(flag/disable_erp_preferences))
-			. += span_info("ERP 状态：[span_revenboldnotice(erp_status_pref)][free_use_pref ? "[span_revenboldnotice(" - 免费使用")]" : ""]")
+			. += span_info("ERP 状态：[span_revenboldnotice(chinese_character_preference_display(erp_status_pref))][free_use_pref ? "[span_revenboldnotice(" - 自由使用")]" : ""]")
 		var/line = get_gender_attraction_string(client.prefs.read_preference(/datum/preference/choiced/display_gender), client.prefs.read_preference(/datum/preference/choiced/attraction))
 		if(line)
 			. += span_info(line)

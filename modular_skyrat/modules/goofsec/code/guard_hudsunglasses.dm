@@ -613,7 +613,7 @@ GLOBAL_LIST_EMPTY(executive_valuables)
 		balloon_alert(clown, "正在充能")
 		return
 
-	var/chosen_gag = tgui_input_list(clown, "为这个人指定新的犯罪状态。", "安保 HUD", list(HONK_GAG_HONK, HONK_GAG_SLIP))
+	var/chosen_gag = chinese_record_value_choice(clown, "为这个人指定新的犯罪状态。", "安保 HUD", list(HONK_GAG_HONK, HONK_GAG_SLIP))
 	if(!chosen_gag || !COOLDOWN_FINISHED(src, honk_cooldown))
 		return
 	if(QDELETED(victim) || !(victim in view(clown)))

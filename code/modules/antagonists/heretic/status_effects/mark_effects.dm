@@ -166,9 +166,9 @@
 
 	var/mob/thrower = throw_args[4]
 	if(istype(thrower))
-		to_chat(thrower, span_hypnophrase("一股异界之力阻止你将 [source] 掷出 [get_area_name(locked_to)]！"))
+		to_chat(thrower, span_hypnophrase("一股异界之力阻止你将 [source] 掷出 [chinese_area_display(locked_to)]！"))
 
-	to_chat(source, span_hypnophrase("一股异界之力阻止你被掷出 [get_area_name(locked_to)]！"))
+	to_chat(source, span_hypnophrase("一股异界之力阻止你被掷出 [chinese_area_display(locked_to)]！"))
 
 	return COMPONENT_CANCEL_THROW
 
@@ -179,7 +179,7 @@
 	if(!is_escaping_locked_area(source, destination))
 		return
 
-	to_chat(source, span_hypnophrase("一股异界之力阻止你逃出 [get_area_name(locked_to)]！"))
+	to_chat(source, span_hypnophrase("一股异界之力阻止你逃出 [chinese_area_display(locked_to)]！"))
 
 	source.Stun(1 SECONDS)
 	return TRUE
@@ -196,7 +196,7 @@
 	if(forced || !is_escaping_locked_area(old_loc, source))
 		return
 
-	to_chat(source, span_hypnophrase("一股异界之力阻止你逃出 [get_area_name(locked_to)]！"))
+	to_chat(source, span_hypnophrase("一股异界之力阻止你逃出 [chinese_area_display(locked_to)]！"))
 
 	var/turf/further_behind_old_loc = get_edge_target_turf(old_loc, REVERSE_DIR(movement_dir))
 

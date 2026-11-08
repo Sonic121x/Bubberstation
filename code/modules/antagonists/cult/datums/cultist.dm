@@ -265,7 +265,7 @@
 	var/area/current_area = get_area(owner.current)
 	for(var/datum/mind/cult_mind as anything in cult_team.members)
 		SEND_SOUND(cult_mind, sound('sound/effects/hallucinations/veryfar_noise.ogg'))
-		to_chat(cult_mind, span_cult_large("血教大师[owner.current.name]已在[current_area]倒下了！"))
+		to_chat(cult_mind, span_cult_large("血教大师[owner.current.name]已在[chinese_area_display(current_area)]倒下了！"))
 
 /datum/antagonist/cult/get_preview_icon()
 	var/datum/universal_icon/icon = render_preview_outfit(preview_outfit)

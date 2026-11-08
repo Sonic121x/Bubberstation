@@ -132,12 +132,12 @@
 		towel = new (loc)
 
 	towel.forceMove(drop_location())
-	to_chat(user, span_notice("你[tk ? "用念力" : ""]从 [src] 里取出了 \a [towel]。"))
+	to_chat(user, span_notice("你[tk ? "用念力" : ""]从 [src] 里取出了 [towel.get_visible_name()]。"))
 	update_appearance()
 
 	if(hidden)
 		if(!tk)
-			to_chat(user, span_notice("\A [hidden] 从 [towel] 里掉了出来！"))
+			to_chat(user, span_notice("[hidden.get_visible_name()] 从 [towel.get_visible_name()] 里掉了出来！"))
 
 		hidden.forceMove(drop_location())
 		hidden = null

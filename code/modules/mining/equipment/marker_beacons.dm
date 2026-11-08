@@ -146,7 +146,7 @@ GLOBAL_LIST_INIT(marker_beacon_colors, sort_list(list(
 
 	if(istype(tool, /obj/item/light_eater))
 		var/obj/effect/decal/cleanable/ash/A = new /obj/effect/decal/cleanable/ash(drop_location())
-		A.desc += "\n看起来这在一段时间以前曾是 \a [src]。"
+		A.desc += "\n看起来这在一段时间以前曾是 [get_visible_name()]。"
 		visible_message(span_danger("[src] 被 [tool] 分解了！"))
 		playsound(src, 'sound/items/tools/welder.ogg', 50, TRUE)
 		qdel(src)

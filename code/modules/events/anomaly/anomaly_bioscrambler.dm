@@ -17,4 +17,4 @@
 /datum/round_event/anomaly/anomaly_bioscrambler/announce(fake)
 	if(isnull(impact_area))
 		impact_area = placer.findValidArea()
-	priority_announce("在 [ANOMALY_ANNOUNCE_MEDIUM_TEXT] [impact_area.name] 检测到生物肢体交换剂。请穿着生化防护服或其他防护装备以抵消其影响。", "异常警报", ANNOUNCER_ANOMALIES) // BUBBER EDIT - ANNOUNCER_ANOMALIES
+	priority_announce("在 [ANOMALY_ANNOUNCE_MEDIUM_TEXT] [chinese_area_display(impact_area)] 检测到生物肢体交换剂。请穿着生化防护服或其他防护装备以抵消其影响。", "异常警报", ANNOUNCER_ANOMALIES) // BUBBER EDIT - ANNOUNCER_ANOMALIES

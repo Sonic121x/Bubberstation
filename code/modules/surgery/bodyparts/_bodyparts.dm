@@ -468,7 +468,7 @@
 	var/obj/item/tourniquet/current_tourniquet = LAZYACCESS(applied_items, LIMB_ITEM_TOURNIQUET)
 	if(current_tourniquet || current_gauze)
 		if(current_tourniquet)
-			var/tourniquet_href = "<a href='byond://?src=[REF(owner)];remove_tourniquet=[REF(src)]'>[icon2html(current_tourniquet, examiner)] \a [current_tourniquet]</a>"
+			var/tourniquet_href = "<a href='byond://?src=[REF(owner)];remove_tourniquet=[REF(src)]'>[icon2html(current_tourniquet, examiner)] [current_tourniquet.get_visible_name()]</a>"
 			var/tourniquet_text = "\t[tourniquet_href] 被紧紧地绑在[body_zone == BODY_ZONE_HEAD ? "你的脖子上！" : "它上面。"]"
 			if(body_zone == BODY_ZONE_HEAD)
 				check_list += span_boldwarning(tourniquet_text)
@@ -653,7 +653,7 @@
 		operation_zone = body_zone
 	for(var/datum/surgery_operation/operation as anything in operations)
 		if ((operation.operation_flags & OPERATION_NO_PATIENT_REQUIRED) && operation.show_as_next_step(src, operation_zone))
-			. += span_notice("你可以用 \a [operation.get_recommended_tool()] 对 [src] 进行[operation]……")
+			. += span_notice("你可以用 [operation.get_recommended_tool()] 对 [get_visible_name()] 进行[operation]……")
 
 //empties the bodypart from its organs and other things inside it
 /obj/item/bodypart/proc/drop_organs(mob/user, violent_removal)

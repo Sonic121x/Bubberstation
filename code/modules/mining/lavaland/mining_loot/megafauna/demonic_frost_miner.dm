@@ -30,7 +30,7 @@
 	user.forceMove(T)
 	user.revive(ADMIN_HEAL_ALL)
 	INVOKE_ASYNC(user, TYPE_PROC_REF(/mob/living/carbon, set_species), /datum/species/shadow)
-	to_chat(user, span_notice("你眨了眨眼，发现自己身处 [get_area_name(T)]……而且感觉阴暗了几分。"))
+	to_chat(user, span_notice("你眨了眨眼，发现自己身处 [chinese_area_display(get_area(T))]……而且感觉阴暗了几分。"))
 	clone.dust()
 	qdel(src)
 

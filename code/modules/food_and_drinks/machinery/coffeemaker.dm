@@ -90,9 +90,9 @@
 	if(coffeepot || cartridge)
 		. += span_notice("\The [src] 内有：")
 		if(coffeepot)
-			. += span_notice("- \A [coffeepot]。")
+			. += span_notice("- [coffeepot.get_visible_name()]。")
 		if(cartridge)
-			. += span_notice("- \A [cartridge]。")
+			. += span_notice("- [cartridge.get_visible_name()]。")
 		return
 
 	if(!(machine_stat & (NOPOWER|BROKEN)))

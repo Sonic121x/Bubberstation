@@ -64,8 +64,8 @@
 		researching = FALSE
 		primary_researcher = FALSE
 		log_game("因 [src] 被拆解，[selected_research] 的研究仪式被取消。")
-		send_clock_message(null, "位于 [get_area(src)] 的研究仪式被打断！所有研究数据均已丢失。", msg_ghosts = FALSE)
-		notify_ghosts("位于 [get_area(src)] 的研究仪式被打断",
+		send_clock_message(null, "位于 [chinese_area_display(get_area(src))] 的研究仪式被打断！所有研究数据均已丢失。", msg_ghosts = FALSE)
+		notify_ghosts("位于 [chinese_area_display(get_area(src))] 的研究仪式被打断",
 			source = get_turf(src),
 			notify_flags = NOTIFY_CATEGORY_NOFLASH,
 			header = "研究仪式已取消",
@@ -297,8 +297,8 @@
 
 	playsound(target_turf, 'sound/machines/clockcult/ark_deathrattle.ogg', 80, FALSE, pressure_affected = FALSE)
 	research_sigil = new(target_turf)
-	send_clock_message(null, "位于 [get_area(src)] 的研究仪式已经开始，请确保在 [DisplayTimeText(selected_research.time_to_research)] 内完成之前无人打断它！", msg_ghosts = FALSE)
-	notify_ghosts("[owner] 在 [get_area(src)] 开始了一场研究仪式",
+	send_clock_message(null, "位于 [chinese_area_display(get_area(src))] 的研究仪式已经开始，请确保在 [DisplayTimeText(selected_research.time_to_research)] 内完成之前无人打断它！", msg_ghosts = FALSE)
+	notify_ghosts("[owner] 在 [chinese_area_display(get_area(src))] 开始了一场研究仪式",
 		source = src,
 		notify_flags = NOTIFY_CATEGORY_NOFLASH,
 		header = "研究仪式"
@@ -343,8 +343,8 @@
 	if(QDELETED(src) || QDELETED(research_sigil))
 		return
 
-	send_clock_message(null, "[get_area(src)] 的研究仪式已经完成，欢呼吧！", msg_ghosts = FALSE)
-	notify_ghosts("[get_area(src)] 的研究仪式已经完成",
+	send_clock_message(null, "[chinese_area_display(get_area(src))] 的研究仪式已经完成，欢呼吧！", msg_ghosts = FALSE)
+	notify_ghosts("[chinese_area_display(get_area(src))] 的研究仪式已经完成",
 		source = src,
 		notify_flags = NOTIFY_CATEGORY_NOFLASH,
 		header = "研究仪式已完成",
@@ -368,7 +368,7 @@
 
 	research_sigil.finish_research()
 
-	priority_announce("在 [get_area(src)] 检测到异常能量爆发。请确保附近船员的安全。")
+	priority_announce("在 [chinese_area_display(get_area(src))] 检测到异常能量爆发。请确保附近船员的安全。")
 
 	addtimer(CALLBACK(src, PROC_REF(side_effect)), 10 SECONDS)
 

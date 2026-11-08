@@ -38,7 +38,7 @@
 		var/list/type_initial_names = list()
 		for(var/type in insertable_items_hint)
 			var/obj/item/type_item = type
-			type_initial_names += "\a [initial(type_item.name)]"
+			type_initial_names += "[initial(type_item.name)]"
 		. += span_notice("[modified ? "你可以" : "如果你用螺丝刀取下安全帽，你可以"]插入一个小物件\
 			[length(type_initial_names) ? "，例如 [english_list(type_initial_names, and_text = "或 ", final_comma_text = "、")]" : ""]。")
 
