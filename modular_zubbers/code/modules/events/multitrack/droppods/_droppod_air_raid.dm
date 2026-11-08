@@ -120,7 +120,7 @@
 
 /datum/round_event/droppod_airraid/proc/get_announce_wave_text()
 	var/area/myarea = selected_spawn_areas[wave_to_announce]
-	return "空投舱轨迹已计算完毕，正飞往：[myarea.name]"
+	return "空投舱轨迹已计算完毕，正飞往：[chinese_area_display(myarea.name)]"
 
 /datum/round_event/droppod_airraid/proc/after_wave_announce()
 	wave_to_announce++
@@ -198,7 +198,7 @@
 /datum/round_event/droppod_airraid/proc/after_wave()
 	var/static/mutable_appearance/target_appearance = mutable_appearance('icons/obj/supplypods_32x32.dmi', "LZ")
 	var/turf/ghost_target_turf = pick(get_area_turfs(get_current_wave()))
-	notify_ghosts("一波空投舱正在袭击[get_current_wave().name]！", source = ghost_target_turf, header = "入侵进行中", alert_overlay = target_appearance)
+	notify_ghosts("一波空投舱正在袭击[chinese_area_display(get_current_wave().name)]！", source = ghost_target_turf, header = "入侵进行中", alert_overlay = target_appearance)
 	set_next_incident_time()
 	current_wave++
 
