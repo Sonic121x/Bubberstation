@@ -179,7 +179,7 @@
  * [COMSIG_ATOM_GET_EXAMINE_NAME] signal
  */
 /atom/proc/get_examine_name(mob/user)
-	var/list/override = list(article, null, "<em>[get_visible_name()]</em>")
+	var/list/override = list(chinese_article_display(article), null, "<em>[get_visible_name()]</em>")
 	SEND_SIGNAL(src, COMSIG_ATOM_GET_EXAMINE_NAME, user, override)
 
 	if(!isnull(override[EXAMINE_POSITION_ARTICLE]))
@@ -187,8 +187,8 @@
 		return jointext(override, " ")
 	if(!isnull(override[EXAMINE_POSITION_BEFORE]))
 		override -= null // There is no article, don't try to join it
-		return "\a [jointext(override, " ")]"
-	return "\a [src]"
+		return "[jointext(override, " ")]"
+	return "[src]"
 
 /mob/living/get_examine_name(mob/user)
 	var/visible_name = get_visible_name()

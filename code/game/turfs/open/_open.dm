@@ -138,7 +138,7 @@
 	if(leave_footprints && (footprint_entrance_dirs || footprint_exit_dirs) && (LAZYLEN(footprint_shoe_types) || LAZYLEN(footprint_species_types)))
 		. += "你辨认出这些脚印属于："
 		for(var/obj/item/clothing/shoes/sole as anything in footprint_shoe_types)
-			var/article = initial(sole.article) || (initial(sole.gender) == PLURAL ? "一些" : "一个")
+			var/article = chinese_article_display(initial(sole.article)) || (initial(sole.gender) == PLURAL ? "一些" : "一个")
 			. += "[icon2html(initial(sole.icon), user, initial(sole.icon_state))] [article] <b>[initial(sole.name)]</b>。"
 
 		for(var/species in footprint_species_types)

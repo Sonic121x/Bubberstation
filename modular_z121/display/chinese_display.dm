@@ -1,3 +1,14 @@
+/// Localize explicit articles at display boundaries, preserving unknown and custom values.
+/proc/chinese_article_display(article)
+	switch(article)
+		if("a", "an", "the", "A", "An", "The")
+			return null
+		if("some", "Some")
+			return "一些"
+		if("a pair of", "A pair of")
+			return "一双"
+	return article
+
 /// Localize wire labels only. Wire constants, color keys and action parameters remain unchanged.
 /proc/chinese_wire_display(wire_name)
 	var/static/list/display_names

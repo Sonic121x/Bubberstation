@@ -15,7 +15,7 @@
 	armor_type = /datum/armor/clothing_shoes
 	slowdown = SHOES_SLOWDOWN
 	strip_delay = 1 SECONDS
-	article = "a pair of"
+	article = "一双"
 
 	var/offset = 0
 	var/equipped_before_drop = FALSE

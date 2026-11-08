@@ -104,8 +104,8 @@
 	icon_state = "med_medal2"
 
 /obj/item/clothing/accessory/medal/gold/captain
-	name = "船长勋章"
-	desc = "一枚仅授予晋升至船长军衔者的金色勋章。它象征着船长对纳米传讯的法定职责，以及对其船员无可争议的权威。"
+	name = "舰长勋章"
+	desc = "一枚仅授予晋升至舰长军衔者的金色勋章。它象征着舰长对纳米传讯的法定职责，以及对其船员无可争议的权威。"
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | ACID_PROOF
 
 /obj/item/clothing/accessory/medal/gold/heroism
