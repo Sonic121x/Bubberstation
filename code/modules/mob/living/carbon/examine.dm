@@ -406,7 +406,7 @@
 /// Coolects examine information about the mob's clothing and equipment
 /mob/living/carbon/proc/get_clothing_examine_info(mob/living/user)
 	. = list()
-	// var/t_He = p_They()
+	var/t_He = chinese_examine_pronoun_display(p_they())
 	// var/t_His = p_Their()
 	// var/t_his = p_their()
 	// var/t_has = p_have()
@@ -415,28 +415,28 @@
 	for(var/obj/item/held_thing in held_items)
 		if((held_thing.item_flags & (ABSTRACT|HAND_ITEM)) || HAS_TRAIT(held_thing, TRAIT_EXAMINE_SKIP))
 			continue
-		. += "在[get_held_index_name(get_held_index_of_item(held_thing))]中握着 [held_thing.examine_title_worn(user)]。" // BUBBER EDIT CHANGE - ORIGINAL: . += "[t_He] [t_is] holding [held_thing.examine_title(user)] in [t_his] [get_held_index_name(get_held_index_of_item(held_thing))]."
+		. += "[t_He]用[get_held_index_name(get_held_index_of_item(held_thing))]拿着 [held_thing.examine_title_worn(user)]。" // BUBBER EDIT CHANGE - ORIGINAL: . += "[t_He] [t_is] holding [held_thing.examine_title(user)] in [t_his] [get_held_index_name(get_held_index_of_item(held_thing))]."
 	for(var/obj/item/bodypart/arm/part in get_bodyparts())
 		if(!(part.bodypart_flags & BODYPART_PSEUDOPART))
 			continue
 		var/obj/item/corresponding_item = get_item_for_held_index(part.held_index) || part
-		. += "用 [corresponding_item.examine_title(user)] 代替了[initial(part.plaintext_zone)]。"
+		. += "[t_He]用 [corresponding_item.examine_title(user)] 代替了[initial(part.plaintext_zone)]。"
 	//handcuffed?
 	if(handcuffed)
 		var/cables_or_cuffs = istype(handcuffed, /obj/item/restraints/handcuffs/cable) ? "被线缆绑住" : "被手铐铐住"
-		. += span_warning("[icon2html(handcuffed, user)] [cables_or_cuffs]！")
+		. += span_warning("[t_He][icon2html(handcuffed, user)] [cables_or_cuffs]！")
 	//eyes
 	if(!(obscured_slots & HIDEEYES))
 		if(HAS_TRAIT(src, TRAIT_UNNATURAL_RED_GLOWY_EYES))
-			. += span_warning("<B>双眼散发着不自然的红色光芒！</B>")
+			. += span_warning("<B>[t_He]的双眼散发着不自然的红色光芒！</B>")
 		else if(HAS_TRAIT(src, TRAIT_BLOODSHOT_EYES))
-			. += span_warning("<B>双眼布满血丝！</B>")
+			. += span_warning("<B>[t_He]的双眼布满血丝！</B>")
 
 // Yes there's a lot of copypasta here, we can improve this later when carbons are less dumb in general
 // BUBBER EDIT BEGIN - replaced examine_title with examine_title_worn across whole proc
 /mob/living/carbon/human/get_clothing_examine_info(mob/living/user)
 	. = list()
-	// var/t_He = p_They()
+	var/t_He = chinese_examine_pronoun_display(p_they())
 	// var/t_His = p_Their()
 	// var/t_his = p_their()
 	// var/t_has = p_have()
@@ -452,77 +452,77 @@
 			if(length(accessories))
 				accessory_message = "，并附有 [english_list(accessories)]"
 
-		. += "穿着 [w_uniform.examine_title_worn(user)][accessory_message]。"
+		. += "[t_He]穿着 [w_uniform.examine_title_worn(user)][accessory_message]。"
 	//head
 	if(head && !(obscured_slots & HIDEHEADGEAR) && !HAS_TRAIT(head, TRAIT_EXAMINE_SKIP))
-		. += "头上戴着 [head.examine_title_worn(user)]。"
+		. += "[t_He]头上戴着 [head.examine_title_worn(user)]。"
 	//mask
 	if(wear_mask && !(obscured_slots & HIDEMASK)  && !HAS_TRAIT(wear_mask, TRAIT_EXAMINE_SKIP))
-		. += "脸上戴着 [wear_mask.examine_title_worn(user)]。"
+		. += "[t_He]脸上戴着 [wear_mask.examine_title_worn(user)]。"
 	//neck
 	if(wear_neck && !(obscured_slots & HIDENECK)  && !HAS_TRAIT(wear_neck, TRAIT_EXAMINE_SKIP))
-		. += "脖子上戴着 [wear_neck.examine_title_worn(user)]。"
+		. += "[t_He]脖子上戴着 [wear_neck.examine_title_worn(user)]。"
 	//eyes
 	if(!(obscured_slots & HIDEEYES))
 		if(glasses  && !HAS_TRAIT(glasses, TRAIT_EXAMINE_SKIP))
-			. += "眼睛上戴着 [glasses.examine_title_worn(user)]。"
+			. += "[t_He]眼睛上戴着 [glasses.examine_title_worn(user)]。"
 		else if(HAS_TRAIT(src, TRAIT_UNNATURAL_RED_GLOWY_EYES))
-			. += span_warning("<B>双眼散发着不自然的红色光芒！</B>")
+			. += span_warning("<B>[t_He]的双眼散发着不自然的红色光芒！</B>")
 		else if(HAS_TRAIT(src, TRAIT_BLOODSHOT_EYES))
-			. += span_warning("<B>双眼布满血丝！</B>")
+			. += span_warning("<B>[t_He]的双眼布满血丝！</B>")
 	//ears
 	if(ears && !(obscured_slots & HIDEEARS) && !HAS_TRAIT(ears, TRAIT_EXAMINE_SKIP))
-		. += "耳朵上戴着 [ears.examine_title_worn(user)]。"
+		. += "[t_He]耳朵上戴着 [ears.examine_title_worn(user)]。"
 	//suit/armor
 	if(wear_suit && !HAS_TRAIT(wear_suit, TRAIT_EXAMINE_SKIP))
-		. += "穿着 [wear_suit.examine_title_worn(user)]。"
+		. += "[t_He]穿着 [wear_suit.examine_title_worn(user)]。"
 		//suit/armor storage
 		if(s_store && !(obscured_slots & HIDESUITSTORAGE) && !HAS_TRAIT(s_store, TRAIT_EXAMINE_SKIP))
-			. += "在[wear_suit.name]上挂着 [s_store.examine_title_worn(user)]。"
+			. += "[t_He]在[wear_suit.get_visible_name()]上挂着 [s_store.examine_title_worn(user)]。"
 	//back
 	if(back && !HAS_TRAIT(back, TRAIT_EXAMINE_SKIP))
-		. += "背上背着 [back.examine_title_worn(user)]。"
+		. += "[t_He]背上背着 [back.examine_title_worn(user)]。"
 	//ID
 	if(wear_id && !HAS_TRAIT(wear_id, TRAIT_EXAMINE_SKIP))
 		var/obj/item/card/id/id = wear_id.GetID()
 		if(id && get_dist(user, src) <= ID_EXAMINE_DISTANCE)
 			var/id_href = "<a href='byond://?src=[REF(src)];see_id=1;id_ref=[REF(id)];id_name=[id.registered_name];examine_time=[world.time]'>[wear_id.examine_title(user)]</a>"
-			. += "戴着 [id_href]。"
+			. += "[t_He]戴着 [id_href]。"
 
 		else
-			. += "戴着 [wear_id.examine_title_worn(user)]。"
+			. += "[t_He]戴着 [wear_id.examine_title_worn(user)]。"
 	//Hands
 	for(var/obj/item/held_thing in held_items)
 		if((held_thing.item_flags & (ABSTRACT|HAND_ITEM)) || HAS_TRAIT(held_thing, TRAIT_EXAMINE_SKIP))
 			continue
-		. += "在[get_held_index_name(get_held_index_of_item(held_thing))]中握着 [held_thing.examine_title_worn(user)]。" // BUBBER EDIT CHANGE - ORIGINAL: . += "[t_He] [t_is] holding [held_thing.examine_title(user)] in [t_his] [get_held_index_name(get_held_index_of_item(held_thing))]."
+		. += "[t_He]用[get_held_index_name(get_held_index_of_item(held_thing))]拿着 [held_thing.examine_title_worn(user)]。" // BUBBER EDIT CHANGE - ORIGINAL: . += "[t_He] [t_is] holding [held_thing.examine_title(user)] in [t_his] [get_held_index_name(get_held_index_of_item(held_thing))]."
 	for(var/obj/item/bodypart/arm/part in get_bodyparts())
 		if(!(part.bodypart_flags & BODYPART_PSEUDOPART))
 			continue
 		var/obj/item/corresponding_item = get_item_for_held_index(part.held_index) || part
-		. += "用 [corresponding_item.examine_title_worn(user)] 代替了[initial(part.plaintext_zone)]。" // BUBBER EDIT CHANGE - ORIGINAL: . += "[t_He] [t_has] [corresponding_item.examine_title(user)] in place of [t_his] [initial(part.plaintext_zone)]."
+		. += "[t_He]用 [corresponding_item.examine_title_worn(user)] 代替了[initial(part.plaintext_zone)]。" // BUBBER EDIT CHANGE - ORIGINAL: . += "[t_He] [t_has] [corresponding_item.examine_title(user)] in place of [t_his] [initial(part.plaintext_zone)]."
 	//gloves
 	if(gloves && !(obscured_slots & HIDEGLOVES) && !HAS_TRAIT(gloves, TRAIT_EXAMINE_SKIP))
-		. += "手上戴着 [gloves.examine_title(user)]。"
+		. += "[t_He]手上戴着 [gloves.examine_title(user)]。"
 	else if(GET_ATOM_BLOOD_DECAL_LENGTH(src) && num_hands)
 		var/list/blood_stains = GET_ATOM_BLOOD_DECALS(src)
 		var/datum/blood_type/blood_type = blood_stains[blood_stains[length(blood_stains)]]
 		var/blood_descriptior = "血液"
 		if(istype(blood_type))
 			blood_descriptior = chinese_scanner_label(LOWER_TEXT(blood_type.get_blood_name()))
-		. += span_warning("[num_hands > 1 ? "双手" : "一只手"]沾满了[blood_descriptior]！")
+		. += span_warning("[t_He]的[num_hands > 1 ? "双手" : "一只手"]沾满了[blood_descriptior]！")
 	else if (blood_in_hands && num_hands)
-		. += span_warning("[num_hands > 1 ? "双手" : "一只手"]沾满了血！")
+		. += span_warning("[t_He]的[num_hands > 1 ? "双手" : "一只手"]沾满了血！")
 	//handcuffed?
 	if(handcuffed)
 		var/cables_or_cuffs = istype(handcuffed, /obj/item/restraints/handcuffs/cable) ? "被线缆绑住" : "被手铐铐住"
-		. += span_warning("[icon2html(handcuffed, user)] [cables_or_cuffs]！")
+		. += span_warning("[t_He][icon2html(handcuffed, user)] [cables_or_cuffs]！")
 	//belt
 	if(belt && !(obscured_slots & HIDEBELT) && !HAS_TRAIT(belt, TRAIT_EXAMINE_SKIP))
-		. += "腰上别着 [belt.examine_title_worn(user)]。"
+		. += "[t_He]腰上别着 [belt.examine_title_worn(user)]。"
 	//shoes
 	if(shoes && !(obscured_slots & HIDESHOES)  && !HAS_TRAIT(shoes, TRAIT_EXAMINE_SKIP))
-		. += "脚上穿着 [shoes.examine_title_worn(user)]。"
+		. += "[t_He]脚上穿着 [shoes.examine_title_worn(user)]。"
 // BUBBER EDIT END
 
 /// Collects info displayed about any HUDs the user has when examining src
