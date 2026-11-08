@@ -71,7 +71,7 @@
 	return data
 
 /datum/award/score/progress/fish/get_progress_string(progress_string)
-	return span_greenannounce("这是你第一次钓到<B>[progress_string]</B>！")
+	return span_greenannounce("这是你第一次钓到<B>[chinese_fish_progress_display(progress_string)]</B>！")
 
 /datum/award/score/progress/pda_themes
 	name = "已解锁的 PDA 主题"

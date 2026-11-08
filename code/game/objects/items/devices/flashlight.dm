@@ -190,7 +190,7 @@
 				else
 					organ_list += "、"
 			var/obj/item/organ/organ_to_display = mouth_organs[I]
-			organ_list += (organ_to_display.gender == "plural" ? organ_to_display.name : "\an [organ_to_display.name]")
+			organ_list += organ_to_display.get_visible_name()
 
 	var/pill_count = 0
 	for(var/datum/action/item_action/activate_pill/AP in patient.actions)

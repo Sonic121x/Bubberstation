@@ -17,4 +17,4 @@
 /datum/round_event/anomaly/anomaly_flux/announce(fake)
 	if(isnull(impact_area))
 		impact_area = placer.findValidArea()
-	priority_announce("在 [ANOMALY_ANNOUNCE_DANGEROUS_TEXT] [impact_area.name] 检测到高能通量波。", "异常警报", ANNOUNCER_FLUXANOMALIES) //SKYRAT EDIT CHANGE - ORIGINAL: priority_announce("Hyper-energetic flux wave detected on [ANOMALY_ANNOUNCE_DANGEROUS_TEXT] [impact_area.name].", "Anomaly Alert")
+	priority_announce("在 [ANOMALY_ANNOUNCE_DANGEROUS_TEXT] [chinese_area_display(impact_area)] 检测到高能通量波。", "异常警报", ANNOUNCER_FLUXANOMALIES) //SKYRAT EDIT CHANGE - ORIGINAL: priority_announce("Hyper-energetic flux wave detected on [ANOMALY_ANNOUNCE_DANGEROUS_TEXT] [impact_area.name].", "Anomaly Alert")

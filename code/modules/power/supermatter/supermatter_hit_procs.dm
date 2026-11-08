@@ -102,11 +102,11 @@
 		var/obj/item/destabilizing_crystal/destabilizing_crystal = tool
 
 		if(!is_main_engine)
-			to_chat(user, span_warning("你不能对 \a [name] 使用 \the [destabilizing_crystal]。"))
+			to_chat(user, span_warning("你不能对 [name] 使用 [destabilizing_crystal.get_visible_name()]。"))
 			return ITEM_INTERACT_BLOCKING
 
 		if(get_integrity_percent() < SUPERMATTER_CASCADE_PERCENT)
-			to_chat(user, span_warning("你只能对完整度至少为 [SUPERMATTER_CASCADE_PERCENT]% 的 \a [name] 使用 \the [destabilizing_crystal]。"))
+			to_chat(user, span_warning("你只能对完整度至少为 [SUPERMATTER_CASCADE_PERCENT]% 的 [name] 使用 [destabilizing_crystal.get_visible_name()]。"))
 			return ITEM_INTERACT_BLOCKING
 
 		to_chat(user, span_warning("你开始把 \the [destabilizing_crystal] 安装到 \the [src] 上……"))

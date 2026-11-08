@@ -257,7 +257,7 @@
 
 /obj/machinery/anomalous_crystal/emitter/Initialize(mapload)
 	. = ..()
-	observer_desc = "这块晶体激活时会生成 \a [initial(generated_projectile.name)]。"
+	observer_desc = "这块晶体激活时会生成 [initial(generated_projectile.name)]。"
 
 /obj/machinery/anomalous_crystal/emitter/ActivationReaction(mob/user, method)
 	if(..())

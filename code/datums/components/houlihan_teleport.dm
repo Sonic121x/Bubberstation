@@ -54,7 +54,7 @@
 		user.start_pulling(dragged, force = TRUE)
 		dragged_turf.balloon_alert_to_hearers("*啵*")
 
-	to_chat(list(user, dragged), span_notice("一眨眼，你发现自己已经身处<b>[get_area_name(destination_turf)]</b>。"))
+	to_chat(list(user, dragged), span_notice("一眨眼，你发现自己已经身处<b>[chinese_area_display(get_area(destination_turf))]</b>。"))
 	user.emote("blink")
 	astype(dragged, /mob)?.emote("blink") // shhhhh just let it happen
 

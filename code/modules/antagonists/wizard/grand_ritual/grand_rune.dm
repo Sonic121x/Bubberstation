@@ -85,10 +85,10 @@
 /obj/effect/grand_rune/proc/announce_rune()
 	var/area/created_area = get_area(src)
 	if (potency >= GRAND_RITUAL_IMMINENT_FINALE_POTENCY)
-		priority_announce("检测到 [created_area.name] 的局部时空出现剧烈异常波动。", "异常警报")
+		priority_announce("检测到 [chinese_area_display(created_area)] 的局部时空出现剧烈异常波动。", "异常警报")
 		return
 	if (potency >= GRAND_RITUAL_RUNES_WARNING_POTENCY)
-		priority_announce("检测到 [created_area.name] 出现异常能量波动。", "异常警报")
+		priority_announce("检测到 [chinese_area_display(created_area)] 出现异常能量波动。", "异常警报")
 		return
 
 /obj/effect/grand_rune/examine(mob/user)
@@ -295,11 +295,11 @@
 	var/announce = null
 	switch (dire_warnings_given)
 		if (0)
-			announce = "检测到 [created_area.name] 出现大型异常能量尖峰。"
+			announce = "检测到 [chinese_area_display(created_area)] 出现大型异常能量尖峰。"
 		if (1)
-			announce = "自动因果稳定化失败，建议立即对 [created_area.name] 进行干预。"
+			announce = "自动因果稳定化失败，建议立即对 [chinese_area_display(created_area)] 进行干预。"
 		if (2)
-			announce = "[created_area.name] 即将发生局部现实崩坏。全体船员请准备撤离。"
+			announce = "[chinese_area_display(created_area)] 即将发生局部现实崩坏。全体船员请准备撤离。"
 	if (announce)
 		priority_announce(announce, "异常警报")
 	dire_warnings_given++

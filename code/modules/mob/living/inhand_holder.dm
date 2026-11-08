@@ -118,8 +118,8 @@
 
 /obj/item/mob_holder/on_found(mob/finder)
 	if(held_mob?.will_escape_storage())
-		to_chat(finder, span_warning("\A [held_mob.name] 弹了出来！ "))
-		finder.visible_message(span_warning("\A [held_mob.name] 从 [finder] 正在打开的容器里弹了出来！"), ignored_mobs = finder)
+		to_chat(finder, span_warning("[held_mob.name] 弹了出来！ "))
+		finder.visible_message(span_warning("[held_mob.name] 从 [finder] 正在打开的容器里弹了出来！"), ignored_mobs = finder)
 		release(display_messages = FALSE)
 		return
 

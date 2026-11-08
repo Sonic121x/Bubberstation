@@ -131,7 +131,7 @@
 	var/datum/atom_skin/crusher_skin/forced_skin
 
 /obj/item/crusher_trophy/retool_kit/effect_desc()
-	return "使粉碎器的外观变为 \a [forced_skin::preview_name]"
+	return "使粉碎器的外观变为 [forced_skin::preview_name]"
 
 /obj/item/crusher_trophy/retool_kit/add_to(obj/item/kinetic_crusher/pkc, mob/user)
 	. = ..()

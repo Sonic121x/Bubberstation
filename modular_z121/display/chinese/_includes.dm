@@ -83,3 +83,4 @@
 #include "labels/zubbers_species_accessories.dm"
 #include "labels/species_names.dm"
 #include "labels/reagent_names.dm"
+#include "labels/fish.dm"

@@ -127,7 +127,7 @@ GLOBAL_LIST_INIT(strippable_parrot_items, create_strippable_list(list(
 /mob/living/basic/parrot/examine(mob/user)
 	. = ..()
 	var/obj/item/held_item = get_active_held_item()
-	. += "它看起来[isnull(held_item) ? "什么都没拿着。" : "拿着 \a [held_item]。"]"
+	. += "它看起来[isnull(held_item) ? "什么都没拿着。" : "拿着 [held_item.get_visible_name()]。"]"
 
 	if(stat != DEAD)
 		return

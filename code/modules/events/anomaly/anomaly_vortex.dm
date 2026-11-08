@@ -17,4 +17,4 @@
 /datum/round_event/anomaly/anomaly_vortex/announce(fake)
 	if(isnull(impact_area))
 		impact_area = placer.findValidArea()
-	priority_announce("在 [ANOMALY_ANNOUNCE_DANGEROUS_TEXT] [impact_area.name] 检测到局部高强度漩涡异常", "异常警报", ANNOUNCER_VORTEXANOMALIES) //SKYRAT EDIT CHANGE - ORIGINAL: priority_announce("Localized high-intensity vortex anomaly detected on [ANOMALY_ANNOUNCE_DANGEROUS_TEXT] [impact_area.name]", "Anomaly Alert")
+	priority_announce("在 [ANOMALY_ANNOUNCE_DANGEROUS_TEXT] [chinese_area_display(impact_area)] 检测到局部高强度漩涡异常", "异常警报", ANNOUNCER_VORTEXANOMALIES) //SKYRAT EDIT CHANGE - ORIGINAL: priority_announce("Localized high-intensity vortex anomaly detected on [ANOMALY_ANNOUNCE_DANGEROUS_TEXT] [impact_area.name]", "Anomaly Alert")

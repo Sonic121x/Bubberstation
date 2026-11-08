@@ -41,7 +41,7 @@
 	forceMove(host_egg)
 	var/area/src_area = get_area(src)
 	if(src_area)
-		notify_ghosts("一枚皮层钻虫卵已在[src_area.name]中产下。",
+		notify_ghosts("一枚皮层钻虫卵已在[chinese_area_display(src_area)]中产下。",
 			source = src,
 			notify_flags = NOTIFY_CATEGORY_NOFLASH & ~GHOST_NOTIFY_NOTIFY_SUICIDERS,
 			click_interact = TRUE,

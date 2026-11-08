@@ -71,7 +71,7 @@
 /obj/item/reagent_containers/cup/glass/bottle/examine(mob/user)
 	. = ..()
 	if(message_in_a_bottle)
-		. += span_info("里面有一个 \a [message_in_a_bottle]。打破它就能取出，或者找片海滩或海洋，用[EXAMINE_HINT("右键点击")]把它扔出去。")
+		. += span_info("里面有一个 [message_in_a_bottle.get_visible_name()]。打破它就能取出，或者找片海滩或海洋，用[EXAMINE_HINT("右键点击")]把它扔出去。")
 	else if(isGlass)
 		. += span_tinynoticeital("你可以往里面放一张纸、一张照片或一些太空现金……")
 

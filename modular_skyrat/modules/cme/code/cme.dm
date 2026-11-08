@@ -164,7 +164,7 @@
 			INVOKE_ASYNC(SSsecurity_level, TYPE_PROC_REF(/datum/controller/subsystem/security_level/, minimum_security_level), SEC_LEVEL_ORANGE, TRUE, FALSE)
 
 	var/area/loc_area_name = get_area(spawnpoint)
-	minor_announce("警告！预计 [uppertext(intensity)] 脉冲将出现在：[loc_area_name.name]", "太阳耀斑日志：")
+	minor_announce("警告！预计 [uppertext(intensity)] 脉冲将出现在：[chinese_area_display(loc_area_name)]", "太阳耀斑日志：")
 	switch(intensity)
 		if(CME_MINIMAL)
 			var/obj/effect/cme/spawnedcme = new(spawnpoint)

@@ -833,6 +833,16 @@
 	display_names["Icewalker Camp"] = "冰行者营地"
 	if(return_mapping)
 		return display_names
+	if(ispath(value, /area))
+		var/area/area_type = value
+		value = initial(area_type.name)
+	if(isarea(value))
+		var/area/display_area = value
+		if(display_area.name != initial(display_area.name))
+			return display_area.name
+		value = display_area.name
+	if(isnull(value))
+		return value
 	return display_names[trimtext(format_text(value))] || value
 
 /// Localize examine tag labels without changing the keys used by components and overrides.
@@ -857,6 +867,8 @@
 		"insulated" = "绝缘",
 		"partially insulated" = "部分绝缘",
 		"renameable" = "可重命名",
+		"reskinnable" = "可更换外观",
+		"crafting component" = "可用于制作",
 		"conductive" = "导电",
 		"thick" = "厚实",
 		"magical" = "魔法",

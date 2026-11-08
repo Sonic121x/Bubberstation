@@ -111,7 +111,7 @@
 	user.visible_message(span_notice("[user] 将 [card] 插入 [src]……"), span_notice("转移程序已启动。正在向 AI 发送批准请求……"))
 	playsound(src, 'sound/machines/click.ogg', 50, TRUE)
 	SEND_SOUND(occupier, sound('sound/announcer/notice/notice2.ogg')) //To alert the AI that someone's trying to card them if they're tabbed out
-	if(tgui_alert(occupier, "[user] 正试图把你转移到 \a [card.name]。你同意吗？", "区域电力控制器转移", list("Yes - Transfer Me", "No - Keep Me Here")) == "No - Keep Me Here")
+	if(tgui_alert(occupier, "[user] 正试图把你转移到 [card.name]。你同意吗？", "区域电力控制器转移", list("Yes - Transfer Me", "No - Keep Me Here")) == "No - Keep Me Here")
 		to_chat(user, span_danger("AI 拒绝了转移请求。程序已终止。"))
 		playsound(src, 'sound/machines/buzz/buzz-sigh.ogg', 50, TRUE)
 		transfer_in_progress = FALSE

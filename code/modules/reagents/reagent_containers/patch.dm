@@ -30,7 +30,7 @@
 	return TRUE
 
 /obj/item/reagent_containers/applicator/patch/on_consumption(mob/living/carbon/consumer, mob/giver, list/modifiers)
-	consumer.log_message("被 [giver] 贴上了 \a [src] 药贴，其中含有以下试剂：[english_list(reagents.reagent_list)]。", LOG_GAME)
+	consumer.log_message("被 [giver] 贴上了 [get_visible_name()] 药贴，其中含有以下试剂：[english_list(reagents.reagent_list)]。", LOG_GAME)
 	var/clicked_x = LAZYACCESS(modifiers, ICON_X)
 	var/clicked_y = LAZYACCESS(modifiers, ICON_Y)
 	if (isnull(clicked_x))

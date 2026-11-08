@@ -209,7 +209,7 @@
 /obj/structure/trap/eldritch/alert/trap_effect(mob/living/victim)
 	var/mob/living/real_owner = owner?.resolve()
 	if(real_owner)
-		to_chat(real_owner, span_userdanger("[victim.real_name] 踩到了 [get_area(src)] 的警戒符文！"))
+		to_chat(real_owner, span_userdanger("[victim.real_name] 踩到了 [chinese_area_display(get_area(src))] 的警戒符文！"))
 		real_owner.playsound_local(get_turf(real_owner), 'sound/effects/magic/curse.ogg', 50, TRUE)
 
 /obj/structure/trap/eldritch/tentacle

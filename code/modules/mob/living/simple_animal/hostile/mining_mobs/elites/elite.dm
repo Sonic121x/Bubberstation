@@ -214,7 +214,7 @@ While using this makes the system rely on OnFire, it still gives options for tim
 		mychild.PossessByPlayer(elitemind.key)
 		mychild.sentience_act()
 		notify_ghosts(
-			"\A [mychild] 在 \the [get_area(src)] 中被唤醒了！",
+			"[mychild.get_visible_name()] 在 [chinese_area_display(get_area_name(src))] 中被唤醒了！",
 			source = mychild,
 			header = "拉瓦兰精英苏醒",
 			notify_flags = NOTIFY_CATEGORY_NOFLASH,
@@ -233,7 +233,7 @@ While using this makes the system rely on OnFire, it still gives options for tim
 		mychild.maxHealth *= 1 / ELITE_POST_BATTLE_HEALTH_MULTIPLIER //we multiply it back to its original value
 		mychild.health = mychild.maxHealth
 		notify_ghosts(
-			"\A [mychild] 在 \the [get_area(src)] 中遭到了挑战！",
+			"[mychild.get_visible_name()] 在 [chinese_area_display(get_area_name(src))] 中遭到了挑战！",
 			source = mychild,
 			header = "拉瓦兰精英遭挑战",
 			notify_flags = NOTIFY_CATEGORY_NOFLASH,

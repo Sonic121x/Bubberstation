@@ -286,7 +286,7 @@ GLOBAL_LIST_INIT(specific_fish_icons, generate_specific_fish_icons())
 	challenge.used_rod.on_reward_caught(reward, user)
 	if(!reward)
 		return
-	user.add_mob_memory(/datum/memory/caught_fish, protagonist = user, deuteragonist = reward.name)
+	user.add_mob_memory(/datum/memory/caught_fish, protagonist = user, deuteragonist = reward.get_visible_name())
 	REMOVE_TRAIT(reward, TRAIT_FISH_JUST_SPAWNED, TRAIT_GENERIC)
 
 /// Gives out the reward if possible
@@ -300,7 +300,7 @@ GLOBAL_LIST_INIT(specific_fish_icons, generate_specific_fish_icons())
 	else if(istype(reward, /obj/effect/spawner)) // Do not attempt to forceMove() a spawner. It will break things, and the spawned item should already be at the mob's turf by now.
 		fisherman.balloon_alert(fisherman, "钓到东西了！")
 		return
-	fisherman.balloon_alert(fisherman, "钓到了 [reward]！")
+	fisherman.balloon_alert(fisherman, "钓到了 [reward.get_visible_name()]！")
 
 	var/list/fishing_data
 	if (isfish(reward))

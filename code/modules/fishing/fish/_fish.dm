@@ -338,7 +338,7 @@ GLOBAL_LIST_INIT(fish_compatible_fluid_types, list(
 	if(!do_after(user, 3 SECONDS, interacting_with))
 		return ITEM_INTERACT_BLOCKING
 	balloon_alert(user, "鱼已放生")
-	var/goodbye_text = "再见，[name]。"
+	var/goodbye_text = "再见，[get_visible_name()]。"
 	if(status == FISH_DEAD && !HAS_MIND_TRAIT(user, TRAIT_NAIVE))
 		goodbye_text = "愿它安息……"
 	user.visible_message(span_notice("[user] 把 [src] 放生到 [interacting_with] 中"), \
@@ -542,11 +542,11 @@ GLOBAL_LIST_INIT(fish_compatible_fluid_types, list(
 		return ITEM_INTERACT_BLOCKING
 
 	if(status == FISH_DEAD)
-		balloon_alert(user, "[name] [HAS_MIND_TRAIT(user, TRAIT_NAIVE) ? "不饿" : "已经死了！"]")
+		balloon_alert(user, "[get_visible_name()] [HAS_MIND_TRAIT(user, TRAIT_NAIVE) ? "不饿" : "已经死了！"]")
 		return ITEM_INTERACT_BLOCKING
 
 	feed(tool.reagents)
-	balloon_alert(user, "喂饱了 [name]")
+	balloon_alert(user, "喂饱了 [get_visible_name()]")
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/fish/examine(mob/user)

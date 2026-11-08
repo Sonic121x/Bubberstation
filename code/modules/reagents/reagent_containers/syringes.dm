@@ -148,7 +148,7 @@
  */
 /obj/item/reagent_containers/syringe/on_accidental_consumption(mob/living/carbon/victim, mob/living/carbon/user, obj/item/source_item,  discover_after = TRUE)
 	if(source_item)
-		to_chat(victim, span_boldwarning("[source_item] 里有一支 \a [src]！！"))
+		to_chat(victim, span_boldwarning("[source_item] 里有一支 [get_visible_name()]！！"))
 	else
 		to_chat(victim, span_boldwarning("[src] 给你扎了一针！"))
 

@@ -98,7 +98,7 @@ SUBSYSTEM_DEF(market)
 					continue
 				queued_purchases -= purchase
 
-				to_chat(buyer, span_notice("[purchase.uplink] 闪出一条消息，提示货物将在 60 秒后传送至 [get_area(targetturf)]。"))
+				to_chat(buyer, span_notice("[purchase.uplink] 闪出一条消息，提示货物将在 60 秒后传送至 [chinese_area_display(get_area(targetturf))]。"))
 
 				// do_teleport does not want to teleport items from nullspace, so it just forceMoves and does sparks.
 				addtimer(CALLBACK(src, TYPE_PROC_REF(/datum/controller/subsystem/market, fake_teleport), purchase, targetturf), 60 SECONDS)

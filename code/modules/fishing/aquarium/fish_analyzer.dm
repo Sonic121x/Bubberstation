@@ -147,10 +147,10 @@
 		fish_traits += list(list("trait_name" = trait.name, "trait_desc" = trait.catalog_description, "trait_inherit" = trait.inheritability))
 
 	data["fish_list"] += list(list(
-		"fish_name" = fishie.name,
+		"fish_name" = fishie.get_visible_name(),
 		"fish_icon" = fishie.icon,
 		"fish_icon_state" = fishie.base_icon_state,
-		"fish_food" = fishie.food.name,
+		"fish_food" = chinese_reagent_display(fishie.food.name),
 		"fish_food_color" = fishie.food::color,
 		"fish_min_temp" = fishie.required_temperature_min,
 		"fish_max_temp" = fishie.required_temperature_max,

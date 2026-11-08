@@ -97,7 +97,7 @@
 
 	var/puff_reagent_string = reagent_puff.reagents.get_reagent_log_string()
 	log_combat(user, start_turf, "喷出一团试剂，来源为", src, addition="射程为 \[[range]\]，含有 [puff_reagent_string]。")
-	user.log_message("从 \a [src] 中喷出一团试剂，射程为 \[[range]\]，含有 [puff_reagent_string]。", LOG_ATTACK)
+	user.log_message("从 [get_visible_name()] 中喷出一团试剂，射程为 \[[range]\]，含有 [puff_reagent_string]。", LOG_ATTACK)
 
 	// do_spray includes a series of step_towards and sleeps. As a result, it will handle deletion of the chempuff.
 	do_spray(target, wait_step, reagent_puff, range, puff_reagent_left, user)

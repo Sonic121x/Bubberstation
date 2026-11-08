@@ -87,7 +87,7 @@
 /mob/living/basic/pet/dog/corgi/examine(mob/user)
 	. = ..()
 	if(access_card)
-		. += "似乎有一枚 [icon2html(access_card, user)] \a [access_card] 别在 [p_them()] 身上。"
+		. += "似乎有一枚 [icon2html(access_card, user)] [access_card.get_visible_name()] 别在 [p_them()] 身上。"
 
 /**
  * Corgis get full protection from their equipped fashion items if attacked in a way that passes def_zone,

@@ -109,7 +109,7 @@
 	. += "剩余 <b>[stored_gun.get_remaining_mod_capacity()]%</b> 改装容量。"
 
 	for(var/obj/item/borg/upgrade/modkit/modkit as anything in stored_gun.modkits)
-		. += span_notice("已安装 \a [modkit]，占用 <b>[modkit.cost]%</b> 容量。")
+		. += span_notice("已安装 [modkit.get_visible_name()]，占用 <b>[modkit.cost]%</b> 容量。")
 	if(ai_controller && ai_controller.ai_status == AI_STATUS_OFF && ai_controller.get_expected_ai_status() == AI_STATUS_ON)
 		. += "这 [src] 似乎处于<b>休眠模式</b>。你可以<b>轻拍</b>它来恢复正常功能。"
 

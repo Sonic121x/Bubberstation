@@ -164,7 +164,7 @@
 		if(cultist.current.stat == DEAD || !cultist.current.client)
 			continue
 
-		to_chat(cultist.current, span_bold(span_cult_large("[marker]已将[target_area]的[blood_target]标记为教派的最高优先目标，立刻前往！")))
+		to_chat(cultist.current, span_bold(span_cult_large("[marker]已将[chinese_area_display(target_area)]的[blood_target]标记为教派的最高优先目标，立刻前往！")))
 		SEND_SOUND(cultist.current, sound(SFX_HALLUCINATION_OVER_HERE, 0, 1, 75))
 		cultist.current.client.images += blood_target_image
 		if (cultist.current.hud_used)

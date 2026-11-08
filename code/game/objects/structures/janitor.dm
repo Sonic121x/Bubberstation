@@ -115,16 +115,16 @@
 	. = ..()
 	if(contents.len)
 		. += span_bold(span_info("\n它装着："))
-		for(var/thing in sort_names(contents))
+		for(var/atom/thing in sort_names(contents)) // 自定义修改：明确容器物品类型，以调用不附加英文冠词的显示名称。
 			if(thing in held_signs)
 				continue //we'll do this after.
-			. += "\t[icon2html(thing, user)] \a [thing]"
+			. += "\t[icon2html(thing, user)] [thing.get_visible_name()]"
 		if(held_signs.len)
 			var/obj/item/clothing/suit/caution/sign_obj = held_signs[1]
 			if(held_signs.len > 1)
 				. += "\t[icon2html(sign_obj, user)] [convert_integer_to_words(length(held_signs))] [sign_obj.name]\s"
 			else
-				. += "\t[icon2html(sign_obj, user)] \a [sign_obj]"
+				. += "\t[icon2html(sign_obj, user)] [sign_obj.get_visible_name()]"
 		. += span_notice("\n<b>左键点击</b>以[contents.len > 1 ? "翻找 [src]" : "取出 [contents[1]]"]。")
 		if(mybag)
 			. += span_notice("<b>右键点击</b>，手持<b>[weight_class_to_text(mybag.atom_storage.max_specific_storage)]物品</b>，可将其放入[mybag]。")

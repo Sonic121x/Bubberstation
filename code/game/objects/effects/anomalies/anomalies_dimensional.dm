@@ -88,7 +88,7 @@
 	var/area/new_area = placer.findValidArea()
 	var/turf/new_turf = placer.findValidTurf(new_area)
 
-	priority_announce("维度不稳定现象已转移。预计位置：[new_area.name]。", "异常警报")
+	priority_announce("维度不稳定现象已转移。预计位置：[chinese_area_display(new_area)]。", "异常警报")
 	src.forceMove(new_turf)
 	prepare_area()
 

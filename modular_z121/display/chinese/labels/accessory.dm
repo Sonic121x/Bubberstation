@@ -68,7 +68,103 @@
 	var/static/list/display_names
 	if(isnull(display_names))
 		display_names = list("Naked" = "裸体", "Custom" = "自定义", "As Job..." = "按职业……", "As Plasmaman..." = "等离子人装备……", "Standard Gear" = "标准装备")
-	return display_names[value] || chinese_zubbers_modules_outfit_display(value)
+	return display_names[value] || chinese_preset_outfit_display(value)
+
+/proc/chinese_preset_outfit_display(value)
+	var/known_name = chinese_zubbers_modules_outfit_display(value)
+	if(known_name != value)
+		return known_name
+	var/static/list/names
+	var/static/list/prefixes
+	var/static/list/suffixes
+	if(isnull(names))
+		names = list(
+			"811 Response: Advanced Atmospherics" = "811 应急响应：高级大气技术员",
+			"911 Response: Armed S.W.A.T. Officer" = "911 应急响应：武装特警", "911 Response: Base" = "911 应急响应：基础装备",
+			"911 Response: EMT" = "911 应急响应：急救员", "911 Response: Marshal" = "911 应急响应：执法官", "911 Response: TerraGov Military" = "911 应急响应：地球政府军",
+			"Abductor" = "绑架者", "Abductor Lobotomite" = "绑架者脑叶切除实验体", "Akula" = "阿库拉", "Cargo-Technician" = "货运技术员", "Security-Officer" = "安保官",
+			"Command" = "指挥人员", "Doctor" = "医生", "Engineer" = "工程师", "Security" = "安保人员",
+			"Ancient Engineer" = "远古工程师", "Ancient Scientist" = "远古科学家", "Ancient Security" = "远古安保人员",
+			"Archer Clock Cultist" = "发条教徒弓箭手", "Armored Clock Cultist" = "重甲发条教徒", "Seer Clock Cultist" = "发条教徒先知", "Support Clock Cultist" = "支援发条教徒",
+			"Clock Cultist" = "发条教徒", "Clockwork Cultist Base" = "发条教徒基础装备", "Default Clock Cultist" = "默认发条教徒",
+			"Armed Black Mesa Security" = "武装黑山基地安保人员", "Armed Black Ops" = "武装秘密行动特工",
+			"Ash Walker" = "灰行者", "Ash Walker - Spear" = "灰行者（长矛）",
+			"Assault Ops - Background Dudes - Preview ONLY" = "突击特工（背景人员，仅供预览）", "Assault Ops - Default" = "突击特工（默认）", "Assault Ops - Preview ONLY" = "突击特工（仅供预览）",
+			"Asset Protection Officer" = "资产保护专员", "Blood Cultist" = "血教徒",
+			"Assistant - Breathmask" = "助理（呼吸面罩）", "Assistant - Consistent" = "助理（固定装备）", "Assistant - Hitchhiker" = "助理（搭便车者）", "Assistant - Preview" = "助理（预览）",
+			"BLF Operative" = "BLF 特工", "BMRF HECU" = "黑山研究设施 HECU 士兵", "BMRF Science Team" = "黑山研究设施科研人员", "BMRF Security Guard" = "黑山研究设施保安",
+			"Beach Bum" = "海滩浪子", "Beach Lifeguard" = "海滩救生员", "Bitrunning SolFed Marine" = "比特潜行太阳联邦陆战队员",
+			"Black Market Trader" = "黑市商人", "Black Mesa Security" = "黑山基地安保人员", "Black Ops" = "秘密行动特工",
+			"Bluespace Tech (Admin)" = "蓝空间技师（管理员）",
+			"Bunny Magician" = "兔装魔术师", "Bunny Waiter" = "兔装侍者", "Bunny Waiter (British)" = "兔装侍者（英国）", "Bunny Waiter (CentCom)" = "兔装侍者（中央指挥部）",
+			"Bunny Waiter (Communist)" = "兔装侍者（共产主义）", "Bunny Waiter (USA)" = "兔装侍者（美国）", "Butler" = "管家",
+			"Cat Butcher Uniform" = "猫屠夫制服", "Clown vox" = "沃克斯小丑", "Mime vox" = "沃克斯默剧演员",
+			"Coalition Operative" = "联盟特工", "Coalition Operative SNPC" = "联盟特工（简单非玩家角色）", "Colonist (Frontier)" = "边疆殖民者",
+			"Corpse Assistant" = "助理尸体", "Corpse Doctor" = "医生尸体", "Crashed Survey Ship Laborer" = "坠毁勘探船劳工", "Cryogenic Bartender" = "冷冻休眠调酒师",
+			"DS-2 Command Operative" = "DS-2 指挥特工", "DS-2 Corporate Liasion" = "DS-2 企业联络官", "Dead Museum Cafeteria Chef" = "博物馆食堂厨师尸体",
+			"Apprentice" = "学徒", "Assistant loadout" = "助理配装", "Assistant loadout (Weaponless)" = "助理配装（无武器）", "Battlemage" = "战斗法师", "Battler Base" = "战斗员基础装备",
+			"Blood Miner" = "鲜血矿工", "Chaos" = "混沌", "Chuuni" = "中二病", "Clown (Syndicate Gear)" = "小丑（辛迪加装备）", "Coder" = "程序员", "Cowboy" = "牛仔", "Cuban Pete" = "古巴皮特",
+			"Cultist Artificer" = "血教工匠", "Cultist Invoker" = "血教祈咒者", "Druid" = "德鲁伊", "Electromancer" = "雷电法师",
+			"Ethereal Species" = "以太人种族", "Felinid Species" = "猫人种族", "Human Species" = "人类种族", "Lizard Species" = "蜥蜴人种族", "Moth Species" = "蛾人种族", "Plasmaman Species" = "等离子人种族",
+			"Gunmancer" = "枪械法师", "Heretic Scribe" = "异端抄写员", "Heretic Warrior" = "异端战士", "Holy Crusader" = "神圣十字军", "LARPer" = "现实扮演者",
+			"Lattice loadout" = "格栅配装", "Master Chef" = "厨艺大师", "Melee Operative" = "近战特工", "Monkey" = "猴子", "Naked" = "裸体", "Necromancer" = "死灵法师", "North Star" = "北极星",
+			"Operative" = "特工", "Pyromancer" = "烈焰法师", "Raider" = "劫掠者", "Ranged Operative" = "远程特工", "Ripper" = "撕裂者", "Samurai" = "武士", "Sniper" = "狙击手", "Soldier" = "士兵", "Surgeon" = "外科医生", "Tider" = "灰潮",
+			"Instagib" = "一击必杀", "Spaceman" = "太空人", "Syndicate Spaceman" = "辛迪加太空人", "Assistant (Spaceworthy)" = "助理（太空作业）",
+			"Default ERT outfit" = "默认紧急响应小队装备", "Doctor Hilbert" = "希尔伯特博士", "Dragoon" = "龙骑兵",
+			"Faction - Captain" = "派系舰长", "Faction - Crew" = "派系船员", "Faction - Goon" = "派系打手", "Faction - Medic" = "派系医护", "Faction - Tech" = "派系技术员",
+			"Freighter Boss" = "货船领班", "Freighter Crew" = "货船船员", "Freighter Excavator" = "货船挖掘工", "Fumigator" = "熏蒸队员", "Fumigator Leader" = "熏蒸队长",
+			"Gimmick Assistant" = "特色助理", "Artist" = "艺术家", "Bear" = "熊", "Bee" = "蜜蜂", "Broomer" = "扫帚工", "Cardborg" = "纸板赛博", "Chicken" = "鸡",
+			"Firefighter" = "消防员", "Fisher" = "渔夫", "Fleshy" = "血肉怪", "Gardener" = "园丁", "Hall Monitor" = "走廊督察", "Handyman" = "杂务工", "Lightbringer" = "提灯者",
+			"Magician" = "魔术师", "Mopper" = "拖地工", "Patient" = "病人", "Rollerskater" = "轮滑者", "Skater" = "滑板手",
+			"Gordon Freeman" = "戈登·弗里曼", "Guild Default Outfit" = "公会默认装备", "HECU Captain" = "HECU 队长", "HECU Grunt" = "HECU 步兵", "HECU Ranged" = "HECU 射手", "HECU SMG" = "HECU 冲锋枪手",
+			"Hotel Security" = "酒店保安", "Hotel Staff" = "酒店职员", "Hotel Staff Manager" = "酒店经理", "Human AI" = "人类人工智能",
+			"Icemoon Interdyne Shaft Miner" = "冰月英特戴恩矿工", "Icemoon Syndicate Comms Agent" = "冰月辛迪加通讯特工", "Interdyne Bioweapon Scientist" = "英特戴恩生物武器科学家",
+			"Interdyne Deck Officer" = "英特戴恩甲板军官", "Interdyne Shaft Miner" = "英特戴恩矿工",
+			"Lavaland Hermit" = "拉瓦兰隐士", "Lavaland Prisoner" = "拉瓦兰囚犯", "Lavaland Syndicate Agent" = "拉瓦兰辛迪加特工", "Lavaland Syndicate Comms Agent" = "拉瓦兰辛迪加通讯特工",
+			"Ashwalker" = "灰行者", "Dame" = "女骑士", "Golem" = "魔像", "Miner" = "矿工", "Settler" = "定居者", "Shadowperson" = "暗影人", "Tribal Mothman" = "部落蛾人",
+			"Lizard Gas Station Attendant" = "蜥蜴人加油站服务员", "Lizard Gas Station Manager" = "蜥蜴人加油站经理", "Lone Infiltrator" = "独行渗透者",
+			"Abductee" = "被绑架者", "Castlegoer" = "城堡访客", "Default Outfit" = "默认装备", "Fugitive" = "逃犯", "Nightmare" = "梦魇", "Ninja" = "忍者", "Obsessed" = "痴迷者", "Outwear" = "外套", "Syndicate" = "辛迪加", "Wastelander" = "废土客",
+			"Mining Site Overseer" = "矿场监督员", "Mining Site Worker" = "矿场工人", "Mr Bones' Corpse" = "骷髅先生的尸体", "Mr. Runtime" = "运行时先生",
+			"NT Private Security Officer" = "纳米传讯私人安保官", "NT Assault Officer" = "纳米传讯突击队员", "NT Elite Assault Officer" = "纳米传讯精英突击队员", "Nanotrasen Private Security Commander" = "纳米传讯私人安保指挥官",
+			"ODST" = "轨道空降突击兵", "Pan-Slavic Field Officer" = "泛斯拉夫战地军官", "Paper Wizard" = "纸片巫师",
+			"Pirate Gunner" = "海盗炮手", "Pirate Swashbuckler" = "海盗剑客", "Pizza Delivery Boy" = "披萨配送员", "Pizza Delivery Manager" = "披萨配送经理",
+			"Plasma Miner" = "等离子矿工", "Prey Pod Victim" = "猎物舱受害者", "Privateer Slaver" = "私掠贩奴者", "Privateer Slaver Captain" = "私掠贩奴舰长",
+			"Ranged Russian" = "俄国射手", "Ranged Russian Trooper" = "俄国远程步兵", "Russian" = "俄国人", "Russian Officer" = "俄国军官",
+			"Revolution" = "革命军", "RoroCo Glove Packer" = "罗罗公司手套包装工", "Roroco Fabric Technician" = "罗罗公司纺织技术员", "Scientist - Consistent" = "科学家（固定装备）",
+			"Security Guard" = "保安", "Shuttle Nuclear Operative" = "穿梭机核爆特工", "Skeleton Cultist" = "骷髅血教徒", "Space Wizard" = "太空巫师",
+			"Syndicate Battlecruiser Assault Operative" = "辛迪加战列巡洋舰突击特工", "Syndicate Battlecruiser Ship Operative" = "辛迪加战列巡洋舰舰上特工",
+			"Syndicate Bunny Assassin" = "辛迪加兔装刺客", "Syndicate Commando" = "辛迪加突击队员", "Syndicate Pilot" = "辛迪加飞行员",
+			"Syndicate Operative - Infiltrator" = "辛迪加特工（渗透者）", "Syndicate Operative Empty" = "辛迪加特工（空装备）",
+			"Syndicate Ship Base" = "辛迪加舰船基础装备", "Syndicate Ship Crew Member" = "辛迪加舰船船员", "Syndicate Snow Operative" = "辛迪加雪地特工", "Syndicate Stormtrooper" = "辛迪加突击兵",
+			"Templar" = "圣殿骑士", "Tiger Cooperative" = "猛虎合作社", "Trauma Team" = "创伤小队", "Vox" = "沃克斯", "Vítězství Arms SRT Contractor" = "胜利军械 SRT 承包商",
+			"default ds2 outfit" = "DS-2 默认装备", "improper Waystation Outfit" = "中转站装备",
+		)
+		prefixes = list("Deathmatch: " = "死斗：", "DM: " = "死斗：", "Gimmick Assistant - " = "特色助理：", "Legion-Consumed " = "被军团吞噬的", "Mafia " = "黑手党：", "Akula " = "阿库拉")
+		suffixes = list(
+			" (MODsuit)" = "（MOD 外骨骼）", " (MODSuit)" = "（MOD 外骨骼）", " Plasmaman" = "（等离子人）",
+			" (Preview only)" = "（仅供预览）", " - Space" = "（太空）", " (Softsuit)" = "（软式太空服）", " (Less Antag Gear)" = "（精简反派装备）",
+			" (Gloves)" = "（手套）", " (Combat-Ready)" = "（战斗装备）", " (Equipment + MODsuit)" = "（装备及 MOD 外骨骼）", " (Equipment)" = "（装备）", " Corpse" = "尸体",
+		)
+	if(names[value])
+		return names[value]
+	if(!istext(value))
+		return value
+	var/plain_name = format_text(value)
+	if(plain_name != value)
+		return chinese_preset_outfit_display(plain_name)
+	for(var/suffix in suffixes)
+		if(length(value) > length(suffix) && copytext(value, -length(suffix)) == suffix)
+			var/base_name = copytext(value, 1, length(value) - length(suffix) + 1)
+			var/base_display = chinese_outfit_display(base_name)
+			if(base_display != base_name)
+				return "[base_display][suffixes[suffix]]"
+	for(var/prefix in prefixes)
+		if(findtextEx(value, prefix) == 1)
+			var/base_name = copytext(value, length(prefix) + 1)
+			var/base_display = chinese_outfit_display(base_name)
+			if(base_display != base_name)
+				return "[prefixes[prefix]][base_display]"
+	return value
 
 /proc/chinese_granter_spell_display(value)
 	var/static/list/names
@@ -85,6 +181,11 @@
 /proc/chinese_outfit_choice(mob/user, message, title, list/choices)
 	var/list/display_choices = list()
 	for(var/value in choices)
-		display_choices["[chinese_outfit_display(value)] ([value])"] = value
+		var/display_name = chinese_outfit_display(value)
+		var/unique_name = display_name
+		var/duplicate = 1
+		while(unique_name in display_choices)
+			unique_name = "[display_name]（选项[++duplicate]）"
+		display_choices[unique_name] = value
 	var/selection = tgui_input_list(user, message, title, display_choices)
 	return isnull(selection) ? null : display_choices[selection]

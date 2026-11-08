@@ -312,7 +312,7 @@
 	tipper = WEAKREF(user)
 	playsound(src, 'sound/machines/warning-buzzer.ogg', 50)
 	if(prob(10))
-		speak("心理警报：船员 [user.name] 被记录在 [get_area(src)] 虐待机器人，表现出反社会倾向。请安排其接受心理评估。", radio_channel)
+		speak("心理警报：船员 [user.name] 被记录在 [chinese_area_display(get_area(src))] 虐待机器人，表现出反社会倾向。请安排其接受心理评估。", radio_channel)
 
 /mob/living/basic/bot/medbot/explode()
 	var/atom/our_loc = drop_location()

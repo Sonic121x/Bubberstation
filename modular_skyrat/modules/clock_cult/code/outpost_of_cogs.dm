@@ -42,8 +42,8 @@
 	if(!atom_area)
 		atom_area = get_area(atom_turf)
 
-	send_clock_message(null, "[atom_area] 处已开启一道通往我们圣城的传送门，这是以拉特瓦之名值得荣耀的一天。", "<span class='bigbrass'>", msg_ghosts = FALSE)
-	notify_ghosts("[atom_area] 处已开启一道通往我们圣城的传送门，这是以拉特瓦之名值得荣耀的一天。",
+	send_clock_message(null, "[chinese_area_display(atom_area)] 处已开启一道通往我们圣城的传送门，这是以拉特瓦之名值得荣耀的一天。", "<span class='bigbrass'>", msg_ghosts = FALSE)
+	notify_ghosts("[chinese_area_display(atom_area)] 处已开启一道通往我们圣城的传送门，这是以拉特瓦之名值得荣耀的一天。",
 		source = atom_area,
 		notify_flags = NOTIFY_CATEGORY_NOFLASH,
 		header = "通往里比的传送门",
@@ -67,7 +67,7 @@
 	if(!atom_area)
 		atom_area = get_area(portal)
 
-	priority_announce("[atom_area] 处检测到异常读数，请确保附近船员的安全。")
+	priority_announce("[chinese_area_display(atom_area)] 处检测到异常读数，请确保附近船员的安全。")
 
 	for(var/obj/effect/landmark/late_cog_portals/late_portal in GLOB.landmarks_list)
 		var/obj/effect/landmark/portal_exit/new_exit = new(get_turf(late_portal))

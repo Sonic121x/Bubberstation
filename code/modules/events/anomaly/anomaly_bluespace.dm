@@ -16,4 +16,4 @@
 /datum/round_event/anomaly/anomaly_bluespace/announce(fake)
 	if(isnull(impact_area))
 		impact_area = placer.findValidArea()
-	priority_announce("在 [ANOMALY_ANNOUNCE_MEDIUM_TEXT] [impact_area.name] 检测到蓝空间不稳定现象。", "异常警报", ANNOUNCER_MASSIVEBSPACEANOMALIES) //SKYRAT EDIT CHANGE - ORIGINAL: 	priority_announce("Bluespace instability detected on [ANOMALY_ANNOUNCE_MEDIUM_TEXT] [impact_area.name].", "Anomaly Alert")
+	priority_announce("在 [ANOMALY_ANNOUNCE_MEDIUM_TEXT] [chinese_area_display(impact_area)] 检测到蓝空间不稳定现象。", "异常警报", ANNOUNCER_MASSIVEBSPACEANOMALIES) //SKYRAT EDIT CHANGE - ORIGINAL: 	priority_announce("Bluespace instability detected on [ANOMALY_ANNOUNCE_MEDIUM_TEXT] [impact_area.name].", "Anomaly Alert")

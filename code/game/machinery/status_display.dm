@@ -257,7 +257,7 @@ GLOBAL_LIST_EMPTY(key_to_status_display)
 		var/has_any = FALSE
 		for(var/obj/effect/abstract/greenscreen_display/display as anything in active_displays)
 			for(var/atom/movable/thing as anything in display.displaying)
-				. += span_notice("&bull; \A [thing.name]")
+				. += span_notice("&bull; [thing.name]")
 				has_any = TRUE
 		if(!has_any)
 			. += span_notice("&bull; 什么也没有。")

@@ -146,11 +146,11 @@
 		id_examine += "<div class='img_text'>"
 		id_examine += jointext(list(
 			"&bull; 姓名：[id_name || "未知"]",
-			"&bull; 职务：[id_job || "未分配"]",
+			"&bull; 职务：[chinese_job_display(id_job) || "未分配"]",
 			"&bull; 年龄：[id_age || "未知"]",
-			"&bull; 性别：[id_gender || "未知"]",
+			"&bull; 性别：[chinese_record_value_display(id_gender) || "未知"]",
 			"&bull; 血型：[id_blood_type || "?"]",
-			"&bull; 种族：[id_species || "未知"]",
+			"&bull; 种族：[chinese_footprint_species_display(id_species) || "未知"]",
 		), "<br>")
 		id_examine += "</div>" // container
 		id_examine += "</div>" // text
@@ -240,7 +240,7 @@
 				return
 
 			if(href_list["physical_status"])
-				var/health_status = tgui_input_list(human_user, "为此人指定新的身体状况。", "医疗 HUD", PHYSICAL_STATUSES, target_record.physical_status)
+				var/health_status = chinese_record_value_choice(human_user, "为此人指定新的身体状况。", "医疗 HUD", PHYSICAL_STATUSES, target_record.physical_status)
 				if(!health_status || !target_record || !human_user.canUseHUD() || !HAS_TRAIT(human_user, TRAIT_MEDICAL_HUD))
 					return
 
@@ -248,7 +248,7 @@
 				return
 
 			if(href_list["mental_status"])
-				var/health_status = tgui_input_list(human_user, "为此人指定新的心理状况。", "医疗 HUD", MENTAL_STATUSES, target_record.mental_status)
+				var/health_status = chinese_record_value_choice(human_user, "为此人指定新的心理状况。", "医疗 HUD", MENTAL_STATUSES, target_record.mental_status)
 				if(!health_status || !target_record || !human_user.canUseHUD() || !HAS_TRAIT(human_user, TRAIT_MEDICAL_HUD))
 					return
 
@@ -314,7 +314,7 @@
 					to_chat(human_user, span_warning("错误：权限不足。"))
 					return
 				// BUBBER EDIT ADDITION END
-				var/new_status = tgui_input_list(human_user, "为此人指定新的犯罪状态。", "安保 HUD", WANTED_STATUSES(), target_record.wanted_status)
+				var/new_status = chinese_record_value_choice(human_user, "为此人指定新的犯罪状态。", "安保 HUD", WANTED_STATUSES(), target_record.wanted_status)
 				if(!new_status || !target_record || !human_user.canUseHUD() || !HAS_TRAIT(human_user, TRAIT_SECURITY_HUD))
 					return
 
@@ -337,7 +337,7 @@
 					return
 				var/sec_record_message = ""
 				sec_record_message += "<b>姓名：</b> [target_record.name]"
-				sec_record_message += "\n<b>犯罪状态：</b> [target_record.wanted_status]"
+				sec_record_message += "\n<b>犯罪状态：</b> [chinese_record_value_display(target_record.wanted_status)]"
 				sec_record_message += "\n<b>罚单：</b> [length(target_record.citations)]"
 				sec_record_message += "\n<b>备注：</b> [target_record.security_note || "无"]"
 				sec_record_message += "\n<b>犯罪记录：</b> [length(target_record.crimes)] 起事件"
