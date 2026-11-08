@@ -592,7 +592,7 @@
 	icon = 'icons/mob/rideables/vehicles.dmi';
 	icon_state = "clowncar";
 	name = "locked clown car";
-	desc = "Peering in through the windows you can see they're having a grand, graphically sexual time in there. Best leave them alone. They're armed."
+	desc = "车门紧锁，里面的小丑似乎正在开派对。" // 自定义修改：移除地图物件的成人描述
 	},
 /obj/effect/abstract/marker{
 	icon = 'modular_skyrat/master_files/icons/obj/skyscraper/rain.dmi';

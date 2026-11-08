@@ -6,6 +6,8 @@
 /datum/asset/spritesheet_batched/preferences/create_spritesheets()
 	for (var/preference_key in GLOB.preference_entries_by_key)
 		var/datum/preference/choiced/preference = GLOB.preference_entries_by_key[preference_key]
+		if(erp_preference_blocked(preference.type)) // 自定义修改：不生成成人偏好图标资源
+			continue
 		if (!istype(preference))
 			continue
 
@@ -50,6 +52,8 @@
 		qdel(middleware)
 
 	for (var/preference_type in GLOB.preference_entries)
+		if(erp_preference_blocked(preference_type)) // 自定义修改：不向客户端发送成人偏好选项及说明
+			continue
 		var/datum/preference/preference_entry = GLOB.preference_entries[preference_type]
 		var/data = preference_entry.compile_constant_data()
 		if (!isnull(data))

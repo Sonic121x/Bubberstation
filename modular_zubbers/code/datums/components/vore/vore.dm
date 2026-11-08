@@ -66,7 +66,7 @@
 
 /datum/component/vore/Initialize(...)
 	. = ..()
-	if(!is_type_in_typecache(parent, GLOB.vore_allowed_mob_types))
+	if(CONFIG_GET(flag/disable_erp_preferences) || !is_type_in_typecache(parent, GLOB.vore_allowed_mob_types)) // 自定义修改：强制屏蔽成人内容并保留普通服饰
 		return COMPONENT_INCOMPATIBLE
 	load_vore_prefs(parent)
 	vore_mode_action = new(src)

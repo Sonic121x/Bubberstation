@@ -177,6 +177,8 @@
 /proc/get_random_reagent_id(randomization_flags = REAGENT_SPAWN_RANDOM_PRODUCERS, list/blacklist = list(), list/whitelist = subtypesof(/datum/reagent))
 	var/list/reagent_list_to_process = list()
 	for(var/datum/reagent/reagent_path as anything in whitelist - blacklist)
+		if(erp_content_blocked(reagent_path)) // 自定义修改：防止随机试剂生成器选中已禁用的成人物质
+			continue
 		if(reagent_path::randomized_spawns & randomization_flags)
 			reagent_list_to_process += reagent_path
 	return pick(reagent_list_to_process)

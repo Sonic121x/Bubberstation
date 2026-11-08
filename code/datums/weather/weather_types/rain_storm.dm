@@ -165,7 +165,7 @@
 	GLOB.wizard_rain_reagents |= pick(subtypesof(/datum/reagent/mutationtoxin))
 	GLOB.wizard_rain_reagents |= pick(subtypesof(/datum/reagent/plantnutriment))
 	GLOB.wizard_rain_reagents |= pick(subtypesof(/datum/reagent/impurity))
-	GLOB.wizard_rain_reagents |= pick(subtypesof(/datum/reagent/drug))
+	GLOB.wizard_rain_reagents |= pick(erp_filter_candidates(subtypesof(/datum/reagent/drug))) // 自定义修改：魔法雨排除成人药物
 	GLOB.wizard_rain_reagents |= pick(typesof(/datum/reagent/glitter/random))
 	GLOB.wizard_rain_reagents |= pick(typesof(/datum/reagent/uranium))
 	GLOB.wizard_rain_reagents |= pick(typesof(/datum/reagent/luminescent_fluid))
@@ -197,7 +197,7 @@
 		/datum/reagent/consumable/condensedcapsaicin,
 		/datum/reagent/consumable/frostoil,
 		// include a random food or drink
-		pick(subtypesof(/datum/reagent/consumable)),
+		pick(erp_filter_candidates(subtypesof(/datum/reagent/consumable))), // 自定义修改：魔法雨排除成人体液
 		// include a random regular drink (vodka, wine, beer, etc.)
 		pick(/obj/machinery/chem_dispenser/drinks/beer::beer_dispensable_reagents),
 	)
@@ -232,9 +232,9 @@
 	GLOB.wizard_rain_reagents |= allowed_exotic_reagents
 
 	// add a few randomized reagents not listed above so they at least have a chance
-	GLOB.wizard_rain_reagents |= pick(subtypesof(/datum/reagent))
-	GLOB.wizard_rain_reagents |= pick(subtypesof(/datum/reagent))
-	GLOB.wizard_rain_reagents |= pick(subtypesof(/datum/reagent))
+	GLOB.wizard_rain_reagents |= pick(erp_filter_candidates(subtypesof(/datum/reagent))) // 自定义修改：随机化学雨排除成人试剂
+	GLOB.wizard_rain_reagents |= pick(erp_filter_candidates(subtypesof(/datum/reagent))) // 自定义修改：随机化学雨排除成人试剂
+	GLOB.wizard_rain_reagents |= pick(erp_filter_candidates(subtypesof(/datum/reagent))) // 自定义修改：随机化学雨排除成人试剂
 
 	whitelist_weather_reagents = GLOB.wizard_rain_reagents
 	return ..()

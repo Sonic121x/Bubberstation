@@ -21,6 +21,8 @@
 
 /proc/init_emote_keybinds()
 	for(var/i in valid_subtypesof(/datum/emote))
+		if(ispath(i, /datum/emote/living/lewd)) // 自定义修改：隐藏成人表情快捷键
+			continue
 		var/datum/emote/faketype = i
 		if(!initial(faketype.key))
 			continue

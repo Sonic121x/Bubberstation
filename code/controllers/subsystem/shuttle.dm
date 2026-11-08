@@ -172,7 +172,7 @@ SUBSYSTEM_DEF(shuttle)
 			continue
 
 		//we have to create the pack before checking if it has 'contains' because generate_supply_packs manually sets it, therefore we cant check initial.
-		if(!pack.contains)
+		if(!pack.contains || erp_list_blocked(pack.contains)) // 自定义修改：强制屏蔽成人内容并保留普通服饰
 			continue
 
 		//Adds access requirements to the end of each description.

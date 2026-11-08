@@ -125,6 +125,8 @@ other types of metals and chemistry for reagents).
 
 /// Produce the resulting item, optionally with a specfic amount if we're a stack design
 /datum/design/proc/create_result(atom/drop_loc, list/custom_materials, amount)
+	if(erp_content_blocked(build_path)) // 自定义修改：封闭成人内容的间接生成与显示入口
+		return null
 	if (!ispath(build_path, /obj/item/stack) && amount > 1)
 		CRASH("[src] create_result was passed an amount higher than 1, despite not being a stack design!")
 

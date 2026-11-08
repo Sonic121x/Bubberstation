@@ -398,12 +398,12 @@
 /obj/item/clothing/neck/mind_collar/Initialize(mapload)
 	. = ..()
 	create_storage(storage_type = /datum/storage/pockets/small/kink_collar/mind_collar)
-	remote = new /obj/item/mind_controller(src, src)
-	remote.forceMove(src)
+	// remote = new /obj/item/mind_controller(src, src) // 自定义修改：强制屏蔽成人内容并保留普通服饰
+	// remote.forceMove(src) // 自定义修改：强制屏蔽成人内容并保留普通服饰
 
 /obj/item/clothing/neck/mind_collar/proc/emoting_proc()
 	var/mob/living/carbon/human/user = src.loc
-	if(istype(user) && src == user.wear_neck)
+	if(!CONFIG_GET(flag/disable_erp_preferences) && istype(user) && src == user.wear_neck) // 自定义修改：强制屏蔽成人内容并保留普通服饰
 		user.emote("me", 1, "[emoting]", TRUE)
 
 /obj/item/clothing/neck/mind_collar/Destroy()

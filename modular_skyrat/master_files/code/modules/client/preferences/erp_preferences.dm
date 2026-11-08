@@ -1,8 +1,8 @@
 /datum/config_entry/flag/disable_erp_preferences
-	default = FALSE
+	default = TRUE // 自定义修改：强制屏蔽成人内容并保留普通服饰
 
 /datum/config_entry/flag/disable_lewd_items
-	default = FALSE
+	default = TRUE // 自定义修改：强制屏蔽成人内容并保留普通服饰
 
 /datum/config_entry/str_list/erp_emotes_to_disable
 

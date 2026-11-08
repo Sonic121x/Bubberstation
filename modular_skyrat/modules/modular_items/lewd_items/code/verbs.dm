@@ -1,4 +1,6 @@
 GAME_VERB(/mob/living/carbon/human, climax_verb, "高潮", "IC")
+	if(CONFIG_GET(flag/disable_erp_preferences)) // 自定义修改：强制屏蔽成人机制并保留服饰用途
+		return
 	if(!has_status_effect(/datum/status_effect/climax_cooldown))
 		if(tgui_alert(usr, "你确定要达到高潮吗？", "高潮", list("是", "否")) == "是")
 			if(IS_UNCONSCIOUS(usr))
@@ -35,6 +37,7 @@ GAME_VERB(/mob/living, reflexes_verb, "切换触碰反射", "IC")
 		UNASSIGN_GAME_VERB(src, /mob/living/carbon/human, climax_verb)
 	if(CONFIG_GET(flag/disable_lewd_items))
 		UNASSIGN_GAME_VERB(src, /mob/living/carbon/human, safeword)
+		UNASSIGN_GAME_VERB(src, /mob/living/carbon/human, remove_lewd_items) // 自定义修改：强制屏蔽成人机制并保留服饰用途
 
 GAME_VERB_DESC(/mob/living/carbon/human, remove_lewd_items, "移除情趣物品", "移除你身上的所有情趣物品。", "OOC")
 	// literally just another way to safeword

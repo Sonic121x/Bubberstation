@@ -3,6 +3,8 @@
 	var/rate_limit_belly_creation = 0
 
 /datum/component/vore/ui_interact(mob/user, datum/tgui/ui)
+	if(CONFIG_GET(flag/disable_erp_preferences)) // 自定义修改：强制屏蔽成人机制并保留服饰用途
+		return
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "VorePanel", "吞食面板")
@@ -86,6 +88,8 @@
 	return data
 
 /datum/component/vore/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
+	if(CONFIG_GET(flag/disable_erp_preferences)) // 自定义修改：强制屏蔽成人机制并保留服饰用途
+		return FALSE
 	. = ..()
 	if(.)
 		return

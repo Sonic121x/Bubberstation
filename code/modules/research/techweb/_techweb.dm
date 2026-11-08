@@ -144,7 +144,7 @@
 /datum/techweb/proc/add_design(datum/design/design, custom = FALSE, list/add_to)
 	if(ispath(design))
 		design = SSresearch.techweb_designs[design]
-	if(!istype(design))
+	if(!istype(design) || erp_content_blocked(design.build_path)) // 自定义修改：封闭成人内容的间接生成与显示入口
 		return FALSE
 
 	if(custom)

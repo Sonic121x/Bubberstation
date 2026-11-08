@@ -9246,6 +9246,7 @@
 #include "modular_zubbers\code\_globalvars\tgui_fallback.dm"
 #include "modular_zubbers\code\_globalvars\lists\_maintenance_loot.dm"
 #include "modular_zubbers\code\_globalvars\lists\erp_items.dm"
+#include "modular_zubbers\code\modules\erp_disabled\policy.dm" // 自定义修改：强制屏蔽成人内容并保留普通服饰
 #include "modular_zubbers\code\_globalvars\lists\maintenance_loot_common.dm"
 #include "modular_zubbers\code\_globalvars\lists\maintenance_loot_oddity.dm"
 #include "modular_zubbers\code\_globalvars\lists\maintenance_loot_one_of_a_kind.dm"

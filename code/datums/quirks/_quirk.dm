@@ -68,6 +68,8 @@
  * * quirk_transfer - If this is being added to the holder as part of a quirk transfer. Quirks can use this to decide not to spawn new items or apply any other one-time effects.
  */
 /datum/quirk/proc/add_to_holder(mob/living/new_holder, quirk_transfer = FALSE, client/client_source, unique = TRUE, announce = TRUE)
+	if(erp_content_blocked(type)) // 自定义修改：封闭成人内容的间接生成与显示入口
+		return FALSE
 	if(!new_holder)
 		CRASH("Quirk attempted to be added to null mob.")
 

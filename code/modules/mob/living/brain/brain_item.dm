@@ -619,6 +619,8 @@
 			. += BT
 
 /obj/item/organ/brain/proc/can_gain_trauma(datum/brain_trauma/trauma, resilience, natural_gain = FALSE)
+	if(erp_content_blocked(ispath(trauma) ? trauma : trauma?.type)) // 自定义修改：封闭成人内容的间接生成与显示入口
+		return FALSE
 	if(HAS_TRAIT(src, TRAIT_BRAIN_TRAUMA_IMMUNITY))
 		return FALSE
 

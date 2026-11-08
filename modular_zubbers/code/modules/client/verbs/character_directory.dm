@@ -189,10 +189,10 @@ GAME_VERB_DESC(/client, show_character_directory, "角色目录", "显示所有�
 		data["personalVisibility"] = READ_PREFS(user, toggle/show_in_directory)
 		data["personalAttraction"] = READ_PREFS(user, choiced/attraction)
 		data["personalGender"] = READ_PREFS(user, choiced/display_gender)
-		data["personalErpTag"] = READ_PREFS(user, choiced/erp_status)
-		data["personalVoreTag"] = READ_PREFS(user, choiced/erp_status_v)
-		data["personalHypnoTag"] = READ_PREFS(user, choiced/erp_status_hypno)
-		data["personalNonconTag"] = READ_PREFS(user, choiced/erp_status_nc)
+		data["personalErpTag"] = "" // 自定义修改：屏蔽成人偏好与角色信息展示
+		data["personalVoreTag"] = "" // 自定义修改：屏蔽成人偏好与角色信息展示
+		data["personalHypnoTag"] = "" // 自定义修改：屏蔽成人偏好与角色信息展示
+		data["personalNonconTag"] = "" // 自定义修改：屏蔽成人偏好与角色信息展示
 		data["prefsOnly"] = TRUE
 
 	data["canOrbit"] = isobserver(user)
@@ -211,13 +211,13 @@ GAME_VERB_DESC(/client, show_character_directory, "角色目录", "显示所有�
 		var/species = "询问"
 		var/ooc_notes = ""
 		var/flavor_text = ""
-		var/nsfw_flavor_text = ""
+		// 自定义修改：停止读取和传递成人角色数据
 		var/attraction = "未设置"
 		var/gender = "非二元"
-		var/erp = "询问"
-		var/vore = "询问"
-		var/hypno = "询问"
-		var/noncon = "询问"
+		// 自定义修改：停止读取和传递成人角色数据
+		// 自定义修改：停止读取和传递成人角色数据
+		// 自定义修改：停止读取和传递成人角色数据
+		// 自定义修改：停止读取和传递成人角色数据
 		var/character_ad = ""
 		var/exploitable = ""
 		var/ref = REF(mob)
@@ -237,9 +237,7 @@ GAME_VERB_DESC(/client, show_character_directory, "角色目录", "显示所有�
 				species = "[chinese_footprint_species_display(human.dna.species.name)]"
 			//Load standard flavor text preference
 			flavor_text = READ_PREFS(human, text/flavor_text)
-			if((READ_PREFS(human, choiced/show_nsfw_flavor_text) == "Always On") || ((READ_PREFS(human, choiced/show_nsfw_flavor_text) == "Nude Only") && !(human.w_uniform)))
-				nsfw_flavor_text = READ_PREFS(human, text/flavor_text_nsfw)
-			else nsfw_flavor_text = "不可用"
+			// 自定义修改：不读取成人简介或头像
 
 		else if(issilicon(mob))
 			var/mob/living/silicon/silicon = mob
@@ -247,18 +245,16 @@ GAME_VERB_DESC(/client, show_character_directory, "角色目录", "显示所有�
 			species = READ_PREFS(silicon, choiced/brain_type)
 			//Load silicon flavor text in place of normal flavor text
 			flavor_text = READ_PREFS(silicon, text/silicon_flavor_text)
-			if(READ_PREFS(silicon, choiced/show_nsfw_flavor_text) != "Never")
-				nsfw_flavor_text = READ_PREFS(silicon, text/flavor_text_nsfw/silicon)
-			else nsfw_flavor_text = "不可用"
+			// 自定义修改：不读取成人简介或头像
 		//Don't show if they are not a human or a silicon
 		else continue
 		//List of all the shown ERP preferences in the Directory. If there is none, return "Unset"
 		attraction = READ_PREFS(mob, choiced/attraction)
 		gender = READ_PREFS(mob, choiced/display_gender)
-		erp = READ_PREFS(mob, choiced/erp_status)
-		vore = READ_PREFS(mob, choiced/erp_status_v)
-		hypno = READ_PREFS(mob, choiced/erp_status_hypno)
-		noncon = READ_PREFS(mob, choiced/erp_status_nc)
+		// 自定义修改：停止读取和传递成人角色数据
+		// 自定义修改：停止读取和传递成人角色数据
+		// 自定义修改：停止读取和传递成人角色数据
+		// 自定义修改：停止读取和传递成人角色数据
 		character_ad = READ_PREFS(mob, text/character_ad)
 		ooc_notes = READ_PREFS(mob, text/ooc_notes)
 		//If the user is an antagonist or Observer, we want them to be able to see exploitables in the Directory.
@@ -276,13 +272,13 @@ GAME_VERB_DESC(/client, show_character_directory, "角色目录", "显示所有�
 			"ooc_notes" = ooc_notes,
 			"attraction" = attraction,
 			"gender" = gender,
-			"erp" = erp,
-			"vore" = vore,
-			"hypno" = hypno,
-			"noncon" = noncon,
+			"erp" = "", // 自定义修改：屏蔽成人偏好与角色信息展示
+			"vore" = "", // 自定义修改：屏蔽成人偏好与角色信息展示
+			"hypno" = "", // 自定义修改：屏蔽成人偏好与角色信息展示
+			"noncon" = "", // 自定义修改：屏蔽成人偏好与角色信息展示
 			"character_ad" = character_ad,
 			"flavor_text" = flavor_text,
-			"nsfw_flavor_text" = nsfw_flavor_text,
+			"nsfw_flavor_text" = "", // 自定义修改：屏蔽成人偏好与角色信息展示
 			"ref" = ref
 		)))
 

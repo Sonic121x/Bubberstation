@@ -59,7 +59,7 @@
 	var/datum/preferences/preferences = holder.client?.prefs
 
 	var/flavor_text
-	var/flavor_text_nsfw
+	// 自定义修改：停止读取和传递成人角色数据
 	var/custom_species
 	var/custom_species_lore
 	var/obscured
@@ -67,7 +67,7 @@
 	var/obscurity_examine_pref = preferences?.read_preference(/datum/preference/toggle/obscurity_examine)
 	var/ooc_notes = ""
 	var/headshot = ""
-	var/headshot_nsfw = ""
+	// 自定义修改：停止读取和传递成人角色数据
 	var/art_ref = ""
 	var/art_ref_nsfw = preferences?.read_preference(/datum/preference/toggle/art_ref_nsfw)
 	var/character_ad = ""
@@ -81,7 +81,7 @@
 	var/others = preferences?.read_preference(/datum/preference/choiced/directory_character_prefs/other_pref)
 	var/demihumans = preferences?.read_preference(/datum/preference/choiced/directory_character_prefs/demihuman_pref)
 	var/humans = preferences?.read_preference(/datum/preference/choiced/directory_character_prefs/human_pref)
-	var/show_nsfw_flavor_text = preferences?.read_preference(/datum/preference/choiced/show_nsfw_flavor_text)
+	// 自定义修改：成人简介显示策略由统一屏蔽规则处理
 
 	//  Handle OOC notes first
 	if(preferences)
@@ -120,9 +120,7 @@
 			ooc_notes += preferences.read_preference(/datum/preference/text/ooc_notes/silicon)
 			headshot += preferences.read_preference(/datum/preference/text/headshot/silicon)
 			name = holder.name
-			if(show_nsfw_flavor_text != "Never")
-				flavor_text_nsfw = preferences.read_preference(/datum/preference/text/flavor_text_nsfw/silicon)
-				headshot_nsfw = preferences.read_preference(/datum/preference/text/headshot/silicon/nsfw)
+			// 自定义修改：硅基角色不读取成人简介或头像
 
 		//Round Removal opt in stuff
 		if(CONFIG_GET(flag/use_rr_opt_in_preferences))
@@ -147,9 +145,7 @@
 			flavor_text = holder_human.dna.features["flavor_text"]
 			art_ref = holder_human.dna.features["art_ref"]
 			name = holder.name
-			if(show_nsfw_flavor_text == "Always On" || (show_nsfw_flavor_text == "Nude Only" && !(holder_human.w_uniform)))
-				flavor_text_nsfw = holder_human.dna.features["flavor_text_nsfw"]
-				headshot_nsfw = holder_human.dna.features["headshot_nsfw"]
+			// 自定义修改：不读取成人简介或头像
 
 		//Custom species handling. Reports the normal custom species if there is not one set.
 			if(holder_human.dna.species.lore_protected || holder_human.dna.features["custom_species"] == "")
@@ -172,13 +168,13 @@
 	data["character_name"] = name
 	data["assigned_map"] = viewer_screen?.assigned_map
 	data["flavor_text"] = flavor_text
-	data["flavor_text_nsfw"] = flavor_text_nsfw
+	data["flavor_text_nsfw"] = "" // 自定义修改：隐藏角色创建中的成人设置并阻止旧存档恢复
 	data["ooc_notes"] = ooc_notes
 	data["custom_species"] = custom_species
 	data["custom_species_lore"] = custom_species_lore
 	data["headshot"] = headshot
-	data["headshot_nsfw"] = headshot_nsfw
-	data["art_ref"] = art_ref
+	data["headshot_nsfw"] = "" // 自定义修改：隐藏角色创建中的成人设置并阻止旧存档恢复
+	data["art_ref"] = art_ref_nsfw ? "" : art_ref // 自定义修改：隐藏角色创建中的成人设置并阻止旧存档恢复
 	data["art_ref_nsfw"] = art_ref_nsfw
 	data["character_ad"] = character_ad
 	return data

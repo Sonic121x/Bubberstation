@@ -126,6 +126,8 @@ GLOBAL_LIST_INIT(construct_radial_images, list(
 /proc/init_emote_list()
 	. = list()
 	for(var/path in valid_subtypesof(/datum/emote))
+		if(ispath(path, /datum/emote/living/lewd)) // 自定义修改：不注册成人表情及帮助列表条目
+			continue
 		var/datum/emote/E = new path()
 		if(E.key)
 			if(!.[E.key])

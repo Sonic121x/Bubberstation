@@ -91,6 +91,8 @@ GLOBAL_LIST_INIT(stacked_metabolization_effect, init_chemical_side_effects())
 	var/list/reagent_list = list()
 
 	for(var/datum/reagent/path as anything in valid_subtypesof(/datum/reagent))
+		if(erp_content_blocked(path)) // 自定义修改：不注册成人试剂，统一隐藏搜索、分配器和管道选择菜单
+			continue
 		var/datum/reagent/target_object = new path()
 		target_object.mass = rand(10, 800)
 		reagent_list[path] = target_object
@@ -135,6 +137,8 @@ GLOBAL_LIST_INIT(stacked_metabolization_effect, init_chemical_side_effects())
 			reaction = new reaction(LAZYACCESS(json, "[reaction]"))
 		else
 			reaction = new reaction
+		if(!QDELETED(reaction) && erp_reaction_blocked(reaction)) // 自定义修改：在建立所有反应和界面索引前剔除成人配方
+			qdel(reaction)
 		if(!QDELETED(reaction)) // in case random recipe generation fail
 			reactions += reaction
 	// Ok so we're gonna do a thingTM here

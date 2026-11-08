@@ -40,7 +40,7 @@
 		if(found_type == initial(found_type.abstract_type))
 			continue
 
-		if(!initial(found_type.item_path)) // SKYRAT EDIT ADDITION
+		if(!initial(found_type.item_path) || erp_content_blocked(initial(found_type.item_path))) // 自定义修改：强制屏蔽成人内容并保留普通服饰
 			continue
 
 		if(!ispath(initial(found_type.item_path), /obj/item))
