@@ -16,7 +16,7 @@
 
 /proc/try_user_announce(mob/living/user, list/available_sounds = GLOB.announcer_keys)
 	//build our announcement
-	var/origin = reject_bad_text(tgui_input_text(user, "公告由谁发布，或来自哪里？", "公告来源", chinese_area_display(get_area_name(user)), max_length = 28))
+	var/origin = reject_bad_text(tgui_input_text(user, "公告由谁发布，或来自哪里？", "公告来源", chinese_area_display(get_area_name(user)), max_length = 28), ascii_only = FALSE) // 自定义修改：允许中文公告来源，保留原有文本安全校验
 	if(!origin)
 		user.balloon_alert(user, "来源无效！")
 		return FALSE
@@ -28,11 +28,11 @@
 	if(!color)
 		user.balloon_alert(user, "颜色无效！")
 		return FALSE
-	var/title = reject_bad_text(tgui_input_text(user, "请输入公告标题。", "公告标题", max_length = 42))
+	var/title = reject_bad_text(tgui_input_text(user, "请输入公告标题。", "公告标题", max_length = 42), ascii_only = FALSE) // 自定义修改：允许中文公告标题，保留原有文本安全校验
 	if(!title)
 		user.balloon_alert(user, "标题无效！")
 		return FALSE
-	var/input = reject_bad_text(tgui_input_text(user, "请输入公告正文。", "公告正文", max_length = 512, multiline = TRUE))
+	var/input = reject_bad_text(tgui_input_text(user, "请输入公告正文。", "公告正文", max_length = 512, multiline = TRUE), ascii_only = FALSE) // 自定义修改：允许中文公告正文，保留原有文本安全校验
 	if(!input)
 		user.balloon_alert(user, "正文无效！")
 		return FALSE
