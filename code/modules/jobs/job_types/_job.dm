@@ -333,26 +333,26 @@
 /datum/job/proc/get_spawn_message_information(alt_title = title) // SKYRAT EDIT CHANGE - ALTERNATIVE_JOB_TITLES - ORIGINAL: /datum/job/proc/get_spawn_message_information()
 	SHOULD_CALL_PARENT(TRUE)
 	var/list/info = list()
-	info += "<b>你是 [alt_title]。</b>\n" // SKYRAT EDIT CHANGE - ALTERNATIVE_JOB_TITLES - ORIGINAL: info += "<b>You are the [title].</b>\n"
+	info += "<b>你是[chinese_job_display(alt_title)]。</b>\n" // SKYRAT EDIT CHANGE - ALTERNATIVE_JOB_TITLES - ORIGINAL: info += "<b>You are the [title].</b>\n"
 	var/related_policy = get_policy(policy_override || title)
 	var/radio_info = get_radio_information()
 	if(related_policy)
 		info += related_policy
 	if(supervisors)
-		info += "作为 [alt_title == title ? alt_title : "[alt_title]（[title]）"]，你直接向 [supervisors] 负责。特殊情况可能会改变这一关系。" // SKYRAT EDIT CHANGE - ALTERNATIVE_JOB_TITLES - ORIGINAL: info += "As the [title] you answer directly to [supervisors]. Special circumstances may change this."
+		info += "作为[alt_title == title ? chinese_job_display(alt_title) : "[chinese_job_display(alt_title)]（[chinese_job_display(title)]）"]，你直接向[supervisors]负责。特殊情况可能会改变这一关系。" // SKYRAT EDIT CHANGE - ALTERNATIVE_JOB_TITLES - ORIGINAL: info += "As the [title] you answer directly to [supervisors]. Special circumstances may change this."
 	if(radio_info)
 		info += radio_info
 	if(req_admin_notify)
-		info += "<b>You are playing a job that is important for Game Progression. \
-			If you have to disconnect, please notify the admins via adminhelp.</b>"
+		info += "<b>你所担任的职业对本局游戏的推进至关重要。\
+			如果你必须断线离开，请通过管理员求助通知管理员。</b>"
 	if(CONFIG_GET(number/minimal_access_threshold))
-		info += span_boldnotice("由于本空间站最初的人员配置为 \
-			[CONFIG_GET(flag/jobs_have_minimal_access) ? "全员编制，仅包含你岗位所需的权限" : "骨干预备编制，可能已额外添加了一些权限"] \
-			这些权限已被添加到你的身份卡中。")
+		info += span_boldnotice("由于本空间站最初的人员配置为\
+			[CONFIG_GET(flag/jobs_have_minimal_access) ? "全员编制，你仅获得了岗位所需的权限" : "骨干预备编制，你可能获得了一些额外权限"]。\
+			相应权限已添加到你的身份卡中。")
 	//SKYRAT EDIT ADDITION START - ALTERNATIVE_JOB_TITLES
 	if(alt_title != title)
 		info += span_warning("请记住，候补职称纯粹用于增添风味和角色扮演。")
-		info += span_doyourjobidiot("不要用你的“[alt_title]”候补职称作为逃避 [title] 职责的借口。")
+		info += span_doyourjobidiot("不要用你的“[chinese_job_display(alt_title)]”候补职称作为逃避[chinese_job_display(title)]职责的借口。")
 	//SKYRAT EDIT END
 
 	return info

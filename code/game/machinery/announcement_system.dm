@@ -2,8 +2,8 @@ GLOBAL_LIST_EMPTY(announcement_systems)
 
 /obj/machinery/announcement_system
 	density = TRUE
-	name = "\improper 自动公告系统"
-	desc = "通过无线电发布日常公告的自动公告系统。"
+	name = "\proper 自动播报系统"
+	desc = "通过无线电发布日常公告的自动播报系统。"
 	icon = 'icons/obj/machines/telecomms.dmi'
 	icon_state = "AAS_On"
 	base_icon_state = "AAS"
@@ -147,7 +147,7 @@ GLOBAL_LIST_EMPTY(announcement_systems)
 				update_appearance()
 		if("Text")
 			if(!(params["lineKey"] in config.announcement_lines_map))
-				message_admins("[ADMIN_LOOKUPFLW(usr)]试图设置自动公告系统的[config.name]中不存在的公告行，可能是 href 注入。收到的行：[html_encode(params["lineKey"])]")
+				message_admins("[ADMIN_LOOKUPFLW(usr)]试图设置自动播报系统的[config.name]中不存在的公告行，可能是 href 注入。收到的行：[html_encode(params["lineKey"])]")
 				log_game("[key_name(usr)] tried to mess with AAS. For [config.name] he tried to edit nonexistend [params["lineKey"]]")
 				return
 			var/new_message = trim(html_encode(params["newText"]), MAX_AAS_LENGTH)
@@ -237,7 +237,7 @@ GLOBAL_LIST_EMPTY(announcement_systems)
 	announcer.announce(aas_config_entry_type, variables_map, channels, announcement_line, command_span)
 
 /datum/aas_config_entry
-	var/name = "自动公告系统配置项"
+	var/name = "自动播报系统配置项"
 	// Should we broadcast this announcement?
 	var/enabled = TRUE
 	// The announcement message. Key will be displayed in the UI.
@@ -260,7 +260,7 @@ GLOBAL_LIST_EMPTY(announcement_systems)
 		announcement_message = announcement_lines_map[announcement_lines_map[1]]
 	// Replace variables with their value
 	for(var/variable in vars_and_tooltips_map)
-		announcement_message = replacetext_char(announcement_message, "%[variable]", variables_map[variable] || "\[无数据\]")
+		announcement_message = replacetext_char(announcement_message, "%[variable]", (variable == "RANK" ? chinese_job_display(variables_map[variable]) : variables_map[variable]) || "\[无数据\]")
 	return announcement_message
 
 /// Called when the announcement system is emagged or EMPed.
