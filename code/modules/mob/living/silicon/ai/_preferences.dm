@@ -103,6 +103,9 @@ GLOBAL_LIST_INIT(ai_hologram_category_options, list(
 		AI_HOLOGRAM_NARSIE,
 		AI_HOLOGRAM_RATVAR,
 		AI_HOLOGRAM_XENO,
+		AI_HOLOGRAM_DRAGONDAD,//大龙成像
+		AI_HOLOGRAM_DRAGONDADSEC,
+		AI_HOLOGRAM_VICO,
 	),
 ))
 
@@ -135,6 +138,9 @@ GLOBAL_LIST_INIT(ai_hologram_icons, list(
 	AI_HOLOGRAM_NARSIE = 'icons/mob/silicon/ai.dmi',
 	AI_HOLOGRAM_RATVAR = 'icons/mob/silicon/ai.dmi',
 	AI_HOLOGRAM_XENO = 'icons/mob/nonhuman-player/alien.dmi',
+	AI_HOLOGRAM_DRAGONDAD = 'modular_z121/icons/mob/robots_tall2.dmi',//大龙成像
+	AI_HOLOGRAM_DRAGONDADSEC = 'modular_z121/icons/mob/robots_tall2.dmi',
+	AI_HOLOGRAM_VICO = 'modular_z121/icons/mob/robots_Vi.dmi',
 ))
 
 // New items need to also be added to ai_hologram_icons list
@@ -166,6 +172,9 @@ GLOBAL_LIST_INIT(ai_hologram_icon_state, list(
 	AI_HOLOGRAM_NARSIE = "horror",
 	AI_HOLOGRAM_RATVAR = "clock",
 	AI_HOLOGRAM_XENO = "alienq",
+	AI_HOLOGRAM_DRAGONDAD = "DragondaddyHolo",//大龙成像
+	AI_HOLOGRAM_DRAGONDADSEC = "DragondaddySecHolo",
+	AI_HOLOGRAM_VICO = "unicornHolo",
 ))
 
 
@@ -176,6 +185,8 @@ GLOBAL_LIST_INIT(ai_core_display_screens, sort_list(list(
 	"Banned",
 	"Bliss",
 	"Blue",
+	"BigDragon",
+	"BigDragon-m",//大龙AI
 	"Clown",
 	"Database",
 	"Dorf",

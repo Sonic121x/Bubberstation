@@ -541,6 +541,7 @@
 			"desc" = design["desc"],
 			"cost" = cost,
 			"id" = "[index]",
+			"path" = "[index]",   //修复芯片复制
 			"icon" = "integrated_circuit",
 			"categories" = list("/已保存的电路"),
 		)

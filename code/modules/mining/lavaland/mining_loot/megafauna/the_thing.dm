@@ -99,8 +99,8 @@
 	lines += "有机/无机体完整度估算：[owner.health]"
 	if(mainframe)
 		lines += span_warning("已被另一个数字实体占用。")
-	else if(connected_ai && connected_ai != user)
-		lines += span_warning("上行链路已被另一个数字实体锁定。")
+//	else if(connected_ai && connected_ai != user)
+//		lines += span_warning("上行链路已被另一个数字实体锁定。")  允许共享AI人
 	else if(!is_sufficiently_augmented())
 		lines += span_warning("检测到有机器官。仅限机械器官，无法接管。")
 	else

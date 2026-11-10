@@ -748,6 +748,9 @@
 	#define AI_HOLOGRAM_NARSIE "Narsie"
 	#define AI_HOLOGRAM_RATVAR "Ratvar"
 	#define AI_HOLOGRAM_XENO "Xeno Queen"
+	#define AI_HOLOGRAM_DRAGONDAD "龙爸"//大龙成像
+	#define AI_HOLOGRAM_DRAGONDADSEC "龙爹Sec"
+	#define AI_HOLOGRAM_VICO "独角兽"
 
 /// Icon state to use for ai displays that just turns them off
 #define AI_DISPLAY_DONT_GLOW "ai_off"
