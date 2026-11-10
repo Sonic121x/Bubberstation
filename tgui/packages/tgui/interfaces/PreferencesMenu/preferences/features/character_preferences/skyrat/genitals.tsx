@@ -334,19 +334,19 @@ export const erp_free_use: FeatureToggle = {
 };
 
 export const oviparity_eggs_max: Feature<number> = {
-  name: 'Ovulation Max',
-  description: 'Maximum number of eggs your character can store at once.',
+  name: '存卵上限',
+  description: '角色体内同时容纳的卵的最大数量。',
   component: FeatureNumberInput,
 };
 
 export const oviparity_eggs_rate: Feature<number> = {
-  name: 'Ovulation Period',
-  description: 'Number of seconds between each produced egg.',
+  name: '成卵间隔',
+  description: '每形成一枚卵的间隔，单位为秒。',
   component: FeatureNumberInput,
 };
 
 export const oviparity_egglaying_rate: Feature<number> = {
-  name: 'Oviposition Period',
-  description: 'Number of seconds it takes to lay an egg.',
+  name: '产卵耗时',
+  description: '产下一枚卵所需的时间，单位为秒。',
   component: FeatureNumberInput,
 };

@@ -39,7 +39,7 @@
 	INVOKE_ASYNC(src, PROC_REF(malfshunt), malf)
 
 /obj/machinery/power/apc/proc/malfshunt(mob/living/silicon/ai/malf)
-	var/confirm = tgui_alert(malf, "你确定要分流吗？这会把你带出核心！", "分流至 [name]？", list("Yes", "No"))
+	var/confirm = chinese_tgui_alert_display(malf, "你确定要分流吗？这会把你带出核心！", "分流至 [name]？", list("Yes", "No"))
 	if(confirm != "Yes")
 		return
 	malf.ShutOffDoomsdayDevice()
@@ -111,7 +111,7 @@
 	user.visible_message(span_notice("[user] 将 [card] 插入 [src]……"), span_notice("转移程序已启动。正在向 AI 发送批准请求……"))
 	playsound(src, 'sound/machines/click.ogg', 50, TRUE)
 	SEND_SOUND(occupier, sound('sound/announcer/notice/notice2.ogg')) //To alert the AI that someone's trying to card them if they're tabbed out
-	if(tgui_alert(occupier, "[user] 正试图把你转移到 [card.name]。你同意吗？", "区域电力控制器转移", list("Yes - Transfer Me", "No - Keep Me Here")) == "No - Keep Me Here")
+	if(chinese_tgui_alert_display(occupier, "[user] 正试图把你转移到 [card.get_visible_name()]。你同意吗？", "区域电力控制器转移", list("Yes - Transfer Me", "No - Keep Me Here")) == "No - Keep Me Here")
 		to_chat(user, span_danger("AI 拒绝了转移请求。程序已终止。"))
 		playsound(src, 'sound/machines/buzz/buzz-sigh.ogg', 50, TRUE)
 		transfer_in_progress = FALSE
@@ -131,7 +131,7 @@
 		transfer_in_progress = FALSE
 		return FALSE
 	user.visible_message(span_notice("[user] 将 [occupier] 转移到了 [card]！"), span_notice("转移完成！[occupier] 现已存储于 [card]。"))
-	to_chat(occupier, span_notice("转移完成！你已被存入 [user] 的 [card.name]。"))
+	to_chat(occupier, span_notice("转移完成！你已被存入 [user] 的 [card.get_visible_name()]。"))
 	occupier.forceMove(card)
 	card.AI = occupier
 	occupier.shunted = FALSE
