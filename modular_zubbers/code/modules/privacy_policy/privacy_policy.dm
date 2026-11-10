@@ -1,3 +1,4 @@
+/*
 /datum/privacy_policy_ui
 	var/client/owner
 
@@ -51,3 +52,4 @@
 
 	var/datum/privacy_policy_ui/ui = new(src)
 	ui.ui_interact(mob)
+*/

@@ -1,3 +1,4 @@
+/*
 SUBSYSTEM_DEF(privacy)
 	name = "Privacy Policy"
 	ss_flags = SS_NO_FIRE
@@ -37,3 +38,4 @@ SUBSYSTEM_DEF(privacy)
 	query.warn_execute()
 	qdel(query)
 	return .
+*/
