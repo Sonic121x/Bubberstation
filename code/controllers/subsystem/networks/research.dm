@@ -121,7 +121,7 @@ SUBSYSTEM_DEF(research)
 /datum/controller/subsystem/research/proc/initialize_nodes()
 	for(var/datum/techweb_node/node_path as anything in valid_subtypesof(/datum/techweb_node))
 		var/datum/techweb_node/new_node = new node_path()
-		for(var/datum/design/design_type as anything in new_node.unlocked_designs.Copy()) // 自定义修改：封闭成人内容的间接生成与显示入口
+		for(var/datum/design/design_type as anything in LAZYCOPY(new_node.unlocked_designs)) // 自定义修改：过滤成人设计时安全复制可空列表，避免科技节点初始化中断
 			if(erp_content_blocked(initial(design_type.build_path)))
 				new_node.unlocked_designs -= design_type
 		// This node doesn't want to exist. OK THEN!
