@@ -549,7 +549,7 @@ const GroupTitle = ({ title }) => {
         }}
         color={'gray'}
       >
-        {chemPackagingDisplay(title)}
+        {title == null ? title : chemPackagingDisplay(title)} {/* 自定义修改：保留原始标题直接渲染时的空值容忍能力 */}
       </Stack.Item>
       <Stack.Item grow>
         <Divider />

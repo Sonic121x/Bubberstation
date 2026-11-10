@@ -7,5 +7,5 @@ const toolNames: Record<string, string> = {
   'rolling pin': '擀面杖', rustscraper: '除锈铲',
 };
 
-export const craftToolDisplay = (value: string) =>
-  value.split(' / ').map((tool) => toolNames[tool.toLowerCase()] ?? tool).join(' / ');
+export const craftToolDisplay = (value: string | null | undefined) =>
+  (value ?? '').split(' / ').map((tool) => toolNames[tool.toLowerCase()] ?? tool).join(' / '); // 自定义修改：缺失工具显示名时避免调用 split 崩溃

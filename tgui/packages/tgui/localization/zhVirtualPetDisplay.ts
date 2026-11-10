@@ -16,5 +16,5 @@ const labels: Readonly<Record<string, string>> = {
 export const virtualPetDisplay = (raw: string): string =>
   Object.hasOwn(labels, raw) ? labels[raw] : raw;
 
-export const virtualPetOptions = (raw: string[]) =>
-  raw.map((value) => ({ value, displayText: virtualPetDisplay(value) }));
+export const virtualPetOptions = (raw: string[] = []) =>
+  raw.map((value) => ({ value, displayText: virtualPetDisplay(value) })); // 自定义修改：保持 Dropdown 对 undefined 选项列表的默认处理

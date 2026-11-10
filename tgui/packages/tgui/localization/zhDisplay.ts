@@ -323,7 +323,8 @@ export function chineseDisplay(value: string): string {
 
 type DropdownOptions = ComponentProps<typeof Dropdown>['options'];
 
-export function circuitDatatypeDisplay(value: string): string {
+export function circuitDatatypeDisplay(value: string | null | undefined): string { // 自定义修改：缺失电路类型显示值时避免调用 replace 崩溃
+  if (value == null) return '';
   return value.replace(/\b(?:any|string|number|entity|datum|user|signal|instant|response|option|boolean|unknown|list|table|assoc|associative)\b/g, chineseDisplay);
 }
 

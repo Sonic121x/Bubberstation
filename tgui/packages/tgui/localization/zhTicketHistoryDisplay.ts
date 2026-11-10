@@ -12,7 +12,8 @@ const ticketActions: Record<string, string> = {
 
 export const ticketActionDisplay = (value: string) => ticketActions[value] ?? value;
 
-export function ticketMessageDisplay(action: string, message: string): string {
+export function ticketMessageDisplay(action: string, message: string | null | undefined): string { // 自定义修改：缺失工单正文时避免调用 startsWith 崩溃
+  if (message == null) return '';
   if (action === 'Reconnected' && message === 'Client reconnected') {
     return '客户端已重新连接';
   }

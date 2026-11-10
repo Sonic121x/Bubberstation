@@ -121,7 +121,7 @@ function DepartmentEntry(props: DepartmentEntryProps) {
       <StyleableSection
         title={
           <>
-            {zh(name)}
+            {name == null ? name : zh(name)} {/* 自定义修改：保留原部门名直接渲染时的空值容忍能力 */}
             <span
               style={{
                 fontSize: '1rem',
@@ -210,7 +210,7 @@ export function JobSelection(props) {
               {
                 // SKYRAT EDIT ADDITION - Alert level on jobs menu
                 <NoticeBox color={data.alert_level.color}>
-                  当前警戒级别：{zh(data.alert_level.name)}
+                  当前警戒级别：{data.alert_level.name == null ? data.alert_level.name : zh(data.alert_level.name)} {/* 自定义修改：保留原警戒名称直接渲染时的空值容忍能力 */}
                 </NoticeBox>
               }
               <Box as="span" color="label">

@@ -86,7 +86,7 @@ const MaterialCounter = (props: MaterialCounterProps) => {
   const sheets = material.amount / SHEET_MATERIAL_AMOUNT;
 
   return (
-    <div title={materialDisplay(material.name)}
+    <div title={material.name == null ? material.name : materialDisplay(material.name)} // 自定义修改：新增翻译提示不要求原先可缺失的材料名称
       onMouseEnter={() => setHovering(true)}
       onMouseLeave={() => setHovering(false)}
       className={classes([

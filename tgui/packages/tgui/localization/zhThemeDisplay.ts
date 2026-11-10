@@ -16,5 +16,5 @@ const labels: Readonly<Record<string, string>> = {
 export const themeDisplay = (raw: string): string =>
   Object.hasOwn(labels, raw) ? labels[raw] : raw;
 
-export const themeOptions = (raw: string[]) =>
-  raw.map((value) => ({ value, displayText: themeDisplay(value) }));
+export const themeOptions = (raw: string[] = []) =>
+  raw.map((value) => ({ value, displayText: themeDisplay(value) })); // 自定义修改：保持 Dropdown 对 undefined 选项列表的默认处理

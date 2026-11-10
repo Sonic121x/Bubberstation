@@ -32,11 +32,11 @@ const languageNames: Record<string, string> = {
   Random: '随机',
 };
 
-export const characterDisplay = (value: string): string =>
-  characterNames[value] ?? chineseDisplay(skyratAugmentDisplay(value));
+export const characterDisplay = (value: string | null | undefined): string =>
+  value == null ? '' : characterNames[value] ?? chineseDisplay(skyratAugmentDisplay(value)); // 自定义修改：缺失角色部位显示值时不调用字符串翻译
 
-export const characterOptions = (values: string[]) =>
-  values.map((value) => ({ value, displayText: characterDisplay(value) }));
+export const characterOptions = (values: string[] = []) =>
+  values.map((value) => ({ value, displayText: characterDisplay(value) })); // 自定义修改：保持 Dropdown 对 undefined 选项列表的默认处理
 
 export const languageDisplay = (value: string): string =>
   languageNames[value] ?? value;

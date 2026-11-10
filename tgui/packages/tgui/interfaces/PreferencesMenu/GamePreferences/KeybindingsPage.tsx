@@ -195,11 +195,11 @@ function KeybindingName(props: KeybindingNameProps) {
           borderBottom: '2px dotted rgba(255, 255, 255, 0.8)',
         }}
       >
-        {emoteDisplay(keybinding.name)}
+        {keybinding.name == null ? keybinding.name : emoteDisplay(keybinding.name)} {/* 自定义修改：保留原快捷键标签直接渲染时的空值容忍能力 */}
       </Box>
     </Tooltip>
   ) : (
-    <span>{emoteDisplay(keybinding.name)}</span>
+    <span>{keybinding.name == null ? keybinding.name : emoteDisplay(keybinding.name)}</span> // 自定义修改：保留原快捷键标签直接渲染时的空值容忍能力
   );
 }
 
