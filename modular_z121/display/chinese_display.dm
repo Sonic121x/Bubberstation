@@ -170,10 +170,24 @@
 /proc/chinese_ui_choice_display(value)
 	var/static/list/display_names
 	if(isnull(display_names))
-		display_names = list("Ok" = "确定", "OK" = "确定", "Yes" = "是", "No" = "否", "Cancel" = "取消", "Save" = "保存", "Close" = "关闭", "Continue" = "继续", "Confirm" = "确认", "Delete" = "删除", "Retry" = "重试", "none" = "无")
+		display_names = list("Ok" = "确定", "OK" = "确定", "Yes" = "是", "No" = "否", "Cancel" = "取消", "Save" = "保存", "Close" = "关闭", "Continue" = "继续", "Confirm" = "确认", "Delete" = "删除", "Retry" = "重试", "none" = "无", "Yes - Transfer Me" = "是，转移我", "No - Keep Me Here" = "否，留在这里")
 	if(!istext(value))
 		return value
 	return display_names[value] || value
+
+/proc/chinese_tgui_alert_display(mob/user, message = "", title, list/buttons = list("Ok"), timeout = 0, autofocus = TRUE, ui_state = GLOB.always_state)
+	var/list/display_buttons = list()
+	var/list/original_buttons = list()
+	for(var/button in buttons)
+		var/label = chinese_ui_choice_display(button)
+		var/unique_label = label
+		var/duplicate = 1
+		while(unique_label in original_buttons)
+			unique_label = "[label]（选项[++duplicate]）"
+		display_buttons += unique_label
+		original_buttons[unique_label] = button
+	var/choice = tgui_alert(user, message, title, display_buttons, timeout, autofocus, ui_state)
+	return isnull(choice) ? null : original_buttons[choice]
 
 /proc/chinese_ckey_choice(mob/user, description)
 	var/list/choices = list("无" = "none")

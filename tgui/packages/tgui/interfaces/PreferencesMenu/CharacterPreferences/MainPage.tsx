@@ -16,7 +16,7 @@ import {
 import { exhaustiveCheck } from 'tgui-core/exhaustive'; // BUBBER EDIT ADDITION
 import { classes } from 'tgui-core/react';
 import { createSearch } from 'tgui-core/string';
-import { chineseDisplay } from '../../../localization/zhDisplay';
+import { chineseDisplay } from '../../../localization/zhPreferencesDisplay';
 import { SideDropdown } from '../../../bubber_components/SideDropdown'; // BUBBER EDIT ADDITION
 import { CharacterPreview } from '../../common/CharacterPreview';
 import { PageButton } from '../components/PageButton'; // BUBBER EDIT ADDITION

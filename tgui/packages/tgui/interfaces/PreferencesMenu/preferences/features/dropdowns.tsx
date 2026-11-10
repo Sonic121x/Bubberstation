@@ -7,7 +7,7 @@ import {
 import { Box, Dropdown, Stack } from 'tgui-core/components';
 import { classes } from 'tgui-core/react';
 import { capitalizeFirst } from 'tgui-core/string';
-import { chineseDisplay, chineseDropdownOptions } from 'tgui/localization/zhDisplay';
+import { chineseDisplay, chineseDropdownOptions } from 'tgui/localization/zhPreferencesDisplay';
 import type {
   Feature,
   FeatureChoicedServerData,

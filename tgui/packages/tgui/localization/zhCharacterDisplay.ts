@@ -1,4 +1,4 @@
-import { chineseDisplay } from './zhDisplay';
+import { chineseDisplay } from './zhPreferencesDisplay';
 import { skyratAugmentDisplay } from './skyratSystemsDisplay';
 
 const characterNames: Record<string, string> = {
