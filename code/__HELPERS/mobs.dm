@@ -556,7 +556,7 @@ GLOBAL_LIST_INIT(skin_tone_names, list(
 /mob/living/proc/parse_zone_with_bodypart(zone)
 	var/obj/item/bodypart/part = get_bodypart(zone)
 
-	return part?.plaintext_zone || parse_zone(zone)
+	return chinese_body_zone_display(part?.plaintext_zone || parse_zone(zone))
 
 ///Return a string for the specified body zone. Should be used for parsing non-instantiated bodyparts, otherwise use [/obj/item/bodypart/var/plaintext_zone]
 /proc/parse_zone(zone)
@@ -584,7 +584,7 @@ GLOBAL_LIST_INIT(skin_tone_names, list(
 		if(BODY_ZONE_PRECISE_GROIN)
 			return "腹股沟"
 		else
-			return zone
+			return chinese_body_zone_display(zone)
 
 ///Takes a zone and returns its "parent" zone, if it has one.
 /proc/deprecise_zone(precise_zone)

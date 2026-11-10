@@ -66,7 +66,7 @@
 			var/embed_line = "[embedded.get_visible_name()]"
 			if (treatment_distance)
 				embed_line = "<a href='byond://?src=[REF(src)];embedded_object=[REF(embedded)];embedded_limb=[REF(body_part)]'>[embedded.get_visible_name()]</a>"
-			var/embed_text = "[icon2html(embedded, user)] [embed_line] [stuck_wordage] [body_part.plaintext_zone]！"
+			var/embed_text = "[icon2html(embedded, user)] [embed_line] [stuck_wordage] [chinese_body_zone_display(body_part.plaintext_zone)]！"
 			if (harmless)
 				. += span_italics(span_notice(embed_text))
 			else
@@ -77,7 +77,7 @@
 			var/tourniquet_href = "[current_tourniquet.get_visible_name()]"
 			if(treatment_distance)
 				tourniquet_href = "<a href='byond://?src=[REF(src)];remove_tourniquet=[REF(body_part)]'>[tourniquet_href]</a>"
-			var/tourniquet_msg = "[icon2html(current_tourniquet, user)] [tourniquet_href] 紧紧地绑在[body_part.body_zone == BODY_ZONE_HEAD ? "脖子" : body_part.plaintext_zone]上。"
+			var/tourniquet_msg = "[icon2html(current_tourniquet, user)] [tourniquet_href] 紧紧地绑在[body_part.body_zone == BODY_ZONE_HEAD ? "脖子" : chinese_body_zone_display(body_part.plaintext_zone)]上。"
 			if(body_part.body_zone == BODY_ZONE_HEAD)
 				. += span_boldwarning(tourniquet_msg)
 			else
@@ -101,7 +101,7 @@
 			damage_text = "瘫软无力"
 		else
 			damage_text = (body_part.brute_dam >= body_part.burn_dam) ? body_part.heavy_brute_msg : body_part.heavy_burn_msg
-		. += span_boldwarning("[body_part.plaintext_zone]看起来[damage_text]！")
+		. += span_boldwarning("[chinese_body_zone_display(body_part.plaintext_zone)]看起来[damage_text]！")
 
 	//stores missing limbs
 	var/l_limbs_missing = 0
@@ -185,9 +185,9 @@
 
 		for(var/obj/item/bodypart/body_part as anything in get_bodyparts())
 			if(body_part.cached_bleed_rate)
-				bleeding_limbs += body_part.plaintext_zone
+				bleeding_limbs += chinese_body_zone_display(body_part.plaintext_zone)
 			if(body_part.grasped_by)
-				grasped_limbs += body_part.plaintext_zone
+				grasped_limbs += chinese_body_zone_display(body_part.plaintext_zone)
 
 		if(LAZYLEN(bleeding_limbs))
 			var/bleed_text = "<b>"
@@ -420,7 +420,7 @@
 		if(!(part.bodypart_flags & BODYPART_PSEUDOPART))
 			continue
 		var/obj/item/corresponding_item = get_item_for_held_index(part.held_index) || part
-		. += "[t_He]用 [corresponding_item.examine_title(user)] 代替了[initial(part.plaintext_zone)]。"
+		. += "[t_He]用 [corresponding_item.examine_title(user)] 代替了[chinese_body_zone_display(initial(part.plaintext_zone))]。"
 	//handcuffed?
 	if(handcuffed)
 		var/cables_or_cuffs = istype(handcuffed, /obj/item/restraints/handcuffs/cable) ? "被线缆绑住" : "被手铐铐住"

@@ -62,7 +62,7 @@
 		return
 	var/mob/living/carbon/human/victim = current_bodypart.owner
 	if(SPT_PROB(LIVING_FLESH_WARN_CHANCE, SSMOBS_DT))
-		to_chat(victim, span_warning("你 [current_bodypart.plaintext_zone] 上的皮肤蠕动起来。"))
+		to_chat(victim, span_warning("你[chinese_body_zone_display(current_bodypart.plaintext_zone)]上的皮肤蠕动起来。"))
 
 	victim.adjust_nutrition(-1.5)
 
@@ -73,7 +73,7 @@
 		if(HAS_TRAIT(victim, TRAIT_IMMOBILIZED))
 			return
 		step(victim, pick(GLOB.cardinals))
-		to_chat(victim, span_warning("你的 [current_bodypart.plaintext_zone] 自己动了起来！"))
+		to_chat(victim, span_warning("你的[chinese_body_zone_display(current_bodypart.plaintext_zone)]自己动了起来！"))
 		return
 
 	var/list/candidates = list()
@@ -90,11 +90,11 @@
 		return
 
 	if (!prob(victim.combat_mode ? LIVING_FLESH_COMBAT_TOUCH_CHANCE : LIVING_FLESH_TOUCH_CHANCE) && candidate.can_be_pulled(user = victim, force = victim.pull_force))
-		victim.visible_message(span_warning("[victim] 的 [current_bodypart.plaintext_zone] 突然紧紧缠住了 [candidate]！"))
+		victim.visible_message(span_warning("[victim]的[chinese_body_zone_display(current_bodypart.plaintext_zone)]突然紧紧缠住了[candidate]！"))
 		INVOKE_ASYNC(victim, TYPE_PROC_REF(/atom/movable, start_pulling), candidate, supress_message = TRUE)
 		return
 
-	victim.visible_message(span_warning("[victim] 的 [current_bodypart.plaintext_zone] 突然抽搐着朝 [candidate] 伸去！"))
+	victim.visible_message(span_warning("[victim]的[chinese_body_zone_display(current_bodypart.plaintext_zone)]突然抽搐着朝[candidate]伸去！"))
 	var/active_hand = victim.active_hand_index
 	var/new_index = (current_bodypart.body_zone == BODY_ZONE_L_ARM) ? LEFT_HANDS : RIGHT_HANDS
 	if (active_hand != new_index)
@@ -142,7 +142,7 @@
 			part_type = /obj/item/bodypart/leg/right/flesh
 
 	if (!isnull(target_part))
-		target.visible_message(span_danger("[src] 撕下了 [target] 的 [target_part.plaintext_zone]，并附着到了原来的位置上！"), span_userdanger("[src] 撕下了你的 [target_part.plaintext_zone]，并附着到了原来的位置上！"))
+		target.visible_message(span_danger("[src]撕下了[target]的[chinese_body_zone_display(target_part.plaintext_zone)]，并附着到了原来的位置上！"), span_userdanger("[src]撕下了你的[chinese_body_zone_display(target_part.plaintext_zone)]，并附着到了原来的位置上！"))
 	else
 		target.visible_message(span_danger("[src] 附着到了 [target] 原本 [target.parse_zone_with_bodypart(target_zone)] 所在的位置！"), span_userdanger("[src] 附着到了你原本 [target.parse_zone_with_bodypart(target_zone)] 所在的位置！"))
 
@@ -159,7 +159,7 @@
 	if(!detach_self())
 		return
 	var/turf/our_location = get_turf(src)
-	our_location.visible_message(span_warning("[part_owner] 的 [current_bodypart.plaintext_zone] 开始剧烈抽搐起来！"))
+	our_location.visible_message(span_warning("[part_owner]的[chinese_body_zone_display(current_bodypart.plaintext_zone)]开始剧烈抽搐起来！"))
 
 /mob/living/basic/living_limb_flesh/proc/owner_died(datum/source, gibbed)
 	SIGNAL_HANDLER

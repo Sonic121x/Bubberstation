@@ -385,7 +385,7 @@
 		return
 
 	owner.apply_damage(scratch_damage, BRUTE, bodypart)
-	to_chat(owner, span_notice("你疯狂地抓挠自己衣物覆盖下的[bodypart.plaintext_zone]！"))
+	to_chat(owner, span_notice("你疯狂地抓挠自己衣物覆盖下的[chinese_body_zone_display(bodypart.plaintext_zone)]！"))
 
 /atom/movable/screen/alert/status_effect/eldritch_painting/beauty
 	name = "走出门扉的女士"

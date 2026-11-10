@@ -275,7 +275,7 @@
 	var/render_list = list()//information will be packaged in a list for clean display to the user
 
 	//determine what specific action we're taking
-	switch (body_part)
+	switch (user.zone_selected) // 自定义修改：听诊使用原始部位值分支，中文部位名仅用于显示
 		if(BODY_ZONE_CHEST)//Listening to the chest
 			user.visible_message(span_notice("[user] 把 [src] 贴在 [carbon_patient] 的 [body_part] 处，专注地听着。"), ignored_mobs = user)
 			if(HAS_TRAIT(user, TRAIT_DEAF))
@@ -304,7 +304,7 @@
 			if(lung_noises)
 				render_list += "<span class='notice ml-1'>[lungs.hear_breath_noise(user)]</span>\n"
 			//assess heart
-			if(body_part == BODY_ZONE_CHEST)//if we're listening to the chest
+			if(user.zone_selected == BODY_ZONE_CHEST)//if we're listening to the chest // 自定义修改：避免翻译后的胸部名称阻断心跳检查
 				if(isnull(heart) || !heart.is_beating() || carbon_patient.stat == DEAD)
 					render_list += "<span class='danger ml-1'>你听不到心跳！</span>\n"//they're dead or their heart isn't beating
 					heart_noises = FALSE
@@ -351,7 +351,7 @@
 			return
 
 		else//targeting an extremity or the head
-			if(body_part ==  BODY_ZONE_HEAD)
+			if(user.zone_selected ==  BODY_ZONE_HEAD) // 自定义修改：使用原始头部值判断颈部脉搏检查
 				render_list += span_info("你小心地把手指按在 [carbon_patient] 的颈部：\n")
 				user.visible_message(span_notice("[user] 把手指按在 [carbon_patient] 的颈部。"), ignored_mobs = user)
 			else

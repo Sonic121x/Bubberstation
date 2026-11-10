@@ -171,6 +171,7 @@
 	var/static/list/display_names
 	if(isnull(display_names))
 		display_names = list("Ok" = "确定", "OK" = "确定", "Yes" = "是", "No" = "否", "Cancel" = "取消", "Save" = "保存", "Close" = "关闭", "Continue" = "继续", "Confirm" = "确认", "Delete" = "删除", "Retry" = "重试", "none" = "无", "Yes - Transfer Me" = "是，转移我", "No - Keep Me Here" = "否，留在这里")
+		display_names += list("Replace" = "替换", "Remove" = "移除")
 	if(!istext(value))
 		return value
 	return display_names[value] || value

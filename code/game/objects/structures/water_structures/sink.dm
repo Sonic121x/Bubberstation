@@ -112,7 +112,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sink, (-14))
 		to_chat(user, span_warning("已经有人在这里清洗了！"))
 		return
 
-	var/selected_area = user.parse_zone_with_bodypart(user.zone_selected)
+	var/selected_area = user.zone_selected // 自定义修改：使用原始部位值判断洗脸，避免中文显示名影响逻辑
 	var/washing_face = FALSE
 	if(selected_area in list(BODY_ZONE_HEAD, BODY_ZONE_PRECISE_MOUTH, BODY_ZONE_PRECISE_EYES))
 		washing_face = TRUE

@@ -981,7 +981,7 @@
 		if(!check_rights(R_SPAWN))
 			return
 
-		var/edit_action = tgui_alert(usr, "你想做什么？", "修改肢体", list("Replace", "Remove"))
+		var/edit_action = chinese_tgui_alert_display(usr, "你想做什么？", "修改肢体", list("Replace", "Remove"))
 		if(!edit_action)
 			return
 
@@ -995,7 +995,7 @@
 			for(var/zone in GLOB.all_body_zones)
 				limb_list[parse_zone(zone)] = zone
 
-		var/result = tgui_input_list(usr, "请选择要操作的肢体（[LOWER_TEXT(edit_action)]）","[edit_action] 肢体", sort_list(limb_list))
+		var/result = tgui_input_list(usr, "请选择要操作的肢体（[chinese_ui_choice_display(edit_action)]）","[chinese_ui_choice_display(edit_action)]肢体", sort_list(limb_list))
 		if (!result)
 			return
 
@@ -1019,7 +1019,7 @@
 		if(edit_action == "Remove")
 			if(part)
 				part.drop_limb()
-				admin_ticket_log("[key_name_admin(usr)] 移除了 [src] 的 [part.plaintext_zone]")
+				admin_ticket_log("[key_name_admin(usr)] 移除了 [src] 的 [chinese_body_zone_display(part.plaintext_zone)]")
 			else
 				to_chat(usr, span_boldwarning("[src] 没有这个肢体。"))
 				admin_ticket_log("[key_name_admin(usr)] 试图修改 [src] 的肢体")

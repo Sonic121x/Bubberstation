@@ -214,7 +214,7 @@
 	if(QDELETED(arm))
 		return
 
-	to_chat(user, span_userdanger("[src]咬住了你的[arm.plaintext_zone]！"))
+	to_chat(user, span_userdanger("[src]咬住了你的[chinese_body_zone_display(arm.plaintext_zone)]！"))
 	arm.dismember()
 	consume_fuel(consumed = arm)
 
