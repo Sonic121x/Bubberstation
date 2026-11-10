@@ -869,6 +869,8 @@
 		"renameable" = "可重命名",
 		"reskinnable" = "可更换外观",
 		"crafting component" = "可用于制作",
+		"embeddable" = "可嵌入",
+		"sticky" = "有黏附性",
 		"conductive" = "导电",
 		"thick" = "厚实",
 		"magical" = "魔法",
