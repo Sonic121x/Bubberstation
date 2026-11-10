@@ -519,8 +519,8 @@
 		burn_human.del_and_replace_bodypart(plasmalimb, special = TRUE)
 		burn_human.update_body_parts()
 		burn_human.emote("scream")
-		burn_human.visible_message(span_warning("[burn_human]的[burn_limb.plaintext_zone]融化见骨！"), \
-			span_userdanger("你的[burn_limb.plaintext_zone]融化见骨，只靠几缕紫色菌丝勉强相连，你痛得尖叫起来！"))
+		burn_human.visible_message(span_warning("[burn_human]的[chinese_body_zone_display(burn_limb.plaintext_zone)]融化见骨！"), \
+			span_userdanger("你的[chinese_body_zone_display(burn_limb.plaintext_zone)]融化见骨，只靠几缕紫色菌丝勉强相连，你痛得尖叫起来！"))
 
 	// If all of your limbs are plasma then congrats: you are plasma man
 	if(length(immune_parts) || length(transform_parts))

@@ -1142,8 +1142,8 @@ GAME_VERB_PROC(/mob/living, mob_sleep, "睡觉", null)
 		applied_damage = apply_damage(damage, damagetype = BRUTE, def_zone = target_part)
 	if (silent)
 		return applied_damage > 0
-	var/visible_part = isnull(target_part) ? "侧面" : target_part.plaintext_zone
-	visible_message("[can_scratch ? span_warning("[src] 挠了挠 [p_their()] [visible_part]。") : ""]", span_warning("你的[visible_part]发痒。[can_scratch ? "你挠了挠。" : ""]"))
+	var/visible_part = isnull(target_part) ? "侧面" : chinese_body_zone_display(target_part.plaintext_zone)
+	visible_message("[can_scratch ? span_warning("[src]挠了挠自己的[visible_part]。") : ""]", span_warning("你的[visible_part]发痒。[can_scratch ? "你挠了挠。" : ""]"))
 	return TRUE
 
 /mob/living/experience_pressure_difference(pressure_difference, direction, pressure_resistance_prob_delta = 0)

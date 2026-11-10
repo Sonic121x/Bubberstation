@@ -177,7 +177,7 @@
 
 	if (!pregen_data.can_be_applied_to(affecting, random_roll = FALSE))
 		if (!(affecting.biological_state & BIO_JOINTED))
-			to_chat(user, span_warning("[target]的[affecting.plaintext_zone]没有可供扭脱臼的关节！"))
+			to_chat(user, span_warning("[target]的[chinese_body_zone_display(affecting.plaintext_zone)]没有可供扭脱臼的关节！"))
 		return FALSE
 
 	user.changeNext_move(4 SECONDS)

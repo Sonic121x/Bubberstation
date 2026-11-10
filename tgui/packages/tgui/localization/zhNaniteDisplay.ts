@@ -150,8 +150,8 @@ export function display(raw: string): string {
   return Object.hasOwn(labels, raw) ? labels[raw] : raw;
 }
 
-export function options(raw: string[]) {
-  return raw.map((value) => ({ displayText: display(value), value }));
+export function options(raw: string[] = []) {
+  return raw.map((value) => ({ displayText: display(value), value })); // 自定义修改：保持 Dropdown 对 undefined 选项列表的默认处理
 }
 
 interface Setting {

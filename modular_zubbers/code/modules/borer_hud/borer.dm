@@ -32,8 +32,8 @@
 	if(action_intent)
 		action_intent.maptext = MAPTEXT(string)
 		action_intent.maptext_height = 400
-		action_intent.maptext_width = 400
+		action_intent.maptext_width = 200 // 自定义修改：限制皮质蠕虫状态文本宽度，避免占用过多视野并允许长文本换行
 		action_intent.maptext_y = 64
-		action_intent.maptext_x = -64
+		action_intent.maptext_x = world.icon_size - action_intent.maptext_width // 自定义修改：将状态文本框右边缘对齐战斗按钮，防止血量等信息超出屏幕被裁切
 
 

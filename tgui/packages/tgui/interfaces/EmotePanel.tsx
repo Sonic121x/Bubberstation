@@ -51,7 +51,7 @@ export const EmotePanelContent = (props) => {
             emote.key &&
             (searchText.length > 0
               ? emote.key.toLowerCase().includes(searchText.toLowerCase()) ||
-                `${emote.name} ${emoteDisplay(emote.key)}`.toLowerCase().includes(searchText.toLowerCase())
+                `${emote.name} ${emote.key == null ? '' : emoteDisplay(emote.key)}`.toLowerCase().includes(searchText.toLowerCase()) // 自定义修改：原搜索仅依赖名称，不因新增翻译要求表情键存在
               : true) &&
             (filterVisible ? emote.visible : true) &&
             (filterAudible ? emote.audible : true) &&
@@ -228,7 +228,7 @@ const EmoteButton = (props: EmoteButtonProps) => {
           onClick={onPlay}
         >
           <Box inline width="50%">
-            {showNames ? (emoteDisplay(emote.key) !== emote.key ? emoteDisplay(emote.key) : capitalizeFirst(emote.name.toLowerCase())) : emote.key}
+            {showNames ? (emote.key != null && emoteDisplay(emote.key) !== emote.key ? emoteDisplay(emote.key) : capitalizeFirst(emote.name.toLowerCase())) : emote.key} {/* 自定义修改：缺失表情键时仍按原行为显示名称 */}
           </Box>
           {showIcons ? (
             <EmoteIcons

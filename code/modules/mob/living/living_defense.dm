@@ -157,7 +157,7 @@
 	var/hit_limb_zone = check_hit_limb_zone_name(def_zone)
 	var/organ_hit_text = ""
 	if (hit_limb_zone)
-		organ_hit_text = "，部位是[parse_zone_with_bodypart(hit_limb_zone)]"
+		organ_hit_text = "，部位是[chinese_body_zone_display(parse_zone_with_bodypart(hit_limb_zone))]"
 
 	switch (proj.suppressed)
 		if (SUPPRESSED_QUIET)

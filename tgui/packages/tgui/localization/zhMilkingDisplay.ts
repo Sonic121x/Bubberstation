@@ -11,7 +11,8 @@ const labels: Readonly<Record<string, string>> = {
   'the testicles': '睾丸',
 };
 
-export function milkingDisplay(raw: string): string {
+export function milkingDisplay(raw: string | null | undefined): string { // 自定义修改：空状态或器官显示值不触发字符串转换异常
+  if (raw == null) return '';
   const key = raw.toLowerCase();
   return Object.hasOwn(labels, key) ? labels[key] : raw;
 }

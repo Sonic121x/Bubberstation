@@ -40,7 +40,8 @@ const labels: Record<string, string> = {
   'Plastic Glowgrowth Colony': '塑料发光菌群',
 };
 
-export function constructionDisplay(value: string): string {
+export function constructionDisplay(value: string | null | undefined): string { // 自定义修改：缺失建造显示名时安全回退
+  if (value == null) return '';
   const variant = value.match(/^(.*) \((Alt ?\d*|Random)\)$/);
   if (variant && labels[variant[1]]) {
     const suffix = variant[2] === 'Random' ? '随机' : `变体${variant[2].slice(3).trim()}`;

@@ -549,8 +549,8 @@
 
 /// Returns surgery examine information for this bodypart
 /obj/item/bodypart/proc/get_surgery_examine()
-	var/lowercase_zone = owner ? "[owner.p_their()] [plaintext_zone]" : "[src]"
-	var/capital_zone = owner ? "[owner.p_Their()] [plaintext_zone]" : capitalize("[src]")
+	var/lowercase_zone = owner ? "[owner]的[chinese_body_zone_display(plaintext_zone)]" : "[src]"
+	var/capital_zone = owner ? "[owner]的[chinese_body_zone_display(plaintext_zone)]" : capitalize("[src]")
 	var/single_message = ""
 	var/list/sub_messages = list()
 	var/reported_state = get_reported_surgery_state()

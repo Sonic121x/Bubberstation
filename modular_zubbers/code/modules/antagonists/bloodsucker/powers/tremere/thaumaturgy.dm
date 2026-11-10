@@ -95,11 +95,11 @@
 	if(blood_shield)
 		var/shield = blood_shield?.resolve()
 		owner.visible_message(
-			span_warning("[owner]的[blood_shield]失去形状，融入手中。"),
+			span_warning("[owner]的[shield || "鲜血护盾"]失去形状，融入手中。"), // 自定义修改：显示弱引用解析后的护盾名称，并为失效引用保留中文回退
 			span_warning("我们解除了鲜血护盾！"),
 			span_hear("你听到液体晃动的声音。"),
 		)
-		owner.balloon_alert(owner, "你解除了[shield]")
+		owner.balloon_alert(owner, "你解除了[shield || "鲜血护盾"]") // 自定义修改：护盾引用失效时仍显示完整的解除提示
 		qdel(shield)
 		blood_shield = null
 	else
@@ -110,10 +110,10 @@
 			owner.balloon_alert(owner, "副手被占用！")
 			to_chat(owner, span_notice("副手被占用，无法启用[capitalize(src)]。"))
 			return FALSE
-		owner.balloon_alert(owner, "你凝聚了[src]")
+		owner.balloon_alert(owner, "你凝聚了[new_shield]") // 自定义修改：凝聚提示显示护盾名称而非技能名称
 		owner.visible_message(
-			span_warning("[owner]的双手开始流血，鲜血凝聚成[src]！"),
-			span_warning("我们凝聚了[src]！"),
+			span_warning("[owner]的双手开始流血，鲜血凝聚成[new_shield]！"), // 自定义修改：旁观者提示显示实际凝聚的护盾名称
+			span_warning("我们凝聚了[new_shield]！"), // 自定义修改：自身提示显示实际凝聚的护盾名称
 			span_hear("你听到液体聚合的声音。"),
 		)
 

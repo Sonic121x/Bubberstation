@@ -658,7 +658,7 @@
 		var/obj/item/bodypart/affecting = user.get_active_hand()
 		user.apply_damage(5, BURN, affecting, wound_bonus = CANT_WOUND)
 		if(HAS_TRAIT(user, TRAIT_LIGHTBULB_REMOVER))
-			to_chat(user, span_notice("你感觉自己的[affecting.plaintext_zone]在灼烧，但灯泡开始松动了……"))
+			to_chat(user, span_notice("你感觉自己的[chinese_body_zone_display(affecting.plaintext_zone)]在灼烧，但灯泡开始松动了……"))
 			if(!do_after(user, 5 SECONDS, target = src))
 				return
 			user.apply_damage(10, BURN, user.get_active_hand(), wound_bonus = CANT_WOUND)

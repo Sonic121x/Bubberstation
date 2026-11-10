@@ -181,7 +181,7 @@ const CostPreview = (props: CostPreviewProps) => {
               </Table.Cell>
               <Table.Cell verticalAlign="middle">
                 <div style={{ width: '200px' }}>
-                  {materialDisplay(material.name)}
+                  {material.name == null ? material.name : materialDisplay(material.name)} {/* 自定义修改：保留原 toTitleCase 的空值返回行为 */}
                 </div>
               </Table.Cell>
               <Table.Cell verticalAlign="middle">

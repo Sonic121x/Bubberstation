@@ -121,7 +121,7 @@ export const MatMarket = (props) => {
                       width="15%"
                       pr="3%"
                     >
-                      {zh(material.name)}
+                      {material.name == null ? material.name : zh(material.name)} {/* 自定义修改：保留原 toTitleCase 的空值返回行为 */}
                     </Stack.Item>
                     <Stack.Item
                       width="10%"
@@ -157,7 +157,7 @@ export const MatMarket = (props) => {
                       <Stack.Item width="33%" ml={2}>
                         <Box textColor={material.quantity === 0 ? 'grey' : 'white'}>
                           在售 <b>{material.quantity || '零'}</b> 张{' '}
-                          <b>{zh(material.name)}</b>板材。{' '}
+                          <b>{material.name == null ? material.name : zh(material.name)}</b>板材。{' '} {/* 自定义修改：保留原材料名直接渲染时的空值容忍能力 */}
                         </Box>
                         <Box
                           bold={!!material.requested}
@@ -178,7 +178,7 @@ export const MatMarket = (props) => {
                             : 'white'
                       }
                     >
-                      <b>{zh(material.name)}</b>的走势：{' '}
+                      <b>{material.name == null ? material.name : zh(material.name)}</b>的走势：{' '} {/* 自定义修改：保留原 toTitleCase 的空值返回行为 */}
                       <b>{material.trend === 'up' ? '上涨' : material.trend === 'down' ? '下跌' : material.trend === 'neutral' ? '持平' : material.trend}</b>。
                     </Stack.Item>
                   </Stack>
