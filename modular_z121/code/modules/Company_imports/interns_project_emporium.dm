@@ -1,7 +1,8 @@
 //	小型枪械
+
 /datum/supply_pack/company_import/crates/ballistics/intern_project/sidearm
 	cost = PAYCHECK_COMMAND * 4
-
+/*
 /datum/supply_pack/company_import/crates/ballistics/intern_project/sidearm/sofap
 	item_type = /obj/item/gun/ballistic/automatic/pistol/sofap
 	//restricted = TRUE
@@ -20,11 +21,11 @@
 	cost = PAYCHECK_COMMAND * 6
 	access = FALSE
 	access_view = FALSE
-
+*/
 //	大型枪械
 /datum/supply_pack/company_import/crates/ballistics/intern_project/primary
 	cost = PAYCHECK_COMMAND * 6
-
+/*
 /datum/supply_pack/company_import/crates/ballistics/intern_project/primary/crossbow
 	item_type = /obj/item/gun/ballistic/rifle/rebarxbow/crossbow
 	access = FALSE
@@ -52,7 +53,7 @@
 	item_type = /obj/item/gun/energy/photon_sniper
 	cost = PAYCHECK_COMMAND * 8
 	//restricted = TRUE
-
+*/
 //	弹药
 /datum/supply_pack/company_import/crates/mags_and_ammo/intern_project
 	cost = PAYCHECK_CREW
