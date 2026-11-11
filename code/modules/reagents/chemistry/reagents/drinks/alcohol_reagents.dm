@@ -1625,7 +1625,7 @@
 
 /datum/reagent/consumable/ethanol/narsour
 	name = "纳尔酸酒"
-	description = "副作用包括自残和囤积塑钢。"
+	description = "副作用包括自残和囤积等离子铁。"
 	color = RUNE_COLOR_DARKRED
 	boozepwr = 10
 	quality = DRINK_FANTASTIC

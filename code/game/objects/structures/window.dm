@@ -947,7 +947,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/window/reinforced/titanium/spawner, 0
 MAPPING_DIRECTIONAL_HELPERS(/obj/structure/window/reinforced/survival_pod/spawner, 0)
 
 /obj/structure/window/reinforced/plasma/plastitanium
-	name = "塑钛窗"
+	name = "等离子钛窗"
 	desc = "由等离子体与钛合金制成的窗户，看起来十分耐用。"
 	icon = 'icons/obj/smooth_structures/plastitanium_window.dmi'
 	icon_state = "plastitanium_window-0"
@@ -974,7 +974,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/window/reinforced/survival_pod/spawne
 	glass_amount = 1
 
 /obj/structure/window/reinforced/plasma/plastitanium/indestructible
-	name = "塑钛窗"
+	name = "等离子钛窗"
 	desc = "由等离子体与钛合金制成的窗户，看起来十分耐用。"
 	icon = 'icons/obj/smooth_structures/plastitanium_window.dmi'
 	icon_state = "plastitanium_window-0"

@@ -43,7 +43,7 @@
 #define ENGINEERING_CYBORG_CHARGE_PER_STACK 1000
 
 /datum/robot_energy_storage/plasteel
-	name = "塑钢合成器"
+	name = "等离子铁合成器"
 	recharge_rate = 0
 	max_energy = ENGINEERING_CYBORG_CHARGE_PER_STACK * 50
 

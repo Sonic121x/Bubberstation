@@ -198,7 +198,7 @@
 
 /datum/action/innate/cult/blood_spell/construction
 	name = "扭曲构造"
-	desc = "让你的手腐化特定的金属物体。<br><u>转化：</u><br>塑钢化为符文金属<br>50 金属化为构造体外壳<br>活着的赛博延迟后化为构造体<br>赛博外壳化为构造体外壳<br>净化过的灵魂石（及其中任何幽影）化为血教徒灵魂石<br>气闸延迟后化为脆弱的符文气闸（伤害意图）"
+	desc = "让你的手腐化特定的金属物体。<br><u>转化：</u><br>等离子铁化为符文金属<br>50 金属化为构造体外壳<br>活着的赛博延迟后化为构造体<br>赛博外壳化为构造体外壳<br>净化过的灵魂石（及其中任何幽影）化为血教徒灵魂石<br>气闸延迟后化为脆弱的符文气闸（伤害意图）"
 	button_icon_state = "transmute"
 	magic_path = /obj/item/melee/blood_magic/construction
 	health_cost = 12
@@ -606,7 +606,7 @@
 /obj/item/melee/blood_magic/construction/examine(mob/user)
 	. = ..()
 	. += {"<u>一种用于转化的邪恶法术：</u>\n
-	塑钢化为符文金属\n
+	等离子铁化为符文金属\n
 	[IRON_TO_CONSTRUCT_SHELL_CONVERSION] 铁化为构造体外壳\n
 	活着的赛博在延迟后化为构造体\n
 	赛博外壳化为构造体外壳\n
@@ -638,7 +638,7 @@
 
 		uses--
 		new /obj/item/stack/sheet/runed_metal(T,quantity)
-		to_chat(user, span_warning("一团黑雾从你手中涌出，缠绕着塑钢，将其转化为符文金属！"))
+		to_chat(user, span_warning("一团黑雾从你手中涌出，缠绕着等离子铁，将其转化为符文金属！"))
 		SEND_SOUND(user, sound('sound/effects/magic.ogg',0,1,25))
 		return ..()
 

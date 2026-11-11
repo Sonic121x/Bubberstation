@@ -882,7 +882,7 @@
 	max_integrity = 250
 
 /obj/structure/table/reinforced/plastitaniumglass
-	name = "塑钛玻璃桌"
+	name = "等离子钛玻璃桌"
 	desc = "一张由钛加固硅-等离子复合材料制成的桌子。耐用程度差不多就是名字听起来的那样。"
 	icon = 'icons/obj/smooth_structures/plastitaniumglass_table.dmi'
 	icon_state = "plastitaniumglass_table-0"

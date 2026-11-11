@@ -356,11 +356,11 @@ GLOBAL_LIST_INIT(titanium_recipes, list ( \
  * Plastitanium
  */
 /obj/item/stack/sheet/mineral/plastitanium
-	name = "塑钛"
+	name = "等离子钛"
 	icon_state = "sheet-plastitanium"
 	worn_icon_state = "sheet-plastitanium"
 	inhand_icon_state = "sheet-plastitanium"
-	singular_name = "塑钛板"
+	singular_name = "等离子钛板"
 	force = 5
 	throwforce = 5
 	w_class = WEIGHT_CLASS_NORMAL
@@ -375,9 +375,9 @@ GLOBAL_LIST_INIT(titanium_recipes, list ( \
 	walltype = /turf/closed/wall/mineral/plastitanium
 
 GLOBAL_LIST_INIT(plastitanium_recipes, list ( \
-	new/datum/stack_recipe("塑钛地砖", /obj/item/stack/tile/mineral/plastitanium, 1, 4, 20, crafting_flags = NONE, category = CAT_TILES), \
-	new/datum/stack_recipe("塑钛墙体填充", /obj/item/stack/wall_filling/plastitanium/basic, 2, 1, 10, crafting_flags = NONE, category = CAT_STRUCTURE), \
-	new/datum/stack_recipe("塑钛平台", /obj/structure/platform/plastitanium, 2, time = 3 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, trait_booster = TRAIT_QUICK_BUILD, trait_modifier = 0.75, category = CAT_STRUCTURE), \
+	new/datum/stack_recipe("等离子钛地砖", /obj/item/stack/tile/mineral/plastitanium, 1, 4, 20, crafting_flags = NONE, category = CAT_TILES), \
+	new/datum/stack_recipe("等离子钛墙体填充", /obj/item/stack/wall_filling/plastitanium/basic, 2, 1, 10, crafting_flags = NONE, category = CAT_STRUCTURE), \
+	new/datum/stack_recipe("等离子钛平台", /obj/structure/platform/plastitanium, 2, time = 3 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, trait_booster = TRAIT_QUICK_BUILD, trait_modifier = 0.75, category = CAT_STRUCTURE), \
 	))
 
 /obj/item/stack/sheet/mineral/plastitanium/get_main_recipes()

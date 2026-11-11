@@ -1,6 +1,6 @@
 /obj/item/construction/rcd/arcd/mattermanipulator
 	name = "物质操纵器"
-	desc = "一种奇怪、似曾相识却又明显不同的装置，类似纳米传讯标准的快速建造装置。可远程工作，并能拆除加固墙。使用金属、玻璃或塑钢补充。"
+	desc = "一种奇怪、似曾相识却又明显不同的装置，类似纳米传讯标准的快速建造装置。可远程工作，并能拆除加固墙。使用金属、玻璃或等离子铁补充。"
 	icon = 'modular_skyrat/master_files/icons/obj/tools.dmi'
 	icon_state = "rcd"
 	worn_icon_state = "RCD"
@@ -75,7 +75,7 @@
 
 /obj/item/construction/rcd/robotics_rcd
 	name = "机器人 RCD"
-	desc = "一种改装的 RCD，储量比常见的纳米传讯 RCD 更少，建造选项也更少，并且为了便于合成人维修而舍弃了拆除功能。使用金属、玻璃或塑钢补充。"
+	desc = "一种改装的 RCD，储量比常见的纳米传讯 RCD 更少，建造选项也更少，并且为了便于合成人维修而舍弃了拆除功能。使用金属、玻璃或等离子铁补充。"
 	icon = 'modular_skyrat/master_files/icons/obj/tools.dmi'
 	icon_state = "roborcd"
 	inhand_icon_state = "roborcd"

@@ -103,7 +103,7 @@
 
 /obj/item/climbing_hook/infinite //debug stuff
 	name = "无限攀爬钩"
-	desc = "附有绳索的塑钢钩。仔细观察，绳索似乎将塑钢编入普通绳中，还进行了许多其他加固。"
+	desc = "附有绳索的等离子铁钩。仔细观察，绳索似乎将等离子铁编入普通绳中，还进行了许多其他加固。"
 	climb_time = 0.1 SECONDS
 
 /obj/effect/temp_visual/climbing_hook

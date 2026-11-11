@@ -69,14 +69,14 @@
 			to_chat(user, span_warning("断头台已经完全修好了！"))
 			return ITEM_INTERACT_BLOCKING
 
-		to_chat(user, span_notice("你开始用塑钢板修理断头台……"))
+		to_chat(user, span_notice("你开始用等离子铁板修理断头台……"))
 		if(!do_after(user, 100, target = user))
-			to_chat(user, span_notice("你停止了用塑钢板修理断头台。"))
+			to_chat(user, span_notice("你停止了用等离子铁板修理断头台。"))
 			return ITEM_INTERACT_BLOCKING
 
 		blade_sharpness = min(GUILLOTINE_BLADE_MAX_SHARP, blade_sharpness+3)
 		tool.use(1)
-		to_chat(user, span_notice("你用塑钢板修好了断头台。"))
+		to_chat(user, span_notice("你用等离子铁板修好了断头台。"))
 		return ITEM_INTERACT_SUCCESS
 
 	if(istype(tool, /obj/item/sharpener))

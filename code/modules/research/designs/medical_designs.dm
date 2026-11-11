@@ -1123,7 +1123,7 @@
 
 /datum/design/cybernetic_fangs
 	name = "义体獠牙"
-	desc = "一副塑钛獠牙，适合你想咬穿飞船外壳的时候。"
+	desc = "一副等离子钛獠牙，适合你想咬穿飞船外壳的时候。"
 	build_type = PROTOLATHE | AWAY_LATHE | MECHFAB
 	construction_time = 3 SECONDS
 	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 0.25, /datum/material/plasma = SHEET_MATERIAL_AMOUNT * 0.5, /datum/material/titanium = SHEET_MATERIAL_AMOUNT * 0.5)
@@ -1135,7 +1135,7 @@
 
 /datum/design/cybernetic_fangs/cat
 	name = "义体猫獠牙"
-	desc = "一副塑钛獠牙，适合你想嗷呜一口啃穿飞船外壳的时候。"
+	desc = "一副等离子钛獠牙，适合你想嗷呜一口啃穿飞船外壳的时候。"
 	build_path = /obj/item/organ/fangs/cat/cybernetic
 
 /datum/design/cyberimp_welding

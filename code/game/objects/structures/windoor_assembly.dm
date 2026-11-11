@@ -109,10 +109,10 @@
 		if(istype(tool, /obj/item/stack/sheet/plasteel) && !secure)
 			var/obj/item/stack/sheet/plasteel/reinforcement = tool
 			if(reinforcement.get_amount() < 2)
-				to_chat(user, span_warning("你需要更多塑钢才能这么做！"))
+				to_chat(user, span_warning("你需要更多等离子铁才能这么做！"))
 				return ITEM_INTERACT_BLOCKING
 
-			to_chat(user, span_notice("你开始用塑钢加固窗门……"))
+			to_chat(user, span_notice("你开始用等离子铁加固窗门……"))
 
 			if(!do_after(user, 4 SECONDS, target = src))
 				return ITEM_INTERACT_BLOCKING

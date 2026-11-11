@@ -148,7 +148,7 @@
  */
 /datum/material/alloy/plastitaniumglass
 	name = "plastitanium glass"
-	desc = "一种特殊的硅酸盐塑钛合金。"
+	desc = "一种特殊的硅酸盐等离子钛合金。"
 	color = "#5d3369"
 	starlight_color = COLOR_CENTCOM_BLUE
 	alpha = 150
@@ -177,7 +177,7 @@
  */
 /datum/material/alloy/alien
 	name = "alien alloy"
-	desc = "一种密度极高、成分类似塑钢的合金，需要特殊的冶金工艺才能制成。"
+	desc = "一种密度极高、成分类似等离子铁的合金，需要特殊的冶金工艺才能制成。"
 	color = "#6041aa"
 	mat_flags = MATERIAL_BASIC_RECIPES | MATERIAL_CLASS_METAL | MATERIAL_CLASS_RIGID
 	mat_properties = list(

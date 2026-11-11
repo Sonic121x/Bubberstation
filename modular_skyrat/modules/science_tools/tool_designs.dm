@@ -10,7 +10,7 @@
 
 /datum/design/rcd_loaded/robotics_rcd
 	name = "机器人维修快速建造装置"
-	desc = "经过改装的快速建造装置，比普通纳米传讯型号的容量更小、建造选项更少，也失去了拆解能力，换来了更便捷的合成人维修功能。可用金属、玻璃或塑钢补充材料。"
+	desc = "经过改装的快速建造装置，比普通纳米传讯型号的容量更小、建造选项更少，也失去了拆解能力，换来了更便捷的合成人维修功能。可用金属、玻璃或等离子铁补充材料。"
 	build_type = PROTOLATHE | AWAY_LATHE
 	transfered_materials = list(
 		/obj/item/construction/rcd/robotics_rcd = /obj/item/construction/rcd/robotics_rcd::custom_materials, //The RCD has less materials than what's used, as some is converted to charge/matter

@@ -138,7 +138,7 @@
 
 /obj/item/clothing/suit/armor/vest/capcarapace/centcom
 	name = "中央指挥部胸甲"
-	desc = "一件防火的装甲胸甲，以陶瓷板和塑钢肩甲加固，在提供额外防护的同时仍保持最大的机动性与灵活性。仅配发给中央指挥部最精锐的人员，不过它会磨得你乳头生疼。"
+	desc = "一件防火的装甲胸甲，以陶瓷板和等离子铁肩甲加固，在提供额外防护的同时仍保持最大的机动性与灵活性。仅配发给中央指挥部最精锐的人员，不过它会磨得你乳头生疼。"
 	icon = 'modular_zubbers/icons/obj/clothing/suits/armor.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/armor.dmi'
 	icon_state = "centcom_vest"

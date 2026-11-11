@@ -47,7 +47,7 @@ GLOBAL_LIST_INIT(skyrat_metal_airlock_recipes, list(
 // Plasteel
 
 GLOBAL_LIST_INIT(skyrat_plasteel_recipes, list(
-	new/datum/stack_recipe("塑钢路障", /obj/structure/deployable_barricade/metal/plasteel, 2, time = 1 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND | CRAFT_CHECK_DIRECTION, category = CAT_STRUCTURE),
+	new/datum/stack_recipe("等离子铁路障", /obj/structure/deployable_barricade/metal/plasteel, 2, time = 1 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND | CRAFT_CHECK_DIRECTION, category = CAT_STRUCTURE),
 ))
 
 /obj/item/stack/sheet/plasteel/get_main_recipes()

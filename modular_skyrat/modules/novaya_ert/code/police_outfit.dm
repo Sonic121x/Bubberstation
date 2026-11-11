@@ -45,7 +45,7 @@
 
 /obj/item/clothing/head/helmet/nri_police
 	name = "帝国警察头盔"
-	desc = "一顶用成形塑钢制成的厚实战术头盔。深蓝色外观与帝国警察常用的型号相似。"
+	desc = "一顶用成形等离子铁制成的厚实战术头盔。深蓝色外观与帝国警察常用的型号相似。"
 	icon_state = "police_helmet"
 	icon = 'modular_skyrat/modules/novaya_ert/icons/armor.dmi'
 	worn_icon = 'modular_skyrat/modules/novaya_ert/icons/wornarmor.dmi'

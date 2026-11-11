@@ -400,9 +400,9 @@
 	merge_type = /obj/item/stack/tile/mineral/titanium/tiled/purple
 
 /obj/item/stack/tile/mineral/plastitanium
-	name = "塑钛地板砖"
-	singular_name = "塑钛地板砖"
-	desc = "由塑钛制成的地板砖，用于非常邪恶的穿梭机。"
+	name = "等离子钛地板砖"
+	singular_name = "等离子钛地板砖"
+	desc = "由等离子钛制成的地板砖，用于非常邪恶的穿梭机。"
 	icon_state = "tile_plastitanium"
 	inhand_icon_state = "tile-darkshuttle"
 	turf_type = /turf/open/floor/mineral/plastitanium
@@ -442,9 +442,9 @@
 		)
 
 /obj/item/stack/tile/mineral/plastitanium/red
-	name = "红色塑钛地板砖"
-	singular_name = "红色塑钛地板砖"
-	desc = "由塑钛制成的地板砖，用于非常红色的穿梭机。"
+	name = "红色等离子钛地板砖"
+	singular_name = "红色等离子钛地板砖"
+	desc = "由等离子钛制成的地板砖，用于非常红色的穿梭机。"
 	turf_type = /turf/open/floor/mineral/plastitanium/red
 	icon_state = "tile_plastitanium_red"
 	merge_type = /obj/item/stack/tile/mineral/plastitanium/red

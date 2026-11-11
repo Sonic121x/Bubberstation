@@ -72,7 +72,7 @@
 
 /obj/item/pointman_broken
 	name = "破损的尖兵盾牌"
-	desc = "也许可以用塑钢和焊接工具修复。"
+	desc = "也许可以用等离子铁和焊接工具修复。"
 	icon_state = "riot_broken"
 	icon = 'modular_skyrat/modules/exp_corps/icons/riot.dmi'
 	w_class = WEIGHT_CLASS_BULKY

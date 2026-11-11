@@ -15,7 +15,7 @@
 
 /obj/item/clothing/head/helmet/space/hev_suit/nri
 	name = "\improper 旭日动力战斗装甲头盔"
-	desc = "一顶石墨烯与塑钢复合头盔，内衬防弹尼龙，配有可展开的气密聚碳酸酯面罩和呼吸系统。后方印着“新俄罗斯帝国——国防委员会”。"
+	desc = "一顶石墨烯与等离子铁复合头盔，内衬防弹尼龙，配有可展开的气密聚碳酸酯面罩和呼吸系统。后方印着“新俄罗斯帝国——国防委员会”。"
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/head/helmet.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/head/helmet.dmi'
 	worn_icon_digi = 'modular_skyrat/master_files/icons/mob/clothing/head_muzzled.dmi'
@@ -36,7 +36,7 @@
 
 /obj/item/clothing/head/helmet/space/hev_suit/nri/captain
 	name = "\improper 旭日-2动力战斗装甲头盔"
-	desc = "一顶黑色石墨烯与塑钛复合头盔，带聚脲涂层和耐久纤维内衬，配有可展开的气密染色等离子玻璃面罩和凯夫拉衬里的呼吸系统。后方印着“新俄罗斯帝国——国防委员会”。"
+	desc = "一顶黑色石墨烯与等离子钛复合头盔，带聚脲涂层和耐久纤维内衬，配有可展开的气密染色等离子玻璃面罩和凯夫拉衬里的呼吸系统。后方印着“新俄罗斯帝国——国防委员会”。"
 	icon_state = "nri_captain"
 
 /obj/item/clothing/head/helmet/space/hev_suit/nri/medic
@@ -46,7 +46,7 @@
 
 /obj/item/clothing/head/helmet/space/hev_suit/nri/engineer
 	name = "\improper 旭日-IN动力战斗装甲头盔"
-	desc = "一顶钨与塑钢复合头盔，带有铅衬层的防弹尼龙内衬，配有可展开的气密聚碳酸酯面罩和呼吸系统。后方印着“新俄罗斯帝国——国防委员会”。"
+	desc = "一顶钨与等离子铁复合头盔，带有铅衬层的防弹尼龙内衬，配有可展开的气密聚碳酸酯面罩和呼吸系统。后方印着“新俄罗斯帝国——国防委员会”。"
 	icon_state = "nri_engineer"
 
 

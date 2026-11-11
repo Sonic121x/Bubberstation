@@ -10,7 +10,7 @@
 
 /obj/item/clothing/suit/space/hev_suit/nri
 	name = "\improper 旭日动力战斗装甲"
-	desc = "一套以改良量产诺梅克斯芳纶-气凝胶飞行服为基础的混合式太空防护装甲。带聚脲涂层和耐久纤维衬里的轻型塑钢板尽量减少对机动性的影响，内置生命支持系统则辅助使用者作战。电池让装甲运作顺畅，供电单元上的贴纸提醒使用者妥善管理电量。"
+	desc = "一套以改良量产诺梅克斯芳纶-气凝胶飞行服为基础的混合式太空防护装甲。带聚脲涂层和耐久纤维衬里的轻型等离子铁板尽量减少对机动性的影响，内置生命支持系统则辅助使用者作战。电池让装甲运作顺畅，供电单元上的贴纸提醒使用者妥善管理电量。"
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/suits/spacesuit.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/suits/spacesuit.dmi'
 	worn_icon_digi = 'modular_skyrat/master_files/icons/mob/clothing/suits/spacesuit_digi.dmi'
@@ -81,7 +81,7 @@
 
 /obj/item/clothing/suit/space/hev_suit/nri/captain
 	name = "\improper 旭日-2动力战斗装甲"
-	desc = "一套为新俄罗斯帝国高级人员打造的独特混合式太空防护装甲，以阿库拉制造、采用专有耐久纤维衬垫的拉尔塔克丝绸工作服为基础。带聚脲涂层和六角石墨烯衬里的塑钛板尽量减少对机动性的影响，内置生命支持系统则辅助使用者作战。电池让装甲运作顺畅，供电单元上的贴纸提醒使用者妥善管理电量。"
+	desc = "一套为新俄罗斯帝国高级人员打造的独特混合式太空防护装甲，以阿库拉制造、采用专有耐久纤维衬垫的拉尔塔克丝绸工作服为基础。带聚脲涂层和六角石墨烯衬里的等离子钛板尽量减少对机动性的影响，内置生命支持系统则辅助使用者作战。电池让装甲运作顺畅，供电单元上的贴纸提醒使用者妥善管理电量。"
 	icon_state = "nri_captain"
 
 /obj/item/clothing/suit/space/hev_suit/nri/medic
@@ -91,7 +91,7 @@
 
 /obj/item/clothing/suit/space/hev_suit/nri/engineer
 	name = "\improper 旭日-IN动力战斗装甲"
-	desc = "一套以改良纳米传讯重型工程内衬服为基础的混合式太空防护装甲。带聚脲涂层和铅衬里的轻型塑钢板尽量减少对机动性的影响，并提供额外辐射防护，内置生命支持系统则辅助使用者作战。电池让装甲运作顺畅，供电单元上的贴纸提醒使用者妥善管理电量。"
+	desc = "一套以改良纳米传讯重型工程内衬服为基础的混合式太空防护装甲。带聚脲涂层和铅衬里的轻型等离子铁板尽量减少对机动性的影响，并提供额外辐射防护，内置生命支持系统则辅助使用者作战。电池让装甲运作顺畅，供电单元上的贴纸提醒使用者妥善管理电量。"
 	icon_state = "nri_engineer"
 
 #undef NRI_POWERUSE_HIT

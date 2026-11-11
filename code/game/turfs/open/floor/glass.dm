@@ -146,7 +146,7 @@
 	alpha_to_leave = 206
 
 /turf/open/floor/glass/plastitatanium
-	name = "塑钛玻璃地板"
+	name = "等离子钛玻璃地板"
 	desc = "尽管在上面跳吧，它撑得住。"
 	icon = 'icons/turf/floors/glass_plastitanium.dmi'
 	icon_state = "glass_plastitanium-0"

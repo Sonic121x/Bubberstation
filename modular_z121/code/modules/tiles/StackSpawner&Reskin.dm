@@ -78,9 +78,9 @@
 	var/static/list/material_labels = list(
 		"Metal" = "金属", "Glass" = "玻璃", "Plasma" = "等离子", "Silver" = "银", "Titanium" = "钛",
 		"Gold" = "金", "Uranium" = "铀", "Diamond" = "钻石", "Bluespace" = "蓝空间水晶", "Bananium" = "香蕉矿",
-		"Plasteel" = "塑钢", "Plastic" = "塑料", "Plastitanium" = "塑钛", "Reinforced Glass" = "强化玻璃",
+		"Plasteel" = "等离子铁", "Plastic" = "塑料", "Plastitanium" = "等离子钛", "Reinforced Glass" = "强化玻璃",
 		"Plasma Glass" = "等离子玻璃", "Plasma Reinforced Glass" = "强化等离子玻璃", "Titanium Glass" = "钛玻璃",
-		"Plastitanium Glass" = "塑钛玻璃", "Bronze" = "青铜", "Runite" = "符文矿", "Runed" = "符文金属",
+		"Plastitanium Glass" = "等离子钛玻璃", "Bronze" = "青铜", "Runite" = "符文矿", "Runed" = "符文金属",
 		"Mythril" = "秘银", "Adamantine" = "精金", "Alien Alloy" = "外星合金", "Coal" = "煤", "Wood" = "木材",
 		"Rods" = "金属棒", "Sandstone" = "砂岩", "Snow" = "雪", "Paper" = "纸", "Cloth" = "布",
 		"Leather" = "皮革", "Durathread" = "耐久纤维", "Cardboard" = "纸板", "Bamboo" = "竹子",

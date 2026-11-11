@@ -7,7 +7,7 @@
 
 
 /obj/structure/grille/indestructible
-	desc = "由硬化塑钢杆构成的坚固框架，你绝不可能穿过去。如果你是工程师，此刻大概会对着它的构造流口水。"
+	desc = "由硬化等离子铁杆构成的坚固框架，你绝不可能穿过去。如果你是工程师，此刻大概会对着它的构造流口水。"
 	move_resist = MOVE_FORCE_OVERPOWERING
 	obj_flags = CONDUCTS_ELECTRICITY
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF

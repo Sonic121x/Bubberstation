@@ -88,7 +88,7 @@
 
 /obj/item/organ/fangs/cybernetic
 	name = "机械尖牙"
-	desc = "一组用塑钛制成的尖牙，极为致命。"
+	desc = "一组用等离子钛制成的尖牙，极为致命。"
 	icon_state = "fangs_cyber"
 	organ_flags = ORGAN_ROBOTIC
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 0.25, /datum/material/plasma = SHEET_MATERIAL_AMOUNT * 0.5, /datum/material/titanium = SHEET_MATERIAL_AMOUNT * 0.5)
@@ -99,7 +99,7 @@
 
 /obj/item/organ/fangs/cat/cybernetic
 	name = "机械猫科尖牙"
-	desc = "一组用塑钛制成的尖牙，极为致命。看起来适合猫人使用。可能会让你觉得有点……野性难驯。"
+	desc = "一组用等离子钛制成的尖牙，极为致命。看起来适合猫人使用。可能会让你觉得有点……野性难驯。"
 	icon_state = "fangs_cyber_cat"
 	organ_flags = ORGAN_ROBOTIC
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 0.25, /datum/material/plasma = SHEET_MATERIAL_AMOUNT * 0.5, /datum/material/titanium = SHEET_MATERIAL_AMOUNT * 0.5)

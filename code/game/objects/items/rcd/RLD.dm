@@ -17,7 +17,7 @@
 
 /obj/item/construction/rld
 	name = "快速照明装置"
-	desc = "一种用于快速为区域提供光源的装置。可用铁、塑钢、玻璃或压缩物质弹药筒补充。"
+	desc = "一种用于快速为区域提供光源的装置。可用铁、等离子铁、玻璃或压缩物质弹药筒补充。"
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "rld"
 	inhand_icon_state = "rld"
@@ -219,7 +219,7 @@
 
 /obj/item/construction/rld/mini
 	name = "微型快速照明装置"
-	desc = "一种用于快速为区域提供光源的装置。可用铁、塑钢、玻璃或压缩物质弹药筒补充。"
+	desc = "一种用于快速为区域提供光源的装置。可用铁、等离子铁、玻璃或压缩物质弹药筒补充。"
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "rld"
 	lefthand_file = 'icons/mob/inhands/equipment/tools_lefthand.dmi'

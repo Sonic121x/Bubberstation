@@ -19,7 +19,7 @@
 	category = CAT_CULT
 	non_craftable = TRUE
 	crafting_flags = parent_type::crafting_flags | CRAFT_MUST_BE_LEARNED
-	steps = list("对塑钢使用扭曲建造")
+	steps = list("对等离子铁使用扭曲建造")
 
 /datum/crafting_recipe/constructshell
 	reqs = list(/obj/item/stack/sheet/iron = 50)

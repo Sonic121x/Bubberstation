@@ -730,13 +730,13 @@
 			if(AIRLOCK_SECURITY_IRON)
 				. += "它的电线藏在焊接的铁盖后。"
 			if(AIRLOCK_SECURITY_PLASTEEL_I_S)
-				. += "内部有一些碎裂的塑钢。"
+				. += "内部有一些碎裂的等离子铁。"
 			if(AIRLOCK_SECURITY_PLASTEEL_I)
-				. += "它的电线位于内层塑钢后。"
+				. += "它的电线位于内层等离子铁后。"
 			if(AIRLOCK_SECURITY_PLASTEEL_O_S)
-				. += "内部有一些碎裂的塑钢。"
+				. += "内部有一些碎裂的等离子铁。"
 			if(AIRLOCK_SECURITY_PLASTEEL_O)
-				. += "焊接的塑钢盖遮住了它的电线。"
+				. += "焊接的等离子铁盖遮住了它的电线。"
 			if(AIRLOCK_SECURITY_PLASTEEL)
 				. += "它的面板上覆有防护格栅。"
 	else if(security_level)

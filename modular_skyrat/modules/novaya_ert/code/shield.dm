@@ -1,6 +1,6 @@
 /obj/item/shield/riot/pointman/nri
 	name = "重型医护盾牌"
-	desc = "专为必须冲刺救人的医护兵设计的盾牌，笨重得要命。可用塑钢修复。"
+	desc = "专为必须冲刺救人的医护兵设计的盾牌，笨重得要命。可用等离子铁修复。"
 	icon_state = "riot"
 	icon = 'modular_skyrat/modules/novaya_ert/icons/riot.dmi'
 	lefthand_file = 'modular_skyrat/modules/novaya_ert/icons/riot_left.dmi'

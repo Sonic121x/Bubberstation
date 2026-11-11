@@ -230,7 +230,7 @@
 
 /obj/item/knife/combat/cyborg
 	name = "赛博刀"
-	desc = "一把安装在赛博身上的塑钢刀，极其锋利且耐用。"
+	desc = "一把安装在赛博身上的等离子铁刀，极其锋利且耐用。"
 	icon = 'icons/obj/items_cyborg.dmi'
 	icon_state = "knife_cyborg"
 	worn_icon_state = "knife_cyborg" //error sprite - this shouldn't have been dropped
@@ -296,7 +296,7 @@
 	acid = 50
 
 /obj/item/knife/shiv/plastitanium
-	name = "塑钛玻璃小刀"
+	name = "等离子钛玻璃小刀"
 	desc = "一把自制的掺钛等离子玻璃小刀。"
 	icon_state = "plastitaniumshiv"
 	inhand_icon_state = "plastitaniumshiv"

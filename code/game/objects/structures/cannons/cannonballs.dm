@@ -1,6 +1,6 @@
 /obj/item/stack/cannonball
 	name = "炮弹"
-	desc = "一叠沉重的塑钢炮弹。太空时代的炮术！"
+	desc = "一叠沉重的等离子铁炮弹。太空时代的炮术！"
 	icon_state = "cannonballs"
 	base_icon_state = "cannonballs"
 	max_amount = 14

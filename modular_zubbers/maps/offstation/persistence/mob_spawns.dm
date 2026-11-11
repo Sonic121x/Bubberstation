@@ -49,7 +49,7 @@
 	name = "辛迪加实习生"
 	prompt_name = "一名辛迪加实习生"
 	you_are_text = "你是一艘不明飞船上的实习生。"
-	flavour_text = "你不知道自己在哪儿，只知道自己是个实习生。那些塑钛应该能让你猜到雇主是谁……至于你为什么在这里？那得你自己知道，再由我们来弄明白。"
+	flavour_text = "你不知道自己在哪儿，只知道自己是个实习生。那些等离子钛应该能让你猜到雇主是谁……至于你为什么在这里？那得你自己知道，再由我们来弄明白。"
 	important_text = "你并非反派。你仍须遵守有关冲突升级的角色扮演规则。如果你激怒了辛迪加人员，他们会把你扔进外面的熔岩或等离子体里。"
 	outfit = /datum/outfit/persistence/prisoner
 	computer_area = /area/ruin/space/has_grav/bubbers/persistance/sec/prison

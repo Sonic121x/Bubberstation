@@ -215,9 +215,9 @@ const labels: Readonly<Record<string, string>> = {
 };
 
 const materials: Readonly<Record<string, string>> = {
-  material: '材料', alloy: '合金', plasteel: '塑钢', plastitanium: '塑钛',
+  material: '材料', alloy: '合金', plasteel: '等离子铁', plastitanium: '等离子钛',
   plasmaglass: '等离子玻璃', 'titanium glass': '钛玻璃',
-  'plastitanium glass': '塑钛玻璃', 'alien alloy': '外星合金',
+  'plastitanium glass': '等离子钛玻璃', 'alien alloy': '外星合金',
   iron: '铁', glass: '玻璃', silver: '银', gold: '金', diamond: '钻石',
   uranium: '铀', plasma: '等离子体', 'bluespace crystal': '蓝空间水晶',
   bananium: '香蕉矿', titanium: '钛', runite: '符文矿', plastic: '塑料',
