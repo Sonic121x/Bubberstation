@@ -237,7 +237,7 @@
 
 /turf/closed/wall/r_wall/plastitanium
 	name = /turf/closed/wall/mineral/plastitanium::name
-	desc = "一面由等离子体与钛合金制成、并用塑钢杆加固的格外耐用的墙。"
+	desc = "一面由等离子体与钛合金制成、并用等离子铁杆加固的格外耐用的墙。"
 	icon = 'icons/turf/walls/plastitanium_wall.dmi'
 	icon_state = "plastitanium_wall-0"
 	base_icon_state = "plastitanium_wall"

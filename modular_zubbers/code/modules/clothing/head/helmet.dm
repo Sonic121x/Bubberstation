@@ -133,7 +133,7 @@
 
 /obj/item/clothing/head/playbunnyears/syndicate
 	name = "血红兔耳头带"
-	desc = "一对固定着头带的、可疑得非同寻常的兔耳。头带看上去用塑钢加固过……但为什么呢？"
+	desc = "一对固定着头带的、可疑得非同寻常的兔耳。头带看上去用等离子铁加固过……但为什么呢？"
 	icon = 'modular_zubbers/icons/obj/clothing/head/hats.dmi'
 	icon_state = "syndibunny_ears"
 	post_init_icon_state = null

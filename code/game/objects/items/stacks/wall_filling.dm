@@ -94,9 +94,9 @@ GLOBAL_LIST_EMPTY(wall_reskin_lists)
 		wall_reskin_types = wall_reskin_list(wall_reskin_types)
 
 /obj/item/stack/wall_filling/plastitanium
-	name = "塑钛墙体填充物"
-	singular_name = "塑钛墙体填充物"
-	desc = "用于标准塑钛墙的填充物。"
+	name = "等离子钛墙体填充物"
+	singular_name = "等离子钛墙体填充物"
+	desc = "用于标准等离子钛墙的填充物。"
 	icon_state = "plastitanium-wall-fill"
 	inhand_icon_state = "sheet-plastitanium"
 	mats_per_unit = list(/datum/material/alloy/plastitanium=SHEET_MATERIAL_AMOUNT*2)
@@ -136,9 +136,9 @@ GLOBAL_LIST_EMPTY(wall_reskin_lists)
 
 ///Window-fill. Same, but for windows.
 /obj/item/stack/wall_filling/plastitaniumglass
-	name = "塑钛玻璃窗填充件"
-	singular_name = "塑钛玻璃窗填充件"
-	desc = "标准塑钛玻璃窗的填充件。"
+	name = "等离子钛玻璃窗填充件"
+	singular_name = "等离子钛玻璃窗填充件"
+	desc = "标准等离子钛玻璃窗的填充件。"
 	icon_state = "plastitanium-window-fill"
 	inhand_icon_state = "sheet-plastitaniumglass"
 	mats_per_unit = list(/datum/material/alloy/plastitaniumglass=SHEET_MATERIAL_AMOUNT*2)

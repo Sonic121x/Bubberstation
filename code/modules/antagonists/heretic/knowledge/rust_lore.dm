@@ -160,7 +160,7 @@
 
 /datum/heretic_knowledge/blade_upgrade/rust
 	name = "剧毒之刃"
-	desc = "你的锈蚀之刃如今在攻击时会使敌人恶心。<br>允许你使钛与塑钛生锈。"
+	desc = "你的锈蚀之刃如今在攻击时会使敌人恶心。<br>允许你使钛与等离子钛生锈。"
 	gain_text = "铁匠把他们的刀刃交给你。“只要你愿意，这把刃会引你穿过血肉。”\
 		厚重的锈迹使它沉甸甸的。你深深凝视着它。锈蚀群丘正在召唤你，就在此刻。"
 	research_tree_icon_path = 'icons/ui_icons/antags/heretic/knowledge.dmi'

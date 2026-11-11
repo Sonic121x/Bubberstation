@@ -230,7 +230,7 @@ GLOBAL_LIST_EMPTY(gravity_generators)
 		if(GRAV_NEEDS_WELDING)
 			. += span_notice("框架上有许多破损的密封处，需要<b>焊接</b>一下。")
 		if(GRAV_NEEDS_PLASTEEL)
-			. += span_notice("部分受损的装甲板需要整块更换。<b>10 块塑钢</>应该就够了。")
+			. += span_notice("部分受损的装甲板需要整块更换。<b>10 块等离子铁</>应该就够了。")
 		if(GRAV_NEEDS_WRENCH)
 			. += span_notice("新的装甲板现在只需用<b>扳手</b>固定到位。")
 
@@ -242,7 +242,7 @@ GLOBAL_LIST_EMPTY(gravity_generators)
 		return NONE
 	var/obj/item/stack/sheet/plasteel/metal = tool
 	if(metal.get_amount() < 10)
-		to_chat(user, span_warning("你需要 10 块塑钢！"))
+		to_chat(user, span_warning("你需要 10 块等离子铁！"))
 		return ITEM_INTERACT_BLOCKING
 	metal.use(10)
 	to_chat(user, span_notice("你把装甲板装到了框架上。"))
@@ -532,7 +532,7 @@ GLOBAL_LIST_EMPTY(gravity_generators)
 	那就尽管慌吧；否则请按以下步骤操作。</p><ol>
 	<li>用螺丝刀拧紧框架上的螺丝。</li>
 	<li>用焊接工具修补受损的框架。</li>
-	<li>补上额外的塑钢装甲板。</li>
+	<li>补上额外的等离子铁装甲板。</li>
 	<li>用扳手固定补上的装甲板。</li></ol>"}
 
 #undef POWER_IDLE

@@ -68,7 +68,7 @@ Charged extracts:
 
 /obj/item/slimecross/charged/metal
 	colour = SLIME_TYPE_METAL
-	effect_desc = "产出一堆金属与塑钢。"
+	effect_desc = "产出一堆金属与等离子铁。"
 
 /obj/item/slimecross/charged/metal/do_effect(mob/user)
 	new /obj/item/stack/sheet/iron(get_turf(user), 25)

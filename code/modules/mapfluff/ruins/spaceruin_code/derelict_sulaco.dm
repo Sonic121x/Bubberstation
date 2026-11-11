@@ -16,7 +16,7 @@
 
 /obj/item/clothing/suit/armor/vest/marine/sulaco
 	name = "受损的战术护甲背心"
-	desc = "一套老旧、磨损严重的量产冲压塑钢护甲，做工精良。随着时间流逝，这件装备已失去了大部分防护性能，但用来向异形竖中指还是绰绰有余。"
+	desc = "一套老旧、磨损严重的量产冲压等离子铁护甲，做工精良。随着时间流逝，这件装备已失去了大部分防护性能，但用来向异形竖中指还是绰绰有余。"
 	armor_type = /datum/armor/derelict_marine
 
 /obj/item/clothing/head/helmet/marine/sulaco

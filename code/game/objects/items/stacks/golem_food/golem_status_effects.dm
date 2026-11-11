@@ -271,8 +271,8 @@
 /// Makes you spaceproof
 /datum/status_effect/golem/plasteel
 	overlay_state_prefix = "iron"
-	mineral_name = "塑钢"
-	applied_fluff = "塑钢甲片将你严密封闭，你感到保温良好！"
+	mineral_name = "等离子铁"
+	applied_fluff = "等离子铁甲片将你严密封闭，你感到保温良好！"
 	alert_icon_state = "sheet-plasteel"
 	alert_desc = "你被密封保护，可抵御寒冷与低压环境。"
 	filter_color = LIGHT_COLOR_DEFAULT

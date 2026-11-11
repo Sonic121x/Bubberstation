@@ -1461,9 +1461,9 @@
 	mats_per_unit = list(/datum/material/alloy/titaniumglass = SHEET_MATERIAL_AMOUNT * 0.25)
 
 /obj/item/stack/tile/glass/plastitanium
-	name = "塑钛玻璃地板"
-	singular_name = "塑钛玻璃地板砖"
-	desc = "塑钛玻璃地板，让你既能欣赏熔岩，又不会被烫伤双脚。"
+	name = "等离子钛玻璃地板"
+	singular_name = "等离子钛玻璃地板砖"
+	desc = "等离子钛玻璃地板，让你既能欣赏熔岩，又不会被烫伤双脚。"
 	icon_state = "tile_glass_plastitanium"
 	turf_type = /turf/open/floor/glass/plastitatanium
 	merge_type = /obj/item/stack/tile/glass/plastitanium

@@ -1,6 +1,6 @@
 /obj/item/clothing/head/helmet/space/voskhod
 	name = "\proper 旭日-P 无动力战斗头盔"
-	desc = "一顶复合石墨烯-塑钢头盔，内衬弹道尼龙，配有可展开的气密聚碳酸酯面罩与呼吸器系统。<br>\
+	desc = "一顶复合石墨烯-等离子铁头盔，内衬弹道尼龙，配有可展开的气密聚碳酸酯面罩与呼吸器系统。<br>\
 	这一件的循环呼吸器已被拆走，无法再为用户合成可供呼吸的空气。"
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/head/helmet.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/head/helmet.dmi'
@@ -12,7 +12,7 @@
 
 /obj/item/clothing/suit/space/voskhod
 	name = "\proper 旭日-P 无动力战斗装甲"
-	desc = "一套混合式抗太空装甲，以改装过的量产诺梅克斯-气凝胶飞行服为基础，聚脲涂层、耐久纤维衬里的轻型塑钢板尽可能不妨碍活动。\
+	desc = "一套混合式抗太空装甲，以改装过的量产诺梅克斯-气凝胶飞行服为基础，聚脲涂层、耐久纤维衬里的轻型等离子铁板尽可能不妨碍活动。\
 	这些“瘫痪版”的量产型号去掉了大部分主要功能：从臭名昭著的伤口处理系统，到不太受待见的死亡警报。它更高效的轻质装甲板被换成了单纯的装甲级钢材与陶瓷，使整套装甲明显更加笨重。"
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/suits/spacesuit.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/suits/spacesuit.dmi'

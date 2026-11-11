@@ -826,7 +826,7 @@
 		if(CONSTRUCTION_PANEL_OPEN)
 			. += span_notice("它已从地板上<i>松开螺栓</i>。可以用<b>撬棍</b>拆除电路。")
 			if(!reinforced && !directional)
-				. += span_notice("可以用塑钢加固它。")
+				. += span_notice("可以用等离子铁加固它。")
 		if(CONSTRUCTION_NO_CIRCUIT)
 			. += span_notice("框架内没有<i>防火门电子组件</i>。可以用<b>焊枪</b>切开框架。")
 
@@ -847,7 +847,7 @@
 				to_chat(user, span_warning("[src]已经加固了。"))
 				return ITEM_INTERACT_BLOCKING
 			if(plasteel_sheet.get_amount() < 2)
-				to_chat(user, span_warning("你需要更多塑钢才能加固[src]。"))
+				to_chat(user, span_warning("你需要更多等离子铁才能加固[src]。"))
 				return ITEM_INTERACT_BLOCKING
 			user.visible_message(span_notice("[user]开始加固[src]……"), \
 								span_notice("你开始加固[src]……"))

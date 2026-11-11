@@ -11,12 +11,12 @@
 	inherit_materials = DESIGN_DONT_INHERIT_MATS
 
 /datum/design/alloy/plasteel_alloy
-	name = "塑钢"
+	name = "等离子铁"
 	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT, /datum/material/plasma = SHEET_MATERIAL_AMOUNT)
 	build_path = /obj/item/stack/sheet/plasteel
 
 /datum/design/alloy/plastitanium
-	name = "塑钛"
+	name = "等离子钛"
 	materials = list(/datum/material/titanium = SHEET_MATERIAL_AMOUNT, /datum/material/plasma = SHEET_MATERIAL_AMOUNT)
 	build_path = /obj/item/stack/sheet/mineral/plastitanium
 
@@ -36,7 +36,7 @@
 	build_path = /obj/item/stack/sheet/titaniumglass
 
 /datum/design/alloy/plastitaniumglass
-	name = "塑钛玻璃"
+	name = "等离子钛玻璃"
 	materials = list(/datum/material/plasma = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/titanium = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/glass = SHEET_MATERIAL_AMOUNT)
 	build_path = /obj/item/stack/sheet/plastitaniumglass
 

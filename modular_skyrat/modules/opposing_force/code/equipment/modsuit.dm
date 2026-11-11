@@ -62,7 +62,7 @@
 
 /datum/opposing_force_equipment/modsuit/wizard
 	name = "神秘附魔MOD模块化外骨骼"
-	description = "巫师联邦技术含量相对较低的MOD模块化外骨骼。这套护甲不用塑钢或碳纤维，而是使用太空龙鳞提供保护。"
+	description = "巫师联邦技术含量相对较低的MOD模块化外骨骼。这套护甲不用等离子铁或碳纤维，而是使用太空龙鳞提供保护。"
 	item_type = /obj/item/mod/control/pre_equipped/enchanted
 
 

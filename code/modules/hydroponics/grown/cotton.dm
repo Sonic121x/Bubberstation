@@ -46,7 +46,7 @@
 //reinforced mutated variant
 /obj/item/seeds/cotton/durathread
 	name = "耐久纤维种子包"
-	desc = "一包会生长成极其坚韧纤维的种子，若纺织得当，其强度足以媲美塑钢。"
+	desc = "一包会生长成极其坚韧纤维的种子，若纺织得当，其强度足以媲美等离子铁。"
 	icon_state = "seed-durathread"
 	species = "durathread"
 	plantname = "耐久纤维"

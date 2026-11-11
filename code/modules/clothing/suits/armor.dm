@@ -72,7 +72,7 @@
 
 /obj/item/clothing/suit/armor/vest/marine
 	name = "战术护甲背心"
-	desc = "一套用最优质的量产冲压塑钢甲板制成的护甲，内置环境防护单元，适合在全天候条件下踹门。"
+	desc = "一套用最优质的量产冲压等离子铁甲板制成的护甲，内置环境防护单元，适合在全天候条件下踹门。"
 	icon_state = "marine_command"
 	inhand_icon_state = "armor"
 	clothing_flags = STOPSPRESSUREDAMAGE | THICKMATERIAL
@@ -118,7 +118,7 @@
 	body_parts_covered = CHEST|GROIN
 
 /obj/item/clothing/suit/armor/vest/marine/pmc
-	desc = "一套用最优质的量产冲压塑钢甲板制成的护甲，可全方位踹门与揍人。它出色的生存能力弥补了不具备太空适应性的缺点"
+	desc = "一套用最优质的量产冲压等离子铁甲板制成的护甲，可全方位踹门与揍人。它出色的生存能力弥补了不具备太空适应性的缺点"
 	min_cold_protection_temperature = HELMET_MIN_TEMP_PROTECT
 	max_heat_protection_temperature = HELMET_MAX_TEMP_PROTECT
 	clothing_flags = THICKMATERIAL
@@ -252,7 +252,7 @@
 
 /obj/item/clothing/suit/armor/vest/capcarapace
 	name = "船长胸甲"
-	desc = "一件防火装甲胸甲，用陶瓷板与塑钢肩甲加固，在提供额外防护的同时仍保持最大的机动性与灵活性。只发给空间站里最优秀的人，不过它确实会磨得你乳头发疼。"
+	desc = "一件防火装甲胸甲，用陶瓷板与等离子铁肩甲加固，在提供额外防护的同时仍保持最大的机动性与灵活性。只发给空间站里最优秀的人，不过它确实会磨得你乳头发疼。"
 	icon_state = "capcarapace"
 	inhand_icon_state = "armor"
 	body_parts_covered = CHEST|GROIN

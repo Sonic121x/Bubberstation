@@ -38,7 +38,7 @@
 	else
 		. += span_notice("你也许可以用一些<i>地砖</i>在上面铺设……")
 	if(upgradable)
-		. += span_notice("用一些塑钢也许能让这块基板更坚固。")
+		. += span_notice("用一些等离子铁也许能让这块基板更坚固。")
 
 #define PLATE_REINFORCE_COST 2
 

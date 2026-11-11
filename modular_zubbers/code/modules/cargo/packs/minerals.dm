@@ -14,15 +14,15 @@
 	crate_name = "铁板箱"
 
 /datum/supply_pack/materials/plasteel20
-	name = "20 块塑钢板"
-	desc = "用二十块塑钢板加固空间站的结构完整性！"
+	name = "20 块等离子铁板"
+	desc = "用二十块等离子铁板加固空间站的结构完整性！"
 	cost = CARGO_CRATE_VALUE * 10.5
 	contains = list(/obj/item/stack/sheet/plasteel/twenty)
-	crate_name = "塑钢板箱"
+	crate_name = "等离子铁板箱"
 
 /datum/supply_pack/materials/plasteel50
-	name = "50 块塑钢板"
+	name = "50 块等离子铁板"
 	desc = "当你真的、真的需要加固什么东西的时候。"
 	cost = CARGO_CRATE_VALUE * 24.6
 	contains = list(/obj/item/stack/sheet/plasteel/fifty)
-	crate_name = "塑钢板箱"
+	crate_name = "等离子铁板箱"

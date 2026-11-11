@@ -317,8 +317,8 @@ GLOBAL_LIST_INIT(plasteel_recipes, list ( \
 ))
 
 /obj/item/stack/sheet/plasteel
-	name = "塑钢"
-	singular_name = "塑钢板"
+	name = "等离子铁"
+	singular_name = "等离子铁板"
 	desc = "这种板材是铁与等离子体的合金。"
 	icon_state = "sheet-plasteel"
 	worn_icon_state = "sheet-plasteel"

@@ -254,7 +254,7 @@
 
 	// BUBBER EDIT ADDITION BEGIN: Just a normal bag.
 	special_desc_requirement = EXAMINE_CHECK_SYNDICATE
-	special_desc = "这只行李袋内侧缝有辛迪加标志。它似乎由更轻却更坚固的材料制成，并配有上油的塑钛拉链，以便以最快速度完成战术拉链操作。"
+	special_desc = "这只行李袋内侧缝有辛迪加标志。它似乎由更轻却更坚固的材料制成，并配有上油的等离子钛拉链，以便以最快速度完成战术拉链操作。"
 	// BUBBER EDIT ADDITION END: Just a normal bag.
 
 /obj/item/storage/backpack/duffelbag/syndie/hitman

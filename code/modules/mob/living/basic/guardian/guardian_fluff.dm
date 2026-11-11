@@ -96,7 +96,7 @@
 		GUARDIAN_LIGHTNING = "碎片揭示了……铁，导电的闪电之源。",
 		GUARDIAN_PROTECTOR = "碎片揭示了……铀，致密而坚韧。",
 		GUARDIAN_RANGED = "碎片揭示了……钻石，投射出百万锋刃。",
-		GUARDIAN_STANDARD = "碎片揭示了……塑钛，强大的战士。",
+		GUARDIAN_STANDARD = "碎片揭示了……等离子钛，强大的战士。",
 		GUARDIAN_SUPPORT = "碎片揭示了……蓝空间，位移的大师。",
 	)
 

@@ -16,7 +16,7 @@
 
 /datum/uplink_item/device_tools/duffelbag
 	name = "可疑行李袋"
-	desc = "一个大号行李袋，用于存放额外的战术补给。它配有上油的塑钛拉链，让战术拉链动作达到最高速度， \
+	desc = "一个大号行李袋，用于存放额外的战术补给。它配有上油的等离子钛拉链，让战术拉链动作达到最高速度， \
 			而且背在身上的平衡性比普通行李袋更好。可以装下两件笨重物品！"
 	item = /obj/item/storage/backpack/duffelbag/syndie
 	cost = 2

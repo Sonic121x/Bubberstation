@@ -657,8 +657,8 @@ GAME_VERB_SRC(/obj/structure/deployable_barricade, revrotate, oview(1), "顺时�
 /*----------------------*/
 
 /obj/structure/deployable_barricade/metal/plasteel
-	name = "塑钢路障"
-	desc = "坚固的塑钢路障，必要时可以降下。用焊接工具修理它。"
+	name = "等离子铁路障"
+	desc = "坚固的等离子铁路障，必要时可以降下。用焊接工具修理它。"
 	icon_state = "plasteel_closed_0"
 	max_integrity = 500
 	stack_type = /obj/item/stack/sheet/plasteel

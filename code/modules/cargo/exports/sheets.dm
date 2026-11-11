@@ -67,7 +67,7 @@
 
 /datum/export/stack/plasteel
 	cost = CARGO_CRATE_VALUE * 0.41 // 100u of plasma + 100u of iron.
-	message = "塑钢"
+	message = "等离子铁"
 	export_types = list(/obj/item/stack/sheet/plasteel)
 
 // 1 glass + 0.5 iron, cost is rounded up.
@@ -78,7 +78,7 @@
 
 /datum/export/stack/plastitanium
 	cost = CARGO_CRATE_VALUE * 0.65 // plasma + titanium costs
-	message = "塑钛"
+	message = "等离子钛"
 	export_types = list(/obj/item/stack/sheet/mineral/plastitanium)
 
 /datum/export/stack/wood
