@@ -625,7 +625,7 @@ GAME_VERB_HIDDEN(/mob/living, succumb, "succumb")
 
 // MOB PROCS //END
 
-GAME_VERB_PROC(/mob/living, mob_sleep, "睡觉", null)
+GAME_VERB_PROC(/mob/living, mob_sleep, "睡觉", "IC") // BUBBER EDIT - Make sleep button in IC tab available again. Original: GAME_VERB_PROC(/mob/living, mob_sleep, "Sleep", null)
 
 	if(IsSleeping())
 		to_chat(src, span_warning("你已经在睡觉了！"))
