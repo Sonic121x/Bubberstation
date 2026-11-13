@@ -21,6 +21,6 @@
 /obj/item/circuitboard/machine/biogenerator/food_replicator/completion_requirements(obj/structure/frame/install_frame, mob/living/user)
 	var/area/build_area = get_area(install_frame)
 	if(build_area.type in GLOB.the_station_areas)
-		install_frame.balloon_alert(user, "can't build on station!")
+		install_frame.balloon_alert(user, "无法在空间站内建造！")
 		return FALSE
 	return ..()

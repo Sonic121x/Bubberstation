@@ -63,11 +63,11 @@
 
 /obj/machinery/rnd/production/colony_lathe/screwdriver_act(mob/living/user, obj/item/tool)
 	if(busy)
-		balloon_alert(user, "busy printing!")
+		balloon_alert(user, "正在打印！")
 		return ITEM_INTERACT_BLOCKING
 	tool.play_tool_sound(src, 50)
 	panel_open = !panel_open
-	balloon_alert(user, "panel [panel_open ? "opened" : "closed"]")
+	balloon_alert(user, "面板已[panel_open ? "打开" : "关闭"]")
 	update_appearance()
 	return ITEM_INTERACT_SUCCESS
 
@@ -77,14 +77,14 @@
 		return ITEM_INTERACT_SUCCESS
 	if(panel_open && istype(tool, /obj/item/stock_parts/power_store/cell))
 		if(!isnull(cell))
-			balloon_alert(user, "already has a cell!")
+			balloon_alert(user, "已装有电池！")
 			return ITEM_INTERACT_BLOCKING
 		if(!user.transferItemToLoc(tool, src))
 			return ITEM_INTERACT_BLOCKING
 		cell = tool
 		power_change()
 		playsound(src, 'sound/machines/click.ogg', 50, TRUE)
-		balloon_alert(user, "cell installed")
+		balloon_alert(user, "电池已安装")
 		return ITEM_INTERACT_SUCCESS
 	return ..()
 
@@ -95,16 +95,16 @@
 
 /obj/machinery/rnd/production/colony_lathe/examine(mob/user)
 	. = ..()
-	. += span_notice("It runs off station power where it can, and off its own cell where it cannot.")
+	. += span_notice("它会优先使用空间站电力，无法接入电网时则使用内置电池。")
 	if(isnull(cell))
-		. += span_warning("Its cell housing is <b>empty</b>.")
+		. += span_warning("它的电池槽是<b>空的</b>。")
 	else
-		. += span_notice("Its [cell.name] is charged to <b>[round(cell.percent())]%</b>.")
-	. += span_notice("Its maintenance panel can be [EXAMINE_HINT("screwed")] [panel_open ? "closed" : "open"].")
+		. += span_notice("它的[cell.name]电量为 <b>[round(cell.percent())]%</b>。")
+	. += span_notice("可以用[EXAMINE_HINT("螺丝刀")][panel_open ? "关闭" : "打开"]维护面板。")
 	if(!panel_open)
 		return
-	. += span_notice("The wires inside can be worked with a [EXAMINE_HINT("multitool")] or [EXAMINE_HINT("wirecutters")].")
-	. += span_notice("The cell can be levered out with a [EXAMINE_HINT("crowbar")].")
+	. += span_notice("可以用[EXAMINE_HINT("多功能工具")]或[EXAMINE_HINT("剪线钳")]操作内部线路。")
+	. += span_notice("可以用[EXAMINE_HINT("撬棍")]撬出电池。")
 
 /// Rebuilds the design list when the hack wire changes
 /obj/machinery/rnd/production/colony_lathe/proc/refresh_hacked_designs()
@@ -153,14 +153,14 @@
 	if(!panel_open)
 		return NONE
 	if(isnull(cell))
-		balloon_alert(user, "no cell!")
+		balloon_alert(user, "没有电池！")
 		return ITEM_INTERACT_BLOCKING
 	if(busy)
-		balloon_alert(user, "busy printing!")
+		balloon_alert(user, "正在打印！")
 		return ITEM_INTERACT_BLOCKING
 	tool.play_tool_sound(src, 50)
 	user.put_in_hands(cell)
-	balloon_alert(user, "cell removed")
+	balloon_alert(user, "电池已取出")
 	cell = null
 	power_change()
 	return ITEM_INTERACT_SUCCESS
@@ -176,18 +176,18 @@
 		return ..()
 
 	if(disabled)
-		say("Fabrication systems are offline.")
+		say("制造系统已离线。")
 		return FALSE
 
 	// contraband designs are autolathe designs
 	var/datum/design/design = SSresearch.techweb_designs[text2path(params["design_path"])]
 	if(istype(design) && !station_has_researched(design.type))
-		say("This design has not been researched by the station yet.")
+		say("空间站尚未研究此设计。")
 		return FALSE
 	var/borrowing_autolathe_systems = istype(design) && !(design.build_type & allowed_buildtypes)
 	if(borrowing_autolathe_systems)
 		if(!hacked || !(design in cached_designs))
-			say("This fabricator does not have the necessary keys to decrypt this design.")
+			say("本建造机缺少解密此设计所需的密钥。")
 			return FALSE
 		allowed_buildtypes |= AUTOLATHE
 
@@ -276,7 +276,7 @@
 	var/area/deploy_area = get_area(deploy_location)
 	if((deploy_area.type in GLOB.the_station_areas))
 		if(user)
-			source.balloon_alert(user, "can't deploy on station!")
+			source.balloon_alert(user, "无法在空间站内部署！")
 		return
 
 	return ..()
@@ -297,7 +297,7 @@
 
 /datum/wires/rnd/colony_lathe
 	holder_type = /obj/machinery/rnd/production/colony_lathe
-	proper_name = "Rapid Construction Fabricator"
+	proper_name = "快速建造机"
 
 /datum/wires/rnd/colony_lathe/on_pulse(wire)
 	. = ..()
@@ -346,9 +346,9 @@
 /datum/component/flatpack_cell/proc/on_examine(datum/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER
 	if(isnull(cell))
-		examine_list += span_warning("Its cell housing is <b>empty</b>.")
+		examine_list += span_warning("它的电池槽是<b>空的</b>。")
 		return
-	examine_list += span_notice("It is packed with a [cell.name] at <b>[round(cell.percent())]%</b>, which can be swapped by <b>clicking</b> it with another cell.")
+	examine_list += span_notice("包装内装有一块电量为 <b>[round(cell.percent())]%</b> 的[cell.name]，可手持另一块电池<b>点击</b>包装来更换。")
 
 /datum/component/flatpack_cell/proc/on_item_interaction(datum/source, mob/living/user, obj/item/tool, list/modifiers)
 	SIGNAL_HANDLER
@@ -361,10 +361,10 @@
 	var/obj/item/stock_parts/power_store/cell/old_cell = cell
 	cell = tool
 	if(isnull(old_cell))
-		flatpack.balloon_alert(user, "cell installed")
+		flatpack.balloon_alert(user, "电池已安装")
 		return ITEM_INTERACT_SUCCESS
 	INVOKE_ASYNC(user, TYPE_PROC_REF(/mob, put_in_hands), old_cell)
-	flatpack.balloon_alert(user, "cell swapped")
+	flatpack.balloon_alert(user, "电池已更换")
 	return ITEM_INTERACT_SUCCESS
 
 /datum/component/flatpack_cell/proc/on_exited(datum/source, atom/movable/gone, direction)

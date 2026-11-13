@@ -187,7 +187,7 @@
 /proc/get_chem_id(chem_name)
 	for(var/X in GLOB.chemical_reagents_list)
 		var/datum/reagent/R = GLOB.chemical_reagents_list[X]
-		if(ckey(chem_name) == ckey(LOWER_TEXT(R.name)))
+		if(chinese_reagent_names_match(chem_name, R.name)) // 自定义修改：保留中文名称以避免试剂搜索、删除和催化剂切换误匹配；BUBBER EDIT
 			return X
 
 /proc/reagent_paths_list_to_text(list/reagents, addendum)
