@@ -150,6 +150,20 @@
 			return internal_name
 	return value
 
+/// Preserve Unicode names while retaining ckey's ASCII case and punctuation handling.
+/proc/chinese_reagent_lookup_key(value)
+	if(!istext(value))
+		return null
+	var/lookup_key = ""
+	for(var/index in 1 to length_char(value))
+		var/character = copytext_char(value, index, index + 1)
+		lookup_key += length(character) > 1 ? LOWER_TEXT(character) : ckey(character)
+	return lookup_key
+
+/proc/chinese_reagent_names_match(input_name, reagent_name)
+	var/input_key = chinese_reagent_lookup_key(input_name)
+	return length(input_key) && input_key == chinese_reagent_lookup_key(reagent_name)
+
 /// Recording data sent to the UI is a copy; saved recipes retain internal names.
 /proc/chinese_reagent_recipe_display(list/recipe)
 	if(isnull(recipe))
