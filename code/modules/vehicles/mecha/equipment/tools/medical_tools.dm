@@ -231,7 +231,7 @@
 /obj/item/mecha_parts/mecha_equipment/medical/syringe_gun/Initialize(mapload)
 	. = ..()
 	create_reagents(max_volume, NO_REACT)
-	known_reagents = list(/datum/reagent/medicine/epinephrine="肾上腺素",/datum/reagent/medicine/c2/multiver="穆尔提弗")
+	known_reagents = list(/datum/reagent/medicine/epinephrine="肾上腺素",/datum/reagent/medicine/c2/multiver="多功能解毒剂")
 
 /obj/item/mecha_parts/mecha_equipment/medical/syringe_gun/Destroy()
 	STOP_PROCESSING(SSobj, src)

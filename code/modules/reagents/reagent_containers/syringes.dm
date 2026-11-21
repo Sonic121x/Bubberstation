@@ -257,8 +257,8 @@
 	list_reagents = list(/datum/reagent/medicine/epinephrine = 15)
 
 /obj/item/reagent_containers/syringe/multiver
-	name = "注射器（穆尔提弗）"
-	desc = "含有穆尔提弗。已用格拉尼比妥稀释。"
+	name = "注射器（多功能解毒剂）"
+	desc = "含有多功能解毒剂。已用格拉尼比妥稀释。"
 	list_reagents = list(/datum/reagent/medicine/c2/multiver = 6, /datum/reagent/medicine/granibitaluri = 9)
 
 /obj/item/reagent_containers/syringe/calomel

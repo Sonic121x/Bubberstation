@@ -68,8 +68,8 @@
 	list_reagents = list(/datum/reagent/medicine/mannitol = 30)
 
 /obj/item/reagent_containers/cup/bottle/multiver
-	name = "穆尔提弗瓶"
-	desc = "一小瓶穆尔提弗，可清除血液中的毒素及其他化学物质，但会导致呼吸急促。所有效果都会随患者体内试剂总量而增强。"
+	name = "多功能解毒剂瓶"
+	desc = "一小瓶多功能解毒剂，可清除血液中的毒素及其他化学物质，但会导致呼吸急促。所有效果都会随患者体内试剂总量而增强。"
 	list_reagents = list(/datum/reagent/medicine/c2/multiver = 30)
 
 /obj/item/reagent_containers/cup/bottle/calomel

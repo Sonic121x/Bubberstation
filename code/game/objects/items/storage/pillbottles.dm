@@ -36,7 +36,7 @@
 		new spawn_type(src)
 
 /obj/item/storage/pill_bottle/multiver
-	name = "多价药片瓶"
+	name = "多功能解毒剂药片瓶"
 	desc = "内含用于对抗毒素的药片。"
 	spawn_count = 7
 	spawn_type = /obj/item/reagent_containers/applicator/pill/multiver

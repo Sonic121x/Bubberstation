@@ -570,7 +570,7 @@
 	list_reagents = list(/datum/reagent/medicine/c2/aiuri = 10, /datum/reagent/medicine/granibitaluri = 40)
 
 /obj/item/reagent_containers/cup/beaker/large/multiver
-	name = "穆尔提弗储备罐（稀释）"
+	name = "多功能解毒剂储备罐（稀释）"
 	list_reagents = list(/datum/reagent/medicine/c2/multiver = 10, /datum/reagent/medicine/granibitaluri = 40)
 
 /obj/item/reagent_containers/cup/beaker/large/epinephrine

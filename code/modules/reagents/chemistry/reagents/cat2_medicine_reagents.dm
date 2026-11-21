@@ -368,7 +368,7 @@
 		return UPDATE_MOB_HEALTH
 
 /datum/reagent/medicine/c2/multiver //enhanced with MULTIple medicines
-	name = "穆尔提弗"
+	name = "多功能解毒剂"
 	description = "一种化学物质清除剂，存在的独特药物越多，效果就越强。能略微治疗毒素伤害，但会造成肺部损伤（可被独特药物减轻）。"
 	inverse_chem = /datum/reagent/inverse/healing/monover
 	inverse_chem_val = 0.35

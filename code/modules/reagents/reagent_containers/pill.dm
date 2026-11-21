@@ -216,7 +216,7 @@
 	rename_with_volume = TRUE
 
 /obj/item/reagent_containers/applicator/pill/multiver
-	name = "穆尔提弗药丸"
+	name = "多功能解毒剂药片"
 	desc = "中和多种常见毒素，效果随体内独特药物数量增强。已用格拉尼比妥稀释。"
 	icon_state = "pill17"
 	list_reagents = list(/datum/reagent/medicine/c2/multiver = 5, /datum/reagent/medicine/granibitaluri = 5)

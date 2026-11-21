@@ -56,7 +56,7 @@
 	build_path = /obj/item/reagent_containers/applicator/pill/convermol
 
 /datum/design/biogen/medical_replicator/multiver_pill
-	name = "穆尔提弗药丸"
+	name = "多功能解毒剂药片"
 	materials = list(/datum/material/biomass = 75)
 	build_path = /obj/item/reagent_containers/applicator/pill/multiver
 

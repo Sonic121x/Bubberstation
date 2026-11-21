@@ -231,7 +231,7 @@
 	list_reagents = list(/datum/reagent/medicine/c2/synthflesh = 50)
 
 /obj/item/reagent_containers/cup/vial/large/multiver
-	name = "大型黑色无针药瓶（穆尔提弗）"
+	name = "大型黑色无针药瓶（多功能解毒剂）"
 	icon_state = "hypoviallarge-tox"
 	list_reagents = list(/datum/reagent/medicine/c2/multiver = 50)
 
