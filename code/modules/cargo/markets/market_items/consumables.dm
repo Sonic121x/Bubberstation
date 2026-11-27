@@ -34,7 +34,7 @@
 	return ..()
 
 /datum/market_item/consumable/suspicious_pills
-	name = "一瓶可疑药片"
+	name = "一瓶可疑药丸"
 	desc = "随机混装的豪华药物鸡尾酒，保证让你笑逐颜开！"
 	item = /obj/item/storage/pill_bottle
 
@@ -55,7 +55,7 @@
 	return ..()
 
 /datum/market_item/consumable/floor_pill
-	name = "奇怪的药片"
+	name = "奇怪的药丸"
 	desc = "维修隧道的俄罗斯轮盘赌。"
 	item = /obj/item/reagent_containers/applicator/pill/maintenance
 

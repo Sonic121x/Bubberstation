@@ -36,8 +36,8 @@
 		new spawn_type(src)
 
 /obj/item/storage/pill_bottle/multiver
-	name = "多功能解毒剂药片瓶"
-	desc = "内含用于对抗毒素的药片。"
+	name = "多功能解毒剂药丸瓶"
+	desc = "内含用于对抗毒素的药丸。"
 	spawn_count = 7
 	spawn_type = /obj/item/reagent_containers/applicator/pill/multiver
 
@@ -45,56 +45,56 @@
 	spawn_count = 3
 
 /obj/item/storage/pill_bottle/epinephrine
-	name = "肾上腺素药片瓶"
-	desc = "内含用于稳定病人状态的药片。"
+	name = "肾上腺素药丸瓶"
+	desc = "内含用于稳定病人状态的药丸。"
 	spawn_count = 7
 	spawn_type = /obj/item/reagent_containers/applicator/pill/epinephrine
 
 /obj/item/storage/pill_bottle/mutadone
-	name = "去突变药片瓶"
-	desc = "内含用于治疗基因异常的药片。"
+	name = "去突变药丸瓶"
+	desc = "内含用于治疗基因异常的药丸。"
 	spawn_count = 7
 	spawn_type = /obj/item/reagent_containers/applicator/pill/mutadone
 
 /obj/item/storage/pill_bottle/potassiodide
-	name = "碘化钾药片瓶"
-	desc = "内含用于减轻辐射损伤的药片。"
+	name = "碘化钾药丸瓶"
+	desc = "内含用于减轻辐射损伤的药丸。"
 	spawn_count = 3
 	spawn_type = /obj/item/reagent_containers/applicator/pill/potassiodide
 
 /obj/item/storage/pill_bottle/probital
-	name = "普罗比妥药片瓶"
-	desc = "内含用于治疗钝击伤害的药片。瓶内标签写着“服用前请先进食，可能引起疲劳”。"
+	name = "普罗比妥药丸瓶"
+	desc = "内含用于治疗钝击伤害的药丸。瓶内标签写着“服用前请先进食，可能引起疲劳”。"
 	spawn_count = 4
 	spawn_type = /obj/item/reagent_containers/applicator/pill/probital
 
 /obj/item/storage/pill_bottle/iron
-	name = "补铁药片瓶"
-	desc = "内含可缓慢减少失血的药片。瓶内标签写着“每五分钟仅可服用一片”。"
+	name = "补铁药丸瓶"
+	desc = "内含可缓慢减少失血的药丸。瓶内标签写着“每五分钟仅可服用一片”。"
 	spawn_count = 4
 	spawn_type = /obj/item/reagent_containers/applicator/pill/iron
 
 /obj/item/storage/pill_bottle/mannitol
-	name = "甘露醇药片瓶"
-	desc = "内含用于治疗脑损伤的药片。"
+	name = "甘露醇药丸瓶"
+	desc = "内含用于治疗脑损伤的药丸。"
 	spawn_count = 7
 	spawn_type = /obj/item/reagent_containers/applicator/pill/mannitol
 
 //Contains 4 pills instead of 7, and 5u pills instead of 50u (50u pills heal 250 brain damage, 5u pills heal 25)
 /obj/item/storage/pill_bottle/mannitol/braintumor
-	desc = "内含稀释药片，用于治疗脑肿瘤症状。感到头晕时服用一片。"
+	desc = "内含稀释药丸，用于治疗脑肿瘤症状。感到头晕时服用一片。"
 	spawn_count = 4
 	spawn_type = /obj/item/reagent_containers/applicator/pill/mannitol/braintumor
 
 /obj/item/storage/pill_bottle/stimulant
-	name = "兴奋剂药片瓶"
+	name = "兴奋剂药丸瓶"
 	desc = "保证能在漫长的班次中为你额外注入一股能量！"
 	spawn_count = 5
 	spawn_type = /obj/item/reagent_containers/applicator/pill/stimulant
 
 /obj/item/storage/pill_bottle/sansufentanyl
 	name = "实验性药物瓶"
-	desc = "由英特戴恩制药公司研发的一瓶药片，用于治疗遗传性流形病。"
+	desc = "由英特戴恩制药公司研发的一瓶药丸，用于治疗遗传性流形病。"
 	spawn_count = 6
 	spawn_type = /obj/item/reagent_containers/applicator/pill/sansufentanyl
 
@@ -129,25 +129,25 @@
 	spawn_type = /obj/item/reagent_containers/applicator/pill/aranesp
 
 /obj/item/storage/pill_bottle/psicodine
-	name = "心定宁药片瓶"
-	desc = "内含用于治疗精神痛苦与创伤的药片。"
+	name = "心定宁药丸瓶"
+	desc = "内含用于治疗精神痛苦与创伤的药丸。"
 	spawn_count = 7
 	spawn_type = /obj/item/reagent_containers/applicator/pill/psicodine
 
 /obj/item/storage/pill_bottle/penacid
-	name = "喷替酸药片瓶"
-	desc = "内含用于清除辐射与毒素的药片。"
+	name = "喷替酸药丸瓶"
+	desc = "内含用于清除辐射与毒素的药丸。"
 	spawn_count = 3
 	spawn_type = /obj/item/reagent_containers/applicator/pill/penacid
 
 /obj/item/storage/pill_bottle/neurine
-	name = "神经碱药片瓶"
-	desc = "内含用于治疗非重度精神创伤的药片。"
+	name = "神经碱药丸瓶"
+	desc = "内含用于治疗非重度精神创伤的药丸。"
 	spawn_count = 5
 	spawn_type = /obj/item/reagent_containers/applicator/pill/neurine
 
 /obj/item/storage/pill_bottle/maintenance_pill
-	name = "维护区药片瓶"
+	name = "维护区药丸瓶"
 	desc = "一个陈旧的药瓶，闻起来有股霉味。"
 	spawn_type = /obj/item/reagent_containers/applicator/pill/maintenance
 
@@ -163,20 +163,20 @@
 
 ///////////////////////////////////////// Psychologist inventory pillbottles
 /obj/item/storage/pill_bottle/happinesspsych
-	name = "幸福药片"
-	desc = "内含作为最后手段、用于暂时稳定抑郁与焦虑的药片。警告：副作用可能包括言语不清、流涎以及严重成瘾。"
+	name = "幸福药丸"
+	desc = "内含作为最后手段、用于暂时稳定抑郁与焦虑的药丸。警告：副作用可能包括言语不清、流涎以及严重成瘾。"
 	spawn_count = 5
 	spawn_type = /obj/item/reagent_containers/applicator/pill/happinesspsych
 
 /obj/item/storage/pill_bottle/lsdpsych
-	name = "心智破坏毒素药片"
-	desc = "！仅限治疗用途！内含用于缓解现实解离综合征症状的药片。"
+	name = "心智破坏毒素药丸"
+	desc = "！仅限治疗用途！内含用于缓解现实解离综合征症状的药丸。"
 	spawn_count = 5
 	spawn_type = /obj/item/reagent_containers/applicator/pill/lsdpsych
 
 /obj/item/storage/pill_bottle/paxpsych
-	name = "帕克斯药片"
-	desc = "内含用于暂时镇静被认为会伤害自己或他人的患者的药片。"
+	name = "帕克斯药丸"
+	desc = "内含用于暂时镇静被认为会伤害自己或他人的患者的药丸。"
 	spawn_count = 5
 	spawn_type = /obj/item/reagent_containers/applicator/pill/paxpsych
 
@@ -199,7 +199,7 @@
 	spawn_type = /obj/item/reagent_containers/applicator/pill/spaceacillin
 
 /obj/item/storage/pill_bottle/prescription_stimulant
-	name = "处方兴奋剂药片瓶"
+	name = "处方兴奋剂药丸瓶"
 	desc = "一瓶温和且获药用许可的兴奋剂，用于帮助防止嗜睡。 \n\
 		成分清单如下：含 3u 莫达非尼、5u 突触碱与 5u 葡萄糖。 \n\
 		警告标签上写着：<b>请适量服用</b>。"
@@ -207,7 +207,7 @@
 	spawn_type = /obj/item/reagent_containers/applicator/pill/prescription_stimulant
 
 /obj/item/storage/pill_bottle/sepsisillin
-	name = "脓毒西林药片瓶"
+	name = "脓毒西林药丸瓶"
 	desc = "内含免疫系统抑制剂，用于辅助病毒学研究。请勿与太空青霉素混淆。"
 	spawn_count = 7
 	spawn_type = /obj/item/reagent_containers/applicator/pill/sepsisillin

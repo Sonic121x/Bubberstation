@@ -10,7 +10,7 @@
 	name = "辛迪加战地医疗包"
 	desc = "一个配色可疑的黑红急救箱，内含多支阿托品急救针，\
 			用于快速稳定伤情并避免引爆，还有处理伤口的缝合线和再生网，\
-			以及加快战地治疗的药贴。另外附带基础医疗工具和消毒剂。"
+			以及加快战地治疗的贴片。另外附带基础医疗工具和消毒剂。"
 	item = /obj/item/storage/medkit/tactical
 	cost = 4
 	purchasable_from = ~(UPLINK_NUKE_OPS | UPLINK_CLOWN_OPS)

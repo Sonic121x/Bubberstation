@@ -1297,7 +1297,7 @@
 /obj/item/toy/figure/chemist
 	name = "\improper 化学师活动人偶"
 	icon_state = "chemist"
-	toysay = "来拿你的药片！"
+	toysay = "来拿你的药丸！"
 
 /obj/item/toy/figure/clown
 	name = "\improper 小丑活动人偶"

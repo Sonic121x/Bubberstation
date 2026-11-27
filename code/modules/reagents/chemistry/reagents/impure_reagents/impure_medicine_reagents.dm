@@ -920,7 +920,7 @@ Basically, we fill the time between now and 2s from now with hands based off the
 	affected_mob.cure_trauma_type(/datum/brain_trauma/mild/phobia/fish, resilience = TRAUMA_RESILIENCE_ABSOLUTE)
 
 /datum/reagent/inverse/spaceacillin
-	name = "败血青霉素"
+	name = "脓毒西林"
 	description = "削弱免疫系统，加速细菌、病毒和寄生虫的影响，同时抵消免疫增强剂的效果。" //it's like spacacillin but evil muahaha
 	color = "#002f06" //Gross green-black. Seemed fitting.
 	ph = 8.1

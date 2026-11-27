@@ -9,7 +9,7 @@
 	spawn_count = 7
 
 /obj/item/reagent_containers/applicator/pill/amollin
-	name = "阿莫林药片"
+	name = "阿莫林药丸"
 	desc = "可中和许多常见的疼痛与不适。由矿工药膏与利多卡因混合而成。"
 	icon_state = "pill9"
 	layers_remaining = 1
@@ -22,7 +22,7 @@
 // Narcolepsy quirk medicines
 /obj/item/storage/pill_bottle/prescription_stimulant
 	name = "阿利非药瓶"
-	desc = "一种特殊的小型药瓶，内部插片形似左轮弹巢，专为“民防”级外壳医疗包的内部空间而设计。可装五片阿利非药片，且只接受其专用的德福雷斯特(tm) 形状。侧面贴着一张醒目的大号黄色警告标签：“请遵照剂量说明”。"
+	desc = "一种特殊的小型药瓶，内部插片形似左轮弹巢，专为“民防”级外壳医疗包的内部空间而设计。可装五片阿利非药丸，且只接受其专用的德福雷斯特(tm) 形状。侧面贴着一张醒目的大号黄色警告标签：“请遵照剂量说明”。"
 	icon = 'modular_skyrat/modules/deforest_medical_items/icons/storage.dmi'
 	icon_state = "painkiller_bottle"
 	w_class = WEIGHT_CLASS_TINY // this is fine because we hard limit what can go in this thing
@@ -38,7 +38,7 @@
 	))
 
 /obj/item/reagent_containers/applicator/pill/prescription_stimulant
-	name = "阿利非药片"
+	name = "阿利非药丸"
 	desc = "用于治疗嗜睡和突发性意识丧失的症状。含有糖、突触嗪和莫达非尼的混合物。警告标签写道：<b>请适量服用</b>。"
 	icon_state = "pill15"
 	list_reagents = list(

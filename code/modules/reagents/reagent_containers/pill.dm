@@ -191,7 +191,7 @@
 	list_reagents = list(/datum/reagent/medicine/spaceacillin = 1.5) //1 minute since 0.05 every tick.
 
 /obj/item/reagent_containers/applicator/pill/sepsisillin
-	name = "败血青霉素药丸"
+	name = "脓毒西林药丸"
 	desc = "别和太空青霉素搞混了。会提高对病毒、细菌和寄生虫的易感性。"
 	icon_state = "pill11"
 	list_reagents = list(/datum/reagent/inverse/spaceacillin = 10)
@@ -216,7 +216,7 @@
 	rename_with_volume = TRUE
 
 /obj/item/reagent_containers/applicator/pill/multiver
-	name = "多功能解毒剂药片"
+	name = "多功能解毒剂药丸"
 	desc = "中和多种常见毒素，效果随体内独特药物数量增强。已用格拉尼比妥稀释。"
 	icon_state = "pill17"
 	list_reagents = list(/datum/reagent/medicine/c2/multiver = 5, /datum/reagent/medicine/granibitaluri = 5)
@@ -248,7 +248,7 @@
 	list_reagents = list(/datum/reagent/medicine/mannitol = 5)
 
 /obj/item/reagent_containers/applicator/pill/mutadone
-	name = "去突变药片"
+	name = "去突变药丸"
 	desc = "用于治疗基因损伤。"
 	icon_state = "pill20"
 	list_reagents = list(/datum/reagent/medicine/mutadone = 5)

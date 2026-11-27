@@ -1,6 +1,6 @@
 /obj/item/reagent_containers/applicator/patch
-	name = "药贴"
-	desc = "一种用于接触式给药的化学药贴。"
+	name = "贴片"
+	desc = "一种用于接触式给药的化学贴片。"
 	icon = 'icons/obj/medical/chemical.dmi'
 	icon_state = "bandaid_blank"
 	inhand_icon_state = null
@@ -30,7 +30,7 @@
 	return TRUE
 
 /obj/item/reagent_containers/applicator/patch/on_consumption(mob/living/carbon/consumer, mob/giver, list/modifiers)
-	consumer.log_message("被 [giver] 贴上了 [get_visible_name()] 药贴，其中含有以下试剂：[english_list(reagents.reagent_list)]。", LOG_GAME)
+	consumer.log_message("被 [giver] 贴上了 [get_visible_name()] 贴片，其中含有以下试剂：[english_list(reagents.reagent_list)]。", LOG_GAME)
 	var/clicked_x = LAZYACCESS(modifiers, ICON_X)
 	var/clicked_y = LAZYACCESS(modifiers, ICON_Y)
 	if (isnull(clicked_x))
@@ -175,24 +175,24 @@
 	transfer_per_second = /obj/item/reagent_containers/applicator/patch::volume
 
 /obj/item/reagent_containers/applicator/patch/libital
-	name = "利比妥药贴（钝击）"
+	name = "利比妥贴片（钝击）"
 	desc = "一种止痛药。会造成轻微肝脏损伤。已用格拉尼比妥稀释。"
 	list_reagents = list(/datum/reagent/medicine/c2/libital = 2, /datum/reagent/medicine/granibitaluri = 8) //10 iterations
 	icon_state = "bandaid_brute"
 
 /obj/item/reagent_containers/applicator/patch/aiuri
-	name = "艾尤里药贴（烧伤）"
+	name = "艾尤里贴片（烧伤）"
 	desc = "有助于治疗烧伤。会造成轻微眼部损伤。已用格拉尼比妥稀释。"
 	list_reagents = list(/datum/reagent/medicine/c2/aiuri = 2, /datum/reagent/medicine/granibitaluri = 8)
 	icon_state = "bandaid_burn"
 
 /obj/item/reagent_containers/applicator/patch/fent
-	name = "无标记药贴"
-	desc = "一片没有标记、没有标签的透皮药贴，给你贴上用的！"
+	name = "无标记贴片"
+	desc = "一片没有标记、没有标签的透皮贴片，给你贴上用的！"
 	list_reagents = list(/datum/reagent/toxin/fentanyl = 2)
 
 /obj/item/reagent_containers/applicator/patch/synthflesh
-	name = "合成肉液药贴"
+	name = "合成肉液贴片"
 	desc = "有助于治疗钝击和烧伤。略有毒性。贴上三片即可让被烧成焦尸的尸体恢复原状。"
 	list_reagents = list(/datum/reagent/medicine/c2/synthflesh = 20)
 	list_reagents_purity = 1
@@ -213,7 +213,7 @@
 		carbies.visible_message(span_boldwarning("需要先修复 [carbies] 的烧伤，合成肉液才能让其脱离焦尸状态！"))
 
 /obj/item/reagent_containers/applicator/patch/ondansetron
-	name = "昂丹司琼药贴"
+	name = "昂丹司琼贴片"
 	desc = "缓解恶心。可能引起困倦。"
 	list_reagents = list(/datum/reagent/medicine/ondansetron = 10)
 	icon_state = "bandaid_toxin"

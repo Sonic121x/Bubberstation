@@ -14,7 +14,7 @@
 
 /datum/reagent/medicine/c2/helbital //kinda a C2 only if you're not in hardcrit.
 	name = "赫尔比妥"
-	description = "这种药物以北欧女神海尔命名，患者越接近死亡，它就越能治愈其瘀伤。若患者尚未濒死，他们会发现这种药物会通过造成窒息来“帮助”他们康复。"
+	description = "这种药物以北欧女神赫尔命名，患者越接近死亡，它就越能治愈其瘀伤。若患者尚未濒死，他们会发现这种药物会通过造成窒息来“帮助”他们康复。"
 	color = "#9400D3"
 	taste_description = "冰冷而死寂"
 	ph = 8

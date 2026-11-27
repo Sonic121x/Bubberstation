@@ -431,7 +431,7 @@
 	icon = 'icons/obj/medical/chemical.dmi'
 	icon_state = "bag"
 	worn_icon_state = "chembag"
-	desc = "用于存放药片、贴片和药瓶的袋子。"
+	desc = "用于存放药丸、贴片和药瓶的袋子。"
 	resistance_flags = FLAMMABLE
 	storage_type = /datum/storage/bag/chemistry
 

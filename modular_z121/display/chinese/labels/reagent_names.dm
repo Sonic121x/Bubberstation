@@ -119,7 +119,7 @@
 			"Plant-B-Gone" = "植物克星",
 			"Weed Killer" = "除草剂",
 			"Pest Killer" = "杀虫剂",
-			"Tirizene" = "提里嗪",
+			"Tirizene" = "替利嗪",
 			"Histamine" = "组胺",
 			"Sulfuric Acid" = "硫酸",
 			"Synthanol" = "合成醇",

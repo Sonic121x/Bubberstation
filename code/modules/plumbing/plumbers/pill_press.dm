@@ -6,7 +6,7 @@
 ///We take a constant input of reagents, and produce a pill once a set volume is reached
 /obj/machinery/plumbing/pill_press
 	name = "化学压片机"
-	desc = "一台压制药片、贴片和瓶装药剂的压机。"
+	desc = "一台压制药丸、贴片和瓶装药剂的压机。"
 	icon_state = "pill_press"
 
 	/// selected size of the product
@@ -68,7 +68,7 @@
 	var/suffix
 	switch(packaging_category)
 		if(CAT_PILLS)
-			suffix = "药片"
+			suffix = "药丸"
 		if(CAT_PATCHES)
 			suffix = "贴片"
 		//SKYRAT EDIT ADDITION BEGIN - HYPOVIALS

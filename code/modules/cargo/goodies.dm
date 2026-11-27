@@ -53,7 +53,7 @@
 	cost = PAYCHECK_CREW * 1.5
 	access_view = ACCESS_WEAPONS
 	contains = list(/obj/item/ammo_box/magazine/m38/match/bouncy)
-	
+
 /datum/supply_pack/goody/mars_single
 	name = "柯尔特侦探特型单包装"
 	desc = "安保主管没收了你的枪和警徽？没问题！只要付这笔离谱的税，你就能重新拥有 .38 的致命威力！"
@@ -290,8 +290,8 @@
 	contains = list(/obj/item/food/ready_donk)
 
 /datum/supply_pack/goody/pill_mutadone
-	name = "应急诱变酮药片单包装"
-	desc = "一片用于治疗基因缺陷的药片。当你在医疗舱拿不到时很有用。"
+	name = "应急去突变药丸单包装"
+	desc = "一片用于治疗基因缺陷的药丸。当你在医疗舱拿不到时很有用。"
 	cost = PAYCHECK_CREW * 2.5
 	contains = list(/obj/item/reagent_containers/applicator/pill/mutadone)
 

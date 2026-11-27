@@ -1,6 +1,6 @@
 
 /obj/item/storage/pill_bottle/lidocaine
-	name = "利多卡因药片盒"
+	name = "利多卡因药丸盒"
 	desc = "一盒局部麻醉药，用于手术中麻醉患者。"
 	icon = 'modular_zubbers/icons/obj/storage/medkit.dmi'
 	icon_state = "lidocaine_box"
@@ -9,7 +9,7 @@
 	spawn_count = 7
 
 /obj/item/reagent_containers/applicator/pill/lidocaine
-	name = "利多卡因药片"
+	name = "利多卡因药丸"
 	desc = "用于手术中麻醉患者的局部麻醉药。"
 	icon_state = "pill3"
 	layers_remaining = 1
