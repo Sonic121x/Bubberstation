@@ -2,7 +2,7 @@
 	name = "狼人化增幅剂"
 	desc = "一种由纳米机器人与一般意义上的“坏情绪”调配而成的高级混合物，能大幅提升你的 \
 	狼人形态的战斗能力，赋予可观的抗伤害、抗警棍能力与再生能力，并进一步磨利你的爪子。此外还能让你精通体能。"
-	cost = 15
+	cost = 20
 	item = /obj/item/lycan_booster
 	restricted_species = list(SPECIES_CURSEKIN)
 	surplus = 0
