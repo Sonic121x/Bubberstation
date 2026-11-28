@@ -76,6 +76,7 @@
 /datum/round_event_control/radiation_storm
 	track = EVENT_TRACK_MODERATE
 	tags = list(TAG_COMMUNAL)
+	min_players = 20
 
 /datum/round_event_control/dynamic_tweak // no dynamic in this house
 	weight = 0
