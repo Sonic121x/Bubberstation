@@ -170,7 +170,7 @@
 /datum/loadout_item/toys/plush/myra
 	name = "高贵龙鲨毛绒玩偶"
 	item_path = /obj/item/toy/plush/myra
-
+/*
 /*
 *	SEX TOYS AND OTHER STUFF THAT NEEDS PREFS TO USE (otherwise fails to render on the character preview)
 */
@@ -298,3 +298,4 @@
 /datum/loadout_item/toys/lewd/kinky_sleepbag
 	name = "乳胶睡袋"
 	item_path = /obj/item/clothing/suit/straight_jacket/kinky_sleepbag
+*/
